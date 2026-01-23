@@ -295,6 +295,12 @@ main {
     line-height: 1.6;
 }
 
+.emoji-icon {
+    flex-shrink: 0;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
 /* Discipline Grid */
 .discipline-grid {
     display: grid;
