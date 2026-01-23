@@ -288,7 +288,8 @@ main {
 }
 
 .info-box-features li {
-    padding-left: 0;
+    padding-left: 2em;
+    text-indent: -2em;
 }
 
 /* Discipline Grid */
