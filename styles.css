@@ -820,6 +820,16 @@ button.secondary:hover {
     line-height: 1.7;
 }
 
+.example-text {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin: 0;
+}
+
 /* Footer */
 footer {
     background: var(--bg-primary);

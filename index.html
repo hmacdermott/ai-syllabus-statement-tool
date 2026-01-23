@@ -67,10 +67,107 @@ const disciplineLanguage = {
 
 // Example statements
 const exampleStatements = {
-    'stem-no-ai': "For all programming assignments in this course, you may not use AI code generation tools (including GitHub Copilot, ChatGPT, Claude Code, or similar tools). Understanding how to write, debug, and optimize code yourself is essential for developing the problem-solving skills central to computer science. You must document all uses of AI tools.",
-    'humanities-limited': "For your literary analysis essays, you may use AI tools for brainstorming initial ideas or checking grammar, but all interpretive work, thesis development, and close reading must be your own. AI cannot develop your ability to construct nuanced arguments about texts. You may not use AI to write any portion of your essay drafts.",
-    'social-sciences-ok': "You may use AI tools throughout your research process as you see fit, including for literature review, data analysis assistance, or drafting. However, you remain responsible for research design, methodological soundness, proper citation, and ensuring all data is handled ethically. Any fabricated or misrepresented data, whether AI-generated or not, constitutes academic misconduct.",
-    'sciences-required': "For your data visualization project, you are required to use an AI-assisted tool (such as Python with AI coding assistants, or data analysis platforms) to create your figures. Document which tools you used, what prompts you provided, and how you verified the accuracy of generated code. This assignment is designed to build your skills in working with contemporary data science tools."
+    'stem-no-ai': `## Generative AI Policy
+
+Students may not use generative AI tools for any work in this course.
+
+Generative AI cannot develop your ability to think algorithmically, debug code, or understand mathematical proofs—skills that are fundamental to your growth as a STEM professional.
+
+In STEM fields, understanding underlying concepts and being able to verify AI-generated solutions is essential for developing problem-solving skills and technical expertise.
+
+**Relevant AI Tools**: This policy applies to tools including (but not limited to): ChatGPT (OpenAI), Claude (Anthropic), GitHub Copilot (Microsoft/GitHub), Gemini (Google).
+
+### Assignment-Specific Guidelines
+
+**Programming Assignments**: AI tools may not be used for code generation, debugging assistance, or algorithm design. All code must be written independently.
+
+**Problem Sets**: You may not use AI to solve mathematical problems or generate proofs. Show all work and reasoning.
+
+### Documentation Requirements
+
+You must document all uses of generative AI tools. For each assignment where you use AI, include:
+- Which tool(s) you used
+- What prompts or inputs you provided
+- How you incorporated, modified, or verified the AI output
+- Your reflection on what you learned from using the tool
+
+### Academic Integrity
+
+Misuse or unauthorized use of generative AI tools may constitute an academic integrity violation. Even with permission to use AI, you must be wary of unintentional plagiarism, fabrication of data, or misrepresentation of AI output as your own thinking. Please communicate with me if you have questions about appropriate use for any assignment.`,
+
+    'humanities-limited': `## Generative AI Policy
+
+Students may use generative AI tools for assignments in this course, within specific limitations described below.
+
+You may use AI for research assistance or brainstorming, but your interpretations, arguments, and writing voice must be authentically yours.
+
+In humanities, developing your authentic voice and original analysis is central to your intellectual growth and ability to engage with complex texts and ideas.
+
+**Relevant AI Tools**: This policy applies to tools including (but not limited to): ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grammarly.
+
+### Assignment-Specific Guidelines
+
+**Literary Analysis Essays**: You may use AI tools for brainstorming initial ideas or identifying themes, but all close reading, thesis development, and argumentative writing must be your own work. AI may not be used to draft any portion of your essays.
+
+**Research Papers**: AI may assist with finding sources and organizing notes, but analysis and synthesis of sources must reflect your own thinking.
+
+### Documentation
+
+You are encouraged to document your use of generative AI tools for transparency and learning purposes.
+
+### Academic Integrity
+
+Misuse or unauthorized use of generative AI tools may constitute an academic integrity violation. Even with permission to use AI, you must be wary of unintentional plagiarism, fabrication of data, or misrepresentation of AI output as your own thinking. Please communicate with me if you have questions about appropriate use for any assignment.`,
+
+    'social-sciences-ok': `## Generative AI Policy
+
+Students may use generative AI tools for work in this course as they see fit.
+
+While AI can support your research process, you must ensure methodological soundness, proper citation, and ethical data handling.
+
+In social sciences, research integrity, methodological rigor, and ethical data practices are foundational to producing valid and meaningful insights about human behavior and society.
+
+**Relevant AI Tools**: This policy applies to tools including (but not limited to): ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Perplexity, NotebookLM.
+
+### Documentation
+
+You are encouraged to document your use of generative AI tools for transparency and learning purposes.
+
+### Academic Integrity
+
+Misuse or unauthorized use of generative AI tools may constitute an academic integrity violation. Even with permission to use AI, you must be wary of unintentional plagiarism, fabrication of data, or misrepresentation of AI output as your own thinking. Please communicate with me if you have questions about appropriate use for any assignment.
+
+### Additional Guidelines
+
+Any fabricated data, falsified research findings, or misrepresented results—whether generated by AI or otherwise—will be treated as a serious academic integrity violation. You are responsible for verifying the accuracy and validity of all information included in your work.`,
+
+    'sciences-required': `## Generative AI Policy
+
+Students are required to use generative AI tools for certain assignments in this course.
+
+Learning to effectively prompt AI coding assistants and critically evaluate their output is becoming an essential skill in modern software development.
+
+AI tools for protein folding prediction, molecular modeling, or data analysis are becoming standard in modern scientific research.
+
+**Relevant AI Tools**: This policy applies to tools including (but not limited to): ChatGPT (OpenAI), Claude (Anthropic), GitHub Copilot (Microsoft/GitHub), NotebookLM.
+
+### Assignment-Specific Guidelines
+
+**Data Visualization Project**: You are required to use an AI-assisted coding tool (such as ChatGPT, Claude, or GitHub Copilot) to generate visualization code. Document your prompts, the code generated, and how you verified its accuracy.
+
+**Literature Review**: You must use AI tools like NotebookLM or Perplexity to identify and synthesize recent research papers. Include a reflection on the strengths and limitations of AI-assisted literature review.
+
+### Documentation Requirements
+
+You must document all uses of generative AI tools. For each assignment where you use AI, include:
+- Which tool(s) you used
+- What prompts or inputs you provided
+- How you incorporated, modified, or verified the AI output
+- Your reflection on what you learned from using the tool
+
+### Academic Integrity
+
+Misuse or unauthorized use of generative AI tools may constitute an academic integrity violation. Even with permission to use AI, you must be wary of unintentional plagiarism, fabrication of data, or misrepresentation of AI output as your own thinking. Please communicate with me if you have questions about appropriate use for any assignment.`
 };
 
 function App() {
@@ -777,19 +874,19 @@ function ExamplesModal({ onClose }) {
                 <div className="modal-body">
                     <div className="example-item">
                         <h3>🔬 STEM - No AI</h3>
-                        <p>{exampleStatements['stem-no-ai']}</p>
+                        <pre className="example-text">{exampleStatements['stem-no-ai']}</pre>
                     </div>
                     <div className="example-item">
                         <h3>📚 Humanities - Limited AI</h3>
-                        <p>{exampleStatements['humanities-limited']}</p>
+                        <pre className="example-text">{exampleStatements['humanities-limited']}</pre>
                     </div>
                     <div className="example-item">
                         <h3>👥 Social Sciences - AI OK</h3>
-                        <p>{exampleStatements['social-sciences-ok']}</p>
+                        <pre className="example-text">{exampleStatements['social-sciences-ok']}</pre>
                     </div>
                     <div className="example-item">
                         <h3>🧪 Sciences - AI Required</h3>
-                        <p>{exampleStatements['sciences-required']}</p>
+                        <pre className="example-text">{exampleStatements['sciences-required']}</pre>
                     </div>
                 </div>
             </div>
