@@ -414,7 +414,7 @@ function WelcomeStep({ onNext, setShowExamples }) {
                             <li>Auto-save your progress as you go</li>
                         </ul>
                     </div>
-                    <button onClick={onNext} className="primary box-button">Get Started →</button>
+                    <button onClick={() => setShowExamples(true)} className="secondary box-button">See Example Statements</button>
                 </div>
                 <div className="info-box-wrapper">
                     <div className="info-box info-box-features">
@@ -426,7 +426,7 @@ function WelcomeStep({ onNext, setShowExamples }) {
                             <li><span className="emoji-icon">🔧</span><span>Specify AI tools by name</span></li>
                         </ul>
                     </div>
-                    <button onClick={() => setShowExamples(true)} className="secondary box-button">See Example Statements</button>
+                    <button onClick={onNext} className="primary box-button">Get Started →</button>
                 </div>
             </div>
         </div>
