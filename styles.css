@@ -286,17 +286,13 @@ main {
     align-items: flex-start;
 }
 
-.info-box li::before {
+.info-box:not(.info-box-features) li::before {
     content: "✓";
     font-weight: bold;
     font-size: 1.1rem;
     color: var(--success);
     flex-shrink: 0;
     line-height: 1.6;
-}
-
-.info-box-features li::before {
-    content: none;
 }
 
 /* Discipline Grid */
