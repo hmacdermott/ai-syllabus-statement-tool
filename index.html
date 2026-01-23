@@ -404,28 +404,30 @@ function WelcomeStep({ onNext, setShowExamples }) {
                 Create a clear, customized policy for generative AI use in your course.
             </p>
             <div className="info-boxes-container">
-                <div className="info-box">
-                    <h3>I'm Here to Help You</h3>
-                    <ul>
-                        <li>Guide you through key decisions about AI use in your course</li>
-                        <li>Allow assignment-level customization</li>
-                        <li>Generate a ready-to-use statement</li>
-                        <li>Auto-save your progress as you go</li>
-                    </ul>
+                <div className="info-box-wrapper">
+                    <div className="info-box">
+                        <h3>I'm Here to Help You</h3>
+                        <ul>
+                            <li>Guide you through key decisions about AI use in your course</li>
+                            <li>Allow assignment-level customization</li>
+                            <li>Generate a ready-to-use statement</li>
+                            <li>Auto-save your progress as you go</li>
+                        </ul>
+                    </div>
+                    <button onClick={onNext} className="primary box-button">Get Started →</button>
                 </div>
-                <div className="info-box info-box-features">
-                    <h3>What's New!</h3>
-                    <ul>
-                        <li><span className="emoji-icon">📄</span><span>Export as PDF or Word document</span></li>
-                        <li><span className="emoji-icon">🔗</span><span>Share via link</span></li>
-                        <li><span className="emoji-icon">📝</span><span>Assignment-specific policies</span></li>
-                        <li><span className="emoji-icon">🔧</span><span>Specify AI tools by name</span></li>
-                    </ul>
+                <div className="info-box-wrapper">
+                    <div className="info-box info-box-features">
+                        <h3>What's New!</h3>
+                        <ul>
+                            <li><span className="emoji-icon">📄</span><span>Export as PDF or Word document</span></li>
+                            <li><span className="emoji-icon">🔗</span><span>Share via link</span></li>
+                            <li><span className="emoji-icon">📝</span><span>Assignment-specific policies</span></li>
+                            <li><span className="emoji-icon">🔧</span><span>Specify AI tools by name</span></li>
+                        </ul>
+                    </div>
+                    <button onClick={() => setShowExamples(true)} className="secondary box-button">See Example Statements</button>
                 </div>
-            </div>
-            <div className="button-group">
-                <button onClick={() => setShowExamples(true)} className="secondary">See Example Statements</button>
-                <button onClick={onNext} className="primary">Get Started →</button>
             </div>
         </div>
     );
