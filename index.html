@@ -864,6 +864,15 @@ function PreviewStep({ formData, statement, onPrev, onCopy, onShare, onDownloadP
 }
 
 function ExamplesModal({ onClose }) {
+    const [activeTab, setActiveTab] = useState('stem-no-ai');
+
+    const tabs = [
+        { key: 'stem-no-ai', label: '🔬 STEM - No AI' },
+        { key: 'humanities-limited', label: '📚 Humanities - Limited' },
+        { key: 'social-sciences-ok', label: '👥 Social Sciences - OK' },
+        { key: 'sciences-required', label: '🧪 Sciences - Required' }
+    ];
+
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -871,22 +880,20 @@ function ExamplesModal({ onClose }) {
                     <h2>Example Statements</h2>
                     <button onClick={onClose} className="close-btn">✕</button>
                 </div>
+                <div className="tabs">
+                    {tabs.map(tab => (
+                        <button
+                            key={tab.key}
+                            className={`tab-btn ${activeTab === tab.key ? 'active' : ''}`}
+                            onClick={() => setActiveTab(tab.key)}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
                 <div className="modal-body">
                     <div className="example-item">
-                        <h3>🔬 STEM - No AI</h3>
-                        <pre className="example-text">{exampleStatements['stem-no-ai']}</pre>
-                    </div>
-                    <div className="example-item">
-                        <h3>📚 Humanities - Limited AI</h3>
-                        <pre className="example-text">{exampleStatements['humanities-limited']}</pre>
-                    </div>
-                    <div className="example-item">
-                        <h3>👥 Social Sciences - AI OK</h3>
-                        <pre className="example-text">{exampleStatements['social-sciences-ok']}</pre>
-                    </div>
-                    <div className="example-item">
-                        <h3>🧪 Sciences - AI Required</h3>
-                        <pre className="example-text">{exampleStatements['sciences-required']}</pre>
+                        <pre className="example-text">{exampleStatements[activeTab]}</pre>
                     </div>
                 </div>
             </div>
