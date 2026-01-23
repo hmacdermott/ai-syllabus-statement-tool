@@ -381,25 +381,27 @@ function WelcomeStep({ onNext, setShowExamples }) {
             <p className="lead">
                 Create a clear, customized policy for generative AI use in your course.
             </p>
-            <div className="info-box">
-                <h3>What this tool does:</h3>
-                <ul>
-                    <li>Guides you through key decisions about AI use in your course</li>
-                    <li>Provides discipline-specific language based on pedagogical research</li>
-                    <li>Allows assignment-level customization</li>
-                    <li>Generates a ready-to-use, professional syllabus statement</li>
-                    <li>Auto-saves your progress as you go</li>
-                </ul>
-            </div>
-            <div className="info-box" style={{marginTop: '1rem'}}>
-                <h3>New Features:</h3>
-                <ul>
-                    <li>📄 Export as PDF or Word document</li>
-                    <li>🔗 Share via link</li>
-                    <li>💾 Auto-save drafts (your progress is saved automatically)</li>
-                    <li>📝 Assignment-specific policies</li>
-                    <li>🔧 Specify AI tools by name</li>
-                </ul>
+            <div className="info-boxes-container">
+                <div className="info-box">
+                    <h3>What this tool does:</h3>
+                    <ul>
+                        <li>Guides you through key decisions about AI use in your course</li>
+                        <li>Provides discipline-specific language based on pedagogical research</li>
+                        <li>Allows assignment-level customization</li>
+                        <li>Generates a ready-to-use, professional syllabus statement</li>
+                        <li>Auto-saves your progress as you go</li>
+                    </ul>
+                </div>
+                <div className="info-box">
+                    <h3>New Features:</h3>
+                    <ul>
+                        <li>📄 Export as PDF or Word document</li>
+                        <li>🔗 Share via link</li>
+                        <li>💾 Auto-save drafts (your progress is saved automatically)</li>
+                        <li>📝 Assignment-specific policies</li>
+                        <li>🔧 Specify AI tools by name</li>
+                    </ul>
+                </div>
             </div>
             <p className="note">
                 <strong>Note:</strong> This tool is not powered by generative AI. It's an interactive decision tree designed to help you craft appropriate policies.
