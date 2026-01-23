@@ -794,6 +794,37 @@ button.secondary:hover {
     border-color: var(--danger);
 }
 
+.policy-legend {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem 2rem 1rem;
+    background: var(--bg-accent);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.legend-badge {
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.legend-desc {
+    color: var(--text-secondary);
+}
+
 .tabs {
     display: flex;
     gap: 0.5rem;
@@ -813,8 +844,24 @@ button.secondary:hover {
     cursor: pointer;
     border-bottom: 3px solid transparent;
     transition: all 0.2s ease;
-    white-space: nowrap;
     font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.tab-label {
+    white-space: nowrap;
+}
+
+.tab-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
 }
 
 .tab-btn:hover {
@@ -822,10 +869,19 @@ button.secondary:hover {
     background: var(--bg-accent);
 }
 
+.tab-btn:hover .tab-badge {
+    background: var(--border);
+}
+
 .tab-btn.active {
     color: var(--primary);
     border-bottom-color: var(--primary);
     font-weight: 600;
+}
+
+.tab-btn.active .tab-badge {
+    background: var(--primary);
+    color: white;
 }
 
 .modal-body {
@@ -1063,14 +1119,32 @@ footer {
         padding: 1rem;
     }
 
+    .policy-legend {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .legend-item {
+        font-size: 0.75rem;
+    }
+
+    .legend-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+
     .tabs {
         padding: 0.75rem 1rem 0;
         gap: 0.25rem;
     }
 
     .tab-btn {
-        font-size: 0.8rem;
-        padding: 0.6rem 0.75rem;
+        font-size: 0.75rem;
+        padding: 0.6rem 0.5rem;
+    }
+
+    .tab-badge {
+        font-size: 0.65rem;
     }
 
     .modal-body {

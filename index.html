@@ -867,11 +867,18 @@ function ExamplesModal({ onClose }) {
     const [activeTab, setActiveTab] = useState('stem-no-ai');
 
     const tabs = [
-        { key: 'stem-no-ai', label: '🔬 STEM - No AI' },
-        { key: 'humanities-limited', label: '📚 Humanities - Limited' },
-        { key: 'social-sciences-ok', label: '👥 Social Sciences - OK' },
-        { key: 'sciences-required', label: '🧪 Sciences - Required' }
+        { key: 'stem-no-ai', label: '💻 Computer Science', badge: 'No AI' },
+        { key: 'humanities-limited', label: '📚 English Literature', badge: 'Limited' },
+        { key: 'social-sciences-ok', label: '🧠 Psychology', badge: 'AI OK' },
+        { key: 'sciences-required', label: '🧬 Biology', badge: 'Required' }
     ];
+
+    const policyLevels = {
+        'No AI': 'Students may not use AI tools',
+        'Limited': 'AI allowed with restrictions',
+        'AI OK': 'Students may use AI as they see fit',
+        'Required': 'AI use is required for assignments'
+    };
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -880,6 +887,14 @@ function ExamplesModal({ onClose }) {
                     <h2>Example Statements</h2>
                     <button onClick={onClose} className="close-btn">✕</button>
                 </div>
+                <div className="policy-legend">
+                    {Object.entries(policyLevels).map(([key, desc]) => (
+                        <div key={key} className="legend-item">
+                            <span className="legend-badge">{key}</span>
+                            <span className="legend-desc">{desc}</span>
+                        </div>
+                    ))}
+                </div>
                 <div className="tabs">
                     {tabs.map(tab => (
                         <button
@@ -887,7 +902,8 @@ function ExamplesModal({ onClose }) {
                             className={`tab-btn ${activeTab === tab.key ? 'active' : ''}`}
                             onClick={() => setActiveTab(tab.key)}
                         >
-                            {tab.label}
+                            <span className="tab-label">{tab.label}</span>
+                            <span className="tab-badge">{tab.badge}</span>
                         </button>
                     ))}
                 </div>
