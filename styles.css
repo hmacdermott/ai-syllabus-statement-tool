@@ -274,22 +274,31 @@ main {
 }
 
 .info-box ul {
-    list-style-position: inside;
+    list-style: none;
+    padding-left: 0;
     color: var(--text-secondary);
 }
 
 .info-box li {
     margin-bottom: 0.5rem;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
 }
 
-.info-box-features ul {
-    list-style: none;
-    padding-left: 0;
+.info-box li::before {
+    content: "• ";
+    font-weight: bold;
+    display: inline-block;
+    width: 1.5em;
 }
 
 .info-box-features li {
-    padding-left: 2em;
-    text-indent: -2em;
+    padding-left: 2.5em;
+    text-indent: -2.5em;
+}
+
+.info-box-features li::before {
+    content: none;
 }
 
 /* Discipline Grid */
