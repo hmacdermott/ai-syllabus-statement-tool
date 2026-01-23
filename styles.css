@@ -282,6 +282,15 @@ main {
     margin-bottom: 0.5rem;
 }
 
+.info-box-features ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-box-features li {
+    padding-left: 0;
+}
+
 /* Discipline Grid */
 .discipline-grid {
     display: grid;
