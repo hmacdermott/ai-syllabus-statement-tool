@@ -280,21 +280,19 @@ main {
 }
 
 .info-box li {
-    margin-bottom: 0.5rem;
-    padding-left: 1.5em;
-    text-indent: -1.5em;
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
 }
 
 .info-box li::before {
-    content: "• ";
+    content: "✓";
     font-weight: bold;
-    display: inline-block;
-    width: 1.5em;
-}
-
-.info-box-features li {
-    padding-left: 2.5em;
-    text-indent: -2.5em;
+    font-size: 1.1rem;
+    color: var(--success);
+    flex-shrink: 0;
+    line-height: 1.6;
 }
 
 .info-box-features li::before {
