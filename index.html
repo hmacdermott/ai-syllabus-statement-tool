@@ -332,9 +332,30 @@ function App() {
                 {showExamples && <ExamplesModal onClose={() => setShowExamples(false)} />}
             </main>
 
-            <footer>
-                <p>Built with ❤️ for educators | Not powered by generative AI</p>
-                <p style={{fontSize: '0.8rem', marginTop: '0.5rem'}}>Inspired by Chris Heard's tool at Pepperdine University</p>
+            <footer id="main-footer">
+                <div className="footer-content">
+                    <a href="https://academicai.academic.wlu.edu/plai-lab/" target="_blank" rel="noopener noreferrer" className="footer-logo-link">
+                        <img src="plai-lab-logo.gif" alt="PLAI Lab" className="footer-logo" />
+                    </a>
+
+                    <p className="footer-credit">
+                        <a href="https://academicai.academic.wlu.edu/plai-lab/" target="_blank" rel="noopener noreferrer" id="plai-credit"></a>
+                        <span className="footer-separator"> | </span>
+                        <span id="last-updated"></span>
+                    </p>
+
+                    <p className="footer-copyright">
+                        © 2026 <a href="https://www.wlu.edu/harte-center" target="_blank" rel="noopener noreferrer">Houston H. Harte Center for Teaching and Learning</a> at Washington and Lee University
+                    </p>
+
+                    <p className="footer-feedback">
+                        <a href="#" id="feedback-link" target="_blank" rel="noopener noreferrer"></a>
+                    </p>
+
+                    <p className="footer-ai-statement" id="ai-statement"></p>
+
+                    <button className="footer-copy-btn" id="copy-statement-btn">Copy</button>
+                </div>
             </footer>
         </>
     );
@@ -755,7 +776,90 @@ function ExamplesModal({ onClose }) {
     );
 }
 
+// Footer randomization and functionality
+const plaiCredits = [
+    "Designed by the PLAI Lab",
+    "Powered by the PLAI Lab",
+    "Created by the PLAI Lab"
+];
+
+const feedbackTexts = [
+    "Have Feedback for Us?",
+    "Share Your Feedback",
+    "Send Anonymous Feedback"
+];
+
+const aiStatements = [
+    "Content conceptualized and directed by human educators, with a combination of human-written and AI-generated material, all reviewed and edited by humans.",
+    "Human-conceptualized resource combining human-written content and AI-generated material under human direction, editing, and review.",
+    "Content developed through human-AI collaboration: conceptualized and directed by educators, drafted by humans and AI, edited and reviewed by humans.",
+    "Human-directed resource combining human-written and AI-generated content, with all content reviewed and edited by humans.",
+    "Content created through human-AI collaboration under human direction and review."
+];
+
+function getRandomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+function initializeFooter() {
+    // Randomize PLAI Lab credit
+    const plaiCreditEl = document.getElementById('plai-credit');
+    if (plaiCreditEl) {
+        plaiCreditEl.textContent = getRandomItem(plaiCredits);
+    }
+
+    // Set last updated date
+    const lastUpdatedEl = document.getElementById('last-updated');
+    if (lastUpdatedEl) {
+        const lastModified = new Date(document.lastModified);
+        lastUpdatedEl.textContent = `Last Updated: ${lastModified.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })}`;
+    }
+
+    // Randomize feedback link
+    const feedbackLinkEl = document.getElementById('feedback-link');
+    if (feedbackLinkEl) {
+        feedbackLinkEl.textContent = getRandomItem(feedbackTexts);
+        // TODO: Set the actual Qualtrics URL here
+        feedbackLinkEl.href = 'https://wlu.qualtrics.com/jfe/form/YOUR_FORM_ID';
+    }
+
+    // Randomize AI transparency statement
+    const aiStatementEl = document.getElementById('ai-statement');
+    if (aiStatementEl) {
+        const selectedStatement = getRandomItem(aiStatements);
+        aiStatementEl.textContent = selectedStatement;
+        aiStatementEl.dataset.statement = selectedStatement;
+    }
+
+    // Copy button functionality
+    const copyBtn = document.getElementById('copy-statement-btn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+            const statement = aiStatementEl.dataset.statement || aiStatementEl.textContent;
+            try {
+                await navigator.clipboard.writeText(statement);
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard');
+            }
+        });
+    }
+}
+
+// Initialize footer after React renders
 ReactDOM.render(<App />, document.getElementById('root'));
+setTimeout(initializeFooter, 100);
     </script>
 </body>
 </html>

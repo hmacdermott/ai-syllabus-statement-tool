@@ -753,10 +753,129 @@ button.secondary:hover {
 footer {
     background: var(--bg-primary);
     border-top: 1px solid var(--border);
-    padding: 2rem 0;
+    padding: 3rem 0 2rem;
     text-align: center;
     color: var(--text-secondary);
     font-size: 0.875rem;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-logo-link {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.footer-logo-link:hover {
+    opacity: 0.8;
+}
+
+.footer-logo {
+    max-width: 200px;
+    height: auto;
+}
+
+.footer-credit {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.footer-credit a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-credit a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.footer-separator {
+    color: var(--text-secondary);
+    margin: 0 0.5rem;
+}
+
+.footer-copyright {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.footer-copyright a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-copyright a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.footer-feedback {
+    margin: 0.5rem 0;
+}
+
+.footer-feedback a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+    transition: color 0.2s ease;
+}
+
+.footer-feedback a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.footer-ai-statement {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 0.5rem 0;
+    font-size: 0.85rem;
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+.footer-copy-btn {
+    background: var(--primary);
+    color: white;
+    border: 2px solid var(--primary);
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.footer-copy-btn:hover {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border);
+}
+
+.footer-copy-btn.copied {
+    background: var(--success);
+    border-color: var(--success);
+}
+
+/* Dark mode footer behavior */
+[data-theme="dark"] .footer-logo-link,
+[data-theme="dark"] .footer-credit {
+    display: none;
 }
 
 /* Responsive */
@@ -813,5 +932,24 @@ footer {
 
     .modal-body {
         padding: 1.5rem;
+    }
+
+    .footer-content {
+        padding: 0 1rem;
+    }
+
+    .footer-logo {
+        max-width: 150px;
+    }
+
+    .footer-credit,
+    .footer-copyright,
+    .footer-ai-statement {
+        font-size: 0.8rem;
+    }
+
+    .footer-copy-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 1.2rem;
     }
 }
