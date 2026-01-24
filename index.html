@@ -148,6 +148,88 @@
             animation: fadeIn 0.3s ease-in;
         }
 
+        /* Welcome screen styles */
+        .welcome-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .welcome-description {
+            font-size: 1.25rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .welcome-notice {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-align: left;
+        }
+
+        [data-theme="dark"] .welcome-notice {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .welcome-notice p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+            color: #1e40af;
+        }
+
+        [data-theme="dark"] .welcome-notice p {
+            color: #93c5fd;
+        }
+
+        .welcome-notice strong {
+            color: #1e3a8a;
+        }
+
+        [data-theme="dark"] .welcome-notice strong {
+            color: #60a5fa;
+        }
+
+        .welcome-button {
+            font-size: 1.25rem;
+            padding: 1.25rem 2.5rem;
+        }
+
+        /* Mobile responsive styles for welcome screen */
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 1.75rem;
+            }
+
+            .welcome-description {
+                font-size: 1rem;
+            }
+
+            .welcome-notice {
+                padding: 1.25rem;
+            }
+
+            .welcome-notice p {
+                font-size: 0.85rem;
+            }
+
+            .welcome-button {
+                font-size: 1.1rem;
+                padding: 1rem 2rem;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -1525,20 +1607,20 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <h1 style={{fontSize: '2.5rem', marginBottom: '1rem', textAlign: 'center'}}>
+                                <h1 className="welcome-title">
                                     Build Your AI Statement
                                 </h1>
-                                <p className="phase-description" style={{fontSize: '1.25rem', textAlign: 'center', maxWidth: '700px', margin: '0 auto 2rem'}}>
+                                <p className="welcome-description">
                                     Create a customized AI policy for your syllabus, one section at a time. You'll see your statement grow as you make decisions.
                                 </p>
-                                <div style={{background: '#eff6ff', border: '2px solid #3b82f6', borderRadius: '12px', padding: '1.5rem', maxWidth: '700px', margin: '0 auto 2rem', textAlign: 'left'}}>
-                                    <p style={{fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '0.5rem'}}>
+                                <div className="welcome-notice">
+                                    <p>
                                         <strong>Note:</strong> This tool provides AI-generated starting language based on disciplinary patterns,
                                         not empirical research. Please review, adapt, and validate all generated text for your course and context.
                                     </p>
                                 </div>
                                 <div style={{textAlign: 'center'}}>
-                                    <button className="primary" style={{fontSize: '1.25rem', padding: '1.25rem 2.5rem'}} onClick={() => setPhase('department')}>
+                                    <button className="primary welcome-button" onClick={() => setPhase('department')}>
                                         Get Started →
                                     </button>
                                 </div>
