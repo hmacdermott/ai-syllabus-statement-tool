@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progressive Builder Prototype</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #2563eb;
+        }
+
+        .subtitle {
+            color: #64748b;
+        }
+
+        /* Accumulated Statement Display */
+        .accumulated-statement {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            min-height: 100px;
+        }
+
+        .accumulated-statement h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .statement-section {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-left: 4px solid #ddd;
+            background: #f8fafc;
+            border-radius: 4px;
+        }
+
+        .statement-section.intro { border-left-color: #fbbf24; }
+        .statement-section.policy { border-left-color: #ef4444; }
+        .statement-section.documentation { border-left-color: #3b82f6; }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /* Current Question/Phase */
+        .current-phase {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .phase-question {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+        }
+
+        /* Suggestion Box */
+        .suggestion-box {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .suggestion-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 0.75rem;
+        }
+
+        .suggested-text {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .suggestion-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .edit-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            resize: vertical;
+        }
+
+        .edit-textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        /* Buttons */
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        /* Choices */
+        .choices {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .choice-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .choice-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .choice-card h3 {
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .choice-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Department Grid */
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .department-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .department-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .department-card.selected {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .dept-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dept-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function App() {
+            const [phase, setPhase] = useState('welcome'); // welcome, department, intro, policyLevel
+            const [selectedDepartment, setSelectedDepartment] = useState('');
+            const [isEditing, setIsEditing] = useState(false);
+            const [editText, setEditText] = useState('');
+
+            // Accumulated statement parts
+            const [statementParts, setStatementParts] = useState({
+                intro: '',
+                policyLevel: '',
+                documentation: ''
+            });
+
+            // Suggestions based on department category
+            const introSuggestionsByCategory = {
+                'stem': 'Generative AI tools—software that creates new text, code, images, and other content—are widely available. Examples include ChatGPT for text and GitHub Copilot for code. This policy governs all such tools, including those released during our term together.\n\nGenerative AI can potentially enhance learning when used thoughtfully, but can also hinder skill development when overused. In STEM fields, understanding underlying concepts and being able to verify AI-generated solutions is essential—AI cannot develop your algorithmic thinking or problem-solving abilities.',
+
+                'sciences': 'Generative AI tools—software that creates new text, images, data visualizations, and other content—are widely available. Examples include ChatGPT for text and various AI tools for data analysis. This policy governs all such tools, including those released during our term together.\n\nGenerative AI can potentially enhance learning when used thoughtfully but can also hinder skill development when overused. In the natural sciences, direct observation, experimental design, and data interpretation are irreplaceable skills for developing scientific thinking.',
+
+                'humanities': 'Generative AI tools—software that creates new text, images, audio, and other content—are widely available. Well-known examples include ChatGPT, Claude, and Gemini. This policy governs all such tools, including those released during our term together.\n\nGenerative AI tools can potentially enhance learning when used thoughtfully but can also hinder skill development when overused. In the humanities, developing your authentic voice and original analysis is central to your intellectual growth.',
+
+                'social-sciences': 'Generative AI tools—software that creates new text, data analysis, visualizations, and other content—are widely available. Well-known examples include ChatGPT, Claude, and various data analysis tools. This policy governs all such tools, including those released during our term together.\n\nGenerative AI can potentially enhance learning when used thoughtfully but can also hinder skill development when overused. In the social sciences, research integrity, methodological rigor, and ethical data practices are foundational to producing valid insights.',
+
+                'creative': 'Generative AI tools—software that creates text, images, audio, video, and other content—are widely available. Examples include ChatGPT for text, DALL-E for images, and various tools for audio/video. This policy governs all such tools, including those released during our term together.\n\nGenerative AI can potentially enhance learning when used thoughtfully but can also hinder skill development when overused. In creative fields, developing your unique artistic voice and making intentional creative decisions are central to your growth as an artist.',
+
+                'general': 'Generative AI tools—software that creates new text, images, audio, video, and other content—are widely available. Well-known examples include ChatGPT, Claude, and Gemini. This policy governs all such tools, including those released during our term together.\n\nGenerative AI tools can potentially enhance learning when used thoughtfully but can also hinder skill development when overused. Critical thinking, original analysis, and intellectual integrity are fundamental to learning and academic growth.'
+            };
+
+            const departments = [
+                // STEM
+                { id: 'Computer Science', icon: '💻', category: 'stem' },
+                { id: 'Mathematics', icon: '🔢', category: 'stem' },
+                { id: 'Physics & Engineering', icon: '⚛️', category: 'stem' },
+                { id: 'Data Science', icon: '📊', category: 'stem' },
+
+                // Natural Sciences
+                { id: 'Biology', icon: '🧬', category: 'sciences' },
+                { id: 'Chemistry & Biochemistry', icon: '🧪', category: 'sciences' },
+                { id: 'Earth & Environmental Geoscience', icon: '🌍', category: 'sciences' },
+                { id: 'Neuroscience', icon: '🧠', category: 'sciences' },
+
+                // Humanities
+                { id: 'English', icon: '📚', category: 'humanities' },
+                { id: 'History', icon: '📜', category: 'humanities' },
+                { id: 'Philosophy', icon: '🤔', category: 'humanities' },
+                { id: 'Religion', icon: '✨', category: 'humanities' },
+                { id: 'Classics', icon: '🏛️', category: 'humanities' },
+                { id: 'Medieval & Renaissance Studies', icon: '📖', category: 'humanities' },
+                { id: 'Comparative Literature', icon: '📕', category: 'humanities' },
+
+                // Social Sciences
+                { id: 'Cognitive & Behavioral Science', icon: '🧠', category: 'social-sciences' },
+                { id: 'Economics', icon: '💰', category: 'social-sciences' },
+                { id: 'Politics', icon: '⚖️', category: 'social-sciences' },
+                { id: 'Sociology & Anthropology', icon: '👥', category: 'social-sciences' },
+                { id: 'Accounting & Finance', icon: '💼', category: 'social-sciences' },
+                { id: 'Business Administration', icon: '📈', category: 'social-sciences' },
+
+                // Creative Arts & Communications
+                { id: 'Art & Art History', icon: '🎨', category: 'creative' },
+                { id: 'Music', icon: '🎵', category: 'creative' },
+                { id: 'Theater, Dance & Film Studies', icon: '🎭', category: 'creative' },
+                { id: 'Journalism & Mass Communications', icon: '📰', category: 'creative' },
+
+                // Languages & Cultures
+                { id: 'Romance Languages', icon: '🗣️', category: 'humanities' },
+                { id: 'East Asian Languages & Literatures', icon: '🈳', category: 'humanities' },
+                { id: 'German', icon: '🇩🇪', category: 'humanities' },
+                { id: 'Russian', icon: '🇷🇺', category: 'humanities' },
+                { id: 'Arabic', icon: '🕌', category: 'humanities' },
+
+                // Interdisciplinary Programs
+                { id: 'Africana Studies', icon: '🌍', category: 'general' },
+                { id: 'East Asian Studies', icon: '🎌', category: 'general' },
+                { id: 'Environmental Studies', icon: '🌱', category: 'general' },
+                { id: 'Latin American & Caribbean Studies', icon: '🌎', category: 'general' },
+                { id: 'Middle East & South Asia Studies', icon: '🕌', category: 'general' },
+                { id: "Women's, Gender & Sexuality Studies", icon: '👭', category: 'general' },
+                { id: 'Law, Justice & Society', icon: '⚖️', category: 'general' },
+                { id: 'Poverty Studies', icon: '🤝', category: 'general' },
+                { id: 'Digital Culture & Information', icon: '💾', category: 'general' },
+                { id: 'Education Studies', icon: '🎓', category: 'general' }
+            ];
+
+            const handleAcceptSuggestion = (section, text) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    [section]: text
+                }));
+                setIsEditing(false);
+
+                // Move to next phase
+                if (phase === 'intro') setPhase('policyLevel');
+            };
+
+            const handleEditMode = (text) => {
+                setIsEditing(true);
+                setEditText(text);
+            };
+
+            const handleSaveEdit = (section) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    [section]: editText
+                }));
+                setIsEditing(false);
+
+                // Move to next phase
+                if (phase === 'intro') setPhase('policyLevel');
+            };
+
+            // PHASES
+
+            if (phase === 'welcome') {
+                return (
+                    <div className="container">
+                        <div className="header">
+                            <h1>Progressive Statement Builder</h1>
+                            <p className="subtitle">Prototype - Build your AI statement piece by piece</p>
+                        </div>
+                        <div className="current-phase">
+                            <h2 className="phase-question">Let's Build Your AI Statement</h2>
+                            <p style={{marginBottom: '1.5rem'}}>I'll guide you through creating a customized statement for your syllabus, one section at a time. You'll see your statement grow as we make decisions together.</p>
+                            <button className="btn-primary" onClick={() => setPhase('department')}>
+                                Get Started →
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'department') {
+                return (
+                    <div className="container">
+                        <div className="current-phase">
+                            <h2 className="phase-question">Choose Your Department</h2>
+                            <p style={{marginBottom: '1.5rem'}}>Select your department to get tailored language for your field.</p>
+
+                            <div className="department-grid">
+                                {departments.map(dept => (
+                                    <div
+                                        key={dept.id}
+                                        className={`department-card ${selectedDepartment === dept.id ? 'selected' : ''}`}
+                                        onClick={() => {
+                                            setSelectedDepartment(dept.id);
+                                            setPhase('intro');
+                                        }}
+                                    >
+                                        <div className="dept-icon">{dept.icon}</div>
+                                        <div className="dept-name">{dept.id}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'intro') {
+                const dept = departments.find(d => d.id === selectedDepartment);
+                const category = dept?.category || 'general';
+                const suggestedText = introSuggestionsByCategory[category];
+
+                return (
+                    <div className="container">
+                        <div className="accumulated-statement">
+                            <h2>Your Statement So Far</h2>
+                            {!statementParts.intro ? (
+                                <div className="empty-state">Your statement will appear here as you build it...</div>
+                            ) : (
+                                <div className="statement-section intro">
+                                    <div className="section-label">Introduction</div>
+                                    <div>{statementParts.intro}</div>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="current-phase">
+                            <h2 className="phase-question">Let's Start with an Introduction</h2>
+                            <p style={{marginBottom: '1.5rem'}}>We recommend beginning with a brief introduction that defines the types of AI tools this policy covers. Below is a suggested statement tailored for {selectedDepartment}.</p>
+
+                            <div className="suggestion-box">
+                                <div className="suggestion-label">SUGGESTED TEXT (you can modify this)</div>
+
+                                {!isEditing ? (
+                                    <>
+                                        <div className="suggested-text">{suggestedText}</div>
+                                        <div className="suggestion-actions">
+                                            <button
+                                                className="btn-primary"
+                                                onClick={() => handleAcceptSuggestion('intro', suggestedText)}
+                                            >
+                                                ✓ Use This Text
+                                            </button>
+                                            <button
+                                                className="btn-secondary"
+                                                onClick={() => handleEditMode(suggestedText)}
+                                            >
+                                                ✎ Edit First
+                                            </button>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <textarea
+                                            className="edit-textarea"
+                                            value={editText}
+                                            onChange={(e) => setEditText(e.target.value)}
+                                        />
+                                        <div className="suggestion-actions">
+                                            <button
+                                                className="btn-primary"
+                                                onClick={() => handleSaveEdit('intro')}
+                                            >
+                                                ✓ Save & Continue
+                                            </button>
+                                            <button
+                                                className="btn-secondary"
+                                                onClick={() => setIsEditing(false)}
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'policyLevel') {
+                const policyOptions = [
+                    {
+                        id: 'no-ai',
+                        title: '🚫 No AI',
+                        desc: 'Students may not use generative AI tools for any work in this course.',
+                        text: 'You may not use generative AI tools for any work in this course.'
+                    },
+                    {
+                        id: 'limited',
+                        title: '⚠️ Limited AI',
+                        desc: 'Students may use AI tools with specific restrictions.',
+                        text: 'You may use generative AI tools on assignments in this course, within the following limitations that I will specify.'
+                    },
+                    {
+                        id: 'ok',
+                        title: '✅ AI OK',
+                        desc: 'Students may use AI tools as they see fit.',
+                        text: 'You may use generative AI tools for work in this course however you see fit.'
+                    },
+                    {
+                        id: 'required',
+                        title: '⭐ AI Required',
+                        desc: 'AI use is required for certain assignments.',
+                        text: 'You are required to use generative AI tools for certain assignments in this course.'
+                    }
+                ];
+
+                return (
+                    <div className="container">
+                        <div className="accumulated-statement">
+                            <h2>Your Statement So Far</h2>
+                            <div className="statement-section intro">
+                                <div className="section-label">Introduction</div>
+                                <div>{statementParts.intro}</div>
+                            </div>
+                            {statementParts.policyLevel && (
+                                <div className="statement-section policy">
+                                    <div className="section-label">Policy Level</div>
+                                    <div>{statementParts.policyLevel}</div>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="current-phase">
+                            <h2 className="phase-question">What's Your Overall Approach?</h2>
+                            <p style={{marginBottom: '1.5rem'}}>Choose the statement that best aligns with your preference for AI use in your course.</p>
+
+                            <div className="choices">
+                                {policyOptions.map(option => (
+                                    <div
+                                        key={option.id}
+                                        className="choice-card"
+                                        onClick={() => {
+                                            handleAcceptSuggestion('policyLevel', option.text);
+                                            setPhase('complete');
+                                        }}
+                                    >
+                                        <h3>{option.title}</h3>
+                                        <p>{option.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'complete') {
+                return (
+                    <div className="container">
+                        <div className="accumulated-statement">
+                            <h2>Your Complete Statement (So Far)</h2>
+                            <div className="statement-section intro">
+                                <div className="section-label">Introduction</div>
+                                <div>{statementParts.intro}</div>
+                            </div>
+                            <div className="statement-section policy">
+                                <div className="section-label">Policy Level</div>
+                                <div>{statementParts.policyLevel}</div>
+                            </div>
+                        </div>
+
+                        <div className="current-phase">
+                            <h2 className="phase-question">Prototype Complete!</h2>
+                            <p style={{marginBottom: '1.5rem'}}>This demonstrates the progressive building pattern. In the full version, we'd continue with documentation, limitations, etc.</p>
+
+                            <p style={{marginBottom: '1.5rem', color: '#64748b'}}>
+                                <strong>Key Features Demonstrated:</strong>
+                            </p>
+                            <ul style={{marginLeft: '2rem', marginBottom: '1.5rem', color: '#64748b'}}>
+                                <li>Accumulated statement grows piece by piece</li>
+                                <li>Color-coded sections</li>
+                                <li>Suggested text with Use/Edit options</li>
+                                <li>Department-specific suggestions</li>
+                                <li>Inline editing with textarea</li>
+                                <li>Clean, focused flow</li>
+                            </ul>
+
+                            <button
+                                className="btn-secondary"
+                                onClick={() => {
+                                    setPhase('welcome');
+                                    setStatementParts({ intro: '', policyLevel: '', documentation: '' });
+                                    setSelectedDepartment('');
+                                }}
+                            >
+                                ← Start Over
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            return null;
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
