@@ -1344,6 +1344,11 @@ footer {
         font-size: 1rem;
     }
 
+    .policy-info-section [style*="display: grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
     .helper-section {
         padding: 1rem;
     }

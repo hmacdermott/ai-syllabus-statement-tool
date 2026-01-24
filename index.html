@@ -1070,53 +1070,48 @@ function PolicyVsStatementModal({ onClose }) {
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content policy-info-modal" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
-                    <h2>Policy vs. Statement: What's the Difference?</h2>
+                    <h2>Why This Tool Uses Neutral Headers</h2>
                     <button onClick={onClose} className="close-btn">✕</button>
                 </div>
                 <div className="modal-body">
                     <p style={{fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '1.5rem'}}>
-                        The difference between a <strong>policy</strong> and a <strong>statement</strong> is fundamental to governance and communication.
+                        Your syllabus statement sets course expectations. When thinking about AI language, the policy/statement distinction matters for how you position your authority.
                     </p>
 
-                    <div className="policy-info-section">
-                        <h3>Policy</h3>
-                        <p>A <strong>binding rule, principle, or guideline</strong> formally adopted by the institution to govern conduct, ensure compliance, and manage risk.</p>
-                        <ul>
-                            <li><strong>Purpose:</strong> To mandate or constrain action. Tells people what they <strong>must</strong> or <strong>must not</strong> do.</li>
-                            <li><strong>Nature:</strong> Prescriptive, enforceable, and authoritative.</li>
-                            <li><strong>Scope:</strong> Applies broadly (e.g., all students, all faculty).</li>
-                            <li><strong>Approval:</strong> Requires formal adoption by governing body (Board of Trustees, senior administration).</li>
-                            <li><strong>Examples:</strong> Academic Integrity Policy, Student Code of Conduct, Research Misconduct Policy</li>
-                        </ul>
+                    <div className="policy-info-section" style={{background: 'var(--bg-accent)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border)', marginBottom: '1.5rem'}}>
+                        <h3 style={{marginTop: 0, fontSize: '1rem', marginBottom: '1rem'}}>The Key Distinction</h3>
+                        <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem'}}>
+                            <div>
+                                <p style={{fontWeight: 600, marginBottom: '0.5rem'}}>Policy</p>
+                                <p style={{fontSize: '0.9rem', margin: 0}}>Institutional rules with formal enforcement mechanisms. Created through governance processes. Examples: Honor System, Code of Conduct.</p>
+                            </div>
+                            <div>
+                                <p style={{fontWeight: 600, marginBottom: '0.5rem'}}>Statement</p>
+                                <p style={{fontSize: '0.9rem', margin: 0}}>Course-level expectations within existing frameworks. Set by faculty for their courses. Examples: Syllabus sections, assignment guidelines.</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="policy-info-section">
-                        <h3>Statement</h3>
-                        <p>A <strong>declaration of position, intent, principle, or value</strong> that communicates an institution's or individual's stance. It <strong>guides</strong> but does not create enforceable rules.</p>
-                        <ul>
-                            <li><strong>Purpose:</strong> To inform, declare, or express values. Tells people what is <strong>believed, intended, or expected</strong>.</li>
-                            <li><strong>Nature:</strong> Declarative, aspirational, or descriptive.</li>
-                            <li><strong>Scope:</strong> Can be course-specific, department-level, or institution-wide.</li>
-                            <li><strong>Approval:</strong> May be issued by faculty, department, or leadership without formal policy process.</li>
-                            <li><strong>Examples:</strong> Mission Statement, Diversity Statement, Syllabus AI Use Statement</li>
+                        <h3>How This Works in Practice</h3>
+                        <p><strong>Your syllabus statement</strong> sets clear expectations: "Students are expected to complete their own work on problem sets without AI assistance."</p>
+                        <p><strong>Existing institutional policy</strong> (like W&L's Honor System) defines what constitutes an Honor Violation and prescribes consequences when expectations aren't met.</p>
+                        <p style={{marginBottom: 0}}>Your statement operates <strong>within</strong> the framework of institutional policies—it doesn't create parallel enforcement mechanisms.</p>
+                    </div>
+
+                    <div className="policy-info-section">
+                        <h3>Why "Generative AI Use"?</h3>
+                        <p>This tool generates syllabus text with the neutral header <strong>"Generative AI Use"</strong> rather than "AI Policy" or "AI Statement." This approach:</p>
+                        <ul style={{marginBottom: 0}}>
+                            <li>Avoids overstating your institutional authority</li>
+                            <li>Keeps focus on the practical guidance, not the terminology</li>
+                            <li>Still allows your text to be clear, directive, and enforceable</li>
+                            <li>Works within your institution's existing governance framework</li>
                         </ul>
                     </div>
 
                     <div className="policy-info-section" style={{background: 'var(--bg-accent)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border)'}}>
-                        <h3 style={{marginTop: 0}}>How They Work Together</h3>
-                        <p><strong>Statements often inform and justify Policies.</strong></p>
-                        <p>Your syllabus statement sets expectations for your course. When violations occur, they're addressed through existing institutional policies (like W&L's Honor System), not through your statement alone.</p>
-                        <p><strong>Think of it this way:</strong></p>
-                        <ul style={{marginBottom: 0}}>
-                            <li><strong>Your statement:</strong> "Students are expected to complete their own work on problem sets."</li>
-                            <li><strong>Institutional policy:</strong> The Honor System defines what constitutes an Honor Violation and prescribes consequences.</li>
-                        </ul>
-                    </div>
-
-                    <div className="policy-info-section">
-                        <h3>Why We Use Neutral Headers</h3>
-                        <p>This tool generates syllabus text with the neutral header <strong>"Generative AI Use"</strong> to avoid the policy/statement debate. You're setting clear expectations for your course while acknowledging that enforcement flows through existing institutional mechanisms.</p>
-                        <p>You have the authority to set course requirements and expectations—your syllabus text can (and should) be clear and directive. Just know that it operates within the framework of university policies.</p>
+                        <p style={{margin: 0, fontSize: '0.9rem'}}><strong>Bottom line:</strong> You have the authority to set course requirements and expectations. Your syllabus text can (and should) be clear and directive. We just use neutral headers to position your language appropriately within the larger institutional context.</p>
                     </div>
                 </div>
             </div>
