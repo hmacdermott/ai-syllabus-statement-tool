@@ -795,30 +795,24 @@ button.secondary:hover {
 }
 
 .policy-legend {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem 2rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 1.5rem;
+    padding: 1.5rem 2rem;
     background: var(--bg-accent);
     border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-    justify-content: center;
+    font-size: 0.85rem;
 }
 
 .legend-item {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.5rem;
-    font-size: 0.85rem;
 }
 
 .legend-badge {
-    background: var(--primary);
-    color: white;
-    padding: 0.25rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    white-space: nowrap;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 .legend-desc {
@@ -857,20 +851,13 @@ button.secondary:hover {
 
 .tab-badge {
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-secondary);
-    background: var(--bg-accent);
-    padding: 0.15rem 0.5rem;
-    border-radius: 10px;
 }
 
 .tab-btn:hover {
     color: var(--text-primary);
     background: var(--bg-accent);
-}
-
-.tab-btn:hover .tab-badge {
-    background: var(--border);
 }
 
 .tab-btn.active {
@@ -880,8 +867,8 @@ button.secondary:hover {
 }
 
 .tab-btn.active .tab-badge {
-    background: var(--primary);
-    color: white;
+    color: var(--primary);
+    font-weight: 600;
 }
 
 .modal-body {
@@ -1121,16 +1108,9 @@ footer {
 
     .policy-legend {
         padding: 1rem;
-        gap: 0.75rem;
-    }
-
-    .legend-item {
-        font-size: 0.75rem;
-    }
-
-    .legend-badge {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.5rem;
+        gap: 0.5rem 1rem;
+        grid-template-columns: 1fr;
+        font-size: 0.8rem;
     }
 
     .tabs {
