@@ -848,7 +848,7 @@ function PreviewStep({ formData, statement, onPrev, onCopy, onShare, onDownloadP
             <p>Review your statement below. You can copy it, share it, download as PDF/Word, or go back to make changes.</p>
 
             <div className="statement-preview">
-                <pre>{statement}</pre>
+                {renderMarkdown(statement)}
             </div>
 
             <div className="action-buttons">
