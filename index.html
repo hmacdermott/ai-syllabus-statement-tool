@@ -711,6 +711,8 @@ function AssignmentsStep({ formData, updateFormData, onNext, onPrev }) {
                     <li><strong>Weekly Discussion Posts:</strong> AI may not be used</li>
                     <li><strong>Research Paper:</strong> AI may be used for brainstorming and citation formatting only</li>
                     <li><strong>Final Project:</strong> AI tools required for data visualization</li>
+                    <li><strong>Video Essay:</strong> AI may be used for script outlining but not video content generation</li>
+                    <li><strong>Podcast:</strong> AI tools may be used for research and show notes only</li>
                 </ul>
             </div>
 
@@ -1038,15 +1040,15 @@ function ExamplesModal({ onClose }) {
                         </div>
                     ))}
                 </div>
-                <div className="tabs">
+                <div className="example-cards">
                     {tabs.map(tab => (
                         <button
                             key={tab.key}
-                            className={`tab-btn ${activeTab === tab.key ? 'active' : ''}`}
+                            className={`example-card ${activeTab === tab.key ? 'active' : ''}`}
                             onClick={() => setActiveTab(tab.key)}
                         >
-                            <span className="tab-label">{tab.label}</span>
-                            <span className="tab-badge">{tab.badge}</span>
+                            <span className="card-label">{tab.label}</span>
+                            <span className="card-policy">{tab.badge}</span>
                         </button>
                     ))}
                 </div>

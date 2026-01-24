@@ -898,53 +898,63 @@ button.secondary:hover {
     color: var(--text-secondary);
 }
 
-.tabs {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1rem 2rem;
+.example-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: var(--bg-accent);
     border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-    flex-wrap: wrap;
 }
 
-.tab-btn {
-    background: transparent;
-    border: none;
-    padding: 0.5rem 0;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-secondary);
+.example-card {
+    background: var(--bg-primary);
+    border: 2px solid var(--border);
+    padding: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: inherit;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
 }
 
-.tab-label {
-    white-space: nowrap;
+.card-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
 }
 
-.tab-badge {
-    font-size: 0.7rem;
+.card-policy {
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--text-secondary);
+    padding: 0.25rem 0.75rem;
+    background: var(--bg-accent);
+    border-radius: 4px;
 }
 
-.tab-btn:hover {
-    color: var(--text-primary);
+.example-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.tab-btn.active {
+.example-card.active {
+    border-color: var(--primary);
+    background: var(--bg-accent);
+}
+
+.example-card.active .card-label {
     color: var(--primary);
-    font-weight: 600;
 }
 
-.tab-btn.active .tab-badge {
-    color: var(--primary);
-    font-weight: 600;
+.example-card.active .card-policy {
+    background: var(--primary);
+    color: white;
 }
 
 .modal-body {
@@ -1238,18 +1248,22 @@ footer {
         font-size: 0.8rem;
     }
 
-    .tabs {
-        padding: 0.75rem 1rem 0;
-        gap: 0.25rem;
+    .example-cards {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 0.75rem;
     }
 
-    .tab-btn {
+    .example-card {
+        padding: 0.75rem;
+    }
+
+    .card-label {
+        font-size: 0.9rem;
+    }
+
+    .card-policy {
         font-size: 0.75rem;
-        padding: 0.6rem 0.5rem;
-    }
-
-    .tab-badge {
-        font-size: 0.65rem;
     }
 
     .modal-body {
