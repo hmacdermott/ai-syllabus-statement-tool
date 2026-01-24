@@ -280,7 +280,7 @@ function App() {
 
     const steps = [
         'Welcome',
-        'Discipline',
+        'Department',
         'Policy Level',
         'Tools & Tasks',
         'Assignments',
@@ -568,31 +568,76 @@ function WelcomeStep({ onNext, setShowExamples }) {
 
 function DisciplineStep({ formData, updateFormData, onNext, onPrev }) {
     const disciplines = [
-        { id: 'stem', name: 'Computer Science', desc: 'Also: Mathematics, Physics & Engineering', icon: '💻' },
-        { id: 'humanities', name: 'English', desc: 'Also: History, Philosophy, Classics, Religion', icon: '📚' },
-        { id: 'social-sciences', name: 'Cognitive & Behavioral Science', desc: 'Also: Economics, Politics, Sociology & Anthropology', icon: '🧠' },
-        { id: 'sciences', name: 'Biology', desc: 'Also: Chemistry, Earth & Environmental Geoscience', icon: '🧬' },
-        { id: 'creative', name: 'Art & Art History', desc: 'Also: Music, Theater/Dance/Film Studies', icon: '🎨' },
-        { id: 'general', name: 'Interdisciplinary Programs', desc: 'Africana Studies, Environmental Studies, Neuroscience, etc.', icon: '📖' }
+        // STEM
+        { id: 'stem', name: 'Computer Science', icon: '💻' },
+        { id: 'stem', name: 'Mathematics', icon: '🔢' },
+        { id: 'stem', name: 'Physics & Engineering', icon: '⚛️' },
+        { id: 'stem', name: 'Data Science', icon: '📊' },
+
+        // Natural Sciences
+        { id: 'sciences', name: 'Biology', icon: '🧬' },
+        { id: 'sciences', name: 'Chemistry & Biochemistry', icon: '🧪' },
+        { id: 'sciences', name: 'Earth & Environmental Geoscience', icon: '🌍' },
+        { id: 'sciences', name: 'Neuroscience', icon: '🧠' },
+
+        // Humanities
+        { id: 'humanities', name: 'English', icon: '📚' },
+        { id: 'humanities', name: 'History', icon: '📜' },
+        { id: 'humanities', name: 'Philosophy', icon: '🤔' },
+        { id: 'humanities', name: 'Religion', icon: '✨' },
+        { id: 'humanities', name: 'Classics', icon: '🏛️' },
+        { id: 'humanities', name: 'Medieval & Renaissance Studies', icon: '📖' },
+        { id: 'humanities', name: 'Comparative Literature', icon: '📕' },
+
+        // Social Sciences
+        { id: 'social-sciences', name: 'Cognitive & Behavioral Science', icon: '🧠' },
+        { id: 'social-sciences', name: 'Economics', icon: '💰' },
+        { id: 'social-sciences', name: 'Politics', icon: '⚖️' },
+        { id: 'social-sciences', name: 'Sociology & Anthropology', icon: '👥' },
+        { id: 'social-sciences', name: 'Accounting & Finance', icon: '💼' },
+        { id: 'social-sciences', name: 'Business Administration', icon: '📈' },
+
+        // Creative Arts & Communications
+        { id: 'creative', name: 'Art & Art History', icon: '🎨' },
+        { id: 'creative', name: 'Music', icon: '🎵' },
+        { id: 'creative', name: 'Theater, Dance & Film Studies', icon: '🎭' },
+        { id: 'creative', name: 'Journalism & Mass Communications', icon: '📰' },
+
+        // Languages & Cultures
+        { id: 'humanities', name: 'Romance Languages (French, Spanish, Italian)', icon: '🗣️' },
+        { id: 'humanities', name: 'German & Russian', icon: '🌐' },
+        { id: 'humanities', name: 'East Asian Languages (Chinese, Japanese)', icon: '🈳' },
+        { id: 'humanities', name: 'Arabic', icon: '🕌' },
+
+        // Interdisciplinary Programs
+        { id: 'general', name: 'Africana Studies', icon: '🌍' },
+        { id: 'general', name: 'East Asian Studies', icon: '🎌' },
+        { id: 'general', name: 'Environmental Studies', icon: '🌱' },
+        { id: 'general', name: 'Latin American & Caribbean Studies', icon: '🌎' },
+        { id: 'general', name: 'Middle East & South Asia Studies', icon: '🕌' },
+        { id: 'general', name: "Women's, Gender & Sexuality Studies", icon: '👭' },
+        { id: 'general', name: 'Law, Justice & Society', icon: '⚖️' },
+        { id: 'general', name: 'Poverty Studies', icon: '🤝' },
+        { id: 'general', name: 'Digital Culture & Information', icon: '💾' },
+        { id: 'general', name: 'Education Studies', icon: '🎓' }
     ];
 
     const selectedDisciplineConsiderations = formData.discipline ? disciplineLanguage[formData.discipline]?.considerations : null;
 
     return (
         <div className="step-content">
-            <h2>Choose Your Discipline</h2>
-            <p>Select the category that best fits your course. This helps us provide relevant, pedagogically-grounded language for your field.</p>
+            <h2>Choose Your Department</h2>
+            <p>Select your department or program. This helps us provide relevant, pedagogically-grounded language for your field.</p>
 
             <div className="discipline-grid">
                 {disciplines.map(disc => (
                     <div
-                        key={disc.id}
+                        key={disc.id + '-' + disc.name}
                         className={`discipline-card ${formData.discipline === disc.id ? 'selected' : ''}`}
                         onClick={() => updateFormData('discipline', disc.id)}
                     >
                         <div className="discipline-icon">{disc.icon}</div>
                         <h3>{disc.name}</h3>
-                        <p>{disc.desc}</p>
                     </div>
                 ))}
             </div>
