@@ -11,9 +11,10 @@ A modern, comprehensive tool to help educators create clear, discipline-specific
 - **Mobile Responsive**: Works beautifully on all devices
 
 ### Discipline-Specific Intelligence
-- **6 Discipline Categories**: STEM, Humanities, Social Sciences, Natural Sciences, Creative Arts, General
-- **Pedagogically-Grounded Language**: Each discipline has custom context explaining why AI policies matter for that field
+- **40 Department-Specific Templates**: Customized language for all Washington & Lee University departments
+- **Discipline-Tailored Language**: Each department has context explaining AI use within that field's methods and values
 - **Policy-Level Variations**: Different suggested language for No AI, Limited AI, AI OK, and AI Required policies
+- **Pedagogical Considerations**: 5 field-specific questions per department to guide policy thinking
 
 ### Advanced Customization
 - **Specify AI Tools**: Select from 8 common tools (ChatGPT, Claude, Gemini, Copilot, etc.) to name in your policy
@@ -56,32 +57,33 @@ python3 -m http.server 8000
 6. **Documentation**: Configure documentation requirements and integrity language
 7. **Preview & Export**: Review, edit if needed, then copy/share/download
 
-## 🎨 Discipline-Specific Features
+## 🎨 Department-Specific Features
 
-The tool provides context-aware language for each discipline:
+The tool provides customized language for 40 departments across 7 categories:
 
-### STEM
-- Focus on algorithmic thinking, code verification, mathematical reasoning
-- Examples relevant to CS, engineering, math courses
+### STEM (4 departments)
+Computer Science, Mathematics, Physics & Engineering, Data Science
+- Focus on algorithmic thinking, verification, problem-solving from first principles
 
-### Humanities
-- Emphasis on authentic voice, original analysis, close reading
-- Examples for literature, history, philosophy
+### Natural Sciences (4 departments)
+Biology, Chemistry & Biochemistry, Earth & Environmental Geoscience, Neuroscience
+- Priority on experimental design, observation, field work, laboratory technique
 
-### Social Sciences
-- Attention to research integrity, methodology, ethical data handling
-- Examples for psychology, sociology, business
+### Humanities (12 departments)
+English, History, Philosophy, Religion, Classics, Medieval & Renaissance Studies, Comparative Literature, Romance Languages, East Asian Languages & Literatures, German, Russian, Arabic
+- Emphasis on close reading, language acquisition, interpretation, cultural analysis
 
-### Natural Sciences
-- Priority on experimental design, direct observation, data interpretation
-- Examples for biology, chemistry, physics, lab courses
+### Social Sciences (6 departments)
+Accounting & Finance, Business Administration, Cognitive & Behavioral Science, Economics, Politics, Sociology & Anthropology
+- Attention to research methodology, professional judgment, ethical reasoning
 
-### Creative Arts
-- Focus on artistic vision, intentional choices, technical skill development
-- Examples for studio art, music, design
+### Creative Arts & Communications (4 departments)
+Art & Art History, Music, Theater/Dance/Film Studies, Journalism & Mass Communications
+- Focus on embodied practice, creative vision, technical skill, editorial judgment
 
-### General
-- Flexible language for interdisciplinary or other fields
+### Interdisciplinary Programs (10 departments)
+Africana Studies, East Asian Studies, Environmental Studies, Latin American & Caribbean Studies, Middle East & South Asia Studies, Women's/Gender/Sexuality Studies, Law/Justice/Society, Poverty Studies, Digital Culture & Information, Education Studies
+- Integration across fields, critical frameworks, language proficiency, justice-oriented analysis
 
 ## 🔧 Technology Stack
 
@@ -94,10 +96,10 @@ The tool provides context-aware language for each discipline:
 ## 💡 Design Philosophy
 
 1. **Progressive Disclosure**: Show information when it's relevant
-2. **Pedagogical Grounding**: Language based on learning sciences, not just compliance
+2. **Discipline-Centered**: Language tailored to each field's methods, values, and professional practices
 3. **Flexibility**: Support diverse teaching contexts without prescribing one approach
-4. **Transparency**: No AI used in tool creation - it's a hand-crafted decision tree
-5. **Educator Agency**: Faculty remain in control of final language
+4. **Transparency**: Clear about methodology and limitations (see below)
+5. **Educator Agency**: Faculty remain in control of final language - this tool provides starting points for review and adaptation
 
 ## 📝 Policy Levels Explained
 
@@ -161,4 +163,66 @@ Suggestions and improvements welcome! This tool is designed to evolve with educa
 
 ---
 
-**Note**: This tool is not powered by generative AI. It's a carefully designed interactive decision tree built to help educators think through the pedagogical implications of AI policies.
+## ⚙️ Methodology & Transparency
+
+### How Department-Specific Language Was Created
+
+The 40 department-specific templates in this tool were generated through **AI synthesis of disciplinary discourse patterns**, not empirical research with faculty or validated pedagogical studies. Here's the process:
+
+#### 1. **Pattern Identification**
+For each discipline, we identified:
+- Core skills that require sustained practice (e.g., algorithmic thinking in CS, close reading in English)
+- Epistemological norms (how the field produces knowledge)
+- Professional practices where AI is relevant
+- Common pedagogical concerns about AI in that field
+
+#### 2. **Consistent Framework**
+Each department received:
+- **5 pedagogical considerations**: Questions faculty might ask about AI's impact on learning
+- **Intro text**: 2-3 sentences acknowledging AI tools and field-specific learning concerns
+- **Context statement**: 1 sentence about core disciplinary practices
+- **4 policy rationales**: Customized language for noAI, limited, ok, and required policies
+
+#### 3. **Disciplinary Vocabulary**
+Language uses field-appropriate terminology (e.g., "intersectionality" in WGSS, "parsing" in Classics, "algorithmic thinking" in CS) drawn from how academics typically describe their fields.
+
+#### 4. **Critical Frameworks**
+For identity-based and area studies fields (Africana Studies, WGSS, MESAS, etc.), language emphasizes:
+- Representation and power in knowledge production
+- Biases in AI training data
+- Relevant critical frameworks (Orientalism, decolonial thought, intersectionality)
+
+### Important Limitations
+
+**What this is:**
+- ✅ A starting point for faculty to review, adapt, and validate
+- ✅ AI synthesis of disciplinary patterns and academic discourse
+- ✅ Consistent structure with field-specific customization
+- ✅ Grounded in how disciplines typically describe their pedagogical priorities
+
+**What this is NOT:**
+- ❌ Empirical research or validated best practices
+- ❌ Created by interviewing faculty in these fields
+- ❌ Based on learning science research specific to AI pedagogy
+- ❌ Endorsed by professional associations (ACM, MLA, AHA, etc.)
+- ❌ Tested with students or shown to improve learning outcomes
+
+### Recommended Next Steps for Faculty
+
+1. **Consult your professional association** for research-backed guidance (ACM, MLA, AHA, ACS, ASA, etc.)
+2. **Review existing policies** via [Lance Eaton's AI Policy Database](https://docs.google.com/spreadsheets/d/1-R8wxAB6V11cDh_u6t-WgCBdxYKV8FoXDFGxPVxbs6k/)
+3. **Discuss with colleagues** in your department who teach similar courses
+4. **Adapt the generated language** to your specific course goals, student population, and institutional context
+5. **Consider your institution's** academic integrity policies and support resources
+
+### About the Tool Itself
+
+- The **tool interface** (HTML/CSS/React) was hand-crafted, not AI-generated
+- The **department-specific content** (considerations, intro, context, rationales) was AI-generated as described above
+- All generated language should be **reviewed and validated by faculty** with expertise in their field
+
+---
+
+## 📄 License
+
+Built for educational use. Free to use, modify, and share.
