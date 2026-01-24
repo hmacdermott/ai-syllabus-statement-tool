@@ -1082,14 +1082,6 @@ function ExamplesModal({ onClose }) {
                     <h2>Example Statements</h2>
                     <button onClick={onClose} className="close-btn">✕</button>
                 </div>
-                <div className="policy-legend">
-                    {Object.entries(policyLevels).map(([key, desc]) => (
-                        <div key={key} className="legend-item">
-                            <span className="legend-badge">{key}</span>
-                            <span className="legend-desc">{desc}</span>
-                        </div>
-                    ))}
-                </div>
                 <div className="example-cards">
                     {tabs.map(tab => (
                         <button
@@ -1101,6 +1093,17 @@ function ExamplesModal({ onClose }) {
                             <span className="card-policy">{tab.badge}</span>
                         </button>
                     ))}
+                </div>
+                <div className="policy-legend">
+                    <div className="legend-title">Policy Levels:</div>
+                    <div className="legend-items">
+                        {Object.entries(policyLevels).map(([key, desc]) => (
+                            <div key={key} className="legend-item">
+                                <span className="legend-badge">{key}</span>
+                                <span className="legend-desc">{desc}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 <div className="modal-body">
                     <div className={`example-item example-${activeTab}`}>
