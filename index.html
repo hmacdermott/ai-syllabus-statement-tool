@@ -22,42 +22,78 @@ const { useState, useEffect } = React;
 // Discipline-specific language database
 const disciplineLanguage = {
     stem: {
-        context: "In STEM fields, understanding underlying concepts and being able to verify AI-generated solutions is essential for developing problem-solving skills and technical expertise.",
+        considerations: [
+            "Are students learning to debug and understand code, or just generate it?",
+            "Can students verify AI-generated solutions and explain why they work?",
+            "Does your course build foundational problem-solving skills that AI would bypass?",
+            "Are you assessing conceptual understanding or just correct answers?",
+            "Will students encounter similar problems in professional contexts where they'll need independent skills?"
+        ],
         noAI: "Generative AI cannot develop your ability to think algorithmically, debug code, or understand mathematical proofs—skills that are fundamental to your growth as a STEM professional.",
         limited: "You may use AI tools for brainstorming approaches or checking syntax, but core problem-solving, algorithm design, and mathematical reasoning must be your own work.",
         ok: "While AI tools can assist with coding tasks, you remain responsible for understanding your code, testing thoroughly, and ensuring correctness.",
         required: "Learning to effectively prompt AI coding assistants and critically evaluate their output is becoming an essential skill in modern software development."
     },
     humanities: {
-        context: "In humanities, developing your authentic voice and original analysis is central to your intellectual growth and ability to engage with complex texts and ideas.",
+        considerations: [
+            "Are students developing their own analytical voice, or adopting AI's generic interpretations?",
+            "Can students engage in close reading and textual evidence, not just summary?",
+            "Does your course prioritize original argumentation over information synthesis?",
+            "Are students building writing skills through practice and revision?",
+            "Will AI-generated prose mask students' actual comprehension of complex texts?"
+        ],
         noAI: "Generative AI cannot develop your ability to close-read texts, construct nuanced arguments, or articulate your unique perspective—skills that define humanistic inquiry.",
         limited: "You may use AI for research assistance or brainstorming, but your interpretations, arguments, and writing voice must be authentically yours.",
         ok: "While AI can assist with drafting and editing, the ideas, analysis, and argumentation in your work must reflect your own thinking.",
         required: "Understanding how AI processes and generates text about literature, history, and philosophy helps you think critically about both AI and humanistic knowledge."
     },
     'social-sciences': {
-        context: "In social sciences, research integrity, methodological rigor, and ethical data practices are foundational to producing valid and meaningful insights about human behavior and society.",
+        considerations: [
+            "Are students learning research methodology, or just executing techniques?",
+            "Can students design studies and interpret results with disciplinary judgment?",
+            "Does your course emphasize ethical reasoning about data and research subjects?",
+            "Are you assessing statistical literacy or just computational outputs?",
+            "Will students understand limitations and appropriate applications of methods?"
+        ],
         noAI: "Generative AI cannot conduct empirical research, apply statistical methods appropriately, or ensure research ethics—competencies that define social science practice.",
         limited: "You may use AI for data analysis assistance or literature review, but research design, methodological decisions, and interpretation must reflect your understanding.",
         ok: "While AI can support your research process, you must ensure methodological soundness, proper citation, and ethical data handling.",
         required: "Learning to use AI tools for data analysis and visualization is increasingly relevant to contemporary social science research."
     },
     sciences: {
-        context: "In natural sciences, direct observation, experimental design, and data interpretation are irreplaceable skills for developing scientific thinking and understanding natural phenomena.",
+        considerations: [
+            "Are students developing observation and experimental design skills, or just processing data?",
+            "Can students troubleshoot experiments and interpret unexpected results?",
+            "Does your course build scientific reasoning through hands-on practice?",
+            "Are you assessing laboratory technique and safety awareness?",
+            "Will students understand the 'why' behind protocols, not just the procedures?"
+        ],
         noAI: "Generative AI cannot conduct experiments, make observations, or develop the hands-on skills essential to laboratory science and field work.",
         limited: "You may use AI for literature review or data visualization, but experimental design, data collection, and scientific interpretation must be your own work.",
         ok: "While AI can assist with data analysis and writing, you remain responsible for experimental rigor, proper methodology, and accurate reporting.",
         required: "AI tools for protein folding prediction, molecular modeling, or data analysis are becoming standard in modern scientific research."
     },
     creative: {
-        context: "In creative fields, developing your unique artistic voice, making intentional creative decisions, and building technical skills through practice are central to your growth as an artist.",
+        considerations: [
+            "Are students developing technical skills through repeated practice, or bypassing the learning process?",
+            "Can students articulate intentional creative decisions behind their work?",
+            "Does your course build aesthetic judgment and critical evaluation abilities?",
+            "Are you assessing creative problem-solving or just finished products?",
+            "Will students understand the relationship between technique, concept, and expression?"
+        ],
         noAI: "Generative AI cannot develop your creative vision, artistic judgment, or the technical skills built through repeated practice with traditional media.",
         limited: "You may use AI for inspiration or technical assistance, but creative concepts, artistic decisions, and final execution must reflect your vision and skills.",
         ok: "While AI can be a creative tool, your work must demonstrate intentional artistic choices and your developing aesthetic sensibility.",
         required: "Understanding AI as a creative medium—its capabilities, limitations, and implications—is increasingly relevant to contemporary art practice."
     },
     general: {
-        context: "Across all fields, critical thinking, original analysis, and intellectual integrity are fundamental to learning and academic growth.",
+        considerations: [
+            "What are the core learning objectives in your course?",
+            "Which skills require practice and struggle to develop?",
+            "Where might AI help students focus on higher-order thinking?",
+            "How will you assess whether students have actually learned the material?",
+            "What intellectual work is essential for students to do themselves?"
+        ],
         noAI: "Generative AI cannot replace the cognitive work necessary for deep learning and skill development in any discipline.",
         limited: "You may use AI tools selectively, but core intellectual work must be your own to ensure genuine learning.",
         ok: "While AI can assist with various tasks, you remain responsible for the quality, accuracy, and integrity of your work.",
@@ -540,7 +576,7 @@ function DisciplineStep({ formData, updateFormData, onNext, onPrev }) {
         { id: 'general', name: 'General/Other', desc: 'Interdisciplinary or other fields', icon: '📖' }
     ];
 
-    const selectedDisciplineContext = formData.discipline ? disciplineLanguage[formData.discipline]?.context : null;
+    const selectedDisciplineConsiderations = formData.discipline ? disciplineLanguage[formData.discipline]?.considerations : null;
 
     return (
         <div className="step-content">
@@ -561,10 +597,14 @@ function DisciplineStep({ formData, updateFormData, onNext, onPrev }) {
                 ))}
             </div>
 
-            {selectedDisciplineContext && (
+            {selectedDisciplineConsiderations && (
                 <div className="info-box" style={{marginTop: '1.5rem'}}>
-                    <p><strong>Why AI policy matters for your field:</strong></p>
-                    <p style={{marginTop: '0.5rem'}}>{selectedDisciplineContext}</p>
+                    <p><strong>Questions to consider for your course:</strong></p>
+                    <ul style={{fontSize: '0.9rem', marginTop: '0.75rem', lineHeight: '1.6'}}>
+                        {selectedDisciplineConsiderations.map((question, idx) => (
+                            <li key={idx} style={{marginBottom: '0.5rem'}}>{question}</li>
+                        ))}
+                    </ul>
                 </div>
             )}
 
