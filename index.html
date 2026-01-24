@@ -127,7 +127,7 @@ You must document all uses of generative AI tools. For each assignment where you
 - How you incorporated, modified, or verified the AI output
 - Your reflection on what you learned from using the tool
 
-### Honor System
+### Academic Integrity
 
 Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under W&L's Honor System. Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community's trust. If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.`,
 
@@ -151,7 +151,7 @@ In humanities, developing your authentic voice and original analysis is central 
 
 You are encouraged to document your use of generative AI tools for transparency and learning purposes.
 
-### Honor System
+### Academic Integrity
 
 Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under W&L's Honor System. Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community's trust. If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.`,
 
@@ -169,7 +169,7 @@ In social sciences, research integrity, methodological rigor, and ethical data p
 
 You are encouraged to document your use of generative AI tools for transparency and learning purposes.
 
-### Honor System
+### Academic Integrity
 
 Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under W&L's Honor System. Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community's trust. If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.
 
@@ -201,7 +201,7 @@ You must document all uses of generative AI tools. For each assignment where you
 - How you incorporated, modified, or verified the AI output
 - Your reflection on what you learned from using the tool
 
-### Honor System
+### Academic Integrity
 
 Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under W&L's Honor System. Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community's trust. If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.`
 };
@@ -365,7 +365,7 @@ function App() {
 
         // Add cautionary language
         if (formData.cautionaryLanguage) {
-            statement += '### Honor System\n\n';
+            statement += '### Academic Integrity\n\n';
             statement += 'Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under W&L\'s Honor System. ';
             statement += 'Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community\'s trust. ';
             statement += 'If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.\n\n';
@@ -816,8 +816,8 @@ function AssignmentsStep({ formData, updateFormData, onNext, onPrev }) {
 function DocumentationStep({ formData, updateFormData, onNext, onPrev }) {
     return (
         <div className="step-content">
-            <h2>Documentation & Honor System</h2>
-            <p>Finalize your policy with documentation requirements and Honor System language.</p>
+            <h2>Documentation & Academic Integrity</h2>
+            <p>Finalize your statement with documentation requirements and academic integrity language.</p>
 
             <div className="form-section">
                 <label>
@@ -865,7 +865,7 @@ function DocumentationStep({ formData, updateFormData, onNext, onPrev }) {
                         checked={formData.cautionaryLanguage}
                         onChange={(e) => updateFormData('cautionaryLanguage', e.target.checked)}
                     />
-                    <span>Include Honor System language</span>
+                    <span>Include academic integrity language</span>
                 </label>
                 <p className="help-text">
                     Recommended. Clarifies that misuse may constitute an Honor Violation under W&L's Honor System.
