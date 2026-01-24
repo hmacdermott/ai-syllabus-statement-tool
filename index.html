@@ -679,6 +679,7 @@ function ToolsStep({ formData, updateFormData, onNext, onPrev }) {
 
 function AssignmentsStep({ formData, updateFormData, onNext, onPrev }) {
     const [newAssignment, setNewAssignment] = useState({ assignmentType: '', policy: '' });
+    const [showHelper, setShowHelper] = useState(false);
 
     const addAssignment = () => {
         if (newAssignment.assignmentType && newAssignment.policy) {
@@ -690,6 +691,13 @@ function AssignmentsStep({ formData, updateFormData, onNext, onPrev }) {
     const removeAssignment = (index) => {
         const updated = formData.assignmentPolicies.filter((_, i) => i !== index);
         updateFormData('assignmentPolicies', updated);
+    };
+
+    const useExample = () => {
+        setNewAssignment({
+            assignmentType: 'Weekly Reflection Papers',
+            policy: 'You may use AI tools for brainstorming and organizing your initial thoughts, but the final analysis and writing must be your own. AI may not be used to draft any portion of your reflections.'
+        });
     };
 
     return (
@@ -721,7 +729,13 @@ function AssignmentsStep({ formData, updateFormData, onNext, onPrev }) {
             )}
 
             <div className="assignment-form">
-                <h3>Add Assignment Policy:</h3>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem'}}>
+                    <h3 style={{margin: 0}}>Add Assignment Policy:</h3>
+                    <div style={{display: 'flex', gap: '1rem', fontSize: '0.9rem'}}>
+                        <button onClick={useExample} className="link-btn" type="button">Use example</button>
+                        <button onClick={() => setShowHelper(true)} className="link-btn" type="button">Not sure yet?</button>
+                    </div>
+                </div>
                 <input
                     type="text"
                     placeholder="Assignment type (e.g., 'Weekly Quizzes', 'Final Paper')"
@@ -736,6 +750,8 @@ function AssignmentsStep({ formData, updateFormData, onNext, onPrev }) {
                 />
                 <button onClick={addAssignment} className="add-btn">+ Add Assignment Policy</button>
             </div>
+
+            {showHelper && <AssignmentPolicyHelper onClose={() => setShowHelper(false)} />}
 
             <div className="button-group">
                 <button onClick={onPrev} className="secondary">← Back</button>
@@ -858,6 +874,69 @@ function PreviewStep({ formData, statement, onPrev, onCopy, onShare, onDownloadP
                         window.location.reload();
                     }
                 }} className="primary">Start New Statement</button>
+            </div>
+        </div>
+    );
+}
+
+function AssignmentPolicyHelper({ onClose }) {
+    return (
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content helper-modal" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-header">
+                    <h2>Assignment Policy Guide</h2>
+                    <button onClick={onClose} className="close-btn">✕</button>
+                </div>
+                <div className="modal-body">
+                    <p style={{marginBottom: '1.5rem', lineHeight: '1.7'}}>
+                        Consider these questions to determine the right AI policy for each assignment:
+                    </p>
+
+                    <div className="helper-section">
+                        <h3>🎯 What learning outcomes does this assignment assess?</h3>
+                        <ul>
+                            <li><strong>If it's about developing foundational skills</strong> (writing, problem-solving, critical thinking): Consider restricting or prohibiting AI</li>
+                            <li><strong>If it's about applying skills in realistic contexts</strong>: Consider allowing AI as a tool</li>
+                            <li><strong>If it's about learning to work with AI</strong>: Consider requiring AI use</li>
+                        </ul>
+                    </div>
+
+                    <div className="helper-section">
+                        <h3>📊 What's the assignment format?</h3>
+                        <ul>
+                            <li><strong>Low-stakes practice</strong> (weekly reflections, discussion posts): Often benefits from unrestricted student work</li>
+                            <li><strong>Research-intensive</strong> (term papers, literature reviews): AI might help with organization and sources</li>
+                            <li><strong>Creative work</strong> (original essays, art): Usually requires authentic student voice</li>
+                            <li><strong>Technical tasks</strong> (coding, data analysis): May benefit from AI assistance depending on learning goals</li>
+                        </ul>
+                    </div>
+
+                    <div className="helper-section">
+                        <h3>⚖️ Sample Policies by Restriction Level</h3>
+                        <div className="policy-examples">
+                            <div className="policy-example-item">
+                                <strong>No AI:</strong>
+                                <p>"AI tools may not be used for this assignment. All work must be completed independently to develop [skill/understanding]."</p>
+                            </div>
+                            <div className="policy-example-item">
+                                <strong>Limited AI:</strong>
+                                <p>"You may use AI for [specific tasks like brainstorming, citation formatting], but not for [core tasks like drafting, analysis]. Document your AI use."</p>
+                            </div>
+                            <div className="policy-example-item">
+                                <strong>AI Permitted:</strong>
+                                <p>"You may use AI tools as you see fit. You remain responsible for accuracy, originality, and meeting assignment requirements."</p>
+                            </div>
+                            <div className="policy-example-item">
+                                <strong>AI Required:</strong>
+                                <p>"You must use [specific AI tool] for [task]. Document your process including prompts used and how you verified output."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="helper-tip">
+                        <strong>💡 Tip:</strong> Be specific about what students can and cannot do. Vague policies lead to confusion and potential Honor Violations.
+                    </div>
+                </div>
             </div>
         </div>
     );
