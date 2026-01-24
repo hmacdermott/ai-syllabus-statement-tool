@@ -917,43 +917,45 @@ button.secondary:hover {
 
 .example-cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     padding: 1.5rem 2rem;
     background: var(--bg-accent);
     border-bottom: 1px solid var(--border);
-    overflow-x: auto;
 }
 
 .example-card {
     background: var(--bg-primary);
     border: 2px solid var(--border);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: inherit;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
-    text-align: center;
-    flex: 1;
-    min-width: 200px;
+    gap: 1rem;
+    text-align: left;
+    flex: 1 1 calc(50% - 0.5rem);
+    min-width: 280px;
 }
 
 .card-label {
     font-weight: 600;
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: 0.95rem;
+    flex: 1;
 }
 
 .card-policy {
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 600;
     color: var(--text-secondary);
-    padding: 0.25rem 0.75rem;
+    padding: 0.35rem 0.85rem;
     background: var(--bg-accent);
     border-radius: 4px;
+    white-space: nowrap;
 }
 
 .example-card:hover {
@@ -1286,16 +1288,18 @@ footer {
     }
 
     .example-card {
-        padding: 0.75rem;
-        min-width: 180px;
+        padding: 0.75rem 1rem;
+        flex: 1 1 100%;
+        min-width: unset;
     }
 
     .card-label {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .card-policy {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
+        padding: 0.3rem 0.7rem;
     }
 
     .modal-body {
