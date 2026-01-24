@@ -530,8 +530,6 @@ function ProgressIndicator({ steps, currentStep }) {
 }
 
 function WelcomeStep({ onNext, setShowExamples }) {
-    const [showPolicyInfo, setShowPolicyInfo] = useState(false);
-
     return (
         <div className="step-content welcome-step">
             <h1>Let's Build Your AI Statement</h1>
@@ -549,10 +547,7 @@ function WelcomeStep({ onNext, setShowExamples }) {
                             <li>Auto-save your progress as you go</li>
                         </ul>
                     </div>
-                    <div style={{display: 'flex', gap: '1.5rem', justifyContent: 'center'}}>
-                        <p className="box-link" onClick={() => setShowExamples(true)}>Show Me Sample Statements</p>
-                        <p className="box-link" onClick={() => setShowPolicyInfo(true)}>Policy vs. Statement?</p>
-                    </div>
+                    <p className="box-link" onClick={() => setShowExamples(true)}>Show Me Sample Statements</p>
                 </div>
                 <div className="info-box-wrapper">
                     <div className="info-box info-box-features">
@@ -567,8 +562,6 @@ function WelcomeStep({ onNext, setShowExamples }) {
                     <button onClick={onNext} className="primary box-button">Get Started →</button>
                 </div>
             </div>
-
-            {showPolicyInfo && <PolicyVsStatementModal onClose={() => setShowPolicyInfo(false)} />}
         </div>
     );
 }
@@ -1063,60 +1056,6 @@ function renderMarkdown(text) {
     }
 
     return elements;
-}
-
-function PolicyVsStatementModal({ onClose }) {
-    return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content policy-info-modal" onClick={(e) => e.stopPropagation()}>
-                <div className="modal-header">
-                    <h2>Why This Tool Uses Neutral Headers</h2>
-                    <button onClick={onClose} className="close-btn">✕</button>
-                </div>
-                <div className="modal-body">
-                    <p style={{fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '1.5rem'}}>
-                        Your syllabus statement sets course expectations. When thinking about AI language, the policy/statement distinction matters for how you position your authority.
-                    </p>
-
-                    <div className="policy-info-section" style={{background: 'var(--bg-accent)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border)', marginBottom: '1.5rem'}}>
-                        <h3 style={{marginTop: 0, fontSize: '1rem', marginBottom: '1rem'}}>The Key Distinction</h3>
-                        <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem'}}>
-                            <div>
-                                <p style={{fontWeight: 600, marginBottom: '0.5rem'}}>Policy</p>
-                                <p style={{fontSize: '0.9rem', margin: 0}}>Institutional rules with formal enforcement mechanisms. Created through governance processes. Examples: Honor System, Code of Conduct.</p>
-                            </div>
-                            <div>
-                                <p style={{fontWeight: 600, marginBottom: '0.5rem'}}>Statement</p>
-                                <p style={{fontSize: '0.9rem', margin: 0}}>Course-level expectations within existing frameworks. Set by faculty for their courses. Examples: Syllabus sections, assignment guidelines.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="policy-info-section">
-                        <h3>How This Works in Practice</h3>
-                        <p><strong>Your syllabus statement</strong> sets clear expectations: "Students are expected to complete their own work on problem sets without AI assistance."</p>
-                        <p><strong>Existing institutional policy</strong> (like W&L's Honor System) defines what constitutes an Honor Violation and prescribes consequences when expectations aren't met.</p>
-                        <p style={{marginBottom: 0}}>Your statement operates <strong>within</strong> the framework of institutional policies—it doesn't create parallel enforcement mechanisms.</p>
-                    </div>
-
-                    <div className="policy-info-section">
-                        <h3>Why "Generative AI Use"?</h3>
-                        <p>This tool generates syllabus text with the neutral header <strong>"Generative AI Use"</strong> rather than "AI Policy" or "AI Statement." This approach:</p>
-                        <ul style={{marginBottom: 0}}>
-                            <li>Avoids overstating your institutional authority</li>
-                            <li>Keeps focus on the practical guidance, not the terminology</li>
-                            <li>Still allows your text to be clear, directive, and enforceable</li>
-                            <li>Works within your institution's existing governance framework</li>
-                        </ul>
-                    </div>
-
-                    <div className="policy-info-section" style={{background: 'var(--bg-accent)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border)'}}>
-                        <p style={{margin: 0, fontSize: '0.9rem'}}><strong>Bottom line:</strong> You have the authority to set course requirements and expectations. Your syllabus text can (and should) be clear and directive. We just use neutral headers to position your language appropriately within the larger institutional context.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
 }
 
 function ExamplesModal({ onClose }) {
