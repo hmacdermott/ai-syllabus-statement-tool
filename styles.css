@@ -894,14 +894,42 @@ button.secondary:hover {
     line-height: 1.7;
 }
 
-.example-text {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-family: inherit;
-    font-size: 0.9rem;
-    line-height: 1.8;
+
+/* Style markdown-style headings in examples */
+.example-item h2,
+.example-item h3 {
+    font-family: 'Architects Daughter', cursive;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
     color: var(--text-primary);
-    margin: 0;
+    font-weight: 400;
+}
+
+.example-item h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.example-item h3 {
+    font-size: 1.2rem;
+}
+
+.example-item p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.example-item li {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+}
+
+.example-item strong {
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 .example-stem-no-ai {
