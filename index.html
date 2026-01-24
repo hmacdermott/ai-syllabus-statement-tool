@@ -691,11 +691,26 @@
             },
             'Physics & Engineering': {
                 considerations: [
-                    "Are students developing physical intuition about results?",
-                    "Can they set up problems from first principles?",
-                    "Does your course require troubleshooting unexpected outcomes?",
-                    "Are students checking dimensional analysis independently?",
-                    "Can they estimate whether solutions make physical sense?"
+                    {
+                        question: "Are students developing physical intuition about results?",
+                        why: "Physical intuition is the engineering 'gut feel' that tells you if an answer is reasonable before you check calculations. It develops from solving many problems and comparing predictions to reality. AI can give answers, but only experience builds the intuition that catches errors."
+                    },
+                    {
+                        question: "Can they set up problems from first principles?",
+                        why: "Setting up problems from fundamentals—identifying relevant forces, writing conservation equations, drawing free-body diagrams—is where physics and engineering thinking happens. AI can solve equations you give it, but it can't teach you how to translate a physical situation into mathematics."
+                    },
+                    {
+                        question: "Does your course require troubleshooting unexpected outcomes?",
+                        why: "Real engineering is messy. When calculations don't match experiments, or designs don't work as predicted, troubleshooting teaches systematic diagnostic thinking. This skill—identifying where your model breaks down—only develops through struggle with actual problems."
+                    },
+                    {
+                        question: "Are students checking dimensional analysis independently?",
+                        why: "Dimensional analysis is a fundamental sanity check. If units don't work out, your equation is wrong. This simple verification requires understanding what each term represents physically. If you need AI to check units, you haven't understood the physics."
+                    },
+                    {
+                        question: "Can they estimate whether solutions make physical sense?",
+                        why: "Back-of-envelope estimation is a core engineering skill. Does this bridge deflect 1mm or 1m? Does this circuit draw 10mA or 10A? You can't rely on computational tools if you can't judge whether answers are in the right ballpark. Estimation builds practical judgment."
+                    }
                 ],
                 intro: "AI tools can solve physics problems, perform engineering calculations, and generate design solutions. Computational tools are essential in modern engineering practice. This policy clarifies how these tools relate to your learning goals in this course.",
                 context: "In physics and engineering, developing physical intuition, experimental design skills, and the ability to validate results through estimation and reasoning are irreplaceable professional competencies.",
@@ -706,11 +721,26 @@
             },
             'Data Science': {
                 considerations: [
-                    "Are students selecting methods or accepting suggestions?",
-                    "Can they diagnose when algorithms fail?",
-                    "Does AI hide biases in data or models?",
-                    "Are students implementing algorithms from scratch first?",
-                    "Can they interpret results with appropriate uncertainty?"
+                    {
+                        question: "Are students selecting methods or accepting suggestions?",
+                        why: "Method selection is the core intellectual work in data science. Knowing when to use regression vs classification, parametric vs non-parametric approaches, or which algorithm fits your data structure demonstrates understanding. AI can suggest tools, but you need to know why one method is appropriate and another isn't."
+                    },
+                    {
+                        question: "Can they diagnose when algorithms fail?",
+                        why: "Algorithms fail in systematic ways—overfitting, underfitting, convergence failures, sensitivity to outliers. Recognizing these failure patterns requires understanding what's happening inside the algorithm. If you can't diagnose why a model performs poorly, you can't be a responsible data scientist."
+                    },
+                    {
+                        question: "Does AI hide biases in data or models?",
+                        why: "Data science has ethical responsibilities. AI tools can perpetuate historical biases, exclude marginalized groups, or make unfair predictions. Critical examination of data sources, sampling methods, and model assumptions requires you to interrogate rather than trust automated analyses."
+                    },
+                    {
+                        question: "Are students implementing algorithms from scratch first?",
+                        why: "You don't truly understand an algorithm until you've coded it yourself. Libraries abstract away the learning—you need to implement gradient descent, decision trees, or clustering by hand to grasp what these methods actually do. Only then can you use libraries intelligently."
+                    },
+                    {
+                        question: "Can they interpret results with appropriate uncertainty?",
+                        why: "Communicating uncertainty is essential to responsible data science. Every model has confidence intervals, assumptions, and limitations. AI can generate impressive-looking results with hidden uncertainty. If you can't articulate what your analysis does and doesn't show, you're doing advocacy, not science."
+                    }
                 ],
                 intro: "AI tools can clean data, build models, and generate analyses using machine learning techniques. These tools are central to contemporary data science practice. This policy clarifies how these tools relate to your learning goals in this course.",
                 context: "In data science, the ability to select appropriate methods, interpret results correctly, and recognize when models fail requires deep understanding of statistical principles and algorithmic behavior.",
