@@ -540,6 +540,8 @@ function DisciplineStep({ formData, updateFormData, onNext, onPrev }) {
         { id: 'general', name: 'General/Other', desc: 'Interdisciplinary or other fields', icon: '📖' }
     ];
 
+    const selectedDisciplineContext = formData.discipline ? disciplineLanguage[formData.discipline]?.context : null;
+
     return (
         <div className="step-content">
             <h2>Choose Your Discipline</h2>
@@ -558,6 +560,13 @@ function DisciplineStep({ formData, updateFormData, onNext, onPrev }) {
                     </div>
                 ))}
             </div>
+
+            {selectedDisciplineContext && (
+                <div className="info-box" style={{marginTop: '1.5rem'}}>
+                    <p><strong>Why AI policy matters for your field:</strong></p>
+                    <p style={{marginTop: '0.5rem'}}>{selectedDisciplineContext}</p>
+                </div>
+            )}
 
             <div className="button-group">
                 <button onClick={onPrev} className="secondary">← Back</button>
