@@ -47,18 +47,17 @@
 
         /* Accumulated Statement Display */
         .accumulated-statement {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            min-height: 100px;
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
         }
 
-        .accumulated-statement h2 {
-            font-size: 1.3rem;
+        .accumulated-statement h3 {
+            font-size: 1rem;
             margin-bottom: 1rem;
             color: #0f172a;
+            font-weight: 600;
         }
 
         .statement-section {
@@ -309,14 +308,12 @@
                 { id: 'Medieval & Renaissance Studies', icon: '📖', category: 'humanities' },
                 { id: 'Comparative Literature', icon: '📕', category: 'humanities' },
 
-                // The Williams School of Commerce, Economics, and Politics
+                // Social Sciences
                 { id: 'Accounting & Finance', icon: '💼', category: 'social-sciences' },
                 { id: 'Business Administration', icon: '📈', category: 'social-sciences' },
+                { id: 'Cognitive & Behavioral Science', icon: '🧠', category: 'social-sciences' },
                 { id: 'Economics', icon: '💰', category: 'social-sciences' },
                 { id: 'Politics', icon: '⚖️', category: 'social-sciences' },
-
-                // Social Sciences (The College)
-                { id: 'Cognitive & Behavioral Science', icon: '🧠', category: 'social-sciences' },
                 { id: 'Sociology & Anthropology', icon: '👥', category: 'social-sciences' },
 
                 // Creative Arts & Communications
@@ -426,21 +423,19 @@
 
                 return (
                     <div className="container">
-                        <div className="accumulated-statement">
-                            <h2>Your Statement So Far</h2>
-                            {!statementParts.intro ? (
-                                <div className="empty-state">Your statement will appear here as you build it...</div>
-                            ) : (
-                                <div className="statement-section intro">
-                                    <div className="section-label">Introduction</div>
-                                    <div>{statementParts.intro}</div>
-                                </div>
-                            )}
-                        </div>
-
                         <div className="current-phase">
                             <h2 className="phase-question">Let's Start with an Introduction</h2>
                             <p style={{marginBottom: '1.5rem'}}>We recommend beginning with a brief introduction that defines the types of AI tools this policy covers. Below is a suggested statement tailored for {selectedDepartment}.</p>
+
+                            {statementParts.intro && (
+                                <div className="accumulated-statement" style={{marginBottom: '1.5rem'}}>
+                                    <h3 style={{fontSize: '1rem', marginBottom: '1rem'}}>Your Statement So Far</h3>
+                                    <div className="statement-section intro">
+                                        <div className="section-label">Introduction</div>
+                                        <div>{statementParts.intro}</div>
+                                    </div>
+                                </div>
+                            )}
 
                             <div className="suggestion-box">
                                 <div className="suggestion-label">SUGGESTED TEXT (you can modify this)</div>
@@ -522,23 +517,23 @@
 
                 return (
                     <div className="container">
-                        <div className="accumulated-statement">
-                            <h2>Your Statement So Far</h2>
-                            <div className="statement-section intro">
-                                <div className="section-label">Introduction</div>
-                                <div>{statementParts.intro}</div>
-                            </div>
-                            {statementParts.policyLevel && (
-                                <div className="statement-section policy">
-                                    <div className="section-label">Policy Level</div>
-                                    <div>{statementParts.policyLevel}</div>
-                                </div>
-                            )}
-                        </div>
-
                         <div className="current-phase">
                             <h2 className="phase-question">What's Your Overall Approach?</h2>
                             <p style={{marginBottom: '1.5rem'}}>Choose the statement that best aligns with your preference for AI use in your course.</p>
+
+                            <div className="accumulated-statement" style={{marginBottom: '1.5rem'}}>
+                                <h3 style={{fontSize: '1rem', marginBottom: '1rem'}}>Your Statement So Far</h3>
+                                <div className="statement-section intro">
+                                    <div className="section-label">Introduction</div>
+                                    <div>{statementParts.intro}</div>
+                                </div>
+                                {statementParts.policyLevel && (
+                                    <div className="statement-section policy">
+                                        <div className="section-label">Policy Level</div>
+                                        <div>{statementParts.policyLevel}</div>
+                                    </div>
+                                )}
+                            </div>
 
                             <div className="choices">
                                 {policyOptions.map(option => (
@@ -563,20 +558,20 @@
             if (phase === 'complete') {
                 return (
                     <div className="container">
-                        <div className="accumulated-statement">
-                            <h2>Your Complete Statement (So Far)</h2>
-                            <div className="statement-section intro">
-                                <div className="section-label">Introduction</div>
-                                <div>{statementParts.intro}</div>
-                            </div>
-                            <div className="statement-section policy">
-                                <div className="section-label">Policy Level</div>
-                                <div>{statementParts.policyLevel}</div>
-                            </div>
-                        </div>
-
                         <div className="current-phase">
                             <h2 className="phase-question">Prototype Complete!</h2>
+
+                            <div className="accumulated-statement" style={{marginBottom: '1.5rem'}}>
+                                <h3 style={{fontSize: '1rem', marginBottom: '1rem'}}>Your Complete Statement (So Far)</h3>
+                                <div className="statement-section intro">
+                                    <div className="section-label">Introduction</div>
+                                    <div>{statementParts.intro}</div>
+                                </div>
+                                <div className="statement-section policy">
+                                    <div className="section-label">Policy Level</div>
+                                    <div>{statementParts.policyLevel}</div>
+                                </div>
+                            </div>
                             <p style={{marginBottom: '1.5rem'}}>This demonstrates the progressive building pattern. In the full version, we'd continue with documentation, limitations, etc.</p>
 
                             <p style={{marginBottom: '1.5rem', color: '#64748b'}}>
