@@ -568,12 +568,12 @@ function WelcomeStep({ onNext, setShowExamples }) {
 
 function DisciplineStep({ formData, updateFormData, onNext, onPrev }) {
     const disciplines = [
-        { id: 'stem', name: 'STEM', desc: 'Computer Science, Engineering, Math, etc.', icon: '🔬' },
-        { id: 'humanities', name: 'Humanities', desc: 'English, History, Philosophy, etc.', icon: '📚' },
-        { id: 'social-sciences', name: 'Social Sciences', desc: 'Psychology, Sociology, Business, etc.', icon: '👥' },
-        { id: 'sciences', name: 'Natural Sciences', desc: 'Biology, Chemistry, Physics, etc.', icon: '🧪' },
-        { id: 'creative', name: 'Creative Arts', desc: 'Studio Art, Music, Design, etc.', icon: '🎨' },
-        { id: 'general', name: 'General/Other', desc: 'Interdisciplinary or other fields', icon: '📖' }
+        { id: 'stem', name: 'Computer Science', desc: 'Also: Mathematics, Physics & Engineering', icon: '💻' },
+        { id: 'humanities', name: 'English', desc: 'Also: History, Philosophy, Classics, Religion', icon: '📚' },
+        { id: 'social-sciences', name: 'Cognitive & Behavioral Science', desc: 'Also: Economics, Politics, Sociology & Anthropology', icon: '🧠' },
+        { id: 'sciences', name: 'Biology', desc: 'Also: Chemistry, Earth & Environmental Geoscience', icon: '🧬' },
+        { id: 'creative', name: 'Art & Art History', desc: 'Also: Music, Theater/Dance/Film Studies', icon: '🎨' },
+        { id: 'general', name: 'Interdisciplinary Programs', desc: 'Africana Studies, Environmental Studies, Neuroscience, etc.', icon: '📖' }
     ];
 
     const selectedDisciplineConsiderations = formData.discipline ? disciplineLanguage[formData.discipline]?.considerations : null;
