@@ -3055,22 +3055,138 @@
                                 </div>
 
                                 {!selectedDept ? (
-                                    <div className="department-grid">
-                                        {departments.map(dept => (
-                                            <div
-                                                key={dept.id}
-                                                className="department-card"
-                                                onClick={() => {
-                                                    setStatementParts(prev => ({
-                                                        ...prev,
-                                                        department: dept.id
-                                                    }));
-                                                }}
-                                            >
-                                                <div className="dept-icon">{dept.icon}</div>
-                                                <div className="dept-name">{dept.id}</div>
-                                            </div>
-                                        ))}
+                                    <div>
+                                        {/* STEM */}
+                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
+                                            STEM
+                                        </h3>
+                                        <div className="department-grid">
+                                            {departments.slice(0, 4).map(dept => (
+                                                <div
+                                                    key={dept.id}
+                                                    className="department-card"
+                                                    onClick={() => {
+                                                        setStatementParts(prev => ({
+                                                            ...prev,
+                                                            department: dept.id
+                                                        }));
+                                                    }}
+                                                >
+                                                    <div className="dept-icon">{dept.icon}</div>
+                                                    <div className="dept-name">{dept.id}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Natural Sciences */}
+                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
+                                            Natural Sciences
+                                        </h3>
+                                        <div className="department-grid">
+                                            {departments.slice(4, 8).map(dept => (
+                                                <div
+                                                    key={dept.id}
+                                                    className="department-card"
+                                                    onClick={() => {
+                                                        setStatementParts(prev => ({
+                                                            ...prev,
+                                                            department: dept.id
+                                                        }));
+                                                    }}
+                                                >
+                                                    <div className="dept-icon">{dept.icon}</div>
+                                                    <div className="dept-name">{dept.id}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Humanities */}
+                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
+                                            Humanities
+                                        </h3>
+                                        <div className="department-grid">
+                                            {departments.slice(8, 20).map(dept => (
+                                                <div
+                                                    key={dept.id}
+                                                    className="department-card"
+                                                    onClick={() => {
+                                                        setStatementParts(prev => ({
+                                                            ...prev,
+                                                            department: dept.id
+                                                        }));
+                                                    }}
+                                                >
+                                                    <div className="dept-icon">{dept.icon}</div>
+                                                    <div className="dept-name">{dept.id}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Social Sciences */}
+                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
+                                            Social Sciences
+                                        </h3>
+                                        <div className="department-grid">
+                                            {departments.slice(20, 26).map(dept => (
+                                                <div
+                                                    key={dept.id}
+                                                    className="department-card"
+                                                    onClick={() => {
+                                                        setStatementParts(prev => ({
+                                                            ...prev,
+                                                            department: dept.id
+                                                        }));
+                                                    }}
+                                                >
+                                                    <div className="dept-icon">{dept.icon}</div>
+                                                    <div className="dept-name">{dept.id}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Creative Arts & Communications */}
+                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
+                                            Creative Arts & Communications
+                                        </h3>
+                                        <div className="department-grid">
+                                            {departments.slice(26, 30).map(dept => (
+                                                <div
+                                                    key={dept.id}
+                                                    className="department-card"
+                                                    onClick={() => {
+                                                        setStatementParts(prev => ({
+                                                            ...prev,
+                                                            department: dept.id
+                                                        }));
+                                                    }}
+                                                >
+                                                    <div className="dept-icon">{dept.icon}</div>
+                                                    <div className="dept-name">{dept.id}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Interdisciplinary Programs */}
+                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
+                                            Interdisciplinary Programs
+                                        </h3>
+                                        <div className="department-grid">
+                                            {departments.slice(30).map(dept => (
+                                                <div
+                                                    key={dept.id}
+                                                    className="department-card"
+                                                    onClick={() => {
+                                                        setStatementParts(prev => ({
+                                                            ...prev,
+                                                            department: dept.id
+                                                        }));
+                                                    }}
+                                                >
+                                                    <div className="dept-icon">{dept.icon}</div>
+                                                    <div className="dept-name">{dept.id}</div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 ) : (
                                     <div style={{marginBottom: '2rem'}}>
