@@ -2736,10 +2736,9 @@
 
             // Sync phase-specific states with statementParts
             useEffect(() => {
-                setSelectedTools(statementParts.tools);
                 setPolicies(statementParts.assignmentPolicies);
                 setCustomText(statementParts.customText);
-            }, [statementParts.tools, statementParts.assignmentPolicies, statementParts.customText]);
+            }, [statementParts.assignmentPolicies, statementParts.customText]);
 
             // Reset editing states when phase changes
             useEffect(() => {
