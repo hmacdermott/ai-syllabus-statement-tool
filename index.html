@@ -3175,13 +3175,14 @@
                                                 );
                                             } else {
                                                 // By School view (The College + Williams School)
+                                                // Alphabetical order to avoid hierarchy perception
                                                 const collegeGroups = [
-                                                    { name: 'STEM', start: 0, end: 4 },
-                                                    { name: 'Natural Sciences', start: 4, end: 8 },
-                                                    { name: 'Humanities', start: 8, end: 20 },
-                                                    { name: 'Social Sciences', start: 20, end: 22 },
                                                     { name: 'Creative Arts & Communications', start: 26, end: 30 },
-                                                    { name: 'Interdisciplinary Programs', start: 30, end: departments.length }
+                                                    { name: 'Humanities', start: 8, end: 20 },
+                                                    { name: 'Interdisciplinary Programs', start: 30, end: departments.length },
+                                                    { name: 'Natural Sciences', start: 4, end: 8 },
+                                                    { name: 'Social Sciences', start: 20, end: 22 },
+                                                    { name: 'STEM', start: 0, end: 4 }
                                                 ];
                                                 const williamsSchoolGroups = [
                                                     { name: 'Williams School', start: 22, end: 26 }
@@ -3210,7 +3211,7 @@
                                                         {hasCollegeDepts && (
                                                             <div>
                                                                 <h2 style={{
-                                                                    marginTop: '2rem',
+                                                                    marginTop: '2.5rem',
                                                                     marginBottom: '1.5rem',
                                                                     fontSize: '1.4rem',
                                                                     color: 'var(--text-primary)',
@@ -3249,7 +3250,7 @@
                                                         {hasWilliamsDepts && (
                                                             <div>
                                                                 <h2 style={{
-                                                                    marginTop: '3rem',
+                                                                    marginTop: '2.5rem',
                                                                     marginBottom: '1.5rem',
                                                                     fontSize: '1.4rem',
                                                                     color: 'var(--text-primary)',
