@@ -3266,6 +3266,31 @@
                                     This explains to students why this policy matters for their learning in {statementParts.department}.
                                 </p>
 
+                                <button
+                                    onClick={() => {
+                                        setPhase('intro-policy');
+                                        setShowPolicyChoices(false);
+                                        setStatementParts(prev => ({
+                                            ...prev,
+                                            policyLevel: '',
+                                            policyLevelKey: '',
+                                            rationale: ''
+                                        }));
+                                    }}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--primary)',
+                                        cursor: 'pointer',
+                                        fontSize: '0.9rem',
+                                        padding: '0.5rem 0',
+                                        marginBottom: '1rem',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    ← Change policy level ({statementParts.policyLevel})
+                                </button>
+
                                 <details style={{
                                     marginBottom: '1.5rem',
                                     padding: '1rem',
@@ -3437,6 +3462,31 @@
                                     You can add specific policies for different assignment types (e.g., "Essays", "Problem Sets", "Lab Reports").
                                 </p>
 
+                                <button
+                                    onClick={() => {
+                                        setPhase('intro-policy');
+                                        setShowPolicyChoices(false);
+                                        setStatementParts(prev => ({
+                                            ...prev,
+                                            policyLevel: '',
+                                            policyLevelKey: '',
+                                            rationale: ''
+                                        }));
+                                    }}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--primary)',
+                                        cursor: 'pointer',
+                                        fontSize: '0.9rem',
+                                        padding: '0.5rem 0',
+                                        marginBottom: '1rem',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    ← Change policy level ({statementParts.policyLevel})
+                                </button>
+
                                 {policies.map((policy, idx) => (
                                     <div key={idx} className="assignment-policy-item">
                                         <div className="assignment-policy-header">
@@ -3514,6 +3564,31 @@
                                     Should students document when and how they use AI tools?
                                 </p>
 
+                                <button
+                                    onClick={() => {
+                                        setPhase('intro-policy');
+                                        setShowPolicyChoices(false);
+                                        setStatementParts(prev => ({
+                                            ...prev,
+                                            policyLevel: '',
+                                            policyLevelKey: '',
+                                            rationale: ''
+                                        }));
+                                    }}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--primary)',
+                                        cursor: 'pointer',
+                                        fontSize: '0.9rem',
+                                        padding: '0.5rem 0',
+                                        marginBottom: '1rem',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    ← Change policy level ({statementParts.policyLevel})
+                                </button>
+
                                 <div className="documentation-options">
                                     <div className="doc-option" onClick={() => setDocOption('none')}>
                                         <input type="radio" checked={docOption === 'none'} readOnly />
@@ -3576,6 +3651,31 @@
                                     You can add a friendly note inviting students to ask questions when they're unsure about the policy.
                                 </p>
 
+                                <button
+                                    onClick={() => {
+                                        setPhase('intro-policy');
+                                        setShowPolicyChoices(false);
+                                        setStatementParts(prev => ({
+                                            ...prev,
+                                            policyLevel: '',
+                                            policyLevelKey: '',
+                                            rationale: ''
+                                        }));
+                                    }}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--primary)',
+                                        cursor: 'pointer',
+                                        fontSize: '0.9rem',
+                                        padding: '0.5rem 0',
+                                        marginBottom: '1rem',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    ← Change policy level ({statementParts.policyLevel})
+                                </button>
+
                                 <SuggestionBox
                                     label="Suggested Text"
                                     suggestedText={defaultHonorText}
@@ -3622,6 +3722,31 @@
                                     You can add any additional guidelines or notes specific to your course.
                                 </p>
 
+                                <button
+                                    onClick={() => {
+                                        setPhase('intro-policy');
+                                        setShowPolicyChoices(false);
+                                        setStatementParts(prev => ({
+                                            ...prev,
+                                            policyLevel: '',
+                                            policyLevelKey: '',
+                                            rationale: ''
+                                        }));
+                                    }}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--primary)',
+                                        cursor: 'pointer',
+                                        fontSize: '0.9rem',
+                                        padding: '0.5rem 0',
+                                        marginBottom: '1rem',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    ← Change policy level ({statementParts.policyLevel})
+                                </button>
+
                                 <textarea
                                     className="edit-textarea"
                                     placeholder="Add any course-specific guidelines, expectations, or notes here (optional)..."
@@ -3664,6 +3789,31 @@
                                 <p className="phase-description">
                                     Review your final statement and export it to your syllabus.
                                 </p>
+
+                                <button
+                                    onClick={() => {
+                                        setPhase('intro-policy');
+                                        setShowPolicyChoices(false);
+                                        setStatementParts(prev => ({
+                                            ...prev,
+                                            policyLevel: '',
+                                            policyLevelKey: '',
+                                            rationale: ''
+                                        }));
+                                    }}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--primary)',
+                                        cursor: 'pointer',
+                                        fontSize: '0.9rem',
+                                        padding: '0.5rem 0',
+                                        marginBottom: '1rem',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    ← Change policy level ({statementParts.policyLevel})
+                                </button>
 
                                 <AccumulatedStatement statementParts={statementParts} />
 
