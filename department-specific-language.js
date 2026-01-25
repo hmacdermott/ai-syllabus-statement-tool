@@ -240,20 +240,20 @@ const departmentSpecificLanguage = {
         required: "Understanding how AI processes premodern texts—and its tendency toward modern interpretive frameworks—helps you think critically about how we access historical periods and prepares you for scholarship increasingly using digital humanities methods."
     },
 
-    'Comparative Literature': {
+    'Writing Program': {
         considerations: [
-            "Are students reading literature in multiple languages?",
-            "Can they make comparisons respecting cultural difference?",
-            "Does AI flatten linguistic and cultural specificity?",
-            "Are students grappling with translation problems?",
-            "Can they construct arguments across literary traditions?"
+            "Are students developing their own voice and style?",
+            "Can they revise substantively, not just edit for correctness?",
+            "Does AI prevent the struggle that develops writing skill?",
+            "Are students learning to recognize when arguments need support?",
+            "Can they make decisions about structure and organization?"
         ],
-        intro: "AI can translate texts, suggest literary parallels, and generate comparative analyses—but comparative literary study requires reading across languages and traditions, understanding cultural contexts, and developing sophisticated arguments about how literature works across boundaries. This policy protects the multilingual reading and interpretive skills essential to comparative work.",
-        context: "In Comparative Literature, reading across linguistic and cultural traditions, understanding literature within cultural contexts, and developing comparative arguments require engagement with texts in multiple languages and frameworks.",
-        noAI: "AI cannot develop your ability to read literature in multiple languages, understand cultural specificity while making comparative arguments, or construct nuanced interpretations that honor textual and cultural difference. These capacities require sustained multilingual and intercultural study.",
-        limited: "You may use AI for translation assistance or background research after reading texts yourself, but literary analysis, comparative arguments, and attention to language-specific meaning must demonstrate your engagement with texts in their linguistic and cultural contexts.",
-        ok: "You remain responsible for accurate representation of texts across traditions, comparative arguments grounded in close reading, acknowledgment of translation issues, and interpretations that respect cultural specificity.",
-        required: "Understanding how AI translates and analyzes literature across languages—and its limitations in capturing linguistic nuance and cultural context—raises questions central to comparative literature about translation, interpretation, and cross-cultural understanding."
+        intro: "AI can generate drafts, suggest improvements, and polish prose—but writing is thinking made visible. Learning to write requires developing your own voice, wrestling with how to structure arguments, and revising through multiple drafts. This policy protects the cognitive work of writing while acknowledging AI's growing presence in composition.",
+        context: "In writing, developing voice, learning to revise substantively, and making rhetorical decisions about audience and purpose require practice with the messy process of drafting, revising, and refining your thinking.",
+        noAI: "AI cannot develop your ability to discover ideas through writing, make rhetorical choices about audience and purpose, or revise your thinking as you draft. These skills emerge through the struggle of putting ideas into words and learning what you think by writing.",
+        limited: "You may use AI for grammar checking or generating ideas after drafting yourself, but initial drafting, substantive revision, and rhetorical decision-making must be your own. AI can polish, but you must compose.",
+        ok: "You remain responsible for your argument, your voice, and your rhetorical choices. AI-generated text must be substantially revised to reflect your thinking, and you must be able to explain and defend every claim you make.",
+        required: "Understanding how AI generates text—and its limitations in making context-appropriate rhetorical choices—helps you develop critical awareness of automated writing and prepares you for environments where AI writing assistance is common."
     },
 
     'Romance Languages': {
