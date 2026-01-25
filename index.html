@@ -2795,57 +2795,9 @@
 
             // Scroll to top when phase changes
             useEffect(() => {
-                // Immediately lock scroll position
-                document.body.style.overflow = 'hidden';
-                document.body.style.position = 'fixed';
-                document.body.style.top = '0px';
-                document.body.style.width = '100%';
-
-                const scrollToTop = () => {
-                    // Scroll using ref if available
-                    if (pageTopRef.current) {
-                        pageTopRef.current.scrollIntoView({ behavior: 'instant', block: 'start' });
-                    }
-                    // Also use all traditional methods
-                    window.scrollTo(0, 0);
-                    document.documentElement.scrollTop = 0;
-                    document.body.scrollTop = 0;
-                };
-
-                // Immediate scroll - multiple calls
-                scrollToTop();
-                scrollToTop();
-                scrollToTop();
-
-                // Multiple attempts with increasing delays
-                requestAnimationFrame(scrollToTop);
-                requestAnimationFrame(() => requestAnimationFrame(scrollToTop));
-
-                const timer1 = setTimeout(scrollToTop, 1);
-                const timer2 = setTimeout(scrollToTop, 10);
-                const timer3 = setTimeout(scrollToTop, 50);
-                const timer4 = setTimeout(scrollToTop, 100);
-                const timer5 = setTimeout(scrollToTop, 200);
-                const timer6 = setTimeout(scrollToTop, 300);
-
-                // Unlock scroll after everything settles
-                const unlockTimer = setTimeout(() => {
-                    document.body.style.overflow = '';
-                    document.body.style.position = '';
-                    document.body.style.top = '';
-                    document.body.style.width = '';
-                    scrollToTop();
-                }, 500);
-
-                return () => {
-                    clearTimeout(timer1);
-                    clearTimeout(timer2);
-                    clearTimeout(timer3);
-                    clearTimeout(timer4);
-                    clearTimeout(timer5);
-                    clearTimeout(timer6);
-                    clearTimeout(unlockTimer);
-                };
+                console.log('Phase changed to:', phase, '- scrollY:', window.scrollY);
+                // Just scroll once, no complexity
+                window.scrollTo(0, 0);
             }, [phase]);
 
             // Load saved draft
@@ -2998,17 +2950,7 @@
 
             // Phase handlers
             const handleDepartmentSelect = (dept) => {
-                // Lock scroll position during transition
-                const scrollPosition = window.pageYOffset;
-                document.body.style.overflow = 'hidden';
-                document.body.style.position = 'fixed';
-                document.body.style.top = `-${scrollPosition}px`;
-                document.body.style.width = '100%';
-
-                // Scroll to top
-                window.scrollTo(0, 0);
-                document.documentElement.scrollTop = 0;
-                document.body.scrollTop = 0;
+                console.log('BEFORE state change - scrollY:', window.scrollY);
 
                 setStatementParts(prev => ({
                     ...prev,
@@ -3016,14 +2958,13 @@
                 }));
                 setPhase('intro-policy');
 
-                // Unlock scroll after render completes
-                setTimeout(() => {
-                    document.body.style.overflow = '';
-                    document.body.style.position = '';
-                    document.body.style.top = '';
-                    document.body.style.width = '';
-                    window.scrollTo(0, 0);
-                }, 1000);
+                // Log scroll position repeatedly to see when it changes
+                let count = 0;
+                const checkInterval = setInterval(() => {
+                    console.log(`${count * 100}ms after state change - scrollY:`, window.scrollY);
+                    count++;
+                    if (count > 15) clearInterval(checkInterval);
+                }, 100);
             };
 
             const handleAcceptIntro = (text) => {
