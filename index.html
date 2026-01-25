@@ -583,7 +583,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState, useEffect, useRef } = React;
 
         // ============================================================================
         // DATA STRUCTURES
@@ -2747,6 +2747,10 @@
                 concernBypass: false,
                 professionalTool: false
             });
+
+            // Ref for scrolling to top
+            const pageTopRef = useRef(null);
+
             const [footerTexts] = useState(() => {
                 const plaiCredits = [
                     'Designed by the PLAI Lab',
@@ -2792,6 +2796,11 @@
             // Scroll to top when phase changes
             useEffect(() => {
                 const scrollToTop = () => {
+                    // Scroll using ref if available
+                    if (pageTopRef.current) {
+                        pageTopRef.current.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    }
+                    // Also use all traditional methods
                     window.scrollTo(0, 0);
                     document.documentElement.scrollTop = 0;
                     document.body.scrollTop = 0;
@@ -2813,6 +2822,8 @@
                 const timer5 = setTimeout(scrollToTop, 200);
                 const timer6 = setTimeout(scrollToTop, 300);
                 const timer7 = setTimeout(scrollToTop, 500);
+                const timer8 = setTimeout(scrollToTop, 750);
+                const timer9 = setTimeout(scrollToTop, 1000);
 
                 return () => {
                     clearTimeout(timer1);
@@ -2822,6 +2833,8 @@
                     clearTimeout(timer5);
                     clearTimeout(timer6);
                     clearTimeout(timer7);
+                    clearTimeout(timer8);
+                    clearTimeout(timer9);
                 };
             }, [phase]);
 
@@ -3326,6 +3339,7 @@
 
                 return (
                     <div>
+                        <div ref={pageTopRef} style={{position: 'absolute', top: 0}} />
                         <header>
                             <div className="container header-content">
                                 <div className="logo">📝 AI Syllabus Statement Builder</div>
@@ -3692,7 +3706,8 @@
                 const suggestedIntro = deptLang?.intro || '';
 
                 return (
-                    <div>
+                    <div key="intro-policy-phase">
+                        <div ref={pageTopRef} style={{position: 'absolute', top: 0}} />
                         <header>
                             <div className="container header-content">
                                 <div className="logo">📝 AI Syllabus Statement Builder</div>
