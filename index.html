@@ -2588,6 +2588,16 @@
             return texts[policyLevel] || '';
         };
 
+        const getPolicyLevelShortName = (policyLevelKey) => {
+            const names = {
+                'no-ai': 'No AI',
+                'limited': 'Limited AI',
+                'ok': 'AI OK',
+                'required': 'AI Required'
+            };
+            return names[policyLevelKey] || 'Policy';
+        };
+
         // ============================================================================
         // COMPONENTS
         // ============================================================================
@@ -3842,7 +3852,7 @@
                                         textDecoration: 'underline'
                                     }}
                                 >
-                                    ← Change policy level ({statementParts.policyLevel})
+                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
                                 </button>
 
                                 <details style={{
@@ -4039,7 +4049,7 @@
                                         textDecoration: 'underline'
                                     }}
                                 >
-                                    ← Change policy level ({statementParts.policyLevel})
+                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
                                 </button>
 
                                 {policies.map((policy, idx) => (
@@ -4142,7 +4152,7 @@
                                         textDecoration: 'underline'
                                     }}
                                 >
-                                    ← Change policy level ({statementParts.policyLevel})
+                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
                                 </button>
 
                                 <div className="documentation-options">
@@ -4230,7 +4240,7 @@
                                         textDecoration: 'underline'
                                     }}
                                 >
-                                    ← Change policy level ({statementParts.policyLevel})
+                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
                                 </button>
 
                                 <SuggestionBox
@@ -4302,7 +4312,7 @@
                                         textDecoration: 'underline'
                                     }}
                                 >
-                                    ← Change policy level ({statementParts.policyLevel})
+                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
                                 </button>
 
                                 <textarea
@@ -4371,7 +4381,7 @@
                                         textDecoration: 'underline'
                                     }}
                                 >
-                                    ← Change policy level ({statementParts.policyLevel})
+                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
                                 </button>
 
                                 <AccumulatedStatement statementParts={statementParts} />
