@@ -303,25 +303,16 @@
 
         .consideration-explanation {
             margin-top: 0.75rem;
-            padding: 1rem;
-            background: rgba(251, 191, 36, 0.15);
-            border-left: 3px solid #fbbf24;
-            border-radius: 6px;
+            padding: 1rem 1rem 1rem 1.25rem;
+            border-left: 3px solid var(--border);
             font-size: 0.9rem;
             line-height: 1.6;
+            color: var(--text-secondary);
             animation: fadeIn 0.2s ease-in;
         }
 
-        [data-theme="dark"] .consideration-explanation {
-            background: rgba(251, 191, 36, 0.08);
-        }
-
         .consideration-explanation strong {
-            color: #92400e;
-        }
-
-        [data-theme="dark"] .consideration-explanation strong {
-            color: #fbbf24;
+            color: var(--text-primary);
         }
 
         /* Mobile responsive styles for welcome screen */
