@@ -2795,6 +2795,12 @@
 
             // Scroll to top when phase changes
             useEffect(() => {
+                // Immediately lock scroll position
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.top = '0px';
+                document.body.style.width = '100%';
+
                 const scrollToTop = () => {
                     // Scroll using ref if available
                     if (pageTopRef.current) {
@@ -2821,9 +2827,15 @@
                 const timer4 = setTimeout(scrollToTop, 100);
                 const timer5 = setTimeout(scrollToTop, 200);
                 const timer6 = setTimeout(scrollToTop, 300);
-                const timer7 = setTimeout(scrollToTop, 500);
-                const timer8 = setTimeout(scrollToTop, 750);
-                const timer9 = setTimeout(scrollToTop, 1000);
+
+                // Unlock scroll after everything settles
+                const unlockTimer = setTimeout(() => {
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.body.style.top = '';
+                    document.body.style.width = '';
+                    scrollToTop();
+                }, 500);
 
                 return () => {
                     clearTimeout(timer1);
@@ -2832,9 +2844,7 @@
                     clearTimeout(timer4);
                     clearTimeout(timer5);
                     clearTimeout(timer6);
-                    clearTimeout(timer7);
-                    clearTimeout(timer8);
-                    clearTimeout(timer9);
+                    clearTimeout(unlockTimer);
                 };
             }, [phase]);
 
@@ -2988,7 +2998,14 @@
 
             // Phase handlers
             const handleDepartmentSelect = (dept) => {
-                // Scroll immediately before state changes
+                // Lock scroll position during transition
+                const scrollPosition = window.pageYOffset;
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${scrollPosition}px`;
+                document.body.style.width = '100%';
+
+                // Scroll to top
                 window.scrollTo(0, 0);
                 document.documentElement.scrollTop = 0;
                 document.body.scrollTop = 0;
@@ -2999,12 +3016,14 @@
                 }));
                 setPhase('intro-policy');
 
-                // Also scroll after a delay to catch late renders
+                // Unlock scroll after render completes
                 setTimeout(() => {
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.body.style.top = '';
+                    document.body.style.width = '';
                     window.scrollTo(0, 0);
-                    document.documentElement.scrollTop = 0;
-                    document.body.scrollTop = 0;
-                }, 600);
+                }, 1000);
             };
 
             const handleAcceptIntro = (text) => {
