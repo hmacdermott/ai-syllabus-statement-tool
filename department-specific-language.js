@@ -596,7 +596,7 @@ const departmentSpecificLanguage = {
             "Are students engaging with feminist and queer theory?",
             "Can they critique how knowledge production gendered?"
         ],
-        intro: "AI can provide information about gender and sexuality—but WGSS requires critical analysis of power, intersectionality, and how knowledge itself is gendered and sexualized. This policy helps you develop the critical frameworks and analytical skills essential to gender and sexuality studies.",
+        intro: "AI tools can summarize gender theory and describe identity categories—but they often reflect the biases of their training data, centering dominant narratives while marginalizing queer and trans voices. WGSS requires intersectional analysis that questions whose knowledge counts, how power operates through representation, and what gets erased. This policy protects the critical feminist and queer frameworks essential to studying gender and sexuality.",
         context: "In WGSS, analyzing power relations, understanding intersectionality, and engaging critically with how gender and sexuality shape and are shaped by knowledge production require sustained engagement with feminist and queer theory.",
         noAI: "AI cannot develop your ability to analyze intersecting systems of power, understand lived experiences of gender and sexuality in context, or engage critically with how knowledge production has been shaped by patriarchy and heteronormativity.",
         limited: "You may use AI for background research after developing your own analysis, but feminist and queer analysis, attention to intersectionality, and critical engagement with power must demonstrate your understanding of WGSS frameworks.",
