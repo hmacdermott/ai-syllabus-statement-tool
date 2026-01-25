@@ -2797,17 +2797,22 @@
                     document.body.scrollTop = 0;
                 };
 
-                // Immediate scroll
+                // Immediate scroll - multiple calls
+                scrollToTop();
+                scrollToTop();
                 scrollToTop();
 
                 // Multiple attempts with increasing delays
                 requestAnimationFrame(scrollToTop);
+                requestAnimationFrame(() => requestAnimationFrame(scrollToTop));
 
-                const timer1 = setTimeout(scrollToTop, 10);
-                const timer2 = setTimeout(scrollToTop, 50);
-                const timer3 = setTimeout(scrollToTop, 100);
-                const timer4 = setTimeout(scrollToTop, 200);
-                const timer5 = setTimeout(scrollToTop, 300);
+                const timer1 = setTimeout(scrollToTop, 1);
+                const timer2 = setTimeout(scrollToTop, 10);
+                const timer3 = setTimeout(scrollToTop, 50);
+                const timer4 = setTimeout(scrollToTop, 100);
+                const timer5 = setTimeout(scrollToTop, 200);
+                const timer6 = setTimeout(scrollToTop, 300);
+                const timer7 = setTimeout(scrollToTop, 500);
 
                 return () => {
                     clearTimeout(timer1);
@@ -2815,11 +2820,18 @@
                     clearTimeout(timer3);
                     clearTimeout(timer4);
                     clearTimeout(timer5);
+                    clearTimeout(timer6);
+                    clearTimeout(timer7);
                 };
             }, [phase]);
 
             // Load saved draft
             useEffect(() => {
+                // Disable browser scroll restoration
+                if ('scrollRestoration' in window.history) {
+                    window.history.scrollRestoration = 'manual';
+                }
+
                 const saved = localStorage.getItem('syllabusStatementDraft');
                 if (saved) {
                     try {
@@ -2963,11 +2975,23 @@
 
             // Phase handlers
             const handleDepartmentSelect = (dept) => {
+                // Scroll immediately before state changes
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+
                 setStatementParts(prev => ({
                     ...prev,
                     department: dept.id
                 }));
                 setPhase('intro-policy');
+
+                // Also scroll after a delay to catch late renders
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 600);
             };
 
             const handleAcceptIntro = (text) => {
