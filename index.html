@@ -2791,17 +2791,31 @@
 
             // Scroll to top when phase changes
             useEffect(() => {
-                // Force immediate scroll
-                window.scrollTo(0, 0);
-                // Also use requestAnimationFrame to ensure scroll happens after DOM paint
-                requestAnimationFrame(() => {
-                    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-                });
-                // And add a small timeout as final fallback
-                const timer = setTimeout(() => {
+                const scrollToTop = () => {
                     window.scrollTo(0, 0);
-                }, 50);
-                return () => clearTimeout(timer);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                };
+
+                // Immediate scroll
+                scrollToTop();
+
+                // Multiple attempts with increasing delays
+                requestAnimationFrame(scrollToTop);
+
+                const timer1 = setTimeout(scrollToTop, 10);
+                const timer2 = setTimeout(scrollToTop, 50);
+                const timer3 = setTimeout(scrollToTop, 100);
+                const timer4 = setTimeout(scrollToTop, 200);
+                const timer5 = setTimeout(scrollToTop, 300);
+
+                return () => {
+                    clearTimeout(timer1);
+                    clearTimeout(timer2);
+                    clearTimeout(timer3);
+                    clearTimeout(timer4);
+                    clearTimeout(timer5);
+                };
             }, [phase]);
 
             // Load saved draft
