@@ -3024,6 +3024,7 @@
                             <div className="container header-content">
                                 <div className="logo">📝 AI Syllabus Statement Builder</div>
                                 <div className="header-actions">
+                                    <button className="clear-btn" onClick={clearDraft} title="Start fresh">🗑️</button>
                                     <button className="theme-toggle" onClick={toggleFont} title="Switch fonts">Aa</button>
                                     <button className="theme-toggle" onClick={toggleTheme} title="Lights on/off">{theme === 'light' ? '🌙' : '☀️'}</button>
                                 </div>
@@ -3036,18 +3037,6 @@
                                 <p className="phase-description">
                                     Select your department to view AI policy drafts informed by common disciplinary practices.
                                 </p>
-                                <div style={{
-                                    marginTop: '1.5rem',
-                                    marginBottom: '2rem',
-                                    padding: '1rem',
-                                    background: 'rgba(251, 191, 36, 0.1)',
-                                    borderLeft: '3px solid #fbbf24',
-                                    borderRadius: '6px',
-                                    fontSize: '0.9rem',
-                                    lineHeight: '1.6'
-                                }}>
-                                    <strong>Note:</strong> These suggestions are flexible starting points intended to save you time, not to replace your expertise. Edit them to align with your specific course and teaching philosophy.
-                                </div>
 
                                 {!selectedDept ? (
                                     <div>
