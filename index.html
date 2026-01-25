@@ -1831,6 +1831,730 @@
             }
         };
 
+        // Alternative rationales for each department and policy level (2 per policy × 4 policies × 40 departments = 320 total)
+        const alternativeRationales = {
+            'Computer Science': {
+                noAI: [
+                    "Programming is like learning a language—you can't become fluent by having someone else speak for you. These early assignments build the problem-solving patterns you'll rely on throughout your career.",
+                    "I've seen students who used AI in intro courses struggle in upper-level classes where AI isn't available during exams. This policy protects the foundation you're building."
+                ],
+                limited: [
+                    "Think of AI as training wheels: helpful once you know how to balance, but harmful if you never learn to ride without them. Use it after you've attempted problems yourself.",
+                    "In job interviews, you'll need to write code on a whiteboard. This policy ensures you can solve problems independently while still learning to work with professional tools."
+                ],
+                ok: [
+                    "Professional developers use AI assistants daily. I want you learning to work with these tools while maintaining the critical thinking to know when they're leading you astray.",
+                    "You're responsible for every line of code you submit. AI can help you code faster, but understanding and testing are entirely on you."
+                ],
+                required: [
+                    "Understanding how GitHub Copilot actually works—what it gets right and what it hallucinates—is now part of professional software engineering. You need hands-on experience with these tools.",
+                    "The developers who thrive aren't those who avoid AI or blindly trust it, but those who use it critically. This course teaches that skill."
+                ]
+            },
+            'Mathematics': {
+                noAI: [
+                    "Mathematics is learned by doing, not by reading solutions. The struggle to construct a proof is where mathematical thinking develops.",
+                    "I can't assess your mathematical understanding if AI does your problem-solving. These assignments measure your learning, not AI's capabilities."
+                ],
+                limited: [
+                    "Use AI to check your work after you've completed a proof, but the mathematical reasoning must be yours. Think of it as a sophisticated answer key.",
+                    "Computational tools are fine for calculations, but theorem application and proof strategy must come from you. The 'what' can be automated; the 'why' cannot."
+                ],
+                ok: [
+                    "In mathematical research, you'll use various computational tools. I want you learning how to verify AI-generated mathematics and identify where it makes logical errors.",
+                    "You need to develop judgment about when a mathematical argument is sound. Working with AI's suggestions—some correct, some flawed—builds that critical skill."
+                ],
+                required: [
+                    "Understanding where AI fails at mathematical reasoning teaches you about the nature of mathematical proof itself. You'll learn why some arguments work and others merely look convincing.",
+                    "Modern applied mathematics increasingly involves AI. You need experience working with these tools critically, not avoiding them."
+                ]
+            },
+            'Physics & Engineering': {
+                noAI: [
+                    "Physical intuition—knowing whether an answer makes sense—comes from solving problems yourself. AI robs you of the experience that builds this essential judgment.",
+                    "In engineering, people's safety depends on your work. You need the skills to verify results without computational aids."
+                ],
+                limited: [
+                    "Use AI for calculations after you've set up the problem. The physics reasoning and problem conceptualization must be yours.",
+                    "Engineers in practice use computational tools extensively, but only after understanding the fundamentals. This policy ensures you build that foundation."
+                ],
+                ok: [
+                    "Professional engineers use simulation tools and AI for design. I want you learning to use these tools responsibly while developing the judgment to catch their errors.",
+                    "You're accountable for checking dimensional analysis, conservation laws, and limiting cases. AI is a tool, not a substitute for engineering judgment."
+                ],
+                required: [
+                    "Understanding how AI handles physics problems—where it succeeds and fails—is increasingly important in computational engineering. You need practical experience with these systems.",
+                    "Modern engineering is hybrid: human judgment plus computational tools. This course teaches you to work in that hybrid space effectively."
+                ]
+            },
+            'Data Science': {
+                noAI: [
+                    "You need to understand algorithms from the ground up before using libraries. These implementations build the intuition for choosing and troubleshooting methods later.",
+                    "Data science requires knowing when models are overfitting or when data is biased. You can't develop that judgment if AI does your analytical thinking."
+                ],
+                limited: [
+                    "Use AI for data cleaning and visualization after you've designed your analytical approach. Method selection and interpretation must demonstrate your statistical reasoning.",
+                    "Think of AI as an advanced teaching assistant: it can help with coding, but you must understand the statistics well enough to direct it correctly."
+                ],
+                ok: [
+                    "Professional data scientists use AI tools. What matters is that you understand your analysis end-to-end and can defend every methodological choice.",
+                    "You're responsible for recognizing biased data, inappropriate methods, and overconfident predictions. AI can assist analysis, but critical judgment is yours."
+                ],
+                required: [
+                    "Data science is increasingly about working with AI systems—both using them and studying them. You need to understand these tools from both perspectives.",
+                    "Understanding AI biases and limitations isn't abstract theory—it requires hands-on experience seeing where these systems fail. That's what this course provides."
+                ]
+            },
+            'Biology': {
+                noAI: [
+                    "Biological observation skills develop through practice. AI can identify species for you, but that bypasses the learning that comes from careful observation.",
+                    "Designing experiments requires understanding biological mechanisms. If AI generates your experimental designs, you're not learning to think biologically."
+                ],
+                limited: [
+                    "Use AI for literature searches after you've engaged with primary sources yourself. Your experimental reasoning and biological interpretation must be your own.",
+                    "AI can help with data visualization or statistical analysis, but understanding what biological phenomena your data represent requires your disciplinary knowledge."
+                ],
+                ok: [
+                    "Bioinformatics and computational biology use AI extensively. What matters is that you understand the biological principles underlying any analysis.",
+                    "You're responsible for biological plausibility. AI might suggest patterns in data that make no biological sense—you need the expertise to recognize that."
+                ],
+                required: [
+                    "From protein folding prediction to ecological modeling, AI is transforming biological research. You need experience working with these tools critically.",
+                    "Understanding how AI analyzes biological data—and where it makes biologically implausible predictions—is increasingly essential for modern biology."
+                ]
+            },
+            'Chemistry & Biochemistry': {
+                noAI: [
+                    "Laboratory safety and technique can't be learned from AI. These physical skills require hands-on practice under supervision.",
+                    "Chemical intuition about reactivity develops from proposing mechanisms yourself and seeing where your predictions fail. AI shortcuts that learning process."
+                ],
+                limited: [
+                    "Use computational chemistry tools after you've proposed mechanisms by hand. Your chemical reasoning must come first; AI can help verify or explore.",
+                    "AI can assist with spectroscopic analysis, but understanding what molecular features create which signals requires your chemistry knowledge."
+                ],
+                ok: [
+                    "Modern chemistry research uses computational tools extensively. What matters is that you can evaluate whether AI predictions are chemically reasonable.",
+                    "You remain responsible for lab safety, proper technique, and chemical logic. AI can analyze data, but interpreting results requires chemistry expertise."
+                ],
+                required: [
+                    "AI-driven structure prediction and molecular dynamics are increasingly central to chemistry. You need practical experience with these methods to understand their capabilities and limits.",
+                    "Understanding how AI models chemical systems—and where these models break down—is essential for computational chemistry research."
+                ]
+            },
+            'Earth & Environmental Geoscience': {
+                noAI: [
+                    "Field skills develop through observation and practice. AI can't teach you to read stratigraphic sequences or identify rocks—that requires physical engagement with geological materials.",
+                    "Understanding earth processes requires observing them directly. AI descriptions can't replace the learning that comes from watching erosion, measuring stream flow, or examining outcrops."
+                ],
+                limited: [
+                    "Use AI for data processing after collecting your own field data. Observation skills and geological interpretation must develop through your direct engagement with field sites.",
+                    "GIS and remote sensing tools can augment analysis, but recognizing geological features and processes requires field experience that AI can't provide."
+                ],
+                ok: [
+                    "Geoscientists use computational tools for modeling and remote sensing. What matters is that you can ground digital analysis in field observations and geological reasoning.",
+                    "You're responsible for geological plausibility. AI might identify patterns that make no geological sense—you need field experience to recognize bad interpretations."
+                ],
+                required: [
+                    "From climate modeling to hazard prediction, geoscience increasingly relies on AI. Understanding these tools' capabilities and limitations requires hands-on experience.",
+                    "Modern geoscience is computational, but computational skills must be grounded in field observation and geological knowledge. This course develops both."
+                ]
+            },
+            'Neuroscience': {
+                noAI: [
+                    "Neuroscientific reasoning requires integrating across levels from molecules to behavior. This integrative thinking develops through working problems yourself, not reading AI summaries.",
+                    "Experimental design in neuroscience is complex. If AI designs your experiments, you're not learning the mechanistic reasoning essential to neuroscience research."
+                ],
+                limited: [
+                    "Use AI for statistical analysis after designing studies yourself. Your neuroscientific reasoning about mechanisms and experimental logic must be your own.",
+                    "AI can help process neural data, but interpreting what brain activity patterns mean requires understanding built through studying neuroscience systematically."
+                ],
+                ok: [
+                    "Computational neuroscience uses AI extensively. What matters is that your interpretations are grounded in biological plausibility and mechanistic understanding.",
+                    "You remain responsible for experimental rigor and neurobiological reasoning. AI can find patterns, but understanding what they mean requires neuroscience expertise."
+                ],
+                required: [
+                    "From brain imaging analysis to neural modeling, AI tools are central to modern neuroscience. You need practical experience with these methods.",
+                    "Understanding how AI models brain function—and where these models diverge from actual neural mechanisms—is essential for cognitive neuroscience research."
+                ]
+            },
+            'English': {
+                noAI: [
+                    "Your analytical voice develops through writing practice. Using AI to draft analyses means you're not developing your own way of articulating literary arguments.",
+                    "Close reading requires slowing down with texts. AI summaries bypass the careful attention to language that develops interpretive skills."
+                ],
+                limited: [
+                    "Use AI for brainstorming after forming your own interpretation. Your close reading and argument construction must be authentically yours.",
+                    "Think of AI as a writing tutor for editing, not a ghostwriter for ideas. Your analytical thinking and textual engagement must come first."
+                ],
+                ok: [
+                    "Professional writers increasingly work with AI tools. What matters is that your interpretations are original, grounded in textual evidence, and expressed in your voice.",
+                    "You're responsible for close reading and original argumentation. AI can help polish prose, but the literary thinking must be yours."
+                ],
+                required: [
+                    "Understanding how AI reads literature—and why its interpretations tend toward conventional patterns—helps you think critically about both texts and algorithms.",
+                    "As AI increasingly mediates textual interpretation, understanding its capabilities and blindspots becomes part of literary studies."
+                ]
+            },
+            'History': {
+                noAI: [
+                    "Historical thinking requires evaluating sources and understanding context. If AI summarizes sources for you, you're not developing the critical skills that make you a historian.",
+                    "Working with primary sources is messy and difficult. That difficulty is where you learn historical methods—AI summaries eliminate the very work that builds expertise."
+                ],
+                limited: [
+                    "Use AI for locating sources after engaging with primary materials yourself. Source analysis and historical argument construction must reflect your reasoning about evidence.",
+                    "AI can provide background context, but understanding historical complexity requires sustained engagement with sources and scholarship that AI shortcuts."
+                ],
+                ok: [
+                    "Historical research increasingly involves digital tools. What matters is that your arguments acknowledge complexity and are grounded in careful source analysis.",
+                    "You remain responsible for evaluating source credibility, understanding historical context, and constructing nuanced arguments. AI can assist research but can't replace historical judgment."
+                ],
+                required: [
+                    "Understanding how AI processes historical information—and its limitations with complexity, bias, and interpretation—is increasingly relevant as these tools enter historical practice.",
+                    "Digital humanities methods, including AI, are changing historical research. You need experience working critically with these tools."
+                ]
+            },
+            'Philosophy': {
+                noAI: [
+                    "Philosophical thinking emerges from wrestling with conceptual problems yourself. AI can provide arguments, but the struggle to construct valid reasoning is where learning happens.",
+                    "You can't learn logic by reading AI-generated arguments. You must practice constructing valid arguments and identifying fallacies through your own analytical work."
+                ],
+                limited: [
+                    "Use AI to understand philosophical vocabulary or historical context after reading primary texts yourself. Your philosophical reasoning and argument construction must be your own.",
+                    "AI can help you clarify ideas you've already formed, but philosophical thinking—engaging with counterarguments, testing reasoning—must come from you."
+                ],
+                ok: [
+                    "What matters is the quality of your reasoning: logical validity, engagement with counterarguments, clarity of thought. AI can assist expression, but philosophical thinking must be yours.",
+                    "You're responsible for logical validity and philosophical rigor. AI-generated arguments often look convincing but contain subtle fallacies—you need the skills to recognize that."
+                ],
+                required: [
+                    "Understanding how AI reasons—and its limitations in genuine conceptual understanding—raises philosophical questions central to contemporary philosophy of mind and AI ethics.",
+                    "As AI enters philosophical discourse, understanding its capabilities and limits becomes philosophically significant. This course examines those questions directly."
+                ]
+            },
+            'Religion': {
+                noAI: [
+                    "Religious texts require careful interpretation with attention to language and context. AI summaries bypass the close reading that develops interpretive skills.",
+                    "Understanding religious traditions requires respectful engagement and cultural sensitivity that AI lacks. These dispositions develop through careful study, not from reading AI descriptions."
+                ],
+                limited: [
+                    "Use AI for background research after engaging with religious texts and traditions yourself. Your interpretive work and analysis must demonstrate respectful, informed engagement.",
+                    "AI can explain terminology, but understanding how practices fit within belief systems requires the depth of study that AI shortcuts."
+                ],
+                ok: [
+                    "What matters is accurate, respectful representation of traditions and interpretation grounded in textual and cultural context. AI can assist research, but understanding must be yours.",
+                    "You're responsible for respectful engagement with beliefs and practices, accurate representation of traditions, and interpretations that honor complexity and diversity."
+                ],
+                required: [
+                    "Understanding how AI processes religious texts and concepts—including its limitations with sacred language and symbolism—helps you think critically about technology's role in religious studies.",
+                    "As digital tools enter religious scholarship, understanding their capabilities and limitations for studying sacred texts and traditions becomes increasingly relevant."
+                ]
+            },
+            'Classics': {
+                noAI: [
+                    "Latin and Greek require thousands of hours of practice. Using AI translation means you're not building the language competency essential for classical studies.",
+                    "Understanding how ancient syntax creates meaning requires analyzing grammar yourself. AI translation removes the linguistic work that builds reading proficiency."
+                ],
+                limited: [
+                    "Use AI for vocabulary lookup after attempting translation yourself. Your grammatical analysis and translation must demonstrate developing language skills.",
+                    "Digital corpora are valuable research tools, but reading classical texts in original languages requires proficiency that AI translation prevents you from building."
+                ],
+                ok: [
+                    "Classical scholarship increasingly uses digital tools. What matters is that you can read texts in original languages and interpret them within ancient cultural contexts.",
+                    "You're responsible for translation accuracy, grammatical correctness, and interpretations grounded in classical contexts. AI can assist research, but language proficiency must be yours."
+                ],
+                required: [
+                    "Digital humanities methods are changing classical scholarship. Understanding how computational approaches work with ancient languages requires hands-on experience.",
+                    "From text mining to network analysis, AI tools offer new ways to study classical civilization—but only when grounded in solid language and cultural knowledge."
+                ]
+            },
+            'Medieval & Renaissance Studies': {
+                noAI: [
+                    "Reading premodern texts requires attention to historical difference and unfamiliar conventions. AI summaries impose modern frameworks that obscure historical alterity.",
+                    "Understanding medieval and Renaissance cultures on their own terms requires resisting presentism. AI tends toward modern analogies that prevent genuine historical understanding."
+                ],
+                limited: [
+                    "Use AI for background information after engaging with primary sources yourself. Your textual analysis and historical interpretation must demonstrate understanding of premodern contexts.",
+                    "Digital resources are valuable, but understanding historical difference requires sustained study that AI shortcuts."
+                ],
+                ok: [
+                    "Digital humanities methods are valuable for premodern studies. What matters is that your interpretations avoid anachronism and respect historical complexity.",
+                    "You're responsible for historically grounded interpretation, awareness of how modern perspectives can distort the past, and respect for cultural difference."
+                ],
+                required: [
+                    "Understanding how AI imposes modern frameworks on premodern texts helps you think critically about both historical interpretation and algorithmic bias.",
+                    "Digital methods offer new approaches to medieval and Renaissance materials—but require critical awareness of how these tools can distort historical contexts."
+                ]
+            },
+            'Comparative Literature': {
+                noAI: [
+                    "Reading literature in multiple languages is fundamental to comparative literature. Using AI translation prevents you from developing the multilingual competency the field requires.",
+                    "Understanding cultural specificity requires engaging with texts in original languages. AI translation flattens linguistic and cultural differences that comparative analysis depends on."
+                ],
+                limited: [
+                    "Use AI for translation assistance after reading texts yourself. Your multilingual engagement and comparative analysis must demonstrate language competency.",
+                    "Translation is interpretation. AI provides instant translation but removes the wrestling with language that builds comparative literary understanding."
+                ],
+                ok: [
+                    "What matters is multilingual competency, culturally informed interpretation, and comparative arguments that respect linguistic and cultural difference.",
+                    "You're responsible for engaging with texts in original languages, acknowledging translation issues, and making comparisons that honor cultural specificity."
+                ],
+                required: [
+                    "Understanding how AI translation works—and what it loses in cultural nuance and linguistic specificity—is increasingly relevant to translation studies and comparative literature.",
+                    "As machine translation enters literary studies, comparative literature must address how these tools mediate cross-cultural textual engagement."
+                ]
+            },
+            'Romance Languages': {
+                noAI: [
+                    "Language fluency requires thinking in the target language, not translating from English. Using AI translation prevents you from developing this essential cognitive shift.",
+                    "Conversational fluency develops through practice speaking. AI can translate what you want to say, but fluency requires retrieving words and constructing sentences automatically."
+                ],
+                limited: [
+                    "Use AI for vocabulary lookup after attempting writing yourself. Language production and grammar practice must build your proficiency.",
+                    "AI translation can check your work, but language acquisition requires producing French/Spanish/Italian yourself, making mistakes, and self-correcting."
+                ],
+                ok: [
+                    "Professional language use increasingly involves translation tools. What matters is that you develop genuine speaking and comprehension ability.",
+                    "You're responsible for conversational fluency, grammatical accuracy, and cultural competency. AI assists learning but can't replace practice."
+                ],
+                required: [
+                    "Understanding how machine translation works—and where it fails with idiomatic language and cultural context—is increasingly relevant to professional language work.",
+                    "Future language professionals will work with AI translation. This course teaches you to use these tools while maintaining strong language skills."
+                ]
+            },
+            'East Asian Languages & Literatures': {
+                noAI: [
+                    "Character recognition and writing require extensive visual and motor practice. AI translation prevents you from developing the literacy essential for East Asian languages.",
+                    "Understanding how Chinese/Japanese/Korean syntax works requires thinking in fundamentally different grammatical structures. AI translation keeps you thinking in English."
+                ],
+                limited: [
+                    "Use AI for character lookup after attempting work yourself. Character writing and grammar practice must build your language proficiency.",
+                    "Translation is inherently interpretive with East Asian languages. AI provides quick translation but removes the linguistic analysis that builds understanding."
+                ],
+                ok: [
+                    "What matters is character literacy, grammatical competency, and cultural understanding. AI can assist learning but can't replace language acquisition.",
+                    "You're responsible for reading proficiency, accurate translation, and culturally informed interpretation. AI supports learning, not replaces practice."
+                ],
+                required: [
+                    "Understanding how AI handles East Asian languages—and its limitations with classical texts and cultural nuance—is relevant to professional language and translation work.",
+                    "Machine translation for East Asian languages has unique challenges. Understanding these prepares you for professional work at the intersection of language and technology."
+                ]
+            },
+            'German': {
+                noAI: [
+                    "German's case system requires extensive practice to internalize. Using AI translation prevents you from developing grammatical intuition through repeated use.",
+                    "Understanding German word order and sentence structure requires analyzing syntax yourself. AI translation removes this grammatical work that builds proficiency."
+                ],
+                limited: [
+                    "Use AI for vocabulary after attempting translation yourself. Your grammar practice and sentence construction must demonstrate developing German skills.",
+                    "AI can check your translation, but producing idiomatic German requires practice that builds active vocabulary and grammatical competency."
+                ],
+                ok: [
+                    "What matters is grammatical competency, reading proficiency, and ability to communicate in German without translation tools.",
+                    "You're responsible for developing German language skills. AI can assist learning, but fluency requires sustained practice you must do yourself."
+                ],
+                required: [
+                    "Understanding how machine translation handles German—including challenges with case ambiguity and word order—prepares you for professional work with language technology.",
+                    "Future language professionals will work alongside AI translation. This course teaches critical use of these tools while building strong German skills."
+                ]
+            },
+            'Russian': {
+                noAI: [
+                    "Cyrillic reading fluency and understanding aspectual verb distinctions require extensive practice. AI translation prevents you from developing these essential Russian language skills.",
+                    "Russian case endings and aspect require grammatical intuition built through repeated use. AI does this for you, preventing the practice that builds competency."
+                ],
+                limited: [
+                    "Use AI for vocabulary after attempting translation yourself. Grammar exercises and translation must demonstrate your developing Russian proficiency.",
+                    "AI can verify translations, but understanding Russian aspect and case logic requires practice that AI shortcuts."
+                ],
+                ok: [
+                    "What matters is Cyrillic fluency, grammatical competency, and reading proficiency. AI supports learning but doesn't replace practice.",
+                    "You're responsible for Russian language skills—reading, grammar, translation competency. AI assists but can't build the proficiency you need."
+                ],
+                required: [
+                    "Understanding how AI handles Russian—including challenges with aspect, case, and cultural context—is relevant to professional language and translation work.",
+                    "Machine translation for Russian has specific technical challenges. Understanding these prepares you for advanced study or professional work."
+                ]
+            },
+            'Arabic': {
+                noAI: [
+                    "Arabic script and trilateral root patterns require sustained practice. AI translation prevents you from developing the literacy essential for Arabic.",
+                    "Reading unvocalized Arabic requires grammatical knowledge and contextual understanding. AI vocalization or translation removes the practice that builds this competency."
+                ],
+                limited: [
+                    "Use AI for root identification or vocabulary after attempting work yourself. Your script practice, grammar, and translation must build Arabic proficiency.",
+                    "AI can assist learning, but understanding Arabic morphology and reading unvocalized text require practice that AI shortcuts."
+                ],
+                ok: [
+                    "What matters is Arabic script competency, morphological understanding, and reading proficiency. AI supports learning but doesn't replace practice.",
+                    "You're responsible for Arabic language skills—script, grammar, comprehension. AI can assist, but proficiency requires sustained practice."
+                ],
+                required: [
+                    "Understanding how AI processes Arabic—including challenges with unvocalized text and dialectal variation—is relevant to professional Arabic language work.",
+                    "Machine translation for Arabic faces unique technical challenges. Understanding these prepares you for advanced study or professional work."
+                ]
+            },
+            'Accounting & Finance': {
+                noAI: [
+                    "Accounting judgment about appropriate treatments develops through working cases yourself. AI can apply rules, but professional judgment requires experience reasoning through ambiguity.",
+                    "Understanding the ethical implications of financial decisions requires thinking through consequences yourself. AI presents options without the ethical reasoning you need to develop."
+                ],
+                limited: [
+                    "Use AI for calculations after determining proper accounting treatment yourself. Financial analysis and professional judgment must demonstrate your understanding.",
+                    "Think of AI as a sophisticated calculator, not an accountant. Conceptual work—choosing methods, ethical reasoning—must be yours."
+                ],
+                ok: [
+                    "Finance professionals use analytical tools. What matters is that you exercise professional judgment, understand ethical implications, and maintain accountability.",
+                    "You're responsible for accounting correctness, appropriate treatments, and ethical soundness. AI performs calculations; judgment is yours."
+                ],
+                required: [
+                    "Modern finance increasingly uses AI for analysis and prediction. Understanding these tools' capabilities and limitations is essential for financial professionals.",
+                    "AI systems are entering audit, financial analysis, and risk assessment. You need experience working with these tools to understand their role in professional practice."
+                ]
+            },
+            'Business Administration': {
+                noAI: [
+                    "Strategic thinking develops through analyzing cases yourself. AI can generate strategies, but business judgment requires learning to read organizational situations—something that comes from practice.",
+                    "Understanding human dimensions of business problems requires thinking beyond data. AI optimizes; business requires understanding people, politics, and implementation challenges."
+                ],
+                limited: [
+                    "Use AI for research after developing your own strategic analysis. Case analysis and business judgment must demonstrate your reasoning about organizational problems.",
+                    "AI can provide data, but understanding organizational dynamics and making strategic decisions under uncertainty require judgment you must develop."
+                ],
+                ok: [
+                    "Managers use business analytics and AI insights. What matters is that you exercise strategic judgment, understand implementation challenges, and think realistically about organizations.",
+                    "You're responsible for strategic soundness, realistic assessment of challenges, and recognition that business problems involve people, not just data."
+                ],
+                required: [
+                    "Modern management involves working with AI-driven insights and analytics. Understanding how to use these tools while exercising human judgment is essential.",
+                    "AI provides data and analysis, but business leadership requires judgment about strategy, people, and organizational dynamics. This course develops both technical and human skills."
+                ]
+            },
+            'Cognitive & Behavioral Science': {
+                noAI: [
+                    "Experimental design in cognitive science requires thinking through how to isolate mechanisms. If AI designs your studies, you're not developing the scientific reasoning essential to research.",
+                    "Integrative thinking across neural and behavioral levels requires practice connecting mechanisms. AI can describe levels, but integration requires cognitive work you must do."
+                ],
+                limited: [
+                    "Use AI for statistical analysis after designing studies yourself. Experimental design and interpretation must demonstrate your cognitive science reasoning.",
+                    "AI can process behavioral data, but understanding what patterns mean for cognitive theories requires the conceptual work you must do."
+                ],
+                ok: [
+                    "Cognitive science research uses computational methods. What matters is integrative reasoning across levels, methodologically sound designs, and theoretically informed interpretation.",
+                    "You're responsible for experimental rigor, integrative analysis, and theoretical reasoning. AI can analyze data, but cognitive science judgment is yours."
+                ],
+                required: [
+                    "Understanding how AI models cognition—and where AI systems differ from human cognitive processes—is central to modern cognitive science.",
+                    "As AI becomes both tool and subject in cognitive science, you need experience working with these systems to understand both their research utility and theoretical significance."
+                ]
+            },
+            'Economics': {
+                noAI: [
+                    "Economic reasoning about mechanisms develops through working problems yourself. AI can state results, but economic thinking requires reasoning through how systems operate.",
+                    "Understanding when economic models apply requires judgment built through practice. AI can apply models, but you must develop the intuition for when assumptions fit reality."
+                ],
+                limited: [
+                    "Use AI for calculations after setting up models yourself. Economic reasoning about mechanisms, assumptions, and trade-offs must be your own work.",
+                    "AI can run analyses, but understanding what results mean economically—whether they make sense, what they imply—requires economic thinking you must develop."
+                ],
+                ok: [
+                    "Economists use analytical tools extensively. What matters is economic reasoning about mechanisms, critical evaluation of assumptions, and judgment about policy trade-offs.",
+                    "You're responsible for economic logic, appropriate model use, and realistic assessment of policy implications. AI performs analysis; economic judgment is yours."
+                ],
+                required: [
+                    "Modern economics increasingly uses AI for prediction and analysis. Understanding these methods' capabilities and limits is essential for economists.",
+                    "Machine learning enters economic forecasting and policy analysis. You need experience working with these tools to understand their economic applications and limitations."
+                ]
+            },
+            'Politics': {
+                noAI: [
+                    "Political analysis requires understanding power relations beneath events. AI describes events; political science means analyzing how institutions and power shape outcomes.",
+                    "Understanding normative political arguments requires engaging with political theory directly. AI summaries can't replace wrestling with arguments about justice and governance."
+                ],
+                limited: [
+                    "Use AI for background research after developing your own political analysis. Institutional analysis and political reasoning must demonstrate your understanding.",
+                    "AI can provide information, but political analysis—about power, institutions, normative questions—requires thinking you must do yourself."
+                ],
+                ok: [
+                    "Political scientists use data analysis and digital tools. What matters is analysis of power relations, institutionally informed reasoning, and engagement with normative questions.",
+                    "You're responsible for political analysis grounded in evidence, theoretical frameworks, and attention to power and institutions. AI assists research; judgment is yours."
+                ],
+                required: [
+                    "Understanding how AI processes political information—and its limitations with normative reasoning and institutional complexity—is increasingly relevant as these tools enter political science.",
+                    "From election prediction to policy analysis, AI enters political science. You need experience working critically with these tools to understand their role in research."
+                ]
+            },
+            'Sociology & Anthropology': {
+                noAI: [
+                    "Fieldwork skills develop through direct engagement with communities. AI can describe social phenomena, but ethnographic understanding requires experience you must gain yourself.",
+                    "Interpreting qualitative data requires theoretical sophistication that comes from study. AI can code data, but theoretically informed interpretation requires deep engagement with social theory."
+                ],
+                limited: [
+                    "Use AI for literature review or coding assistance after conducting research yourself. Fieldwork and sociological interpretation must demonstrate your methodological and theoretical skills.",
+                    "AI can organize data, but understanding what social patterns mean requires theoretical frameworks and ethnographic sensitivity you must develop."
+                ],
+                ok: [
+                    "Social scientists increasingly use computational methods. What matters is methodological rigor, theoretically informed interpretation, and understanding of meaning and context.",
+                    "You're responsible for research ethics, theoretical sophistication, and recognition that studying social life requires understanding meaning, not just patterns."
+                ],
+                required: [
+                    "Understanding how AI analyzes social data—and its limitations with meaning, context, and power—prepares you for social research using computational methods.",
+                    "Computational social science is growing. You need experience working critically with AI to understand its use in studying social life."
+                ]
+            },
+            'Art & Art History': {
+                noAI: [
+                    "Drawing and technical skills develop through physical practice. AI can generate images, but embodied skills that execute your vision require hands-on work you must do.",
+                    "Close looking in art history requires sustained visual attention. AI describes content; art historical analysis requires seeing formal qualities through practiced observation."
+                ],
+                limited: [
+                    "For studio: use digital tools after developing concepts by hand. For art history: use AI for research after close visual analysis. Creative decisions and interpretive work must be yours.",
+                    "AI can assist with technical processes or information, but artistic vision and art historical interpretation require seeing and making you must do yourself."
+                ],
+                ok: [
+                    "Contemporary art engages with technology. What matters is artistic vision, technical execution, and interpretations grounded in close visual analysis.",
+                    "You're responsible for artistic decisions and art historical interpretation. AI can assist, but seeing and making are irreplaceable."
+                ],
+                required: [
+                    "Understanding AI as both tool and subject is increasingly relevant to contemporary art practice and theory.",
+                    "AI enters art-making and art history. You need experience working with these tools to understand technology's role in image-making and visual culture."
+                ]
+            },
+            'Music': {
+                noAI: [
+                    "Ear training and performance technique develop through extensive practice. AI can generate music, but embodied skills require the thousands of hours you must put in.",
+                    "Understanding harmonic progressions requires analytical listening. AI can explain harmony, but hearing how music works requires repeated listening practice."
+                ],
+                limited: [
+                    "Use music software for notation after composing yourself. Musical ideas and performance technique must develop through your practice with sound.",
+                    "AI can assist with technical tasks, but musical decisions—compositional, performative, analytical—require your musical understanding and judgment."
+                ],
+                ok: [
+                    "Musicians use technology extensively. What matters is musical understanding, performance ability, and analytical insight grounded in careful listening.",
+                    "You're responsible for musical decisions and analytical interpretations. AI can assist with notation or information, but musical understanding requires your ears and practice."
+                ],
+                required: [
+                    "Understanding how AI generates music—and its limitations in expression and innovation—helps you think critically about creativity and technology.",
+                    "AI enters musical practice and composition. You need experience working with these tools to understand their role in contemporary music-making."
+                ]
+            },
+            'Theater, Dance & Film Studies': {
+                noAI: [
+                    "Performance technique requires embodied practice. AI can generate scripts, but physical skills and presence develop only through performance work you must do.",
+                    "Collaborative creation is fundamental to performance. AI-generated content removes the interpersonal work where ensemble skills develop."
+                ],
+                limited: [
+                    "Use AI for research after developing performance concepts yourself. Embodied technique and creative development must emerge from your practice and collaboration.",
+                    "AI can assist with technical aspects, but interpretation through performance and collaborative creation require work you must do with others."
+                ],
+                ok: [
+                    "Performance artists work with technology. What matters is embodied technique, collaborative skill, and understanding how performance creates meaning.",
+                    "You're responsible for performance quality, interpretive depth, and collaborative ethics. AI can assist, but performance requires your body and creative work."
+                ],
+                required: [
+                    "Understanding how AI technologies change performance—from motion capture to AI video—prepares you for contemporary performance practice.",
+                    "Digital performance technologies increasingly involve AI. You need experience working with these tools to understand their role in contemporary theater, dance, and film."
+                ]
+            },
+            'Journalism & Mass Communications': {
+                noAI: [
+                    "News judgment develops through practice and mentorship. AI can summarize events, but recognizing what matters for public interest requires professional judgment you must build.",
+                    "Source verification skills are fundamental to journalism. AI retrieves information but can't assess credibility—that requires the skeptical practice you must develop."
+                ],
+                limited: [
+                    "Use AI for research after developing news angles yourself. Reporting, editorial judgment, and ethical reasoning must demonstrate your professional skills.",
+                    "AI can draft text, but news judgment, source verification, and ethical decision-making require the professional skills you must develop through practice."
+                ],
+                ok: [
+                    "Journalists increasingly work with AI tools. What matters is accuracy, proper sourcing, ethical practice, and editorial judgment about newsworthiness.",
+                    "You're responsible for verification, ethical communication, and journalistic judgment. AI can assist with drafting, but professional standards are yours to maintain."
+                ],
+                required: [
+                    "Understanding how AI generates news content—and implications for misinformation and media ethics—is essential for journalists navigating technology's role in media.",
+                    "AI enters newsrooms and communications practice. You need experience working with these tools to understand their capabilities, limitations, and ethical implications."
+                ]
+            },
+            'Africana Studies': {
+                noAI: [
+                    "Understanding how race shapes knowledge requires engaging with Black intellectual traditions directly. AI trained on Western sources may reproduce perspectives that Africana Studies challenges.",
+                    "Interpreting cultural works as resistance requires knowing historical contexts of oppression. AI describes content; understanding cultural production as response to power requires study you must do."
+                ],
+                limited: [
+                    "Use AI for background research after engaging with primary sources yourself. Analysis of power relations and cultural interpretation must reflect Africana Studies frameworks.",
+                    "AI can provide information, but critical analysis of representation and understanding of how race shapes knowledge require the theoretical work you must do."
+                ],
+                ok: [
+                    "What matters is analysis grounded in Black intellectual traditions, awareness of how race and power shape knowledge, and critical engagement with representations.",
+                    "You're responsible for centering African and diaspora perspectives, critical analysis of power, and recognition of how knowledge about race has been produced and contested."
+                ],
+                required: [
+                    "Understanding how AI perpetuates biases about race and Africa is essential for critical Africana Studies in the age of algorithmic systems.",
+                    "AI systems encode racial biases. Analyzing these biases through Africana Studies frameworks is increasingly important as technology shapes knowledge about race."
+                ]
+            },
+            'East Asian Studies': {
+                noAI: [
+                    "Language proficiency is fundamental to area studies. AI translation prevents you from developing the linguistic competency essential for serious East Asian studies work.",
+                    "Understanding East Asian cultures within their own frameworks requires study that resists Orientalist assumptions. AI trained on Western sources may reproduce Orientalism."
+                ],
+                limited: [
+                    "Use AI for translation assistance after engaging with texts yourself. Language work and cultural analysis must demonstrate your developing area expertise.",
+                    "AI can provide background, but understanding cultures on their own terms and critiquing Orientalist representations require study you must do."
+                ],
+                ok: [
+                    "What matters is language competency, culturally informed interpretation, and critical awareness of how Western discourse represents Asia.",
+                    "You're responsible for language accuracy, cultural understanding, and recognition of Orientalism in representations. AI assists research; critical analysis is yours."
+                ],
+                required: [
+                    "Understanding how AI processes information about East Asia—and biases in Western-trained systems—helps you think critically about technology's role in area studies.",
+                    "As digital tools enter area studies, understanding how they mediate cross-cultural knowledge becomes increasingly important. This course examines that mediation critically."
+                ]
+            },
+            'Environmental Studies': {
+                noAI: [
+                    "Integrative thinking across natural and social sciences develops through practice. AI tends to separate technical from social; environmental studies requires holding both together.",
+                    "Understanding environmental justice requires reasoning about both ecology and equity. AI can analyze distributions, but connecting environmental harm to power requires critical frameworks you must learn."
+                ],
+                limited: [
+                    "Use AI for data analysis after developing your integrated analysis. Environmental reasoning and attention to justice dimensions must demonstrate interdisciplinary thinking.",
+                    "AI can process environmental data, but understanding both biophysical systems and social justice requires the integrative work you must do."
+                ],
+                ok: [
+                    "Environmental work uses modeling and GIS tools. What matters is integrative thinking, scientific accuracy, and ethical reasoning about justice and sustainability.",
+                    "You're responsible for both ecological understanding and social analysis. AI can provide technical analysis, but environmental studies requires both together."
+                ],
+                required: [
+                    "Understanding how AI models environmental systems—including what gets measured and what gets ignored—is important for critical environmental studies.",
+                    "Environmental modeling increasingly uses AI. Understanding these tools' capabilities and limitations, including their political dimensions, is essential."
+                ]
+            },
+            'Latin American & Caribbean Studies': {
+                noAI: [
+                    "Language proficiency is essential for area studies. AI translation prevents you from developing the Spanish or Portuguese competency the field requires.",
+                    "Understanding colonial legacies requires historical knowledge and critical frameworks. AI summaries may reproduce external perspectives rather than regional voices."
+                ],
+                limited: [
+                    "Use AI for translation assistance after engaging with sources yourself. Language work and cultural analysis must demonstrate your developing regional expertise.",
+                    "AI can provide background, but understanding colonial histories and centering Latin American perspectives require the study you must do."
+                ],
+                ok: [
+                    "What matters is language competency, historically informed analysis, and awareness of whose perspectives are centered in representations.",
+                    "You're responsible for language accuracy, understanding colonial legacies, and centering regional voices. AI assists research; critical analysis is yours."
+                ],
+                required: [
+                    "Understanding how AI processes information about Latin America—including whose perspectives dominate training data—helps you think critically about knowledge production.",
+                    "As digital tools enter area studies, understanding how they mediate cross-cultural knowledge becomes important. This course examines that critically."
+                ]
+            },
+            'Middle East & South Asia Studies': {
+                noAI: [
+                    "Language proficiency is non-negotiable for serious area studies. AI translation prevents you from developing the linguistic competency essential for the field.",
+                    "Recognizing Orientalist representations requires studying this history critically. AI trained largely on Western sources may reproduce the Orientalism that area studies challenges."
+                ],
+                limited: [
+                    "Use AI for translation assistance after engaging with texts yourself. Language work and cultural analysis must demonstrate your developing area expertise.",
+                    "AI can provide information, but critiquing Orientalism and understanding cultures on their own terms require the theoretical and historical work you must do."
+                ],
+                ok: [
+                    "What matters is language competency, awareness of Orientalism, and culturally informed interpretation grounded in regional perspectives.",
+                    "You're responsible for language accuracy, critical analysis of representation, and respect for religious and cultural diversity. AI assists; critical frameworks are yours."
+                ],
+                required: [
+                    "Understanding how AI perpetuates Orientalist stereotypes is essential for critical Middle East and South Asia studies in the age of algorithmic systems.",
+                    "AI systems often reproduce stereotypes about these regions. Analyzing these biases through postcolonial frameworks becomes increasingly important."
+                ]
+            },
+            "Women's, Gender & Sexuality Studies": {
+                noAI: [
+                    "Intersectional analysis requires thinking about multiple systems of power simultaneously. AI can list categories, but intersectional thinking is learned through applying frameworks to lived experiences.",
+                    "Understanding how gender shapes knowledge production requires feminist epistemology. AI reproduces gendered assumptions about knowledge—analyzing these requires the theoretical work you must do."
+                ],
+                limited: [
+                    "Use AI for background research after developing your feminist analysis. Intersectional reasoning and critical engagement with gender and sexuality must reflect WGSS frameworks.",
+                    "AI can provide information, but analyzing power and understanding how knowledge is gendered require the theoretical work feminist and queer theory provides."
+                ],
+                ok: [
+                    "What matters is intersectional analysis, engagement with feminist and queer theory, and critical awareness of how gender and sexuality shape knowledge.",
+                    "You're responsible for intersectional reasoning, theoretically informed analysis, and recognition of how technologies encode gender and sexuality norms."
+                ],
+                required: [
+                    "Understanding how AI encodes gender and sexuality biases is essential for feminist and queer critique of technology.",
+                    "AI systems reproduce gender norms and heteronormativity. Analyzing these through WGSS frameworks is increasingly important as technology shapes social life."
+                ]
+            },
+            'Law, Justice & Society': {
+                noAI: [
+                    "Legal reasoning requires analyzing how courts reason and where arguments may be flawed. Reading AI summaries doesn't build this analytical skill.",
+                    "Distinguishing law from justice requires normative reasoning about what should be, not just what is. AI describes law; you must develop the ethical reasoning to evaluate it."
+                ],
+                limited: [
+                    "Use AI for case research after developing your legal analysis. Legal reasoning and normative argumentation about justice must demonstrate your critical thinking.",
+                    "AI can locate cases, but understanding legal reasoning and evaluating whether law serves justice require the analytical work you must do."
+                ],
+                ok: [
+                    "What matters is quality of legal analysis, normative reasoning about justice, and critical understanding of how law operates in society.",
+                    "You're responsible for legal reasoning, awareness of how law perpetuates power, and normative argumentation about justice and rights."
+                ],
+                required: [
+                    "Understanding how AI enters legal practice—from predictive policing to automated decisions—is essential for critical study of law and justice.",
+                    "AI systems increasingly affect justice systems. Analyzing their implications for rights, fairness, and institutional legitimacy is central to law and society studies."
+                ]
+            },
+            'Poverty Studies': {
+                noAI: [
+                    "Structural analysis requires moving from individual to systemic thinking. AI focuses on individual-level data; understanding how systems produce poverty requires frameworks you must learn.",
+                    "Integrating statistics and lived experiences requires holding both together. AI handles data well but misses experiential meaning—poverty studies teaches you to connect both."
+                ],
+                limited: [
+                    "Use AI for data analysis after developing your structural analysis. Interpretation and critical evaluation must demonstrate your understanding of political economy.",
+                    "AI can process data, but understanding poverty as systemically produced and evaluating policies for justice require the critical frameworks you must learn."
+                ],
+                ok: [
+                    "What matters is structural analysis, integration of quantitative and qualitative evidence, and critical assessment of policies through justice frameworks.",
+                    "You're responsible for analyzing systemic causes, understanding lived experiences of poverty, and evaluating policies critically beyond technical optimization."
+                ],
+                required: [
+                    "Understanding how AI systems may perpetuate inequality—through algorithmic bias and automated decisions affecting poor communities—is essential for poverty studies.",
+                    "AI enters policy analysis and social services. Analyzing implications for equity and justice is increasingly important as algorithms affect vulnerable populations."
+                ]
+            },
+            'Digital Culture & Information': {
+                noAI: [
+                    "You can't analyze AI critically while uncritically depending on it. Studying how AI shapes culture requires maintaining critical distance, not just being a user.",
+                    "Understanding algorithmic power requires theoretical frameworks you must learn through reading digital studies scholarship. AI summaries can't replace engaging with theory directly."
+                ],
+                limited: [
+                    "You may use AI as an object of study—experimenting to understand it—but analysis must demonstrate your engagement with digital culture theory.",
+                    "AI is what we're studying. Using it to do your analytical work prevents you from developing the critical frameworks that let you analyze it."
+                ],
+                ok: [
+                    "What matters is critical analysis of technology, theoretically informed interpretation, and understanding of digital power relations.",
+                    "You're responsible for theoretical sophistication and critical analysis. Studying AI requires treating it as an object of analysis, not an uncritical tool."
+                ],
+                required: [
+                    "Studying how AI functions—technically and culturally—is central to digital culture studies. You need both practical understanding and critical frameworks.",
+                    "Digital culture studies examines technology as shaping culture. This requires both working with AI systems and analyzing them through theoretical frameworks you'll learn."
+                ]
+            },
+            'Education Studies': {
+                noAI: [
+                    "Understanding how people learn requires engaging with learning theory directly. AI summaries can't replace wrestling with theoretical debates about cognition and pedagogy.",
+                    "Critically analyzing pedagogical approaches requires frameworks education studies provides. If AI describes teaching methods, you're not developing the theoretical tools to evaluate them."
+                ],
+                limited: [
+                    "You may study AI as educational technology—analyzing its assumptions—but your analysis of learning and pedagogy must demonstrate engagement with educational theory.",
+                    "AI can provide information, but critical analysis of pedagogy and reasoning about educational equity require the theoretical frameworks you must learn."
+                ],
+                ok: [
+                    "What matters is theoretically informed analysis of education, critical engagement with pedagogical approaches, and attention to equity questions.",
+                    "You're responsible for understanding learning theory, evaluating pedagogical assumptions critically, and analyzing educational technology through equity frameworks."
+                ],
+                required: [
+                    "Understanding how AI enters education—and critically analyzing its pedagogical assumptions and equity implications—is essential for contemporary education studies.",
+                    "Educational AI systems embed assumptions about learning and assessment. Analyzing these through educational theory is increasingly important as technology enters schools."
+                ]
+            }
+        };
+
         // All 40 W&L departments
         const departments = [
             // STEM (4)
@@ -2585,6 +3309,9 @@
                 }
                 const suggestedRationale = lang?.[statementParts.policyLevelKey] || '';
 
+                // Get alternative rationales for this department and policy level
+                const alternatives = alternativeRationales[statementParts.department]?.[statementParts.policyLevelKey] || [];
+
                 return (
                     <div>
                         <header>
@@ -2682,6 +3409,61 @@
                                     onSave={() => handleAcceptRationale(editText)}
                                     onCancel={() => setIsEditing(false)}
                                 />
+
+                                {alternatives.length > 0 && (
+                                    <div style={{marginTop: '2rem'}}>
+                                        <h3 style={{fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--text-secondary)'}}>
+                                            Or choose an alternative:
+                                        </h3>
+                                        <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+                                            {alternatives.map((alt, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    style={{
+                                                        padding: '1.25rem',
+                                                        background: 'var(--bg-secondary)',
+                                                        border: '1px solid var(--border)',
+                                                        borderRadius: '8px',
+                                                        cursor: 'pointer',
+                                                        transition: 'all 0.2s ease',
+                                                        position: 'relative'
+                                                    }}
+                                                    onMouseOver={(e) => {
+                                                        e.currentTarget.style.borderColor = 'var(--primary)';
+                                                        e.currentTarget.style.transform = 'translateY(-2px)';
+                                                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                                                    }}
+                                                    onMouseOut={(e) => {
+                                                        e.currentTarget.style.borderColor = 'var(--border)';
+                                                        e.currentTarget.style.transform = 'translateY(0)';
+                                                        e.currentTarget.style.boxShadow = 'none';
+                                                    }}
+                                                    onClick={() => handleAcceptRationale(alt)}
+                                                >
+                                                    <div style={{
+                                                        fontSize: '0.95rem',
+                                                        lineHeight: '1.6',
+                                                        color: 'var(--text-primary)',
+                                                        marginBottom: '0.75rem'
+                                                    }}>
+                                                        "{alt}"
+                                                    </div>
+                                                    <div style={{
+                                                        fontSize: '0.85rem',
+                                                        color: 'var(--primary)',
+                                                        fontWeight: '600',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '0.5rem'
+                                                    }}>
+                                                        <span>Click to use this text</span>
+                                                        <span>→</span>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
