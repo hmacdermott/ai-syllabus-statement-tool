@@ -3330,6 +3330,8 @@
                                         }}>
                                             <input
                                                 type="text"
+                                                id="department-search"
+                                                name="department-search"
                                                 placeholder="Search departments..."
                                                 value={deptSearch}
                                                 onChange={(e) => setDeptSearch(e.target.value)}
@@ -3740,6 +3742,8 @@
                                                     <label style={{display: 'flex', alignItems: 'start', gap: '0.75rem', marginBottom: '0.75rem', cursor: 'pointer'}}>
                                                         <input
                                                             type="checkbox"
+                                                            id="dt-hands-practice"
+                                                            name="dt-hands-practice"
                                                             checked={decisionTreeAnswers.handsPractice}
                                                             onChange={(e) => setDecisionTreeAnswers(prev => ({...prev, handsPractice: e.target.checked}))}
                                                             style={{marginTop: '0.25rem', cursor: 'pointer'}}
@@ -3752,6 +3756,8 @@
                                                     <label style={{display: 'flex', alignItems: 'start', gap: '0.75rem', marginBottom: '0.75rem', cursor: 'pointer'}}>
                                                         <input
                                                             type="checkbox"
+                                                            id="dt-concern-bypass"
+                                                            name="dt-concern-bypass"
                                                             checked={decisionTreeAnswers.concernBypass}
                                                             onChange={(e) => setDecisionTreeAnswers(prev => ({...prev, concernBypass: e.target.checked}))}
                                                             style={{marginTop: '0.25rem', cursor: 'pointer'}}
@@ -3764,6 +3770,8 @@
                                                     <label style={{display: 'flex', alignItems: 'start', gap: '0.75rem', marginBottom: '0.75rem', cursor: 'pointer'}}>
                                                         <input
                                                             type="checkbox"
+                                                            id="dt-professional-tool"
+                                                            name="dt-professional-tool"
                                                             checked={decisionTreeAnswers.professionalTool}
                                                             onChange={(e) => setDecisionTreeAnswers(prev => ({...prev, professionalTool: e.target.checked}))}
                                                             style={{marginTop: '0.25rem', cursor: 'pointer'}}
