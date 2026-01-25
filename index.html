@@ -3194,7 +3194,26 @@
                                                     </>
                                                 );
                                             } else {
-                                                // By School view
+                                                // By School view (The College + Williams School)
+                                                const collegeGroups = [
+                                                    { name: 'STEM', start: 0, end: 4 },
+                                                    { name: 'Natural Sciences', start: 4, end: 8 },
+                                                    { name: 'Humanities', start: 8, end: 20 },
+                                                    { name: 'Social Sciences', start: 20, end: 22 },
+                                                    { name: 'Creative Arts & Communications', start: 26, end: 30 },
+                                                    { name: 'Interdisciplinary Programs', start: 30, end: departments.length }
+                                                ];
+                                                const williamsSchoolGroups = [
+                                                    { name: 'Williams School', start: 22, end: 26 }
+                                                ];
+
+                                                const hasCollegeDepts = collegeGroups.some(group =>
+                                                    departments.slice(group.start, group.end).some(dept => filteredDepts.includes(dept))
+                                                );
+                                                const hasWilliamsDepts = williamsSchoolGroups.some(group =>
+                                                    departments.slice(group.start, group.end).some(dept => filteredDepts.includes(dept))
+                                                );
+
                                                 return (
                                                     <>
                                                         {deptSearch && (
@@ -3206,28 +3225,75 @@
                                                                 {filteredDepts.length} department{filteredDepts.length !== 1 ? 's' : ''} found
                                                             </p>
                                                         )}
-                                                        {groups.map(group => {
-                                                            const groupDepts = departments.slice(group.start, group.end).filter(dept =>
-                                                                filteredDepts.includes(dept)
-                                                            );
-                                                            if (groupDepts.length === 0) return null;
-                                                            return (
-                                                                <div key={group.name}>
-                                                                    <h3 style={{
-                                                                        marginTop: '2rem',
-                                                                        marginBottom: '1rem',
-                                                                        fontSize: '1.1rem',
-                                                                        color: 'var(--text-secondary)',
-                                                                        fontWeight: '600'
-                                                                    }}>
-                                                                        {group.name}
-                                                                    </h3>
-                                                                    <div className="department-grid">
-                                                                        {groupDepts.map(renderDeptCard)}
-                                                                    </div>
-                                                                </div>
-                                                            );
-                                                        })}
+
+                                                        {/* The College */}
+                                                        {hasCollegeDepts && (
+                                                            <div>
+                                                                <h2 style={{
+                                                                    marginTop: '2rem',
+                                                                    marginBottom: '1.5rem',
+                                                                    fontSize: '1.4rem',
+                                                                    color: 'var(--text-primary)',
+                                                                    fontWeight: '700',
+                                                                    borderBottom: '2px solid var(--border)',
+                                                                    paddingBottom: '0.5rem'
+                                                                }}>
+                                                                    The College
+                                                                </h2>
+                                                                {collegeGroups.map(group => {
+                                                                    const groupDepts = departments.slice(group.start, group.end).filter(dept =>
+                                                                        filteredDepts.includes(dept)
+                                                                    );
+                                                                    if (groupDepts.length === 0) return null;
+                                                                    return (
+                                                                        <div key={group.name} style={{marginLeft: '1rem'}}>
+                                                                            <h3 style={{
+                                                                                marginTop: '1.5rem',
+                                                                                marginBottom: '1rem',
+                                                                                fontSize: '1rem',
+                                                                                color: 'var(--text-secondary)',
+                                                                                fontWeight: '600'
+                                                                            }}>
+                                                                                {group.name}
+                                                                            </h3>
+                                                                            <div className="department-grid">
+                                                                                {groupDepts.map(renderDeptCard)}
+                                                                            </div>
+                                                                        </div>
+                                                                    );
+                                                                })}
+                                                            </div>
+                                                        )}
+
+                                                        {/* Williams School */}
+                                                        {hasWilliamsDepts && (
+                                                            <div>
+                                                                <h2 style={{
+                                                                    marginTop: '3rem',
+                                                                    marginBottom: '1.5rem',
+                                                                    fontSize: '1.4rem',
+                                                                    color: 'var(--text-primary)',
+                                                                    fontWeight: '700',
+                                                                    borderBottom: '2px solid var(--border)',
+                                                                    paddingBottom: '0.5rem'
+                                                                }}>
+                                                                    Williams School
+                                                                </h2>
+                                                                {williamsSchoolGroups.map(group => {
+                                                                    const groupDepts = departments.slice(group.start, group.end).filter(dept =>
+                                                                        filteredDepts.includes(dept)
+                                                                    );
+                                                                    return (
+                                                                        <div key={group.name} style={{marginLeft: '1rem'}}>
+                                                                            <div className="department-grid">
+                                                                                {groupDepts.map(renderDeptCard)}
+                                                                            </div>
+                                                                        </div>
+                                                                    );
+                                                                })}
+                                                            </div>
+                                                        )}
+
                                                         {filteredDepts.length === 0 && (
                                                             <p style={{
                                                                 textAlign: 'center',
