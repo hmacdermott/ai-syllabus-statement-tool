@@ -457,38 +457,6 @@
         }
 
         /* Tools checkboxes */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .tool-checkbox {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .tool-checkbox:hover {
-            border-color: var(--primary);
-        }
-
-        .tool-checkbox input {
-            margin-right: 0.75rem;
-            cursor: pointer;
-        }
-
-        .tool-checkbox label {
-            cursor: pointer;
-            flex: 1;
-        }
-
         /* Documentation options */
         .documentation-options {
             display: flex;
@@ -2610,18 +2578,6 @@
             { id: 'Education Studies', icon: '🎓' }
         ];
 
-        // AI tools list
-        const aiTools = [
-            'ChatGPT (OpenAI)',
-            'Claude (Anthropic)',
-            'Gemini (Google)',
-            'GitHub Copilot (Microsoft/GitHub)',
-            'Perplexity',
-            'Grammarly',
-            'DALL-E/Midjourney (Image generation)',
-            'NotebookLM (Google)'
-        ];
-
         // ============================================================================
         // HELPER FUNCTIONS
         // ============================================================================
@@ -3493,24 +3449,46 @@
                                     You can optionally list specific AI tools that this policy covers. This adds clarity but isn't required.
                                 </p>
 
-                                <div className="tools-grid">
-                                    {aiTools.map(tool => (
-                                        <div key={tool} className="tool-checkbox">
-                                            <input
-                                                type="checkbox"
-                                                id={tool}
-                                                checked={selectedTools.includes(tool)}
-                                                onChange={(e) => {
-                                                    if (e.target.checked) {
-                                                        setSelectedTools([...selectedTools, tool]);
-                                                    } else {
-                                                        setSelectedTools(selectedTools.filter(t => t !== tool));
-                                                    }
-                                                }}
-                                            />
-                                            <label htmlFor={tool}>{tool}</label>
-                                        </div>
-                                    ))}
+                                <div style={{marginBottom: '1.5rem'}}>
+                                    <label style={{
+                                        display: 'block',
+                                        marginBottom: '0.5rem',
+                                        fontWeight: '600',
+                                        fontSize: '0.95rem'
+                                    }}>
+                                        List tools (one per line):
+                                    </label>
+                                    <textarea
+                                        value={selectedTools.join('\n')}
+                                        onChange={(e) => {
+                                            const tools = e.target.value
+                                                .split('\n')
+                                                .map(t => t.trim())
+                                                .filter(t => t.length > 0);
+                                            setSelectedTools(tools);
+                                        }}
+                                        placeholder="ChatGPT&#10;Claude&#10;GitHub Copilot&#10;Grammarly&#10;...or any other tools relevant to your course"
+                                        style={{
+                                            width: '100%',
+                                            minHeight: '120px',
+                                            padding: '0.75rem',
+                                            border: '1px solid var(--border)',
+                                            borderRadius: '8px',
+                                            fontSize: '1rem',
+                                            fontFamily: 'inherit',
+                                            resize: 'vertical',
+                                            background: 'var(--bg-primary)',
+                                            color: 'var(--text-primary)'
+                                        }}
+                                    />
+                                    <p style={{
+                                        marginTop: '0.5rem',
+                                        fontSize: '0.85rem',
+                                        color: 'var(--text-secondary)',
+                                        fontStyle: 'italic'
+                                    }}>
+                                        Examples: ChatGPT, Claude, GitHub Copilot, Grammarly, Perplexity, NotebookLM, DALL-E, Midjourney
+                                    </p>
                                 </div>
 
                                 <div style={{display: 'flex', gap: '1rem', marginTop: '2rem'}}>
