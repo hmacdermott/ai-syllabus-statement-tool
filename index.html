@@ -2739,6 +2739,23 @@
                 concernBypass: false,
                 professionalTool: false
             });
+            const [footerTexts] = useState(() => {
+                const credits = [
+                    'Built by the PLAI Lab at Washington & Lee University',
+                    'Created at the PLAI Lab, Washington & Lee University',
+                    'Developed by Washington & Lee\'s PLAI Lab'
+                ];
+                const transparencyStatements = [
+                    'The department-specific language was generated through AI synthesis of disciplinary discourse patterns, not empirical research with faculty. This serves as a starting point for review and adaptation—not validated best practices.',
+                    'Department-specific content was created using AI synthesis of academic discourse, not through faculty interviews or empirical studies. Treat these suggestions as starting points requiring your professional judgment.',
+                    'This tool uses AI-generated language based on disciplinary discourse patterns. The suggestions are not research-validated best practices and should be adapted to your specific course and institutional context.'
+                ];
+                return {
+                    credit: credits[Math.floor(Math.random() * credits.length)],
+                    transparency: transparencyStatements[Math.floor(Math.random() * transparencyStatements.length)]
+                };
+            });
+            const [copiedTransparency, setCopiedTransparency] = useState(false);
 
             // Sync phase-specific states with statementParts
             useEffect(() => {
@@ -2941,6 +2958,13 @@
                 }
                 // Nothing checked
                 return 'ok';
+            };
+
+            const copyTransparencyStatement = () => {
+                navigator.clipboard.writeText(footerTexts.transparency).then(() => {
+                    setCopiedTransparency(true);
+                    setTimeout(() => setCopiedTransparency(false), 2000);
+                });
             };
 
             const handlePolicyLevelSelect = (level) => {
@@ -4181,29 +4205,128 @@
                             </div>
                         </div>
 
-                        <footer style={{marginTop: '4rem', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', borderTop: '1px solid var(--border-color)'}}>
-                            <p style={{fontWeight: 600, marginBottom: '1rem'}}>About This Tool</p>
-                            <p style={{maxWidth: '800px', margin: '0 auto 1rem', lineHeight: '1.6'}}>
-                                The department-specific language in this tool was generated through AI synthesis of disciplinary discourse patterns,
-                                not empirical research with faculty. This language serves as a <strong>starting point for your review and adaptation</strong>—not
-                                as validated best practices. Please adapt the generated text based on your course goals, institutional context,
-                                and disciplinary expertise.
-                            </p>
+                        <footer style={{
+                            marginTop: '4rem',
+                            padding: '2rem',
+                            textAlign: 'center',
+                            color: 'var(--text-secondary)',
+                            fontSize: '0.9rem',
+                            borderTop: '1px solid var(--border-color)'
+                        }}>
+                            {/* PLAI Lab logo - hidden in dark mode */}
+                            {theme === 'light' && (
+                                <div style={{marginBottom: '1.5rem'}}>
+                                    <a href="https://plai.wlu.edu" target="_blank" rel="noopener noreferrer">
+                                        <img
+                                            src="plai-lab-logo.gif"
+                                            alt="PLAI Lab"
+                                            style={{
+                                                height: '60px',
+                                                opacity: 0.9,
+                                                transition: 'opacity 0.2s'
+                                            }}
+                                            onMouseOver={(e) => e.target.style.opacity = '1'}
+                                            onMouseOut={(e) => e.target.style.opacity = '0.9'}
+                                        />
+                                    </a>
+                                </div>
+                            )}
+
+                            {/* Credit line - hidden in dark mode */}
+                            {theme === 'light' && (
+                                <p style={{marginBottom: '1.5rem', fontSize: '0.85rem'}}>
+                                    {footerTexts.credit}
+                                </p>
+                            )}
+
+                            {/* Transparency statement with copy button */}
+                            <div style={{
+                                maxWidth: '800px',
+                                margin: '0 auto 1.5rem',
+                                padding: '1.5rem',
+                                background: 'var(--bg-secondary)',
+                                borderRadius: '8px',
+                                lineHeight: '1.6',
+                                position: 'relative'
+                            }}>
+                                <p style={{margin: 0, fontSize: '0.85rem'}}>
+                                    {footerTexts.transparency}
+                                </p>
+                                <button
+                                    onClick={copyTransparencyStatement}
+                                    style={{
+                                        marginTop: '1rem',
+                                        padding: '0.5rem 1rem',
+                                        background: copiedTransparency ? 'var(--success)' : 'var(--primary)',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '6px',
+                                        cursor: 'pointer',
+                                        fontSize: '0.85rem',
+                                        transition: 'background 0.2s, transform 0.1s'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        if (!copiedTransparency) {
+                                            e.target.style.transform = 'translateY(-1px)';
+                                        }
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.target.style.transform = 'translateY(0)';
+                                    }}
+                                >
+                                    {copiedTransparency ? '✓ Copied!' : '📋 Copy transparency statement'}
+                                </button>
+                            </div>
+
+                            {/* Resources section */}
                             <div style={{maxWidth: '800px', margin: '0 auto 1.5rem', lineHeight: '1.6', fontSize: '0.85rem'}}>
-                                <p style={{marginBottom: '0.75rem'}}>
-                                    <strong>For research-backed guidance on AI in your discipline:</strong>
+                                <p style={{marginBottom: '0.75rem', fontWeight: 600}}>
+                                    For research-backed guidance on AI in your discipline:
                                 </p>
                                 <ul style={{textAlign: 'left', display: 'inline-block', margin: '0 auto'}}>
                                     <li>Consult your professional association (ACM, MLA, AHA, ACS, ASA, etc.)</li>
-                                    <li>Review <a href="https://docs.google.com/spreadsheets/d/1-R8wxAB6V11cDh_u6t-WgCBdxYKV8FoXDFGxPVxbs6k/" target="_blank" style={{color: 'var(--primary)', textDecoration: 'underline'}}>Lance Eaton's AI Policy Database</a> for examples</li>
-                                    <li>Discuss with colleagues teaching similar courses in your department</li>
-                                    <li>Consider your institutional academic integrity policies and resources</li>
+                                    <li>Review <a href="https://docs.google.com/spreadsheets/d/1-R8wxAB6V11cDh_u6t-WgCBdxYKV8FoXDFGxPVxbs6k/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', textDecoration: 'underline'}}>Lance Eaton's AI Policy Database</a></li>
+                                    <li>Discuss with colleagues in your department</li>
+                                    <li>Review your institutional academic integrity policies</li>
                                 </ul>
                             </div>
-                            <p>Built by the PLAI Lab at Washington & Lee University</p>
-                            <p style={{marginTop: '0.5rem'}}>
-                                <a href="METHODOLOGY.md" target="_blank" style={{color: 'var(--primary)', marginRight: '1rem'}}>Full Methodology</a>
-                                <a href="https://github.com/anthropics/claude-code/issues" target="_blank" style={{color: 'var(--primary)'}}>Send Feedback</a>
+
+                            {/* Links and date */}
+                            <p style={{marginTop: '1.5rem', fontSize: '0.85rem'}}>
+                                <a
+                                    href="METHODOLOGY.md"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        color: 'var(--primary)',
+                                        marginRight: '1.5rem',
+                                        textDecoration: 'none',
+                                        transition: 'text-decoration 0.2s'
+                                    }}
+                                    onMouseOver={(e) => e.target.style.textDecoration = 'underline'}
+                                    onMouseOut={(e) => e.target.style.textDecoration = 'none'}
+                                >
+                                    Full Methodology
+                                </a>
+                                <a
+                                    href="https://github.com/hmacdermott/ai-syllabus-statement-tool/issues"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        color: 'var(--primary)',
+                                        textDecoration: 'none',
+                                        transition: 'text-decoration 0.2s'
+                                    }}
+                                    onMouseOver={(e) => e.target.style.textDecoration = 'underline'}
+                                    onMouseOut={(e) => e.target.style.textDecoration = 'none'}
+                                >
+                                    Send Feedback
+                                </a>
+                            </p>
+
+                            {/* Last updated date */}
+                            <p style={{marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-tertiary)'}}>
+                                Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                             </p>
                         </footer>
                     </div>
