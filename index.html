@@ -2551,13 +2551,15 @@
             { id: 'Russian', icon: '🇷🇺' },
             { id: 'Arabic', icon: '🕌' },
 
-            // Social Sciences (6)
+            // Social Sciences (2)
+            { id: 'Cognitive & Behavioral Science', icon: '🧠' },
+            { id: 'Sociology & Anthropology', icon: '👥' },
+
+            // Williams School (4)
             { id: 'Accounting & Finance', icon: '💼' },
             { id: 'Business Administration', icon: '📈' },
-            { id: 'Cognitive & Behavioral Science', icon: '🧠' },
             { id: 'Economics', icon: '💰' },
-            { id: 'Politics', icon: '⚖️' },
-            { id: 'Sociology & Anthropology', icon: '👥' },
+            { id: 'Politics', icon: '🏛️' },
 
             // Creative Arts & Communications (4)
             { id: 'Art & Art History', icon: '🎨' },
@@ -3127,7 +3129,29 @@
                                             Social Sciences
                                         </h3>
                                         <div className="department-grid">
-                                            {departments.slice(20, 26).map(dept => (
+                                            {departments.slice(20, 22).map(dept => (
+                                                <div
+                                                    key={dept.id}
+                                                    className="department-card"
+                                                    onClick={() => {
+                                                        setStatementParts(prev => ({
+                                                            ...prev,
+                                                            department: dept.id
+                                                        }));
+                                                    }}
+                                                >
+                                                    <div className="dept-icon">{dept.icon}</div>
+                                                    <div className="dept-name">{dept.id}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Williams School */}
+                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
+                                            Williams School
+                                        </h3>
+                                        <div className="department-grid">
+                                            {departments.slice(22, 26).map(dept => (
                                                 <div
                                                     key={dept.id}
                                                     className="department-card"
