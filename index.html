@@ -2791,7 +2791,17 @@
 
             // Scroll to top when phase changes
             useEffect(() => {
+                // Force immediate scroll
                 window.scrollTo(0, 0);
+                // Also use requestAnimationFrame to ensure scroll happens after DOM paint
+                requestAnimationFrame(() => {
+                    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+                });
+                // And add a small timeout as final fallback
+                const timer = setTimeout(() => {
+                    window.scrollTo(0, 0);
+                }, 50);
+                return () => clearTimeout(timer);
             }, [phase]);
 
             // Load saved draft
@@ -2944,8 +2954,6 @@
                     department: dept.id
                 }));
                 setPhase('intro-policy');
-                // Scroll to top immediately
-                setTimeout(() => window.scrollTo(0, 0), 0);
             };
 
             const handleAcceptIntro = (text) => {
