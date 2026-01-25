@@ -2936,6 +2936,8 @@
                     department: dept.id
                 }));
                 setPhase('intro-policy');
+                // Scroll to top immediately
+                setTimeout(() => window.scrollTo(0, 0), 0);
             };
 
             const handleAcceptIntro = (text) => {
@@ -3285,7 +3287,7 @@
                             <div className="phase-container">
                                 <h2 className="phase-question">Choose Your Department</h2>
                                 <p className="phase-description">
-                                    Select your department to view AI policy drafts informed by common disciplinary practices.
+                                    You'll answer questions tailored to your field, then build your policy step by step with department-specific suggestions.
                                 </p>
 
                                 {!selectedDept ? (
