@@ -3418,10 +3418,26 @@
                                                     key={dept.id}
                                                     className="department-card"
                                                     onClick={() => {
+                                                        console.log('Department card clicked - scrollY:', window.scrollY);
+                                                        // Scroll to top immediately
+                                                        window.scrollTo(0, 0);
+                                                        document.documentElement.scrollTop = 0;
+                                                        document.body.scrollTop = 0;
+
                                                         setStatementParts(prev => ({
                                                             ...prev,
                                                             department: dept.id
                                                         }));
+
+                                                        // Keep scrolling for next 1 second
+                                                        const keepScrollingTop = setInterval(() => {
+                                                            console.log('Forcing scroll to top - scrollY:', window.scrollY);
+                                                            window.scrollTo(0, 0);
+                                                            document.documentElement.scrollTop = 0;
+                                                            document.body.scrollTop = 0;
+                                                        }, 50);
+
+                                                        setTimeout(() => clearInterval(keepScrollingTop), 1000);
                                                     }}
                                                 >
                                                     <div className="dept-icon">{dept.icon}</div>
