@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Syllabus Statement Builder</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Merriweather:wght@400;700&family=Inter:wght@400;600&family=Crimson+Text:wght@400;600&family=Libre+Baskerville:wght@400;700&family=Bitter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        /* Progressive building pattern styles */
+        .accumulated-statement {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .accumulated-statement h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .statement-section {
+            margin-bottom: 1.5rem;
+            padding: 1.25rem;
+            border-left: 4px solid #cbd5e1;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            line-height: 1.7;
+        }
+
+        .statement-section.intro { border-left-color: #fbbf24; }
+        .statement-section.policy { border-left-color: #ef4444; }
+        .statement-section.rationale { border-left-color: #3b82f6; }
+        .statement-section.tools { border-left-color: #10b981; }
+        .statement-section.assignments { border-left-color: #8b5cf6; }
+        .statement-section.documentation { border-left-color: #f59e0b; }
+        .statement-section.honor { border-left-color: #ec4899; }
+        .statement-section.custom { border-left-color: #6366f1; }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .section-text {
+            white-space: pre-wrap;
+            color: var(--text-primary);
+        }
+
+        .empty-state {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Suggestion box */
+        .suggestion-box {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin-bottom: 2rem;
+        }
+
+        [data-theme="dark"] .suggestion-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+
+        .suggestion-label {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        [data-theme="dark"] .suggestion-label {
+            color: #fbbf24;
+        }
+
+        .suggested-text {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            color: #1e293b;
+        }
+
+        [data-theme="dark"] .suggested-text {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .suggestion-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .edit-textarea {
+            width: 100%;
+            min-height: 180px;
+            padding: 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+            resize: vertical;
+            background: white;
+            color: #1e293b;
+        }
+
+        [data-theme="dark"] .edit-textarea {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .edit-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Phase container */
+        .phase-container {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .phase-question {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .phase-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Policy choice cards */
+        .policy-choices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .policy-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .policy-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .policy-card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .policy-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Department grid */
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+        }
+
+        .department-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .department-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .dept-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .dept-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        /* Tools checkboxes */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tool-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tool-checkbox:hover {
+            border-color: var(--primary);
+        }
+
+        .tool-checkbox input {
+            margin-right: 0.75rem;
+            cursor: pointer;
+        }
+
+        .tool-checkbox label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        /* Documentation options */
+        .documentation-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .doc-option {
+            padding: 1.25rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .doc-option:hover {
+            border-color: var(--primary);
+        }
+
+        .doc-option input {
+            margin-right: 0.75rem;
+        }
+
+        .doc-option-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .doc-option-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Assignment policies */
+        .assignment-policy-item {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .assignment-policy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .assignment-policy-header h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .remove-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .remove-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Skip button */
+        .skip-btn {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 2px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .skip-btn:hover {
+            border-color: var(--text-secondary);
+            background: var(--bg-secondary);
+        }
+
+        /* Export actions */
+        .export-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .export-btn {
+            padding: 1rem;
+            border: 2px solid var(--primary);
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .export-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .export-btn.secondary {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .export-btn.secondary:hover {
+            background: var(--bg-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // ============================================================================
+        // DATA STRUCTURES
+        // ============================================================================
+
+        // Discipline-specific language database with MISSING context field added
+        const disciplineLanguage = {
+            stem: {
+                context: "In STEM fields, understanding underlying concepts and being able to verify AI-generated solutions is essential for developing problem-solving skills and technical expertise.",
+                considerations: [
+                    "Are students learning to debug and understand code, or just generate it?",
+                    "Can students verify AI-generated solutions and explain why they work?",
+                    "Does your course build foundational problem-solving skills that AI would bypass?",
+                    "Are you assessing conceptual understanding or just correct answers?",
+                    "Will students encounter similar problems in professional contexts where they'll need independent skills?"
+                ],
+                noAI: "Generative AI cannot develop your ability to think algorithmically, debug code, or understand mathematical proofs—skills that are fundamental to your growth as a STEM professional.",
+                limited: "You may use AI tools for brainstorming approaches or checking syntax, but core problem-solving, algorithm design, and mathematical reasoning must be your own work.",
+                ok: "While AI tools can assist with coding tasks, you remain responsible for understanding your code, testing thoroughly, and ensuring correctness.",
+                required: "Learning to effectively prompt AI coding assistants and critically evaluate their output is becoming an essential skill in modern software development."
+            },
+            humanities: {
+                context: "In humanities, developing your authentic voice and original analysis is central to your intellectual growth and ability to engage with complex texts and ideas.",
+                considerations: [
+                    "Are students developing their own analytical voice, or adopting AI's generic interpretations?",
+                    "Can students engage in close reading and textual evidence, not just summary?",
+                    "Does your course prioritize original argumentation over information synthesis?",
+                    "Are students building writing skills through practice and revision?",
+                    "Will AI-generated prose mask students' actual comprehension of complex texts?"
+                ],
+                noAI: "Generative AI cannot develop your ability to close-read texts, construct nuanced arguments, or articulate your unique perspective—skills that define humanistic inquiry.",
+                limited: "You may use AI for research assistance or brainstorming, but your interpretations, arguments, and writing voice must be authentically yours.",
+                ok: "While AI can assist with drafting and editing, the ideas, analysis, and argumentation in your work must reflect your own thinking.",
+                required: "Understanding how AI processes and generates text about literature, history, and philosophy helps you think critically about both AI and humanistic knowledge."
+            },
+            'social-sciences': {
+                context: "In social sciences, research integrity, methodological rigor, and ethical data practices are foundational to producing valid and meaningful insights about human behavior and society.",
+                considerations: [
+                    "Are students learning research methodology, or just executing techniques?",
+                    "Can students design studies and interpret results with disciplinary judgment?",
+                    "Does your course emphasize ethical reasoning about data and research subjects?",
+                    "Are you assessing statistical literacy or just computational outputs?",
+                    "Will students understand limitations and appropriate applications of methods?"
+                ],
+                noAI: "Generative AI cannot conduct empirical research, apply statistical methods appropriately, or ensure research ethics—competencies that define social science practice.",
+                limited: "You may use AI for data analysis assistance or literature review, but research design, methodological decisions, and interpretation must reflect your understanding.",
+                ok: "While AI can support your research process, you must ensure methodological soundness, proper citation, and ethical data handling.",
+                required: "Learning to use AI tools for data analysis and visualization is increasingly relevant to contemporary social science research."
+            },
+            sciences: {
+                context: "In the natural sciences, direct observation, experimental design, and data interpretation are irreplaceable skills for developing scientific thinking.",
+                considerations: [
+                    "Are students developing observation and experimental design skills, or just processing data?",
+                    "Can students troubleshoot experiments and interpret unexpected results?",
+                    "Does your course build scientific reasoning through hands-on practice?",
+                    "Are you assessing laboratory technique and safety awareness?",
+                    "Will students understand the 'why' behind protocols, not just the procedures?"
+                ],
+                noAI: "Generative AI cannot conduct experiments, make observations, or develop the hands-on skills essential to laboratory science and field work.",
+                limited: "You may use AI for literature review or data visualization, but experimental design, data collection, and scientific interpretation must be your own work.",
+                ok: "While AI can assist with data analysis and writing, you remain responsible for experimental rigor, proper methodology, and accurate reporting.",
+                required: "AI tools for protein folding prediction, molecular modeling, or data analysis are becoming standard in modern scientific research."
+            },
+            creative: {
+                context: "In creative fields, developing your unique artistic voice and making intentional creative decisions are central to your growth as an artist.",
+                considerations: [
+                    "Are students developing technical skills through repeated practice, or bypassing the learning process?",
+                    "Can students articulate intentional creative decisions behind their work?",
+                    "Does your course build aesthetic judgment and critical evaluation abilities?",
+                    "Are you assessing creative problem-solving or just finished products?",
+                    "Will students understand the relationship between technique, concept, and expression?"
+                ],
+                noAI: "Generative AI cannot develop your creative vision, artistic judgment, or the technical skills built through repeated practice with traditional media.",
+                limited: "You may use AI for inspiration or technical assistance, but creative concepts, artistic decisions, and final execution must reflect your vision and skills.",
+                ok: "While AI can be a creative tool, your work must demonstrate intentional artistic choices and your developing aesthetic sensibility.",
+                required: "Understanding AI as a creative medium—its capabilities, limitations, and implications—is increasingly relevant to contemporary art practice."
+            },
+            general: {
+                context: "Critical thinking, original analysis, and intellectual integrity are fundamental to learning and academic growth.",
+                considerations: [
+                    "What are the core learning objectives in your course?",
+                    "Which skills require practice and struggle to develop?",
+                    "Where might AI help students focus on higher-order thinking?",
+                    "How will you assess whether students have actually learned the material?",
+                    "What intellectual work is essential for students to do themselves?"
+                ],
+                noAI: "Generative AI cannot replace the cognitive work necessary for deep learning and skill development in any discipline.",
+                limited: "You may use AI tools selectively, but core intellectual work must be your own to ensure genuine learning.",
+                ok: "While AI can assist with various tasks, you remain responsible for the quality, accuracy, and integrity of your work.",
+                required: "Understanding how to work effectively with AI tools is becoming a valuable skill across many professional contexts."
+            }
+        };
+
+        // All 32 W&L departments with category mappings
+        const departments = [
+            // STEM (4)
+            { id: 'Computer Science', icon: '💻', category: 'stem' },
+            { id: 'Mathematics', icon: '🔢', category: 'stem' },
+            { id: 'Physics & Engineering', icon: '⚛️', category: 'stem' },
+            { id: 'Data Science', icon: '📊', category: 'stem' },
+
+            // Natural Sciences (4)
+            { id: 'Biology', icon: '🧬', category: 'sciences' },
+            { id: 'Chemistry & Biochemistry', icon: '🧪', category: 'sciences' },
+            { id: 'Earth & Environmental Geoscience', icon: '🌍', category: 'sciences' },
+            { id: 'Neuroscience', icon: '🧠', category: 'sciences' },
+
+            // Humanities (10)
+            { id: 'English', icon: '📚', category: 'humanities' },
+            { id: 'History', icon: '📜', category: 'humanities' },
+            { id: 'Philosophy', icon: '🤔', category: 'humanities' },
+            { id: 'Religion', icon: '✨', category: 'humanities' },
+            { id: 'Classics', icon: '🏛️', category: 'humanities' },
+            { id: 'Medieval & Renaissance Studies', icon: '📖', category: 'humanities' },
+            { id: 'Comparative Literature', icon: '📕', category: 'humanities' },
+            { id: 'Romance Languages', icon: '🗣️', category: 'humanities' },
+            { id: 'East Asian Languages & Literatures', icon: '🈳', category: 'humanities' },
+            { id: 'German', icon: '🇩🇪', category: 'humanities' },
+            { id: 'Russian', icon: '🇷🇺', category: 'humanities' },
+            { id: 'Arabic', icon: '🕌', category: 'humanities' },
+
+            // Social Sciences (6)
+            { id: 'Accounting & Finance', icon: '💼', category: 'social-sciences' },
+            { id: 'Business Administration', icon: '📈', category: 'social-sciences' },
+            { id: 'Cognitive & Behavioral Science', icon: '🧠', category: 'social-sciences' },
+            { id: 'Economics', icon: '💰', category: 'social-sciences' },
+            { id: 'Politics', icon: '⚖️', category: 'social-sciences' },
+            { id: 'Sociology & Anthropology', icon: '👥', category: 'social-sciences' },
+
+            // Creative Arts & Communications (4)
+            { id: 'Art & Art History', icon: '🎨', category: 'creative' },
+            { id: 'Music', icon: '🎵', category: 'creative' },
+            { id: 'Theater, Dance & Film Studies', icon: '🎭', category: 'creative' },
+            { id: 'Journalism & Mass Communications', icon: '📰', category: 'creative' },
+
+            // Interdisciplinary Programs (10)
+            { id: 'Africana Studies', icon: '🌍', category: 'general' },
+            { id: 'East Asian Studies', icon: '🎌', category: 'general' },
+            { id: 'Environmental Studies', icon: '🌱', category: 'general' },
+            { id: 'Latin American & Caribbean Studies', icon: '🌎', category: 'general' },
+            { id: 'Middle East & South Asia Studies', icon: '🕌', category: 'general' },
+            { id: "Women's, Gender & Sexuality Studies", icon: '👭', category: 'general' },
+            { id: 'Law, Justice & Society', icon: '⚖️', category: 'general' },
+            { id: 'Poverty Studies', icon: '🤝', category: 'general' },
+            { id: 'Digital Culture & Information', icon: '💾', category: 'general' },
+            { id: 'Education Studies', icon: '🎓', category: 'general' }
+        ];
+
+        // AI tools list
+        const aiTools = [
+            'ChatGPT (OpenAI)',
+            'Claude (Anthropic)',
+            'Gemini (Google)',
+            'GitHub Copilot (Microsoft/GitHub)',
+            'Perplexity',
+            'Grammarly',
+            'DALL-E/Midjourney (Image generation)',
+            'NotebookLM (Google)'
+        ];
+
+        // ============================================================================
+        // HELPER FUNCTIONS
+        // ============================================================================
+
+        const getIntroText = (category) => {
+            const intros = {
+                'stem': 'Generative AI tools—software that creates new text, code, images, and other content—are widely available. Examples include ChatGPT for text and GitHub Copilot for code. This policy governs all such tools, including those released during our term together.\n\nGenerative AI can potentially enhance learning when used thoughtfully, but can also hinder skill development when overused.',
+                'sciences': 'Generative AI tools—software that creates new text, images, data visualizations, and other content—are widely available. Examples include ChatGPT for text and various AI tools for data analysis. This policy governs all such tools, including those released during our term together.\n\nGenerative AI can potentially enhance learning when used thoughtfully but can also hinder skill development when overused.',
+                'humanities': 'Generative AI tools—software that creates new text, images, audio, and other content—are widely available. Well-known examples include ChatGPT, Claude, and Gemini. This policy governs all such tools, including those released during our term together.\n\nGenerative AI tools can potentially enhance learning when used thoughtfully but can also hinder skill development when overused.',
+                'social-sciences': 'Generative AI tools—software that creates new text, data analysis, visualizations, and other content—are widely available. Well-known examples include ChatGPT, Claude, and various data analysis tools. This policy governs all such tools, including those released during our term together.\n\nGenerative AI can potentially enhance learning when used thoughtfully but can also hinder skill development when overused.',
+                'creative': 'Generative AI tools—software that creates text, images, audio, video, and other content—are widely available. Examples include ChatGPT for text, DALL-E for images, and various tools for audio/video. This policy governs all such tools, including those released during our term together.\n\nGenerative AI can potentially enhance learning when used thoughtfully but can also hinder skill development when overused.',
+                'general': 'Generative AI tools—software that creates new text, images, audio, video, and other content—are widely available. Well-known examples include ChatGPT, Claude, and Gemini. This policy governs all such tools, including those released during our term together.\n\nGenerative AI tools can potentially enhance learning when used thoughtfully but can also hinder skill development when overused.'
+            };
+            return intros[category] || intros.general;
+        };
+
+        const getPolicyLevelText = (policyLevel) => {
+            const texts = {
+                'no-ai': 'Students may not use generative AI tools for any work in this course.',
+                'limited': 'Students may use generative AI tools for assignments in this course, within specific limitations described below.',
+                'ok': 'Students may use generative AI tools for work in this course as they see fit.',
+                'required': 'Students are required to use generative AI tools for certain assignments in this course.'
+            };
+            return texts[policyLevel] || '';
+        };
+
+        // ============================================================================
+        // COMPONENTS
+        // ============================================================================
+
+        function AccumulatedStatement({ statementParts }) {
+            if (!statementParts.intro && !statementParts.policyLevel) {
+                return null;
+            }
+
+            return (
+                <div className="accumulated-statement">
+                    <h3>Your Statement So Far</h3>
+
+                    {statementParts.intro && (
+                        <div className="statement-section intro">
+                            <div className="section-label">Introduction</div>
+                            <div className="section-text">{statementParts.intro}</div>
+                        </div>
+                    )}
+
+                    {statementParts.policyLevel && (
+                        <div className="statement-section policy">
+                            <div className="section-label">Policy Level</div>
+                            <div className="section-text">{statementParts.policyLevel}</div>
+                        </div>
+                    )}
+
+                    {statementParts.rationale && (
+                        <div className="statement-section rationale">
+                            <div className="section-label">Rationale</div>
+                            <div className="section-text">{statementParts.rationale}</div>
+                        </div>
+                    )}
+
+                    {statementParts.tools.length > 0 && (
+                        <div className="statement-section tools">
+                            <div className="section-label">Relevant AI Tools</div>
+                            <div className="section-text">
+                                **Relevant AI Tools**: This policy applies to tools including (but not limited to): {statementParts.tools.join(', ')}.
+                            </div>
+                        </div>
+                    )}
+
+                    {statementParts.assignmentPolicies.length > 0 && (
+                        <div className="statement-section assignments">
+                            <div className="section-label">Assignment-Specific Guidelines</div>
+                            <div className="section-text">
+                                {statementParts.assignmentPolicies.map((policy, idx) => (
+                                    <div key={idx} style={{marginBottom: '1rem'}}>
+                                        <strong>{policy.assignmentType}:</strong> {policy.policy}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {statementParts.documentation && (
+                        <div className="statement-section documentation">
+                            <div className="section-label">Documentation</div>
+                            <div className="section-text">{statementParts.documentation}</div>
+                        </div>
+                    )}
+
+                    {statementParts.honorSystem && (
+                        <div className="statement-section honor">
+                            <div className="section-label">Academic Integrity</div>
+                            <div className="section-text">{statementParts.honorSystem}</div>
+                        </div>
+                    )}
+
+                    {statementParts.customText && (
+                        <div className="statement-section custom">
+                            <div className="section-label">Additional Guidelines</div>
+                            <div className="section-text">{statementParts.customText}</div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        function SuggestionBox({ label, suggestedText, onUse, onEdit, isEditing, editText, setEditText, onSave, onCancel }) {
+            return (
+                <div className="suggestion-box">
+                    <div className="suggestion-label">{label}</div>
+
+                    {!isEditing ? (
+                        <>
+                            <div className="suggested-text">{suggestedText}</div>
+                            <div className="suggestion-actions">
+                                <button className="primary" onClick={onUse}>
+                                    ✓ Use This Text
+                                </button>
+                                <button className="secondary" onClick={onEdit}>
+                                    ✎ Edit First
+                                </button>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <textarea
+                                className="edit-textarea"
+                                value={editText}
+                                onChange={(e) => setEditText(e.target.value)}
+                            />
+                            <div className="suggestion-actions">
+                                <button className="primary" onClick={onSave}>
+                                    ✓ Save & Continue
+                                </button>
+                                <button className="secondary" onClick={onCancel}>
+                                    Cancel
+                                </button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        // ============================================================================
+        // MAIN APP
+        // ============================================================================
+
+        function App() {
+            const [phase, setPhase] = useState('welcome');
+            const [theme, setTheme] = useState('light');
+            const [fontStyle, setFontStyle] = useState('serif');
+
+            const [statementParts, setStatementParts] = useState({
+                department: '',
+                departmentCategory: '',
+                intro: '',
+                policyLevel: '',
+                policyLevelKey: '',
+                rationale: '',
+                tools: [],
+                assignmentPolicies: [],
+                documentation: '',
+                honorSystem: '',
+                customText: ''
+            });
+
+            const [isEditing, setIsEditing] = useState(false);
+            const [editText, setEditText] = useState('');
+            const [showPolicyChoices, setShowPolicyChoices] = useState(false);
+
+            // Load saved draft
+            useEffect(() => {
+                const saved = localStorage.getItem('syllabusStatementDraft');
+                if (saved) {
+                    try {
+                        const parsed = JSON.parse(saved);
+                        if (parsed.version === 'progressive') {
+                            const shouldLoad = window.confirm('Found a saved draft. Continue where you left off?');
+                            if (shouldLoad) {
+                                setStatementParts(parsed.statementParts);
+                                setPhase(parsed.phase);
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Failed to load draft:', e);
+                    }
+                }
+
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) setTheme(savedTheme);
+
+                const savedFont = localStorage.getItem('fontStyle');
+                if (savedFont) setFontStyle(savedFont);
+            }, []);
+
+            // Auto-save
+            useEffect(() => {
+                if (phase !== 'welcome') {
+                    localStorage.setItem('syllabusStatementDraft', JSON.stringify({
+                        version: 'progressive',
+                        statementParts,
+                        phase
+                    }));
+                }
+            }, [statementParts, phase]);
+
+            // Theme & font
+            useEffect(() => {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            }, [theme]);
+
+            useEffect(() => {
+                document.documentElement.setAttribute('data-font', fontStyle);
+                localStorage.setItem('fontStyle', fontStyle);
+            }, [fontStyle]);
+
+            const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+            const toggleFont = () => setFontStyle(fontStyle === 'serif' ? 'sans-serif' : 'serif');
+
+            const clearDraft = () => {
+                if (window.confirm('Start over? This will delete your saved progress.')) {
+                    localStorage.removeItem('syllabusStatementDraft');
+                    window.location.reload();
+                }
+            };
+
+            // Export functions
+            const generateStatement = () => {
+                let statement = '## Generative AI Use\n\n';
+
+                if (statementParts.policyLevel) {
+                    statement += statementParts.policyLevel + '\n\n';
+                }
+
+                if (statementParts.rationale) {
+                    statement += statementParts.rationale + '\n\n';
+                }
+
+                const lang = disciplineLanguage[statementParts.departmentCategory];
+                if (lang && lang.context) {
+                    statement += lang.context + '\n\n';
+                }
+
+                if (statementParts.tools.length > 0) {
+                    statement += '**Relevant AI Tools**: This policy applies to tools including (but not limited to): ';
+                    statement += statementParts.tools.join(', ') + '.\n\n';
+                }
+
+                if (statementParts.assignmentPolicies.length > 0) {
+                    statement += '### Assignment-Specific Guidelines\n\n';
+                    statementParts.assignmentPolicies.forEach(policy => {
+                        statement += `**${policy.assignmentType}**: ${policy.policy}\n\n`;
+                    });
+                }
+
+                if (statementParts.documentation) {
+                    statement += statementParts.documentation + '\n\n';
+                }
+
+                if (statementParts.honorSystem) {
+                    statement += '### Academic Integrity\n\n';
+                    statement += statementParts.honorSystem + '\n\n';
+                }
+
+                if (statementParts.customText) {
+                    statement += '### Additional Guidelines\n\n';
+                    statement += statementParts.customText + '\n\n';
+                }
+
+                return statement;
+            };
+
+            const copyToClipboard = () => {
+                const statement = generateStatement();
+                navigator.clipboard.writeText(statement);
+                alert('Statement copied to clipboard!');
+            };
+
+            const shareStatement = async () => {
+                const statement = generateStatement();
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: 'AI Syllabus Statement',
+                            text: statement
+                        });
+                    } catch (err) {
+                        console.log('Share cancelled');
+                    }
+                } else {
+                    copyToClipboard();
+                }
+            };
+
+            const downloadPDF = () => {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                const statement = generateStatement();
+                const lines = doc.splitTextToSize(statement, 180);
+                doc.setFontSize(12);
+                doc.text(lines, 15, 15);
+                doc.save('ai-syllabus-statement.pdf');
+            };
+
+            const downloadWord = () => {
+                const statement = generateStatement();
+                const blob = new Blob([statement], { type: 'application/msword' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'ai-syllabus-statement.doc';
+                link.click();
+                URL.revokeObjectURL(url);
+            };
+
+            // Phase handlers
+            const handleDepartmentSelect = (dept) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    department: dept.id,
+                    departmentCategory: dept.category
+                }));
+                setPhase('intro-policy');
+            };
+
+            const handleAcceptIntro = (text) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    intro: text
+                }));
+                setIsEditing(false);
+                setShowPolicyChoices(true);
+            };
+
+            const handlePolicyLevelSelect = (level) => {
+                const lang = disciplineLanguage[statementParts.departmentCategory];
+                const policyText = getPolicyLevelText(level);
+
+                setStatementParts(prev => ({
+                    ...prev,
+                    policyLevel: policyText,
+                    policyLevelKey: level
+                }));
+                setPhase('rationale');
+            };
+
+            const handleAcceptRationale = (text) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    rationale: text
+                }));
+                setIsEditing(false);
+                setPhase('tools');
+            };
+
+            const handleToolsNext = (selectedTools) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    tools: selectedTools
+                }));
+                setPhase('assignments');
+            };
+
+            const handleAssignmentsNext = (policies) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    assignmentPolicies: policies
+                }));
+                setPhase('documentation');
+            };
+
+            const handleDocumentationNext = (docText) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    documentation: docText
+                }));
+                setPhase('honor');
+            };
+
+            const handleAcceptHonor = (text) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    honorSystem: text
+                }));
+                setIsEditing(false);
+                setPhase('custom');
+            };
+
+            const handleCustomTextNext = (text) => {
+                setStatementParts(prev => ({
+                    ...prev,
+                    customText: text
+                }));
+                setPhase('review');
+            };
+
+            // ========================================================================
+            // PHASE RENDERS
+            // ========================================================================
+
+            if (phase === 'welcome') {
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="theme-toggle" onClick={toggleFont} title="Toggle font">
+                                        {fontStyle === 'serif' ? 'Sans' : 'Serif'}
+                                    </button>
+                                    <button className="theme-toggle" onClick={toggleTheme} title="Toggle theme">
+                                        {theme === 'light' ? '🌙' : '☀️'}
+                                    </button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <h1 style={{fontSize: '2.5rem', marginBottom: '1rem', textAlign: 'center'}}>
+                                    Build Your AI Statement
+                                </h1>
+                                <p className="phase-description" style={{fontSize: '1.25rem', textAlign: 'center', maxWidth: '700px', margin: '0 auto 3rem'}}>
+                                    Create a customized AI policy for your syllabus, one section at a time. You'll see your statement grow as you make decisions.
+                                </p>
+                                <div style={{textAlign: 'center'}}>
+                                    <button className="primary" style={{fontSize: '1.25rem', padding: '1.25rem 2.5rem'}} onClick={() => setPhase('department')}>
+                                        Get Started →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'department') {
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="theme-toggle" onClick={toggleFont}>{fontStyle === 'serif' ? 'Sans' : 'Serif'}</button>
+                                    <button className="theme-toggle" onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <h2 className="phase-question">Choose Your Department</h2>
+                                <p className="phase-description">
+                                    Select your department to get tailored language for your field.
+                                </p>
+
+                                <div className="department-grid">
+                                    {departments.map(dept => (
+                                        <div
+                                            key={dept.id}
+                                            className="department-card"
+                                            onClick={() => handleDepartmentSelect(dept)}
+                                        >
+                                            <div className="dept-icon">{dept.icon}</div>
+                                            <div className="dept-name">{dept.id}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'intro-policy') {
+                const category = statementParts.departmentCategory;
+                const suggestedIntro = getIntroText(category);
+
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="clear-btn" onClick={clearDraft} title="Start over">🗑️</button>
+                                    <button className="theme-toggle" onClick={toggleFont}>{fontStyle === 'serif' ? 'Sans' : 'Serif'}</button>
+                                    <button className="theme-toggle" onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <AccumulatedStatement statementParts={statementParts} />
+
+                                {!showPolicyChoices ? (
+                                    <>
+                                        <h2 className="phase-question">Let's Start with an Introduction</h2>
+                                        <p className="phase-description">
+                                            We recommend beginning with a brief introduction that defines the types of AI tools this policy covers. Below is a suggested statement tailored for {statementParts.department}.
+                                        </p>
+
+                                        <SuggestionBox
+                                            label="Suggested Text (you can modify this)"
+                                            suggestedText={suggestedIntro}
+                                            onUse={() => handleAcceptIntro(isEditing ? editText : suggestedIntro)}
+                                            onEdit={() => { setIsEditing(true); setEditText(suggestedIntro); }}
+                                            isEditing={isEditing}
+                                            editText={editText}
+                                            setEditText={setEditText}
+                                            onSave={() => handleAcceptIntro(editText)}
+                                            onCancel={() => setIsEditing(false)}
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <h2 className="phase-question">What's Your Overall Approach?</h2>
+                                        <p className="phase-description">
+                                            Choose the statement that best aligns with your preference for AI use in your course.
+                                        </p>
+
+                                        <div className="policy-choices">
+                                            <div className="policy-card" onClick={() => handlePolicyLevelSelect('no-ai')}>
+                                                <h3>🚫 No AI</h3>
+                                                <p>Students may not use generative AI tools for any work</p>
+                                            </div>
+                                            <div className="policy-card" onClick={() => handlePolicyLevelSelect('limited')}>
+                                                <h3>⚠️ Limited AI</h3>
+                                                <p>Students may use AI tools with specific restrictions</p>
+                                            </div>
+                                            <div className="policy-card" onClick={() => handlePolicyLevelSelect('ok')}>
+                                                <h3>✅ AI OK</h3>
+                                                <p>Students may use AI tools as they see fit</p>
+                                            </div>
+                                            <div className="policy-card" onClick={() => handlePolicyLevelSelect('required')}>
+                                                <h3>⭐ AI Required</h3>
+                                                <p>AI use is required for certain assignments</p>
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'rationale') {
+                const lang = disciplineLanguage[statementParts.departmentCategory];
+                const suggestedRationale = lang[statementParts.policyLevelKey];
+
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="clear-btn" onClick={clearDraft}>🗑️</button>
+                                    <button className="theme-toggle" onClick={toggleFont}>{fontStyle === 'serif' ? 'Sans' : 'Serif'}</button>
+                                    <button className="theme-toggle" onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <AccumulatedStatement statementParts={statementParts} />
+
+                                <h2 className="phase-question">Add Your Rationale</h2>
+                                <p className="phase-description">
+                                    This explains to students why this policy matters for their learning in {statementParts.department}.
+                                </p>
+
+                                <SuggestionBox
+                                    label="Suggested Rationale Text"
+                                    suggestedText={suggestedRationale}
+                                    onUse={() => handleAcceptRationale(isEditing ? editText : suggestedRationale)}
+                                    onEdit={() => { setIsEditing(true); setEditText(suggestedRationale); }}
+                                    isEditing={isEditing}
+                                    editText={editText}
+                                    setEditText={setEditText}
+                                    onSave={() => handleAcceptRationale(editText)}
+                                    onCancel={() => setIsEditing(false)}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'tools') {
+                const [selectedTools, setSelectedTools] = useState(statementParts.tools);
+
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="clear-btn" onClick={clearDraft}>🗑️</button>
+                                    <button className="theme-toggle" onClick={toggleFont}>{fontStyle === 'serif' ? 'Sans' : 'Serif'}</button>
+                                    <button className="theme-toggle" onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <AccumulatedStatement statementParts={statementParts} />
+
+                                <h2 className="phase-question">Name Specific AI Tools? (Optional)</h2>
+                                <p className="phase-description">
+                                    You can optionally list specific AI tools that this policy covers. This adds clarity but isn't required.
+                                </p>
+
+                                <div className="tools-grid">
+                                    {aiTools.map(tool => (
+                                        <div key={tool} className="tool-checkbox">
+                                            <input
+                                                type="checkbox"
+                                                id={tool}
+                                                checked={selectedTools.includes(tool)}
+                                                onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                        setSelectedTools([...selectedTools, tool]);
+                                                    } else {
+                                                        setSelectedTools(selectedTools.filter(t => t !== tool));
+                                                    }
+                                                }}
+                                            />
+                                            <label htmlFor={tool}>{tool}</label>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div style={{display: 'flex', gap: '1rem', marginTop: '2rem'}}>
+                                    <button className="primary" onClick={() => handleToolsNext(selectedTools)}>
+                                        Continue →
+                                    </button>
+                                    <button className="skip-btn" onClick={() => handleToolsNext([])}>
+                                        Skip This Step
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'assignments') {
+                const [policies, setPolicies] = useState(statementParts.assignmentPolicies);
+                const [newAssignment, setNewAssignment] = useState('');
+                const [newPolicy, setNewPolicy] = useState('');
+
+                const addPolicy = () => {
+                    if (newAssignment && newPolicy) {
+                        setPolicies([...policies, { assignmentType: newAssignment, policy: newPolicy }]);
+                        setNewAssignment('');
+                        setNewPolicy('');
+                    }
+                };
+
+                const removePolicy = (idx) => {
+                    setPolicies(policies.filter((_, i) => i !== idx));
+                };
+
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="clear-btn" onClick={clearDraft}>🗑️</button>
+                                    <button className="theme-toggle" onClick={toggleFont}>{fontStyle === 'serif' ? 'Sans' : 'Serif'}</button>
+                                    <button className="theme-toggle" onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <AccumulatedStatement statementParts={{...statementParts, assignmentPolicies: policies}} />
+
+                                <h2 className="phase-question">Assignment-Specific Guidelines? (Optional)</h2>
+                                <p className="phase-description">
+                                    You can add specific policies for different assignment types (e.g., "Essays", "Problem Sets", "Lab Reports").
+                                </p>
+
+                                {policies.map((policy, idx) => (
+                                    <div key={idx} className="assignment-policy-item">
+                                        <div className="assignment-policy-header">
+                                            <h4>{policy.assignmentType}</h4>
+                                            <button className="remove-btn" onClick={() => removePolicy(idx)}>Remove</button>
+                                        </div>
+                                        <p>{policy.policy}</p>
+                                    </div>
+                                ))}
+
+                                <div style={{background: 'var(--bg-secondary)', padding: '1.5rem', borderRadius: '12px', marginTop: '1.5rem'}}>
+                                    <h4 style={{marginBottom: '1rem'}}>Add New Assignment Policy</h4>
+                                    <div style={{marginBottom: '1rem'}}>
+                                        <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600}}>Assignment Type:</label>
+                                        <input
+                                            type="text"
+                                            placeholder="e.g., Essays, Problem Sets, Lab Reports"
+                                            value={newAssignment}
+                                            onChange={(e) => setNewAssignment(e.target.value)}
+                                            style={{width: '100%', padding: '0.75rem', borderRadius: '6px', border: '2px solid var(--border-color)'}}
+                                        />
+                                    </div>
+                                    <div style={{marginBottom: '1rem'}}>
+                                        <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600}}>Policy:</label>
+                                        <textarea
+                                            placeholder="Describe how AI can or cannot be used for this assignment type"
+                                            value={newPolicy}
+                                            onChange={(e) => setNewPolicy(e.target.value)}
+                                            style={{width: '100%', minHeight: '100px', padding: '0.75rem', borderRadius: '6px', border: '2px solid var(--border-color)', resize: 'vertical'}}
+                                        />
+                                    </div>
+                                    <button className="secondary" onClick={addPolicy}>+ Add Policy</button>
+                                </div>
+
+                                <div style={{display: 'flex', gap: '1rem', marginTop: '2rem'}}>
+                                    <button className="primary" onClick={() => handleAssignmentsNext(policies)}>
+                                        Continue →
+                                    </button>
+                                    <button className="skip-btn" onClick={() => handleAssignmentsNext([])}>
+                                        Skip This Step
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'documentation') {
+                const [docOption, setDocOption] = useState(statementParts.documentation ? 'existing' : 'none');
+
+                const docTexts = {
+                    none: '',
+                    encouraged: '### Documentation\n\nYou are encouraged to document your use of generative AI tools for transparency and learning purposes.',
+                    required: '### Documentation Requirements\n\nYou must document all uses of generative AI tools. For each assignment where you use AI, include:\n- Which tool(s) you used\n- What prompts or inputs you provided\n- How you incorporated, modified, or verified the AI output\n- Your reflection on what you learned from using the tool'
+                };
+
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="clear-btn" onClick={clearDraft}>🗑️</button>
+                                    <button className="theme-toggle" onClick={toggleFont}>{fontStyle === 'serif' ? 'Sans' : 'Serif'}</button>
+                                    <button className="theme-toggle" onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <AccumulatedStatement statementParts={{...statementParts, documentation: docTexts[docOption] || statementParts.documentation}} />
+
+                                <h2 className="phase-question">Documentation Requirements? (Optional)</h2>
+                                <p className="phase-description">
+                                    Should students document when and how they use AI tools?
+                                </p>
+
+                                <div className="documentation-options">
+                                    <div className="doc-option" onClick={() => setDocOption('none')}>
+                                        <input type="radio" checked={docOption === 'none'} readOnly />
+                                        <div>
+                                            <div className="doc-option-title">No Documentation</div>
+                                            <div className="doc-option-desc">Don't include documentation requirements in your statement</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="doc-option" onClick={() => setDocOption('encouraged')}>
+                                        <input type="radio" checked={docOption === 'encouraged'} readOnly />
+                                        <div>
+                                            <div className="doc-option-title">Encouraged (Optional)</div>
+                                            <div className="doc-option-desc">Students are encouraged but not required to document AI use</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="doc-option" onClick={() => setDocOption('required')}>
+                                        <input type="radio" checked={docOption === 'required'} readOnly />
+                                        <div>
+                                            <div className="doc-option-title">Required</div>
+                                            <div className="doc-option-desc">Students must document AI tool use with specific details</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style={{marginTop: '2rem'}}>
+                                    <button className="primary" onClick={() => handleDocumentationNext(docTexts[docOption])}>
+                                        Continue →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'honor') {
+                const defaultHonorText = "Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under W&L's Honor System. Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community's trust. If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.";
+
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="clear-btn" onClick={clearDraft}>🗑️</button>
+                                    <button className="theme-toggle" onClick={toggleFont}>{fontStyle === 'serif' ? 'Sans' : 'Serif'}</button>
+                                    <button className="theme-toggle" onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <AccumulatedStatement statementParts={statementParts} />
+
+                                <h2 className="phase-question">Academic Integrity Language</h2>
+                                <p className="phase-description">
+                                    We recommend including a statement about the Honor System and academic integrity.
+                                </p>
+
+                                <SuggestionBox
+                                    label="Suggested Academic Integrity Text"
+                                    suggestedText={defaultHonorText}
+                                    onUse={() => handleAcceptHonor(isEditing ? editText : defaultHonorText)}
+                                    onEdit={() => { setIsEditing(true); setEditText(defaultHonorText); }}
+                                    isEditing={isEditing}
+                                    editText={editText}
+                                    setEditText={setEditText}
+                                    onSave={() => handleAcceptHonor(editText)}
+                                    onCancel={() => setIsEditing(false)}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'custom') {
+                const [customText, setCustomText] = useState(statementParts.customText);
+
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="clear-btn" onClick={clearDraft}>🗑️</button>
+                                    <button className="theme-toggle" onClick={toggleFont}>{fontStyle === 'serif' ? 'Sans' : 'Serif'}</button>
+                                    <button className="theme-toggle" onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <AccumulatedStatement statementParts={{...statementParts, customText}} />
+
+                                <h2 className="phase-question">Add Course-Specific Notes? (Optional)</h2>
+                                <p className="phase-description">
+                                    You can add any additional guidelines or notes specific to your course.
+                                </p>
+
+                                <textarea
+                                    className="edit-textarea"
+                                    placeholder="Add any course-specific guidelines, expectations, or notes here (optional)..."
+                                    value={customText}
+                                    onChange={(e) => setCustomText(e.target.value)}
+                                    style={{minHeight: '150px'}}
+                                />
+
+                                <div style={{display: 'flex', gap: '1rem', marginTop: '1.5rem'}}>
+                                    <button className="primary" onClick={() => handleCustomTextNext(customText)}>
+                                        Continue to Review →
+                                    </button>
+                                    <button className="skip-btn" onClick={() => handleCustomTextNext('')}>
+                                        Skip This Step
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (phase === 'review') {
+                return (
+                    <div>
+                        <header>
+                            <div className="container header-content">
+                                <div className="logo">📝 AI Syllabus Statement Builder</div>
+                                <div className="header-actions">
+                                    <button className="clear-btn" onClick={clearDraft}>🗑️</button>
+                                    <button className="theme-toggle" onClick={toggleFont}>{fontStyle === 'serif' ? 'Sans' : 'Serif'}</button>
+                                    <button className="theme-toggle" onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div className="container" style={{padding: '3rem 1rem'}}>
+                            <div className="phase-container">
+                                <h2 className="phase-question">Your Complete Statement</h2>
+                                <p className="phase-description">
+                                    Review your final statement and export it to your syllabus.
+                                </p>
+
+                                <AccumulatedStatement statementParts={statementParts} />
+
+                                <div className="export-actions">
+                                    <button className="export-btn" onClick={copyToClipboard}>
+                                        📋 Copy Text
+                                    </button>
+                                    <button className="export-btn" onClick={downloadPDF}>
+                                        📄 Download PDF
+                                    </button>
+                                    <button className="export-btn" onClick={downloadWord}>
+                                        📝 Download Word
+                                    </button>
+                                    <button className="export-btn secondary" onClick={shareStatement}>
+                                        🔗 Share
+                                    </button>
+                                </div>
+
+                                <div style={{marginTop: '2rem', textAlign: 'center'}}>
+                                    <button className="secondary" onClick={() => setPhase('department')}>
+                                        ← Start a New Statement
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <footer style={{marginTop: '4rem', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem'}}>
+                            <p>Built by the PLAI Lab at Washington & Lee University</p>
+                            <p style={{marginTop: '0.5rem'}}>
+                                <a href="https://github.com/anthropics/claude-code/issues" target="_blank" style={{color: 'var(--primary)'}}>Send feedback</a>
+                            </p>
+                        </footer>
+                    </div>
+                );
+            }
+
+            return null;
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

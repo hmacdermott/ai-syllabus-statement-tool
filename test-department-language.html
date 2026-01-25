@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Language Review</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2563eb;
+        }
+
+        .summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .summary h2 {
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            background: #2563eb;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .department-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .department-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .dept-icon {
+            font-size: 2rem;
+        }
+
+        .field {
+            margin-bottom: 1.5rem;
+        }
+
+        .field-label {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .field-content {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #cbd5e1;
+        }
+
+        .field-content.intro { border-left-color: #fbbf24; }
+        .field-content.context { border-left-color: #10b981; }
+        .field-content.considerations { border-left-color: #8b5cf6; }
+        .field-content.noAI { border-left-color: #ef4444; }
+        .field-content.limited { border-left-color: #f59e0b; }
+        .field-content.ok { border-left-color: #3b82f6; }
+        .field-content.required { border-left-color: #06b6d4; }
+
+        .considerations-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .considerations-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .considerations-list li:before {
+            content: "❯";
+            position: absolute;
+            left: 0;
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            background: #f1f5f9;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #334155;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-card {
+            background: #eff6ff;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Department-Specific Language Review</h1>
+
+        <div class="summary">
+            <h2>Coverage Overview</h2>
+            <p style="margin-bottom: 1rem;">All 40 Washington & Lee University departments with customized AI policy language.</p>
+            <div class="stats" id="stats"></div>
+        </div>
+
+        <div class="nav">
+            <div class="nav-links" id="navigation"></div>
+        </div>
+
+        <div id="content"></div>
+    </div>
+
+    <script src="department-specific-language.js"></script>
+    <script>
+        const categories = {
+            'STEM': ['Computer Science', 'Mathematics', 'Physics & Engineering', 'Data Science'],
+            'Natural Sciences': ['Biology', 'Chemistry & Biochemistry', 'Earth & Environmental Geoscience', 'Neuroscience'],
+            'Humanities': ['English', 'History', 'Philosophy', 'Religion', 'Classics', 'Medieval & Renaissance Studies', 'Comparative Literature'],
+            'Languages': ['Romance Languages', 'East Asian Languages & Literatures', 'German', 'Russian', 'Arabic'],
+            'Social Sciences': ['Accounting & Finance', 'Business Administration', 'Cognitive & Behavioral Science', 'Economics', 'Politics', 'Sociology & Anthropology'],
+            'Creative Arts & Communications': ['Art & Art History', 'Music', 'Theater, Dance & Film Studies', 'Journalism & Mass Communications'],
+            'Interdisciplinary Programs': ['Africana Studies', 'East Asian Studies', 'Environmental Studies', 'Latin American & Caribbean Studies', 'Middle East & South Asia Studies', "Women's, Gender & Sexuality Studies", 'Law, Justice & Society', 'Poverty Studies', 'Digital Culture & Information', 'Education Studies']
+        };
+
+        const icons = {
+            'Computer Science': '💻',
+            'Mathematics': '🔢',
+            'Physics & Engineering': '⚛️',
+            'Data Science': '📊',
+            'Biology': '🧬',
+            'Chemistry & Biochemistry': '🧪',
+            'Earth & Environmental Geoscience': '🌍',
+            'Neuroscience': '🧠',
+            'English': '📚',
+            'History': '📜',
+            'Philosophy': '🤔',
+            'Religion': '✨',
+            'Classics': '🏛️',
+            'Medieval & Renaissance Studies': '📖',
+            'Comparative Literature': '📕',
+            'Romance Languages': '🗣️',
+            'East Asian Languages & Literatures': '🈳',
+            'German': '🇩🇪',
+            'Russian': '🇷🇺',
+            'Arabic': '🕌',
+            'Accounting & Finance': '💼',
+            'Business Administration': '📈',
+            'Cognitive & Behavioral Science': '🧠',
+            'Economics': '💰',
+            'Politics': '⚖️',
+            'Sociology & Anthropology': '👥',
+            'Art & Art History': '🎨',
+            'Music': '🎵',
+            'Theater, Dance & Film Studies': '🎭',
+            'Journalism & Mass Communications': '📰',
+            'Africana Studies': '🌍',
+            'East Asian Studies': '🎌',
+            'Environmental Studies': '🌱',
+            'Latin American & Caribbean Studies': '🌎',
+            'Middle East & South Asia Studies': '🕌',
+            "Women's, Gender & Sexuality Studies": '👭',
+            'Law, Justice & Society': '⚖️',
+            'Poverty Studies': '🤝',
+            'Digital Culture & Information': '💾',
+            'Education Studies': '🎓'
+        };
+
+        // Generate stats
+        const totalDepts = Object.keys(departmentSpecificLanguage).length;
+        const statsHTML = `
+            <div class="stat-card">
+                <div class="stat-number">${totalDepts}</div>
+                <div class="stat-label">Departments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Fields per Department</div>
+            </div>
+        `;
+        document.getElementById('stats').innerHTML = statsHTML;
+
+        // Generate navigation
+        let navHTML = '';
+        for (const [category, depts] of Object.entries(categories)) {
+            const categoryId = category.toLowerCase().replace(/[^a-z]+/g, '-');
+            navHTML += `<a href="#${categoryId}" class="nav-link">${category}</a>`;
+        }
+        document.getElementById('navigation').innerHTML = navHTML;
+
+        // Generate content
+        let contentHTML = '';
+        for (const [category, depts] of Object.entries(categories)) {
+            const categoryId = category.toLowerCase().replace(/[^a-z]+/g, '-');
+            contentHTML += `
+                <div class="category-section" id="${categoryId}">
+                    <div class="category-header">${category} (${depts.length})</div>
+            `;
+
+            for (const dept of depts) {
+                const lang = departmentSpecificLanguage[dept];
+                if (!lang) {
+                    contentHTML += `
+                        <div class="department-card">
+                            <div class="department-name">
+                                <span class="dept-icon">${icons[dept] || '📚'}</span>
+                                ${dept}
+                            </div>
+                            <p style="color: #ef4444;">⚠️ Language not found for this department</p>
+                        </div>
+                    `;
+                    continue;
+                }
+
+                contentHTML += `
+                    <div class="department-card">
+                        <div class="department-name">
+                            <span class="dept-icon">${icons[dept] || '📚'}</span>
+                            ${dept}
+                        </div>
+
+                        <div class="field">
+                            <div class="field-label">Considerations (Pedagogical Questions)</div>
+                            <div class="field-content considerations">
+                                <ul class="considerations-list">
+                                    ${lang.considerations.map(q => `<li>${q}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-label">Intro</div>
+                            <div class="field-content intro">${lang.intro}</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-label">Context</div>
+                            <div class="field-content context">${lang.context}</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-label">No AI Policy</div>
+                            <div class="field-content noAI">${lang.noAI}</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-label">Limited AI Policy</div>
+                            <div class="field-content limited">${lang.limited}</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-label">AI OK Policy</div>
+                            <div class="field-content ok">${lang.ok}</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="field-label">AI Required Policy</div>
+                            <div class="field-content required">${lang.required}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            contentHTML += `</div>`;
+        }
+        document.getElementById('content').innerHTML = contentHTML;
+    </script>
+</body>
+</html>

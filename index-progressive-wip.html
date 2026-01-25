@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Syllabus Statement Builder</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Merriweather:wght@400;700&family=Inter:wght@400;600&family=Crimson+Text:wght@400;600&family=Libre+Baskerville:wght@400;700&family=Bitter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+const { useState, useEffect } = React;
+
+// Discipline-specific language database
+const disciplineLanguage = {
+    stem: {
+        considerations: [
+            "Are students learning to debug and understand code, or just generate it?",
+            "Can students verify AI-generated solutions and explain why they work?",
+            "Does your course build foundational problem-solving skills that AI would bypass?",
+            "Are you assessing conceptual understanding or just correct answers?",
+            "Will students encounter similar problems in professional contexts where they'll need independent skills?"
+        ],
+        noAI: "Generative AI cannot develop your ability to think algorithmically, debug code, or understand mathematical proofs—skills that are fundamental to your growth as a STEM professional.",
+        limited: "You may use AI tools for brainstorming approaches or checking syntax, but core problem-solving, algorithm design, and mathematical reasoning must be your own work.",
+        ok: "While AI tools can assist with coding tasks, you remain responsible for understanding your code, testing thoroughly, and ensuring correctness.",
+        required: "Learning to effectively prompt AI coding assistants and critically evaluate their output is becoming an essential skill in modern software development."
+    },
+    humanities: {
+        considerations: [
+            "Are students developing their own analytical voice, or adopting AI's generic interpretations?",
+            "Can students engage in close reading and textual evidence, not just summary?",
+            "Does your course prioritize original argumentation over information synthesis?",
+            "Are students building writing skills through practice and revision?",
+            "Will AI-generated prose mask students' actual comprehension of complex texts?"
+        ],
+        noAI: "Generative AI cannot develop your ability to close-read texts, construct nuanced arguments, or articulate your unique perspective—skills that define humanistic inquiry.",
+        limited: "You may use AI for research assistance or brainstorming, but your interpretations, arguments, and writing voice must be authentically yours.",
+        ok: "While AI can assist with drafting and editing, the ideas, analysis, and argumentation in your work must reflect your own thinking.",
+        required: "Understanding how AI processes and generates text about literature, history, and philosophy helps you think critically about both AI and humanistic knowledge."
+    },
+    'social-sciences': {
+        considerations: [
+            "Are students learning research methodology, or just executing techniques?",
+            "Can students design studies and interpret results with disciplinary judgment?",
+            "Does your course emphasize ethical reasoning about data and research subjects?",
+            "Are you assessing statistical literacy or just computational outputs?",
+            "Will students understand limitations and appropriate applications of methods?"
+        ],
+        noAI: "Generative AI cannot conduct empirical research, apply statistical methods appropriately, or ensure research ethics—competencies that define social science practice.",
+        limited: "You may use AI for data analysis assistance or literature review, but research design, methodological decisions, and interpretation must reflect your understanding.",
+        ok: "While AI can support your research process, you must ensure methodological soundness, proper citation, and ethical data handling.",
+        required: "Learning to use AI tools for data analysis and visualization is increasingly relevant to contemporary social science research."
+    },
+    sciences: {
+        considerations: [
+            "Are students developing observation and experimental design skills, or just processing data?",
+            "Can students troubleshoot experiments and interpret unexpected results?",
+            "Does your course build scientific reasoning through hands-on practice?",
+            "Are you assessing laboratory technique and safety awareness?",
+            "Will students understand the 'why' behind protocols, not just the procedures?"
+        ],
+        noAI: "Generative AI cannot conduct experiments, make observations, or develop the hands-on skills essential to laboratory science and field work.",
+        limited: "You may use AI for literature review or data visualization, but experimental design, data collection, and scientific interpretation must be your own work.",
+        ok: "While AI can assist with data analysis and writing, you remain responsible for experimental rigor, proper methodology, and accurate reporting.",
+        required: "AI tools for protein folding prediction, molecular modeling, or data analysis are becoming standard in modern scientific research."
+    },
+    creative: {
+        considerations: [
+            "Are students developing technical skills through repeated practice, or bypassing the learning process?",
+            "Can students articulate intentional creative decisions behind their work?",
+            "Does your course build aesthetic judgment and critical evaluation abilities?",
+            "Are you assessing creative problem-solving or just finished products?",
+            "Will students understand the relationship between technique, concept, and expression?"
+        ],
+        noAI: "Generative AI cannot develop your creative vision, artistic judgment, or the technical skills built through repeated practice with traditional media.",
+        limited: "You may use AI for inspiration or technical assistance, but creative concepts, artistic decisions, and final execution must reflect your vision and skills.",
+        ok: "While AI can be a creative tool, your work must demonstrate intentional artistic choices and your developing aesthetic sensibility.",
+        required: "Understanding AI as a creative medium—its capabilities, limitations, and implications—is increasingly relevant to contemporary art practice."
+    },
+    general: {
+        considerations: [
+            "What are the core learning objectives in your course?",
+            "Which skills require practice and struggle to develop?",
+            "Where might AI help students focus on higher-order thinking?",
+            "How will you assess whether students have actually learned the material?",
+            "What intellectual work is essential for students to do themselves?"
+        ],
+        noAI: "Generative AI cannot replace the cognitive work necessary for deep learning and skill development in any discipline.",
+        limited: "You may use AI tools selectively, but core intellectual work must be your own to ensure genuine learning.",
+        ok: "While AI can assist with various tasks, you remain responsible for the quality, accuracy, and integrity of your work.",
+        required: "Understanding how to work effectively with AI tools is becoming a valuable skill across many professional contexts."
+    }
+};
+
+// Example statements
+const exampleStatements = {
+    'stem-no-ai': `## Generative AI Use
+
+Students may not use generative AI tools for any work in this course.
+
+Generative AI cannot develop your ability to think algorithmically, debug code, or understand mathematical proofs—skills that are fundamental to your growth as a STEM professional.
+
+In STEM fields, understanding underlying concepts and being able to verify AI-generated solutions is essential for developing problem-solving skills and technical expertise.
+
+**Relevant AI Tools**: This policy applies to tools including (but not limited to): ChatGPT (OpenAI), Claude (Anthropic), GitHub Copilot (Microsoft/GitHub), Gemini (Google).
+
+### Assignment-Specific Guidelines
+
+**Programming Assignments**: AI tools may not be used for code generation, debugging assistance, or algorithm design. All code must be written independently.
+
+**Problem Sets**: You may not use AI to solve mathematical problems or generate proofs. Show all work and reasoning.
+
+### Documentation Requirements
+
+You must document all uses of generative AI tools. For each assignment where you use AI, include:
+- Which tool(s) you used
+- What prompts or inputs you provided
+- How you incorporated, modified, or verified the AI output
+- Your reflection on what you learned from using the tool
+
+### Academic Integrity
+
+Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under the Honor System. Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community's trust. If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.`,
+
+    'humanities-limited': `## Generative AI Use
+
+Students may use generative AI tools for assignments in this course, within specific limitations described below.
+
+You may use AI for research assistance or brainstorming, but your interpretations, arguments, and writing voice must be authentically yours.
+
+In humanities, developing your authentic voice and original analysis is central to your intellectual growth and ability to engage with complex texts and ideas.
+
+**Relevant AI Tools**: This policy applies to tools including (but not limited to): ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grammarly.
+
+### Assignment-Specific Guidelines
+
+**Literary Analysis Essays**: You may use AI tools for brainstorming initial ideas or identifying themes, but all close reading, thesis development, and argumentative writing must be your own work. AI may not be used to draft any portion of your essays.
+
+**Research Papers**: AI may assist with finding sources and organizing notes, but analysis and synthesis of sources must reflect your own thinking.
+
+### Documentation
+
+You are encouraged to document your use of generative AI tools for transparency and learning purposes.
+
+### Academic Integrity
+
+Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under the Honor System. Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community's trust. If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.`,
+
+    'social-sciences-ok': `## Generative AI Use
+
+Students may use generative AI tools for work in this course as they see fit.
+
+While AI can support your research process, you must ensure methodological soundness, proper citation, and ethical data handling.
+
+In social sciences, research integrity, methodological rigor, and ethical data practices are foundational to producing valid and meaningful insights about human behavior and society.
+
+**Relevant AI Tools**: This policy applies to tools including (but not limited to): ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Perplexity, NotebookLM.
+
+### Documentation
+
+You are encouraged to document your use of generative AI tools for transparency and learning purposes.
+
+### Academic Integrity
+
+Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under the Honor System. Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community's trust. If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.
+
+### Additional Guidelines
+
+Any fabricated data, falsified research findings, or misrepresented results—whether generated by AI or otherwise—may constitute an Honor Violation under the Honor System. You are responsible for verifying the accuracy and validity of all information included in your work.`,
+
+    'sciences-required': `## Generative AI Use
+
+Students are required to use generative AI tools for certain assignments in this course.
+
+Learning to effectively prompt AI coding assistants and critically evaluate their output is becoming an essential skill in modern software development.
+
+AI tools for protein folding prediction, molecular modeling, or data analysis are becoming standard in modern scientific research.
+
+**Relevant AI Tools**: This policy applies to tools including (but not limited to): ChatGPT (OpenAI), Claude (Anthropic), GitHub Copilot (Microsoft/GitHub), NotebookLM.
+
+### Assignment-Specific Guidelines
+
+**Data Visualization Project**: You are required to use an AI-assisted coding tool (such as ChatGPT, Claude, or GitHub Copilot) to generate visualization code. Document your prompts, the code generated, and how you verified its accuracy.
+
+**Literature Review**: You must use AI tools like NotebookLM or Perplexity to identify and synthesize recent research papers. Include a reflection on the strengths and limitations of AI-assisted literature review.
+
+### Documentation Requirements
+
+You must document all uses of generative AI tools. For each assignment where you use AI, include:
+- Which tool(s) you used
+- What prompts or inputs you provided
+- How you incorporated, modified, or verified the AI output
+- Your reflection on what you learned from using the tool
+
+### Academic Integrity
+
+Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under the Honor System. Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community's trust. If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.`
+};
+
+function App() {
+    const [currentStep, setCurrentStep] = useState(0);
+    const [theme, setTheme] = useState('light');
+    const [fontStyle, setFontStyle] = useState('serif');
+    const [showExamples, setShowExamples] = useState(false);
+    const [formData, setFormData] = useState({
+        discipline: '',
+        policyLevel: '',
+        specificTools: [],
+        documentation: '',
+        cautionaryLanguage: true,
+        customText: '',
+        assignmentPolicies: []
+    });
+
+    // Load saved draft on mount
+    useEffect(() => {
+        const saved = localStorage.getItem('syllabusStatementDraft');
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                const shouldLoad = window.confirm('Found a saved draft. Would you like to continue where you left off?');
+                if (shouldLoad) {
+                    setFormData(parsed.formData);
+                    setCurrentStep(parsed.step);
+                }
+            } catch (e) {
+                console.error('Failed to load draft:', e);
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        }
+
+        const savedFont = localStorage.getItem('fontStyle');
+        if (savedFont) {
+            setFontStyle(savedFont);
+        }
+    }, []);
+
+    // Auto-save draft
+    useEffect(() => {
+        if (currentStep > 0) {
+            localStorage.setItem('syllabusStatementDraft', JSON.stringify({
+                formData,
+                step: currentStep
+            }));
+        }
+    }, [formData, currentStep]);
+
+    // Theme
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    // Font
+    useEffect(() => {
+        document.documentElement.setAttribute('data-font', fontStyle);
+        localStorage.setItem('fontStyle', fontStyle);
+    }, [fontStyle]);
+
+    const toggleTheme = () => {
+        setTheme(theme === 'light' ? 'dark' : 'light');
+    };
+
+    const toggleFont = () => {
+        setFontStyle(fontStyle === 'serif' ? 'sans-serif' : 'serif');
+    };
+
+    const steps = [
+        'Welcome',
+        'Department',
+        'Policy Level',
+        'Tools & Tasks',
+        'Assignments',
+        'Documentation',
+        'Preview'
+    ];
+
+    const updateFormData = (key, value) => {
+        setFormData({ ...formData, [key]: value });
+    };
+
+    const nextStep = () => {
+        if (currentStep < steps.length - 1) {
+            setCurrentStep(currentStep + 1);
+        }
+    };
+
+    const prevStep = () => {
+        if (currentStep > 0) {
+            setCurrentStep(currentStep - 1);
+        }
+    };
+
+    const clearDraft = () => {
+        if (window.confirm('Are you sure you want to start over? This will delete your saved progress.')) {
+            localStorage.removeItem('syllabusStatementDraft');
+            window.location.reload();
+        }
+    };
+
+    const generateStatement = () => {
+        let statement = '';
+        const lang = disciplineLanguage[formData.discipline] || disciplineLanguage.general;
+
+        // Opening context
+        statement += '## Generative AI Use\n\n';
+
+        // Add policy level text
+        if (formData.policyLevel === 'no-ai') {
+            statement += 'Students may not use generative AI tools for any work in this course.\n\n';
+            statement += lang.noAI + '\n\n';
+        } else if (formData.policyLevel === 'limited') {
+            statement += 'Students may use generative AI tools for assignments in this course, within specific limitations described below.\n\n';
+            statement += lang.limited + '\n\n';
+        } else if (formData.policyLevel === 'ok') {
+            statement += 'Students may use generative AI tools for work in this course as they see fit.\n\n';
+            statement += lang.ok + '\n\n';
+        } else if (formData.policyLevel === 'required') {
+            statement += 'Students are required to use generative AI tools for certain assignments in this course.\n\n';
+            statement += lang.required + '\n\n';
+        }
+
+        // Add disciplinary context
+        statement += lang.context + '\n\n';
+
+        // Add specific tools if selected
+        if (formData.specificTools.length > 0) {
+            statement += '**Relevant AI Tools**: This policy applies to tools including (but not limited to): ';
+            statement += formData.specificTools.join(', ') + '.\n\n';
+        }
+
+        // Add assignment-specific policies
+        if (formData.assignmentPolicies.length > 0) {
+            statement += '### Assignment-Specific Guidelines\n\n';
+            formData.assignmentPolicies.forEach(policy => {
+                statement += `**${policy.assignmentType}**: ${policy.policy}\n\n`;
+            });
+        }
+
+        // Add documentation requirements
+        if (formData.documentation === 'required') {
+            statement += '### Documentation Requirements\n\n';
+            statement += 'You must document all uses of generative AI tools. For each assignment where you use AI, include:\n';
+            statement += '- Which tool(s) you used\n';
+            statement += '- What prompts or inputs you provided\n';
+            statement += '- How you incorporated, modified, or verified the AI output\n';
+            statement += '- Your reflection on what you learned from using the tool\n\n';
+        } else if (formData.documentation === 'encouraged') {
+            statement += '### Documentation\n\n';
+            statement += 'You are encouraged to document your use of generative AI tools for transparency and learning purposes.\n\n';
+        }
+
+        // Add cautionary language
+        if (formData.cautionaryLanguage) {
+            statement += '### Academic Integrity\n\n';
+            statement += 'Misuse or unauthorized use of generative AI tools may constitute an Honor Violation under W&L\'s Honor System. ';
+            statement += 'Actions such as misrepresenting AI-generated work as your own thinking, fabricating data, or using AI in unauthorized ways could be considered a breach of the community\'s trust. ';
+            statement += 'If you have questions about appropriate use for any assignment, please reach out to me before submitting your work.\n\n';
+        }
+
+        // Add custom text
+        if (formData.customText) {
+            statement += '### Additional Guidelines\n\n';
+            statement += formData.customText + '\n\n';
+        }
+
+        return statement;
+    };
+
+    const copyToClipboard = () => {
+        const statement = generateStatement();
+        navigator.clipboard.writeText(statement);
+        alert('Statement copied to clipboard!');
+    };
+
+    const shareStatement = async () => {
+        const statement = generateStatement();
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'AI Syllabus Statement',
+                    text: statement
+                });
+            } catch (err) {
+                console.log('Share cancelled or failed');
+            }
+        } else {
+            copyToClipboard();
+        }
+    };
+
+    const downloadPDF = () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        const statement = generateStatement();
+        const lines = doc.splitTextToSize(statement, 180);
+
+        doc.setFontSize(12);
+        doc.text(lines, 15, 15);
+        doc.save('ai-syllabus-statement.pdf');
+    };
+
+    const downloadWord = () => {
+        const statement = generateStatement();
+        const blob = new Blob([statement], { type: 'application/msword' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'ai-syllabus-statement.doc';
+        link.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const shareToolUrl = async () => {
+        const url = window.location.href;
+        const title = 'AI Syllabus Statement Builder';
+        const text = 'Check out this tool for creating AI policies for your syllabus!';
+
+        if (navigator.share) {
+            try {
+                await navigator.share({ title, text, url });
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    navigator.clipboard.writeText(url);
+                    alert('Link copied to clipboard!');
+                }
+            }
+        } else {
+            navigator.clipboard.writeText(url);
+            alert('Link copied to clipboard!');
+        }
+    };
+
+    return (
+        <>
+            <header>
+                <div className="container header-content">
+                    <div className="logo">
+                        📝 AI Syllabus Statement Builder
+                    </div>
+                    <div className="header-actions">
+                        {currentStep > 0 && (
+                            <button className="clear-btn" onClick={clearDraft} title="Start over">
+                                🗑️
+                            </button>
+                        )}
+                        <button className="theme-toggle" onClick={shareToolUrl} title="Share this tool">
+                            🔗
+                        </button>
+                        <button className="theme-toggle font-toggle" onClick={toggleFont} title={`Current: ${fontStyle === 'serif' ? 'Serif' : 'Sans-serif'}`}>
+                            <span style={{fontFamily: fontStyle === 'serif' ? "'Merriweather', serif" : "'Inter', sans-serif"}}>Aa</span>
+                        </button>
+                        <button className="theme-toggle" onClick={toggleTheme}>
+                            {theme === 'light' ? '🌙' : '☀️'}
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <main className="container">
+                <ProgressIndicator steps={steps} currentStep={currentStep} />
+
+                <div className="wizard-content">
+                    {currentStep === 0 && <WelcomeStep onNext={nextStep} setShowExamples={setShowExamples} />}
+                    {currentStep === 1 && <DisciplineStep formData={formData} updateFormData={updateFormData} onNext={nextStep} onPrev={prevStep} />}
+                    {currentStep === 2 && <PolicyLevelStep formData={formData} updateFormData={updateFormData} onNext={nextStep} onPrev={prevStep} />}
+                    {currentStep === 3 && <ToolsStep formData={formData} updateFormData={updateFormData} onNext={nextStep} onPrev={prevStep} />}
+                    {currentStep === 4 && <AssignmentsStep formData={formData} updateFormData={updateFormData} onNext={nextStep} onPrev={prevStep} />}
+                    {currentStep === 5 && <DocumentationStep formData={formData} updateFormData={updateFormData} onNext={nextStep} onPrev={prevStep} />}
+                    {currentStep === 6 && <PreviewStep formData={formData} statement={generateStatement()} onPrev={prevStep} onCopy={copyToClipboard} onShare={shareStatement} onDownloadPDF={downloadPDF} onDownloadWord={downloadWord} />}
+                </div>
+
+                {showExamples && <ExamplesModal onClose={() => setShowExamples(false)} />}
+            </main>
+
+            <footer id="main-footer">
+                <div className="footer-content">
+                    <a href="https://academicai.academic.wlu.edu/plai-lab/" target="_blank" rel="noopener noreferrer" className="footer-logo-link">
+                        <img src="plai-lab-logo.gif" alt="PLAI Lab" className="footer-logo" />
+                    </a>
+
+                    <p className="footer-credit">
+                        <a href="https://academicai.academic.wlu.edu/plai-lab/" target="_blank" rel="noopener noreferrer" id="plai-credit"></a>
+                        <span className="footer-separator"> | </span>
+                        <span id="last-updated"></span>
+                    </p>
+
+                    <p className="footer-copyright">
+                        © 2026 <a href="https://www.wlu.edu/harte-center" target="_blank" rel="noopener noreferrer">Houston H. Harte Center for Teaching and Learning</a> at Washington and Lee University
+                    </p>
+
+                    <p className="footer-feedback">
+                        <a href="#" id="feedback-link" target="_blank" rel="noopener noreferrer"></a>
+                    </p>
+
+                    <p className="footer-ai-statement" id="ai-statement"></p>
+
+                    <button className="footer-copy-btn" id="copy-statement-btn">Copy</button>
+                </div>
+            </footer>
+        </>
+    );
+}
+
+function ProgressIndicator({ steps, currentStep }) {
+    return (
+        <div className="progress-indicator">
+            {steps.map((step, index) => (
+                <div key={index} className={`progress-step ${index === currentStep ? 'active' : ''} ${index < currentStep ? 'completed' : ''}`}>
+                    <div className="progress-number">{index + 1}</div>
+                    <div className="progress-label">{step}</div>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+function WelcomeStep({ onNext, setShowExamples }) {
+    return (
+        <div className="step-content welcome-step">
+            <h1>Let's Build Your AI Statement</h1>
+            <p className="lead">
+                Create a clear, customized statement for generative AI use in your course.
+            </p>
+            <div className="info-boxes-container">
+                <div className="info-box-wrapper">
+                    <div className="info-box">
+                        <h3>I'm Here to Help You</h3>
+                        <ul>
+                            <li>Make key decisions about AI use in your course</li>
+                            <li>Allow assignment-level customization</li>
+                            <li>Generate a ready-to-use statement</li>
+                            <li>Auto-save your progress as you go</li>
+                        </ul>
+                    </div>
+                    <p className="box-link" onClick={() => setShowExamples(true)}>Show Me Sample Statements</p>
+                </div>
+                <div className="info-box-wrapper">
+                    <div className="info-box info-box-features">
+                        <h3>What's New!</h3>
+                        <ul>
+                            <li><span className="emoji-icon">📄</span><span>Export as PDF or Word for your syllabus</span></li>
+                            <li><span className="emoji-icon">🔗</span><span>Share with colleagues via email or link</span></li>
+                            <li><span className="emoji-icon">📝</span><span>Set different policies for different assignments</span></li>
+                            <li><span className="emoji-icon">🔧</span><span>Name specific tools like ChatGPT, Claude, or Copilot</span></li>
+                        </ul>
+                    </div>
+                    <button onClick={onNext} className="primary box-button">Get Started →</button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function DisciplineStep({ formData, updateFormData, onNext, onPrev }) {
+    const disciplines = [
+        // STEM
+        { id: 'stem', name: 'Computer Science', icon: '💻' },
+        { id: 'stem', name: 'Mathematics', icon: '🔢' },
+        { id: 'stem', name: 'Physics & Engineering', icon: '⚛️' },
+        { id: 'stem', name: 'Data Science', icon: '📊' },
+
+        // Natural Sciences
+        { id: 'sciences', name: 'Biology', icon: '🧬' },
+        { id: 'sciences', name: 'Chemistry & Biochemistry', icon: '🧪' },
+        { id: 'sciences', name: 'Earth & Environmental Geoscience', icon: '🌍' },
+        { id: 'sciences', name: 'Neuroscience', icon: '🧠' },
+
+        // Humanities
+        { id: 'humanities', name: 'English', icon: '📚' },
+        { id: 'humanities', name: 'History', icon: '📜' },
+        { id: 'humanities', name: 'Philosophy', icon: '🤔' },
+        { id: 'humanities', name: 'Religion', icon: '✨' },
+        { id: 'humanities', name: 'Classics', icon: '🏛️' },
+        { id: 'humanities', name: 'Medieval & Renaissance Studies', icon: '📖' },
+        { id: 'humanities', name: 'Comparative Literature', icon: '📕' },
+
+        // Social Sciences
+        { id: 'social-sciences', name: 'Accounting & Finance', icon: '💼' },
+        { id: 'social-sciences', name: 'Business Administration', icon: '📈' },
+        { id: 'social-sciences', name: 'Cognitive & Behavioral Science', icon: '🧠' },
+        { id: 'social-sciences', name: 'Economics', icon: '💰' },
+        { id: 'social-sciences', name: 'Politics', icon: '⚖️' },
+        { id: 'social-sciences', name: 'Sociology & Anthropology', icon: '👥' },
+
+        // Creative Arts & Communications
+        { id: 'creative', name: 'Art & Art History', icon: '🎨' },
+        { id: 'creative', name: 'Music', icon: '🎵' },
+        { id: 'creative', name: 'Theater, Dance & Film Studies', icon: '🎭' },
+        { id: 'creative', name: 'Journalism & Mass Communications', icon: '📰' },
+
+        // Languages & Cultures
+        { id: 'humanities', name: 'Romance Languages', icon: '🗣️' },
+        { id: 'humanities', name: 'East Asian Languages & Literatures', icon: '🈳' },
+        { id: 'humanities', name: 'German', icon: '🇩🇪' },
+        { id: 'humanities', name: 'Russian', icon: '🇷🇺' },
+        { id: 'humanities', name: 'Arabic', icon: '🕌' },
+
+        // Interdisciplinary Programs
+        { id: 'general', name: 'Africana Studies', icon: '🌍' },
+        { id: 'general', name: 'East Asian Studies', icon: '🎌' },
+        { id: 'general', name: 'Environmental Studies', icon: '🌱' },
+        { id: 'general', name: 'Latin American & Caribbean Studies', icon: '🌎' },
+        { id: 'general', name: 'Middle East & South Asia Studies', icon: '🕌' },
+        { id: 'general', name: "Women's, Gender & Sexuality Studies", icon: '👭' },
+        { id: 'general', name: 'Law, Justice & Society', icon: '⚖️' },
+        { id: 'general', name: 'Poverty Studies', icon: '🤝' },
+        { id: 'general', name: 'Digital Culture & Information', icon: '💾' },
+        { id: 'general', name: 'Education Studies', icon: '🎓' }
+    ];
+
+    const selectedDisciplineConsiderations = formData.discipline ? disciplineLanguage[formData.discipline]?.considerations : null;
+
+    return (
+        <div className="step-content">
+            <h2>Choose Your Department</h2>
+            <p>Select your department or program. This helps us provide relevant, pedagogically-grounded language for your field.</p>
+
+            <div className="discipline-grid">
+                {disciplines.map(disc => (
+                    <div
+                        key={disc.id + '-' + disc.name}
+                        className={`discipline-card ${formData.discipline === disc.id ? 'selected' : ''}`}
+                        onClick={() => updateFormData('discipline', disc.id)}
+                    >
+                        <div className="discipline-icon">{disc.icon}</div>
+                        <h3>{disc.name}</h3>
+                    </div>
+                ))}
+            </div>
+
+            {selectedDisciplineConsiderations && (
+                <div className="info-box" style={{marginTop: '1.5rem'}}>
+                    <p><strong>Questions to consider for your course:</strong></p>
+                    <ul style={{fontSize: '0.9rem', marginTop: '0.75rem', lineHeight: '1.6'}}>
+                        {selectedDisciplineConsiderations.map((question, idx) => (
+                            <li key={idx} style={{marginBottom: '0.5rem'}}>{question}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
+            <div className="button-group">
+                <button onClick={onPrev} className="secondary">← Back</button>
+                <button onClick={onNext} className="primary" disabled={!formData.discipline}>Next →</button>
+            </div>
+        </div>
+    );
+}
+
+function PolicyLevelStep({ formData, updateFormData, onNext, onPrev }) {
+    const policies = [
+        {
+            id: 'no-ai',
+            name: '🚫 No AI',
+            desc: 'Students may not use generative AI tools for any work in this course.',
+            when: 'Use when authentic, individual work is essential for learning outcomes or assessment validity.',
+            example: 'Programming fundamentals, creative writing, mathematical proofs'
+        },
+        {
+            id: 'limited',
+            name: '⚠️ Limited AI',
+            desc: 'Students may use AI tools with specific restrictions.',
+            when: 'Use when AI can support some tasks (brainstorming, editing) but not others (core analysis, original thinking).',
+            example: 'Essays (AI for brainstorming only), research projects (AI for literature review but not data analysis)'
+        },
+        {
+            id: 'ok',
+            name: '✅ AI OK',
+            desc: 'Students may use AI tools as they see fit.',
+            when: 'Use when AI is a legitimate professional tool for the work and learning goals focus on evaluation/application rather than generation.',
+            example: 'Senior capstone projects, professional writing courses, industry simulations'
+        },
+        {
+            id: 'required',
+            name: '⭐ AI Required',
+            desc: 'Students must use AI tools for certain assignments.',
+            when: 'Use when learning to work effectively with AI is itself a course objective.',
+            example: 'Data science projects, AI ethics courses, modern technical writing'
+        }
+    ];
+
+    return (
+        <div className="step-content">
+            <h2>Choose Your AI Policy Level</h2>
+            <p>Select the overall approach to generative AI use in your course.</p>
+
+            <div className="policy-list">
+                {policies.map(policy => (
+                    <div
+                        key={policy.id}
+                        className={`policy-card ${formData.policyLevel === policy.id ? 'selected' : ''}`}
+                        onClick={() => updateFormData('policyLevel', policy.id)}
+                    >
+                        <h3>{policy.name}</h3>
+                        <p className="policy-desc">{policy.desc}</p>
+                        <p className="policy-when"><strong>When to use:</strong> {policy.when}</p>
+                        <p className="policy-example"><em>Examples: {policy.example}</em></p>
+                    </div>
+                ))}
+            </div>
+
+            <div className="button-group">
+                <button onClick={onPrev} className="secondary">← Back</button>
+                <button onClick={onNext} className="primary" disabled={!formData.policyLevel}>Next →</button>
+            </div>
+        </div>
+    );
+}
+
+function ToolsStep({ formData, updateFormData, onNext, onPrev }) {
+    const tools = [
+        'ChatGPT (OpenAI)',
+        'Claude (Anthropic)',
+        'Gemini (Google)',
+        'Copilot (Microsoft/GitHub)',
+        'Perplexity',
+        'Grammarly',
+        'Midjourney / DALL-E (image generation)',
+        'NotebookLM'
+    ];
+
+    const toggleTool = (tool) => {
+        const current = formData.specificTools || [];
+        if (current.includes(tool)) {
+            updateFormData('specificTools', current.filter(t => t !== tool));
+        } else {
+            updateFormData('specificTools', [...current, tool]);
+        }
+    };
+
+    return (
+        <div className="step-content">
+            <h2>Specify AI Tools (Optional)</h2>
+            <p>Select specific tools to name in your policy. This helps students understand exactly what's covered.</p>
+
+            <div className="info-box">
+                <p><strong>Tip:</strong> Naming specific tools can reduce confusion, but remember new tools emerge constantly. Consider whether to list specific tools or use general language like "AI text generators" or "AI coding assistants."</p>
+            </div>
+
+            <div className="tools-grid">
+                {tools.map(tool => (
+                    <div
+                        key={tool}
+                        className={`tool-chip ${formData.specificTools?.includes(tool) ? 'selected' : ''}`}
+                        onClick={() => toggleTool(tool)}
+                    >
+                        {tool}
+                    </div>
+                ))}
+            </div>
+
+            <div className="button-group">
+                <button onClick={onPrev} className="secondary">← Back</button>
+                <button onClick={onNext} className="primary">Next →</button>
+            </div>
+        </div>
+    );
+}
+
+function AssignmentsStep({ formData, updateFormData, onNext, onPrev }) {
+    const [newAssignment, setNewAssignment] = useState({ assignmentType: '', policy: '' });
+    const [showHelper, setShowHelper] = useState(false);
+
+    const addAssignment = () => {
+        if (newAssignment.assignmentType && newAssignment.policy) {
+            updateFormData('assignmentPolicies', [...(formData.assignmentPolicies || []), newAssignment]);
+            setNewAssignment({ assignmentType: '', policy: '' });
+        }
+    };
+
+    const removeAssignment = (index) => {
+        const updated = formData.assignmentPolicies.filter((_, i) => i !== index);
+        updateFormData('assignmentPolicies', updated);
+    };
+
+    const useExample = () => {
+        setNewAssignment({
+            assignmentType: 'Weekly Reflection Papers',
+            policy: 'You may use AI tools for brainstorming and organizing your initial thoughts, but the final analysis and writing must be your own. AI may not be used to draft any portion of your reflections.'
+        });
+    };
+
+    return (
+        <div className="step-content">
+            <h2>Assignment-Specific Policies (Optional)</h2>
+            <p>Different assignments may have different AI policies. Specify variations here.</p>
+
+            <div className="info-box">
+                <p><strong>Examples:</strong></p>
+                <ul style={{fontSize: '0.9rem', marginTop: '0.5rem'}}>
+                    <li><strong>Weekly Discussion Posts:</strong> AI may not be used for any part of your response</li>
+                    <li><strong>Midterm Literary Analysis Essay:</strong> AI may be used for brainstorming themes and organizing notes, but all close reading, thesis development, and writing must be your own</li>
+                    <li><strong>Lab Reports:</strong> AI may assist with citation formatting and grammar checking only; experimental design, data analysis, and interpretation must be your original work</li>
+                    <li><strong>Data Visualization Project:</strong> AI tools are required for creating charts and graphs; you must document your design choices and interpret results independently</li>
+                    <li><strong>Video Essay on Social Justice:</strong> AI may be used for script outlining and research assistance, but video production and narration must be your own work</li>
+                    <li><strong>Group Presentation:</strong> Teams may use AI for background research and slide design, but analysis and oral delivery must demonstrate the group's understanding</li>
+                </ul>
+            </div>
+
+            {formData.assignmentPolicies?.length > 0 && (
+                <div className="assignment-list">
+                    <h3>Current Assignment Policies:</h3>
+                    {formData.assignmentPolicies.map((ap, index) => (
+                        <div key={index} className="assignment-item">
+                            <div>
+                                <strong>{ap.assignmentType}:</strong> {ap.policy}
+                            </div>
+                            <button onClick={() => removeAssignment(index)} className="remove-btn">✕</button>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            <div className="assignment-form">
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem'}}>
+                    <h3 style={{margin: 0}}>Add Assignment Policy:</h3>
+                    <div style={{display: 'flex', gap: '1rem', fontSize: '0.9rem'}}>
+                        <button onClick={useExample} className="link-btn" type="button">Use example</button>
+                        <button onClick={() => setShowHelper(true)} className="link-btn" type="button">Not sure yet?</button>
+                    </div>
+                </div>
+                <input
+                    type="text"
+                    placeholder="Assignment type (e.g., 'Weekly Quizzes', 'Final Paper')"
+                    value={newAssignment.assignmentType}
+                    onChange={(e) => setNewAssignment({...newAssignment, assignmentType: e.target.value})}
+                />
+                <textarea
+                    placeholder="AI policy for this assignment..."
+                    value={newAssignment.policy}
+                    onChange={(e) => setNewAssignment({...newAssignment, policy: e.target.value})}
+                    rows="3"
+                />
+                <button onClick={addAssignment} className="add-btn">+ Add Assignment Policy</button>
+            </div>
+
+            {showHelper && <AssignmentPolicyHelper onClose={() => setShowHelper(false)} />}
+
+            <div className="button-group">
+                <button onClick={onPrev} className="secondary">← Back</button>
+                <button onClick={onNext} className="primary">Next →</button>
+            </div>
+        </div>
+    );
+}
+
+function DocumentationStep({ formData, updateFormData, onNext, onPrev }) {
+    return (
+        <div className="step-content">
+            <h2>Documentation & Academic Integrity</h2>
+            <p>Finalize your statement with documentation requirements and academic integrity language.</p>
+
+            <div className="form-section">
+                <label>
+                    <strong>Documentation Requirement</strong>
+                </label>
+                <p className="help-text">How should students document their AI use?</p>
+                <div className="radio-group">
+                    <label className="radio-label">
+                        <input
+                            type="radio"
+                            name="documentation"
+                            value="none"
+                            checked={formData.documentation === 'none'}
+                            onChange={(e) => updateFormData('documentation', e.target.value)}
+                        />
+                        No documentation needed
+                    </label>
+                    <label className="radio-label">
+                        <input
+                            type="radio"
+                            name="documentation"
+                            value="encouraged"
+                            checked={formData.documentation === 'encouraged'}
+                            onChange={(e) => updateFormData('documentation', e.target.value)}
+                        />
+                        Documentation encouraged (optional transparency)
+                    </label>
+                    <label className="radio-label">
+                        <input
+                            type="radio"
+                            name="documentation"
+                            value="required"
+                            checked={formData.documentation === 'required'}
+                            onChange={(e) => updateFormData('documentation', e.target.value)}
+                        />
+                        Documentation required (submit with assignments)
+                    </label>
+                </div>
+            </div>
+
+            <div className="form-section">
+                <label className="checkbox-label">
+                    <input
+                        type="checkbox"
+                        checked={formData.cautionaryLanguage}
+                        onChange={(e) => updateFormData('cautionaryLanguage', e.target.checked)}
+                    />
+                    <span>Include academic integrity language</span>
+                </label>
+                <p className="help-text">
+                    Recommended. Clarifies that misuse may constitute an Honor Violation under the Honor System.
+                </p>
+            </div>
+
+            <div className="form-section">
+                <label>
+                    <strong>Additional Custom Text (Optional)</strong>
+                </label>
+                <p className="help-text">Add any course-specific details, exceptions, or additional guidance.</p>
+                <textarea
+                    value={formData.customText}
+                    onChange={(e) => updateFormData('customText', e.target.value)}
+                    placeholder="Example: Students in the honors section have additional flexibility... OR If you have a disability accommodation that affects this policy, please contact me..."
+                    rows="5"
+                />
+            </div>
+
+            <div className="button-group">
+                <button onClick={onPrev} className="secondary">← Back</button>
+                <button onClick={onNext} className="primary">Preview Statement →</button>
+            </div>
+        </div>
+    );
+}
+
+function PreviewStep({ formData, statement, onPrev, onCopy, onShare, onDownloadPDF, onDownloadWord }) {
+    return (
+        <div className="step-content preview-step">
+            <h2>Your AI Syllabus Statement</h2>
+            <p>Review your statement below. You can copy it, share it, download as PDF/Word, or go back to make changes.</p>
+
+            <div className="statement-preview">
+                {renderMarkdown(statement)}
+            </div>
+
+            <div className="action-buttons">
+                <button onClick={onCopy} className="action-btn">
+                    📋 Copy to Clipboard
+                </button>
+                <button onClick={onShare} className="action-btn">
+                    🔗 Share
+                </button>
+                <button onClick={onDownloadPDF} className="action-btn">
+                    📄 Download PDF
+                </button>
+                <button onClick={onDownloadWord} className="action-btn">
+                    📝 Download Word
+                </button>
+            </div>
+
+            <div className="button-group">
+                <button onClick={onPrev} className="secondary">← Back to Edit</button>
+                <button onClick={() => {
+                    if (window.confirm('Start over? This will clear your current statement.')) {
+                        localStorage.removeItem('syllabusStatementDraft');
+                        window.location.reload();
+                    }
+                }} className="primary">Start New Statement</button>
+            </div>
+        </div>
+    );
+}
+
+function AssignmentPolicyHelper({ onClose }) {
+    return (
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content helper-modal" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-header">
+                    <h2>Assignment Policy Guide</h2>
+                    <button onClick={onClose} className="close-btn">✕</button>
+                </div>
+                <div className="modal-body">
+                    <p style={{marginBottom: '1.5rem', lineHeight: '1.7'}}>
+                        Consider these questions to determine the right AI policy for each assignment:
+                    </p>
+
+                    <div className="helper-section">
+                        <h3>🎯 What learning outcomes does this assignment assess?</h3>
+                        <ul>
+                            <li><strong>If it's about developing foundational skills</strong> (writing, problem-solving, critical thinking): Consider restricting or prohibiting AI</li>
+                            <li><strong>If it's about applying skills in realistic contexts</strong>: Consider allowing AI as a tool</li>
+                            <li><strong>If it's about learning to work with AI</strong>: Consider requiring AI use</li>
+                        </ul>
+                    </div>
+
+                    <div className="helper-section">
+                        <h3>📊 What's the assignment format?</h3>
+                        <ul>
+                            <li><strong>Low-stakes practice</strong> (weekly reflections, discussion posts): Often benefits from unrestricted student work</li>
+                            <li><strong>Research-intensive</strong> (term papers, literature reviews): AI might help with organization and sources</li>
+                            <li><strong>Creative work</strong> (original essays, art): Usually requires authentic student voice</li>
+                            <li><strong>Technical tasks</strong> (coding, data analysis): May benefit from AI assistance depending on learning goals</li>
+                        </ul>
+                    </div>
+
+                    <div className="helper-section">
+                        <h3>⚖️ Sample Policies by Restriction Level</h3>
+                        <div className="policy-examples">
+                            <div className="policy-example-item">
+                                <strong>No AI:</strong>
+                                <p>"AI tools may not be used for this assignment. All work must be completed independently to develop [skill/understanding]."</p>
+                            </div>
+                            <div className="policy-example-item">
+                                <strong>Limited AI:</strong>
+                                <p>"You may use AI for [specific tasks like brainstorming, citation formatting], but not for [core tasks like drafting, analysis]. Document your AI use."</p>
+                            </div>
+                            <div className="policy-example-item">
+                                <strong>AI Permitted:</strong>
+                                <p>"You may use AI tools as you see fit. You remain responsible for accuracy, originality, and meeting assignment requirements."</p>
+                            </div>
+                            <div className="policy-example-item">
+                                <strong>AI Required:</strong>
+                                <p>"You must use [specific AI tool] for [task]. Document your process including prompts used and how you verified output."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="helper-tip">
+                        <strong>💡 Tip:</strong> Be specific about what students can and cannot do. Vague policies lead to confusion and potential Honor Violations.
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function renderMarkdown(text) {
+    const lines = text.split('\n');
+    const elements = [];
+    let currentParagraph = [];
+    let key = 0;
+
+    const formatLine = (line) => {
+        const parts = [];
+        let lastIndex = 0;
+        const regex = /\*\*(.+?)\*\*/g;
+        let match;
+
+        while ((match = regex.exec(line)) !== null) {
+            if (match.index > lastIndex) {
+                parts.push(line.substring(lastIndex, match.index));
+            }
+            parts.push(<strong key={`b-${key++}`}>{match[1]}</strong>);
+            lastIndex = match.index + match[0].length;
+        }
+
+        if (lastIndex < line.length) {
+            parts.push(line.substring(lastIndex));
+        }
+
+        return parts.length > 0 ? parts : line;
+    };
+
+    lines.forEach((line, index) => {
+        if (line.startsWith('## ')) {
+            if (currentParagraph.length > 0) {
+                elements.push(<p key={`p-${key++}`}>{currentParagraph}</p>);
+                currentParagraph = [];
+            }
+            elements.push(<h2 key={`h2-${key++}`}>{line.replace('## ', '')}</h2>);
+        } else if (line.startsWith('### ')) {
+            if (currentParagraph.length > 0) {
+                elements.push(<p key={`p-${key++}`}>{currentParagraph}</p>);
+                currentParagraph = [];
+            }
+            elements.push(<h3 key={`h3-${key++}`}>{line.replace('### ', '')}</h3>);
+        } else if (line.trim() === '') {
+            if (currentParagraph.length > 0) {
+                elements.push(<p key={`p-${key++}`}>{currentParagraph}</p>);
+                currentParagraph = [];
+            }
+        } else if (line.startsWith('- ')) {
+            if (currentParagraph.length > 0) {
+                elements.push(<p key={`p-${key++}`}>{currentParagraph}</p>);
+                currentParagraph = [];
+            }
+            elements.push(<li key={`li-${key++}`}>{formatLine(line.substring(2))}</li>);
+        } else {
+            if (currentParagraph.length > 0) currentParagraph.push(' ');
+            currentParagraph.push(...formatLine(line));
+        }
+    });
+
+    if (currentParagraph.length > 0) {
+        elements.push(<p key={`p-${key++}`}>{currentParagraph}</p>);
+    }
+
+    return elements;
+}
+
+function ExamplesModal({ onClose }) {
+    const [activeTab, setActiveTab] = useState('stem-no-ai');
+
+    const tabs = [
+        { key: 'stem-no-ai', label: '💻 Computer Science', badge: 'No AI' },
+        { key: 'humanities-limited', label: '📚 English', badge: 'Limited' },
+        { key: 'social-sciences-ok', label: '🧠 Cognitive & Behavioral Science', badge: 'AI OK' },
+        { key: 'sciences-required', label: '🧬 Biology', badge: 'Required' }
+    ];
+
+    const policyLevels = {
+        'No AI': 'Students may not use AI tools',
+        'Limited': 'AI allowed with restrictions',
+        'AI OK': 'Students may use AI as they see fit',
+        'Required': 'AI use is required for assignments'
+    };
+
+    return (
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-header">
+                    <h2>Sample Statements</h2>
+                    <button onClick={onClose} className="close-btn">✕</button>
+                </div>
+                <div className="example-cards">
+                    {tabs.map(tab => (
+                        <button
+                            key={tab.key}
+                            className={`example-card ${activeTab === tab.key ? 'active' : ''}`}
+                            onClick={() => setActiveTab(tab.key)}
+                        >
+                            <span className="card-label">{tab.label}</span>
+                            <span className="card-policy">{tab.badge}</span>
+                        </button>
+                    ))}
+                </div>
+                <div className="policy-legend">
+                    <div className="legend-title">Policy Levels:</div>
+                    <div className="legend-items">
+                        {Object.entries(policyLevels).map(([key, desc]) => (
+                            <div key={key} className="legend-item">
+                                <span className="legend-badge">{key}</span>
+                                <span className="legend-desc">{desc}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="modal-body">
+                    <div className={`example-item example-${activeTab}`}>
+                        {renderMarkdown(exampleStatements[activeTab])}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// Footer randomization and functionality
+const plaiCredits = [
+    "Designed by the PLAI Lab",
+    "Powered by the PLAI Lab",
+    "Created by the PLAI Lab"
+];
+
+const feedbackTexts = [
+    "Have Feedback for Us?",
+    "Share Your Feedback",
+    "Send Anonymous Feedback"
+];
+
+const aiStatements = [
+    "Content conceptualized and directed by human educators, with a combination of human-written and AI-generated material, all reviewed and edited by humans.",
+    "Human-conceptualized resource combining human-written content and AI-generated material under human direction, editing, and review.",
+    "Content developed through human-AI collaboration: conceptualized and directed by educators, drafted by humans and AI, edited and reviewed by humans.",
+    "Human-directed resource combining human-written and AI-generated content, with all content reviewed and edited by humans.",
+    "Content created through human-AI collaboration under human direction and review."
+];
+
+function getRandomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+function initializeFooter() {
+    // Randomize PLAI Lab credit
+    const plaiCreditEl = document.getElementById('plai-credit');
+    if (plaiCreditEl) {
+        plaiCreditEl.textContent = getRandomItem(plaiCredits);
+    }
+
+    // Set last updated date
+    const lastUpdatedEl = document.getElementById('last-updated');
+    if (lastUpdatedEl) {
+        const lastModified = new Date(document.lastModified);
+        lastUpdatedEl.textContent = `Last Updated: ${lastModified.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })}`;
+    }
+
+    // Randomize feedback link
+    const feedbackLinkEl = document.getElementById('feedback-link');
+    if (feedbackLinkEl) {
+        feedbackLinkEl.textContent = getRandomItem(feedbackTexts);
+        // TODO: Set the actual Qualtrics URL here
+        feedbackLinkEl.href = 'https://wlu.qualtrics.com/jfe/form/YOUR_FORM_ID';
+    }
+
+    // Randomize AI transparency statement
+    const aiStatementEl = document.getElementById('ai-statement');
+    if (aiStatementEl) {
+        const selectedStatement = getRandomItem(aiStatements);
+        aiStatementEl.textContent = selectedStatement;
+        aiStatementEl.dataset.statement = selectedStatement;
+    }
+
+    // Copy button functionality
+    const copyBtn = document.getElementById('copy-statement-btn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+            const statement = aiStatementEl.dataset.statement || aiStatementEl.textContent;
+            try {
+                await navigator.clipboard.writeText(statement);
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard');
+            }
+        });
+    }
+}
+
+// Initialize footer after React renders
+ReactDOM.render(<App />, document.getElementById('root'));
+setTimeout(initializeFooter, 100);
+    </script>
+</body>
+</html>
