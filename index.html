@@ -3299,27 +3299,24 @@
                                 ) : (
                                     <div style={{marginBottom: '1rem'}}>
                                         <div className="selected-department-display">
-                                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                                                <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
-                                                    <span style={{fontSize: '2rem'}}>{departments.find(d => d.id === selectedDept)?.icon}</span>
-                                                    <h3 style={{fontSize: '1.25rem', margin: 0, color: 'var(--text-primary)'}}>{selectedDept}</h3>
-                                                </div>
-                                                <button
-                                                    onClick={() => setStatementParts(prev => ({...prev, department: ''}))}
-                                                    style={{
-                                                        background: 'none',
-                                                        border: 'none',
-                                                        color: 'var(--primary)',
-                                                        cursor: 'pointer',
-                                                        fontSize: '0.85rem',
-                                                        padding: '0.25rem 0',
-                                                        textDecoration: 'underline',
-                                                        whiteSpace: 'nowrap'
-                                                    }}
-                                                >
-                                                    ← Change department
-                                                </button>
+                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem'}}>
+                                                <span style={{fontSize: '2rem'}}>{departments.find(d => d.id === selectedDept)?.icon}</span>
+                                                <h3 style={{fontSize: '1.25rem', margin: 0, color: 'var(--text-primary)'}}>{selectedDept}</h3>
                                             </div>
+                                            <button
+                                                onClick={() => setStatementParts(prev => ({...prev, department: ''}))}
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    color: 'var(--primary)',
+                                                    cursor: 'pointer',
+                                                    fontSize: '0.85rem',
+                                                    padding: '0',
+                                                    textDecoration: 'underline'
+                                                }}
+                                            >
+                                                ← Change department
+                                            </button>
                                         </div>
                                     </div>
                                 )}
