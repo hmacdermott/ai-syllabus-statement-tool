@@ -2967,6 +2967,134 @@
                 });
             };
 
+            // Footer component - used across all pages
+            const Footer = () => (
+                <footer style={{
+                    marginTop: '4rem',
+                    padding: '2rem',
+                    textAlign: 'center',
+                    color: 'var(--text-secondary)',
+                    fontSize: '0.9rem',
+                    borderTop: '1px solid var(--border-color)'
+                }}>
+                    {/* PLAI Lab logo - hidden in dark mode */}
+                    {theme === 'light' && (
+                        <div style={{marginBottom: '1.5rem'}}>
+                            <a href="https://plai.wlu.edu" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="plai-lab-logo.gif"
+                                    alt="PLAI Lab"
+                                    style={{
+                                        height: '60px',
+                                        opacity: 0.9,
+                                        transition: 'opacity 0.2s'
+                                    }}
+                                    onMouseOver={(e) => e.target.style.opacity = '1'}
+                                    onMouseOut={(e) => e.target.style.opacity = '0.9'}
+                                />
+                            </a>
+                        </div>
+                    )}
+
+                    {/* Credit line - hidden in dark mode */}
+                    {theme === 'light' && (
+                        <p style={{marginBottom: '1.5rem', fontSize: '0.85rem'}}>
+                            {footerTexts.credit}
+                        </p>
+                    )}
+
+                    {/* Transparency statement with copy button */}
+                    <div style={{
+                        maxWidth: '800px',
+                        margin: '0 auto 1.5rem',
+                        padding: '1.5rem',
+                        background: 'var(--bg-secondary)',
+                        borderRadius: '8px',
+                        lineHeight: '1.6',
+                        position: 'relative'
+                    }}>
+                        <p style={{margin: 0, fontSize: '0.85rem'}}>
+                            {footerTexts.transparency}
+                        </p>
+                        <button
+                            onClick={copyTransparencyStatement}
+                            style={{
+                                marginTop: '1rem',
+                                padding: '0.5rem 1rem',
+                                background: copiedTransparency ? 'var(--success)' : 'var(--primary)',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '6px',
+                                cursor: 'pointer',
+                                fontSize: '0.85rem',
+                                transition: 'background 0.2s, transform 0.1s'
+                            }}
+                            onMouseOver={(e) => {
+                                if (!copiedTransparency) {
+                                    e.target.style.transform = 'translateY(-1px)';
+                                }
+                            }}
+                            onMouseOut={(e) => {
+                                e.target.style.transform = 'translateY(0)';
+                            }}
+                        >
+                            {copiedTransparency ? '✓ Copied!' : '📋 Copy transparency statement'}
+                        </button>
+                    </div>
+
+                    {/* Resources section */}
+                    <div style={{maxWidth: '800px', margin: '0 auto 1.5rem', lineHeight: '1.6', fontSize: '0.85rem'}}>
+                        <p style={{marginBottom: '0.75rem', fontWeight: 600}}>
+                            For research-backed guidance on AI in your discipline:
+                        </p>
+                        <ul style={{textAlign: 'left', display: 'inline-block', margin: '0 auto'}}>
+                            <li>Consult your professional association (ACM, MLA, AHA, ACS, ASA, etc.)</li>
+                            <li>Review <a href="https://docs.google.com/spreadsheets/d/1-R8wxAB6V11cDh_u6t-WgCBdxYKV8FoXDFGxPVxbs6k/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', textDecoration: 'underline'}}>Lance Eaton's AI Policy Database</a></li>
+                            <li>Discuss with colleagues in your department</li>
+                            <li>Review your institutional academic integrity policies</li>
+                        </ul>
+                    </div>
+
+                    {/* Links and date */}
+                    <p style={{marginTop: '1.5rem', fontSize: '0.85rem'}}>
+                        <a
+                            href="METHODOLOGY.md"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                color: 'var(--primary)',
+                                marginRight: '1.5rem',
+                                textDecoration: 'none',
+                                transition: 'text-decoration 0.2s'
+                            }}
+                            onMouseOver={(e) => e.target.style.textDecoration = 'underline'}
+                            onMouseOut={(e) => e.target.style.textDecoration = 'none'}
+                        >
+                            Full Methodology
+                        </a>
+                        <a
+                            href="https://github.com/hmacdermott/ai-syllabus-statement-tool/issues"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                color: 'var(--primary)',
+                                textDecoration: 'none',
+                                transition: 'text-decoration 0.2s'
+                            }}
+                            onMouseOver={(e) => e.target.style.textDecoration = 'underline'}
+                            onMouseOut={(e) => e.target.style.textDecoration = 'none'}
+                        >
+                            Send Feedback
+                        </a>
+                    </p>
+
+                    {/* Last updated date */}
+                    <p style={{marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-tertiary)'}}>
+                        Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </p>
+                </footer>
+            );
+
             const handlePolicyLevelSelect = (level) => {
                 const lang = departmentSpecificLanguage[statementParts.department];
                 if (!lang) {
@@ -3068,6 +3196,7 @@
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 );
             }
@@ -3435,6 +3564,7 @@
                                 )}
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 );
             }
@@ -3595,6 +3725,7 @@
                                 )}
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 );
             }
@@ -3788,6 +3919,7 @@
                                 )}
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 );
             }
@@ -3896,6 +4028,7 @@
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 );
             }
@@ -3987,6 +4120,7 @@
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 );
             }
@@ -4060,6 +4194,7 @@
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 );
             }
@@ -4130,6 +4265,7 @@
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 );
             }
@@ -4204,131 +4340,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <footer style={{
-                            marginTop: '4rem',
-                            padding: '2rem',
-                            textAlign: 'center',
-                            color: 'var(--text-secondary)',
-                            fontSize: '0.9rem',
-                            borderTop: '1px solid var(--border-color)'
-                        }}>
-                            {/* PLAI Lab logo - hidden in dark mode */}
-                            {theme === 'light' && (
-                                <div style={{marginBottom: '1.5rem'}}>
-                                    <a href="https://plai.wlu.edu" target="_blank" rel="noopener noreferrer">
-                                        <img
-                                            src="plai-lab-logo.gif"
-                                            alt="PLAI Lab"
-                                            style={{
-                                                height: '60px',
-                                                opacity: 0.9,
-                                                transition: 'opacity 0.2s'
-                                            }}
-                                            onMouseOver={(e) => e.target.style.opacity = '1'}
-                                            onMouseOut={(e) => e.target.style.opacity = '0.9'}
-                                        />
-                                    </a>
-                                </div>
-                            )}
-
-                            {/* Credit line - hidden in dark mode */}
-                            {theme === 'light' && (
-                                <p style={{marginBottom: '1.5rem', fontSize: '0.85rem'}}>
-                                    {footerTexts.credit}
-                                </p>
-                            )}
-
-                            {/* Transparency statement with copy button */}
-                            <div style={{
-                                maxWidth: '800px',
-                                margin: '0 auto 1.5rem',
-                                padding: '1.5rem',
-                                background: 'var(--bg-secondary)',
-                                borderRadius: '8px',
-                                lineHeight: '1.6',
-                                position: 'relative'
-                            }}>
-                                <p style={{margin: 0, fontSize: '0.85rem'}}>
-                                    {footerTexts.transparency}
-                                </p>
-                                <button
-                                    onClick={copyTransparencyStatement}
-                                    style={{
-                                        marginTop: '1rem',
-                                        padding: '0.5rem 1rem',
-                                        background: copiedTransparency ? 'var(--success)' : 'var(--primary)',
-                                        color: 'white',
-                                        border: 'none',
-                                        borderRadius: '6px',
-                                        cursor: 'pointer',
-                                        fontSize: '0.85rem',
-                                        transition: 'background 0.2s, transform 0.1s'
-                                    }}
-                                    onMouseOver={(e) => {
-                                        if (!copiedTransparency) {
-                                            e.target.style.transform = 'translateY(-1px)';
-                                        }
-                                    }}
-                                    onMouseOut={(e) => {
-                                        e.target.style.transform = 'translateY(0)';
-                                    }}
-                                >
-                                    {copiedTransparency ? '✓ Copied!' : '📋 Copy transparency statement'}
-                                </button>
-                            </div>
-
-                            {/* Resources section */}
-                            <div style={{maxWidth: '800px', margin: '0 auto 1.5rem', lineHeight: '1.6', fontSize: '0.85rem'}}>
-                                <p style={{marginBottom: '0.75rem', fontWeight: 600}}>
-                                    For research-backed guidance on AI in your discipline:
-                                </p>
-                                <ul style={{textAlign: 'left', display: 'inline-block', margin: '0 auto'}}>
-                                    <li>Consult your professional association (ACM, MLA, AHA, ACS, ASA, etc.)</li>
-                                    <li>Review <a href="https://docs.google.com/spreadsheets/d/1-R8wxAB6V11cDh_u6t-WgCBdxYKV8FoXDFGxPVxbs6k/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', textDecoration: 'underline'}}>Lance Eaton's AI Policy Database</a></li>
-                                    <li>Discuss with colleagues in your department</li>
-                                    <li>Review your institutional academic integrity policies</li>
-                                </ul>
-                            </div>
-
-                            {/* Links and date */}
-                            <p style={{marginTop: '1.5rem', fontSize: '0.85rem'}}>
-                                <a
-                                    href="METHODOLOGY.md"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{
-                                        color: 'var(--primary)',
-                                        marginRight: '1.5rem',
-                                        textDecoration: 'none',
-                                        transition: 'text-decoration 0.2s'
-                                    }}
-                                    onMouseOver={(e) => e.target.style.textDecoration = 'underline'}
-                                    onMouseOut={(e) => e.target.style.textDecoration = 'none'}
-                                >
-                                    Full Methodology
-                                </a>
-                                <a
-                                    href="https://github.com/hmacdermott/ai-syllabus-statement-tool/issues"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{
-                                        color: 'var(--primary)',
-                                        textDecoration: 'none',
-                                        transition: 'text-decoration 0.2s'
-                                    }}
-                                    onMouseOver={(e) => e.target.style.textDecoration = 'underline'}
-                                    onMouseOut={(e) => e.target.style.textDecoration = 'none'}
-                                >
-                                    Send Feedback
-                                </a>
-                            </p>
-
-                            {/* Last updated date */}
-                            <p style={{marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-tertiary)'}}>
-                                Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                            </p>
-                        </footer>
+                        <Footer />
                     </div>
                 );
             }
