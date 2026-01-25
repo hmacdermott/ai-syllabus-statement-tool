@@ -2735,6 +2735,8 @@
             const [docOption, setDocOption] = useState('none');
             const [customText, setCustomText] = useState('');
             const [expandedConsiderations, setExpandedConsiderations] = useState([]);
+            const [deptSearch, setDeptSearch] = useState('');
+            const [deptViewMode, setDeptViewMode] = useState('by-school'); // 'by-school' or 'alphabetical'
 
             // Sync phase-specific states with statementParts
             useEffect(() => {
@@ -3058,78 +3060,96 @@
 
                                 {!selectedDept ? (
                                     <div>
-                                        {/* STEM */}
-                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
-                                            STEM
-                                        </h3>
-                                        <div className="department-grid">
-                                            {departments.slice(0, 4).map(dept => (
-                                                <div
-                                                    key={dept.id}
-                                                    className="department-card"
-                                                    onClick={() => {
-                                                        setStatementParts(prev => ({
-                                                            ...prev,
-                                                            department: dept.id
-                                                        }));
+                                        {/* Search and View Toggle */}
+                                        <div style={{
+                                            display: 'flex',
+                                            gap: '1rem',
+                                            alignItems: 'center',
+                                            marginBottom: '1.5rem',
+                                            flexWrap: 'wrap'
+                                        }}>
+                                            <input
+                                                type="text"
+                                                placeholder="Search departments..."
+                                                value={deptSearch}
+                                                onChange={(e) => setDeptSearch(e.target.value)}
+                                                style={{
+                                                    flex: '1',
+                                                    minWidth: '250px',
+                                                    padding: '0.75rem 1rem',
+                                                    fontSize: '1rem',
+                                                    border: '2px solid var(--border)',
+                                                    borderRadius: '8px',
+                                                    background: 'var(--bg-primary)',
+                                                    color: 'var(--text-primary)',
+                                                    outline: 'none',
+                                                    transition: 'border-color 0.2s'
+                                                }}
+                                                onFocus={(e) => e.target.style.borderColor = 'var(--primary)'}
+                                                onBlur={(e) => e.target.style.borderColor = 'var(--border)'}
+                                            />
+                                            <div style={{
+                                                display: 'flex',
+                                                gap: '0.5rem',
+                                                background: 'var(--bg-secondary)',
+                                                padding: '0.25rem',
+                                                borderRadius: '8px',
+                                                border: '1px solid var(--border)'
+                                            }}>
+                                                <button
+                                                    onClick={() => setDeptViewMode('by-school')}
+                                                    style={{
+                                                        padding: '0.5rem 1rem',
+                                                        fontSize: '0.9rem',
+                                                        border: 'none',
+                                                        borderRadius: '6px',
+                                                        background: deptViewMode === 'by-school' ? 'var(--primary)' : 'transparent',
+                                                        color: deptViewMode === 'by-school' ? 'white' : 'var(--text-primary)',
+                                                        cursor: 'pointer',
+                                                        fontWeight: deptViewMode === 'by-school' ? '600' : '400',
+                                                        transition: 'all 0.2s'
                                                     }}
                                                 >
-                                                    <div className="dept-icon">{dept.icon}</div>
-                                                    <div className="dept-name">{dept.id}</div>
-                                                </div>
-                                            ))}
+                                                    By School
+                                                </button>
+                                                <button
+                                                    onClick={() => setDeptViewMode('alphabetical')}
+                                                    style={{
+                                                        padding: '0.5rem 1rem',
+                                                        fontSize: '0.9rem',
+                                                        border: 'none',
+                                                        borderRadius: '6px',
+                                                        background: deptViewMode === 'alphabetical' ? 'var(--primary)' : 'transparent',
+                                                        color: deptViewMode === 'alphabetical' ? 'white' : 'var(--text-primary)',
+                                                        cursor: 'pointer',
+                                                        fontWeight: deptViewMode === 'alphabetical' ? '600' : '400',
+                                                        transition: 'all 0.2s'
+                                                    }}
+                                                >
+                                                    A-Z
+                                                </button>
+                                            </div>
                                         </div>
 
-                                        {/* Natural Sciences */}
-                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
-                                            Natural Sciences
-                                        </h3>
-                                        <div className="department-grid">
-                                            {departments.slice(4, 8).map(dept => (
-                                                <div
-                                                    key={dept.id}
-                                                    className="department-card"
-                                                    onClick={() => {
-                                                        setStatementParts(prev => ({
-                                                            ...prev,
-                                                            department: dept.id
-                                                        }));
-                                                    }}
-                                                >
-                                                    <div className="dept-icon">{dept.icon}</div>
-                                                    <div className="dept-name">{dept.id}</div>
-                                                </div>
-                                            ))}
-                                        </div>
+                                        {(() => {
+                                            // Filter departments based on search
+                                            const filteredDepts = departments.filter(dept =>
+                                                dept.id.toLowerCase().includes(deptSearch.toLowerCase())
+                                            );
 
-                                        {/* Humanities */}
-                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
-                                            Humanities
-                                        </h3>
-                                        <div className="department-grid">
-                                            {departments.slice(8, 20).map(dept => (
-                                                <div
-                                                    key={dept.id}
-                                                    className="department-card"
-                                                    onClick={() => {
-                                                        setStatementParts(prev => ({
-                                                            ...prev,
-                                                            department: dept.id
-                                                        }));
-                                                    }}
-                                                >
-                                                    <div className="dept-icon">{dept.icon}</div>
-                                                    <div className="dept-name">{dept.id}</div>
-                                                </div>
-                                            ))}
-                                        </div>
+                                            // Define department groups
+                                            const groups = [
+                                                { name: 'STEM', start: 0, end: 4 },
+                                                { name: 'Natural Sciences', start: 4, end: 8 },
+                                                { name: 'Humanities', start: 8, end: 20 },
+                                                { name: 'Social Sciences', start: 20, end: 22 },
+                                                { name: 'Williams School', start: 22, end: 26 },
+                                                { name: 'Creative Arts & Communications', start: 26, end: 30 },
+                                                { name: 'Interdisciplinary Programs', start: 30, end: departments.length }
+                                            ];
 
-                                        {/* Social Sciences */}
-                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
-                                            Social Sciences
-                                        </h3>
-                                        <div className="department-grid">
-                                            {departments.slice(20, 22).map(dept => (
+                                            // Render department card helper
+                                            const renderDeptCard = (dept) => (
                                                 <div
                                                     key={dept.id}
                                                     className="department-card"
@@ -3143,74 +3163,84 @@
                                                     <div className="dept-icon">{dept.icon}</div>
                                                     <div className="dept-name">{dept.id}</div>
                                                 </div>
-                                            ))}
-                                        </div>
+                                            );
 
-                                        {/* Williams School */}
-                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
-                                            Williams School
-                                        </h3>
-                                        <div className="department-grid">
-                                            {departments.slice(22, 26).map(dept => (
-                                                <div
-                                                    key={dept.id}
-                                                    className="department-card"
-                                                    onClick={() => {
-                                                        setStatementParts(prev => ({
-                                                            ...prev,
-                                                            department: dept.id
-                                                        }));
-                                                    }}
-                                                >
-                                                    <div className="dept-icon">{dept.icon}</div>
-                                                    <div className="dept-name">{dept.id}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        {/* Creative Arts & Communications */}
-                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
-                                            Creative Arts & Communications
-                                        </h3>
-                                        <div className="department-grid">
-                                            {departments.slice(26, 30).map(dept => (
-                                                <div
-                                                    key={dept.id}
-                                                    className="department-card"
-                                                    onClick={() => {
-                                                        setStatementParts(prev => ({
-                                                            ...prev,
-                                                            department: dept.id
-                                                        }));
-                                                    }}
-                                                >
-                                                    <div className="dept-icon">{dept.icon}</div>
-                                                    <div className="dept-name">{dept.id}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        {/* Interdisciplinary Programs */}
-                                        <h3 style={{marginTop: '2rem', marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)', fontWeight: '600'}}>
-                                            Interdisciplinary Programs
-                                        </h3>
-                                        <div className="department-grid">
-                                            {departments.slice(30).map(dept => (
-                                                <div
-                                                    key={dept.id}
-                                                    className="department-card"
-                                                    onClick={() => {
-                                                        setStatementParts(prev => ({
-                                                            ...prev,
-                                                            department: dept.id
-                                                        }));
-                                                    }}
-                                                >
-                                                    <div className="dept-icon">{dept.icon}</div>
-                                                    <div className="dept-name">{dept.id}</div>
-                                                </div>
-                                            ))}
-                                        </div>
+                                            if (deptViewMode === 'alphabetical') {
+                                                // Alphabetical view
+                                                const sortedDepts = [...filteredDepts].sort((a, b) => a.id.localeCompare(b.id));
+                                                return (
+                                                    <>
+                                                        {deptSearch && (
+                                                            <p style={{
+                                                                fontSize: '0.9rem',
+                                                                color: 'var(--text-secondary)',
+                                                                marginBottom: '1rem'
+                                                            }}>
+                                                                {sortedDepts.length} department{sortedDepts.length !== 1 ? 's' : ''} found
+                                                            </p>
+                                                        )}
+                                                        <div className="department-grid">
+                                                            {sortedDepts.map(renderDeptCard)}
+                                                        </div>
+                                                        {sortedDepts.length === 0 && (
+                                                            <p style={{
+                                                                textAlign: 'center',
+                                                                color: 'var(--text-secondary)',
+                                                                marginTop: '2rem'
+                                                            }}>
+                                                                No departments match "{deptSearch}"
+                                                            </p>
+                                                        )}
+                                                    </>
+                                                );
+                                            } else {
+                                                // By School view
+                                                return (
+                                                    <>
+                                                        {deptSearch && (
+                                                            <p style={{
+                                                                fontSize: '0.9rem',
+                                                                color: 'var(--text-secondary)',
+                                                                marginBottom: '1rem'
+                                                            }}>
+                                                                {filteredDepts.length} department{filteredDepts.length !== 1 ? 's' : ''} found
+                                                            </p>
+                                                        )}
+                                                        {groups.map(group => {
+                                                            const groupDepts = departments.slice(group.start, group.end).filter(dept =>
+                                                                filteredDepts.includes(dept)
+                                                            );
+                                                            if (groupDepts.length === 0) return null;
+                                                            return (
+                                                                <div key={group.name}>
+                                                                    <h3 style={{
+                                                                        marginTop: '2rem',
+                                                                        marginBottom: '1rem',
+                                                                        fontSize: '1.1rem',
+                                                                        color: 'var(--text-secondary)',
+                                                                        fontWeight: '600'
+                                                                    }}>
+                                                                        {group.name}
+                                                                    </h3>
+                                                                    <div className="department-grid">
+                                                                        {groupDepts.map(renderDeptCard)}
+                                                                    </div>
+                                                                </div>
+                                                            );
+                                                        })}
+                                                        {filteredDepts.length === 0 && (
+                                                            <p style={{
+                                                                textAlign: 'center',
+                                                                color: 'var(--text-secondary)',
+                                                                marginTop: '2rem'
+                                                            }}>
+                                                                No departments match "{deptSearch}"
+                                                            </p>
+                                                        )}
+                                                    </>
+                                                );
+                                            }
+                                        })()}
                                     </div>
                                 ) : (
                                     <div style={{marginBottom: '2rem'}}>
