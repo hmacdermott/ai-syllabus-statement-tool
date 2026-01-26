@@ -88,7 +88,7 @@ For Africana Studies, WGSS, area studies programs, language emphasizes:
 
 ❌ **Empirical research** about what faculty actually need
 ❌ **Validation** by experts in these 40 fields
-❌ **Learning science evidence** about what AI policies "work"
+❌ **Learning science evidence** about what AI policies "work" (though guidance about *explaining* policy rationale is informed by motivation and academic integrity research—see References section below)
 ❌ **Professional association endorsement** (ACM, MLA, AHA, etc.)
 ❌ **Student testing** or outcomes data
 ❌ **Institutional context** specific to your university
@@ -111,6 +111,31 @@ The AI language generation drew on:
 - Field-specific research on learning outcomes
 - Systematic review of professional association statements
 - Analysis of actual syllabi with AI policies
+
+## Research Informing Tool Guidance
+
+While the discipline-specific content was generated through AI synthesis (see above), some **guidance about policy communication** is informed by educational research:
+
+### Why Explain Policy Rationale to Students
+
+**Self-Determination Theory Research:**
+- Wang et al. (2024) meta-analysis found that teacher autonomy support—including providing explanatory rationales for rules—strongly predicts students' need satisfaction and self-determined motivation
+- Niemiec & Ryan (2009) identified that providing rationales for policies supports students' internalization of why the work matters
+
+**Academic Integrity Research:**
+- Miller et al. (2023) literature review found that students often commit academic misconduct because they don't understand rules and expectations, or don't see the value in honest learning
+- Research emphasizes that intentionally aligning assignments to learning outcomes and clearly communicating that alignment to students is a key strategy for reducing misconduct
+- Positive framing about why integrity matters is more effective than emphasizing fear or punishment
+
+### References
+
+- **Miller, A. D., Griffiths, Z., Lockyer, L., & Mah, D. K. (2023).** Why students cheat and how understanding this can help reduce the frequency of academic misconduct in higher education: A literature review. *Journal of University Teaching & Learning Practice, 20*(6). https://pmc.ncbi.nlm.nih.gov/articles/PMC10653228/
+
+- **Niemiec, C. P., & Ryan, R. M. (2009).** Autonomy, competence, and relatedness in the classroom: Applying self-determination theory to educational practice. *Theory and Research in Education, 7*(2), 133-144. https://journals.sagepub.com/doi/10.1177/1477878509104318
+
+- **Ohio State University Center for Teaching and Learning.** A positive approach to academic integrity. https://teaching.resources.osu.edu/teaching-topics/positive-approach-academic
+
+- **Wang, L., Liu, Q., Du, X., & Liu, J. (2024).** Pathways to student motivation: A meta-analysis of antecedents of autonomous and controlled motivations. *Learning and Motivation, 87*, 102015. https://selfdeterminationtheory.org/wp-content/uploads/2024/06/2024_WangWangEtAl_MetaEdu.pdf
 
 ---
 

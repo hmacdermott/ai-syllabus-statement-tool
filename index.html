@@ -4709,6 +4709,75 @@
                             {footerTexts.transparency}
                         </p>
 
+                        {/* Research References */}
+                        <div style={{
+                            marginTop: '2rem',
+                            marginBottom: '1.5rem',
+                            padding: '1.5rem',
+                            background: 'var(--bg-secondary)',
+                            borderRadius: '8px',
+                            border: '1px solid var(--border-color)',
+                            maxWidth: '900px',
+                            margin: '2rem auto 1.5rem',
+                            textAlign: 'left'
+                        }}>
+                            <h3 style={{
+                                fontSize: '1rem',
+                                fontWeight: 600,
+                                marginBottom: '1rem',
+                                color: 'var(--text-primary)',
+                                textAlign: 'center'
+                            }}>Research Supporting This Tool's Guidance</h3>
+
+                            <div style={{
+                                fontSize: '0.85rem',
+                                lineHeight: '1.6',
+                                color: 'var(--text-secondary)'
+                            }}>
+                                <p style={{marginBottom: '0.75rem', fontStyle: 'italic'}}>
+                                    Some guidance in this tool is informed by educational research on student motivation and academic integrity:
+                                </p>
+
+                                <ul style={{
+                                    listStyle: 'none',
+                                    padding: 0,
+                                    margin: 0
+                                }}>
+                                    <li style={{marginBottom: '0.75rem'}}>
+                                        <strong style={{color: 'var(--text-primary)'}}>Wang, L., Liu, Q., Du, X., & Liu, J. (2024).</strong> Pathways to student motivation: A meta-analysis of antecedents of autonomous and controlled motivations. <em>Learning and Motivation, 87</em>, 102015.
+                                        <a href="https://selfdeterminationtheory.org/wp-content/uploads/2024/06/2024_WangWangEtAl_MetaEdu.pdf" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem'}}>
+                                            [PDF]
+                                        </a>
+                                    </li>
+
+                                    <li style={{marginBottom: '0.75rem'}}>
+                                        <strong style={{color: 'var(--text-primary)'}}>Niemiec, C. P., & Ryan, R. M. (2009).</strong> Autonomy, competence, and relatedness in the classroom: Applying self-determination theory to educational practice. <em>Theory and Research in Education, 7</em>(2), 133-144.
+                                        <a href="https://journals.sagepub.com/doi/10.1177/1477878509104318" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem'}}>
+                                            [Link]
+                                        </a>
+                                    </li>
+
+                                    <li style={{marginBottom: '0.75rem'}}>
+                                        <strong style={{color: 'var(--text-primary)'}}>Miller, A. D., Griffiths, Z., Lockyer, L., & Mah, D. K. (2023).</strong> Why students cheat and how understanding this can help reduce the frequency of academic misconduct in higher education: A literature review. <em>Journal of University Teaching & Learning Practice, 20</em>(6).
+                                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10653228/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem'}}>
+                                            [Link]
+                                        </a>
+                                    </li>
+
+                                    <li style={{marginBottom: '0'}}>
+                                        <strong style={{color: 'var(--text-primary)'}}>Ohio State University Center for Teaching and Learning.</strong> A positive approach to academic integrity.
+                                        <a href="https://teaching.resources.osu.edu/teaching-topics/positive-approach-academic" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem'}}>
+                                            [Link]
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <p style={{marginTop: '1rem', fontSize: '0.8rem', fontStyle: 'italic'}}>
+                                    Note: This research informs guidance about <strong>explaining policy rationale</strong>. The discipline-specific content (considerations, task analysis, policy templates) was generated through AI synthesis of disciplinary discourse patterns, not empirical research. See METHODOLOGY.md for full transparency about content generation.
+                                </p>
+                            </div>
+                        </div>
+
                         {/* 6. Copy Button */}
                         <button
                             onClick={copyTransparencyStatement}
@@ -5347,7 +5416,10 @@
 
                                 <h2 className="phase-question">Write Your Rationale</h2>
                                 <p className="phase-description">
-                                    Explain to students why this policy matters for their learning. Start by identifying the key tasks in your course.
+                                    Explain to students why this policy matters for their learning. Research shows that students are more motivated and engaged when they understand the rationale behind course policies (Wang et al., 2024). Explaining how your AI policy protects their learning increases student buy-in and reduces academic misconduct. Start by identifying the key tasks in your course.
+                                </p>
+                                <p className="phase-description" style={{fontSize: '0.85rem', fontStyle: 'italic', color: 'var(--text-secondary)', marginTop: '0.5rem'}}>
+                                    See references in the footer for research supporting this guidance.
                                 </p>
 
                                 {(() => {
@@ -5356,9 +5428,9 @@
 
                                     return dimensionalTasks.length > 0 && (
                                         <div className="dimensional-tasks-box" style={{marginTop: '2rem', marginBottom: '2rem'}}>
-                                            <p className="considerations-title">What are Core Tasks in Your Course?</p>
+                                            <p className="considerations-title">What are Core Activities in Your Course?</p>
                                             <p className="considerations-description" style={{marginBottom: '1.5rem'}}>
-                                                The below serves as examples of the kinds of tasks your students might complete. Consider whether each task should be completed entirely by students or if AI tools can assist students. Check the tasks most central to your learning goals—your selections will inform your rationale and appear in your final statement. Remember, you can edit any generated text to fit your course needs.
+                                                The below serves as examples of the kinds of activities your students might engage in. Consider whether each activity should be completed entirely by students or if AI tools can assist students. Check the activities most central to your learning goals—your selections will inform your rationale and appear in your final statement. Remember, you can edit any generated text to fit your course needs.
                                             </p>
                                             <div style={{
                                                 marginBottom: '2rem'
@@ -5370,7 +5442,7 @@
                                                     fontSize: '1rem',
                                                     textAlign: 'center'
                                                 }}>
-                                                    Task Categories
+                                                    Activity Categories
                                                 </div>
                                                 <div style={{
                                                     display: 'grid',
@@ -5405,7 +5477,7 @@
                                                             fontSize: '0.9rem',
                                                             lineHeight: '1.5'
                                                         }}>
-                                                            These tasks bypass essential learning and should typically be completed without AI assistance.
+                                                            These activities bypass essential learning and should typically be completed without AI assistance.
                                                         </p>
                                                     </div>
 
@@ -5461,7 +5533,7 @@
                                                             marginBottom: '0.75rem',
                                                             boxShadow: '0 2px 8px rgba(5, 150, 105, 0.3)'
                                                         }}>
-                                                            ✓ Support task - could use
+                                                            ✓ Support activity - could use
                                                         </div>
                                                         <p style={{
                                                             margin: 0,
@@ -5469,7 +5541,7 @@
                                                             fontSize: '0.9rem',
                                                             lineHeight: '1.5'
                                                         }}>
-                                                            These tasks don't bypass core learning and AI can assist students effectively.
+                                                            These activities don't bypass core learning and AI can assist students effectively.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -5499,7 +5571,7 @@
                                                                 textAlign: 'left',
                                                                 fontWeight: 600,
                                                                 width: '30%'
-                                                            }}>Task/Activity</th>
+                                                            }}>Activity</th>
                                                             <th style={{
                                                                 padding: '0.75rem',
                                                                 textAlign: 'left',
@@ -5524,7 +5596,7 @@
                                                             const guidanceLabels = {
                                                                 'core-skill': 'Core skill - probably shouldn\'t',
                                                                 'context-dependent': 'Context-dependent',
-                                                                'support-task': 'Support task - could use'
+                                                                'support-task': 'Support activity - could use'
                                                             };
 
                                                             return (
@@ -5624,7 +5696,7 @@
                                                     fontSize: '0.9rem',
                                                     color: 'var(--text-secondary)'
                                                 }}>
-                                                    You marked {checkedTasks.length} {checkedTasks.length === 1 ? 'task' : 'tasks'} as central to your course. {coreSkillTasks.length > 0 ? `Consider explaining in your rationale why the ${coreSkillTasks.length === 1 ? 'core skill requires' : 'core skills require'} direct practice.` : 'Consider explaining your approach in the rationale.'}
+                                                    You marked {checkedTasks.length} {checkedTasks.length === 1 ? 'activity' : 'activities'} as central to your course. {coreSkillTasks.length > 0 ? `Consider explaining in your rationale why the ${coreSkillTasks.length === 1 ? 'core skill requires' : 'core skills require'} direct practice.` : 'Consider explaining your approach in the rationale.'}
                                                 </p>
                                                 {coreSkillTasks.length > 0 && (
                                                     <div style={{marginBottom: '0.5rem'}}>
@@ -5641,7 +5713,7 @@
                                                 {contextTasks.length > 0 && (
                                                     <div style={{marginBottom: '0.5rem'}}>
                                                         <div style={{fontSize: '0.85rem', fontWeight: 600, color: theme === 'dark' ? '#60a5fa' : '#3b82f6', marginBottom: '0.25rem'}}>
-                                                            Context-dependent tasks:
+                                                            Context-dependent activities:
                                                         </div>
                                                         <ul style={{margin: '0', paddingLeft: '1.5rem', fontSize: '0.9rem'}}>
                                                             {contextTasks.map((task, idx) => (
@@ -5653,7 +5725,7 @@
                                                 {supportTasks.length > 0 && (
                                                     <div>
                                                         <div style={{fontSize: '0.85rem', fontWeight: 600, color: theme === 'dark' ? '#10b981' : '#059669', marginBottom: '0.25rem'}}>
-                                                            Support tasks where AI can help:
+                                                            Support activities where AI can help:
                                                         </div>
                                                         <ul style={{margin: '0', paddingLeft: '1.5rem', fontSize: '0.9rem'}}>
                                                             {supportTasks.map((task, idx) => (
