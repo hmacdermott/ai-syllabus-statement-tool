@@ -5671,36 +5671,30 @@
                                     ← Back to rationale
                                 </button>
 
-                                <div className="documentation-options">
-                                    <div className="doc-option" onClick={() => setDocOption('none')}>
-                                        <input type="radio" checked={docOption === 'none'} readOnly />
-                                        <div>
-                                            <div className="doc-option-title">No Documentation</div>
-                                            <div className="doc-option-desc">Don't include documentation requirements in your statement</div>
-                                        </div>
+                                <div className="policy-choices">
+                                    <div className="policy-card" onClick={() => {
+                                        setDocOption('none');
+                                        handleDocumentationNext(docTexts['none']);
+                                    }}>
+                                        <h3>📝 No Documentation</h3>
+                                        <p>Don't include documentation requirements in your statement</p>
                                     </div>
 
-                                    <div className="doc-option" onClick={() => setDocOption('encouraged')}>
-                                        <input type="radio" checked={docOption === 'encouraged'} readOnly />
-                                        <div>
-                                            <div className="doc-option-title">Encouraged (Optional)</div>
-                                            <div className="doc-option-desc">Students are encouraged but not required to document AI use</div>
-                                        </div>
+                                    <div className="policy-card" onClick={() => {
+                                        setDocOption('encouraged');
+                                        handleDocumentationNext(docTexts['encouraged']);
+                                    }}>
+                                        <h3>💭 Encouraged (Optional)</h3>
+                                        <p>Students are encouraged but not required to document AI use</p>
                                     </div>
 
-                                    <div className="doc-option" onClick={() => setDocOption('required')}>
-                                        <input type="radio" checked={docOption === 'required'} readOnly />
-                                        <div>
-                                            <div className="doc-option-title">Required</div>
-                                            <div className="doc-option-desc">Students must document AI tool use with specific details</div>
-                                        </div>
+                                    <div className="policy-card" onClick={() => {
+                                        setDocOption('required');
+                                        handleDocumentationNext(docTexts['required']);
+                                    }}>
+                                        <h3>✅ Required</h3>
+                                        <p>Students must document AI tool use with specific details</p>
                                     </div>
-                                </div>
-
-                                <div style={{marginTop: '2rem'}}>
-                                    <button className="primary" onClick={() => handleDocumentationNext(docTexts[docOption])}>
-                                        Continue →
-                                    </button>
                                 </div>
                             </div>
                         </div>
