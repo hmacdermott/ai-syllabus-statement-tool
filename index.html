@@ -4007,13 +4007,6 @@
                         </div>
                     )}
 
-                    {statementParts.rationale && (
-                        <div className="statement-section rationale">
-                            <div className="section-label">Rationale</div>
-                            <div className="section-text">{statementParts.rationale}</div>
-                        </div>
-                    )}
-
                     {coreSkillTasks.length > 0 && (
                         <div className="statement-section core-activities">
                             <div className="section-label">Core Activities in This Course</div>
@@ -4025,6 +4018,13 @@
                                     ))}
                                 </ul>
                             </div>
+                        </div>
+                    )}
+
+                    {statementParts.rationale && (
+                        <div className="statement-section rationale">
+                            <div className="section-label">Rationale</div>
+                            <div className="section-text">{statementParts.rationale}</div>
                         </div>
                     )}
 
