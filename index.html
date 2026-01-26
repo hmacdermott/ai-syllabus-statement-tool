@@ -5021,6 +5021,106 @@
                                     Choose the statement that best aligns with your preference for AI use in your course.
                                 </p>
 
+                                <div style={{
+                                    background: 'var(--bg-secondary)',
+                                    border: '2px solid var(--border-color)',
+                                    borderRadius: '8px',
+                                    padding: '1.5rem',
+                                    marginBottom: '2rem'
+                                }}>
+                                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem'}}>
+                                        <strong style={{color: 'var(--text-primary)'}}>Introduction Text</strong>
+                                        {!isEditing && (
+                                            <button
+                                                onClick={() => {
+                                                    setIsEditing(true);
+                                                    setEditText(statementParts.intro);
+                                                }}
+                                                style={{
+                                                    padding: '0.5rem 1rem',
+                                                    background: 'transparent',
+                                                    color: 'var(--primary)',
+                                                    border: '2px solid var(--primary)',
+                                                    borderRadius: '6px',
+                                                    cursor: 'pointer',
+                                                    fontWeight: 600,
+                                                    fontSize: '0.85rem'
+                                                }}
+                                            >
+                                                Edit
+                                            </button>
+                                        )}
+                                    </div>
+                                    {!isEditing ? (
+                                        <div style={{
+                                            fontSize: '0.95rem',
+                                            lineHeight: '1.6',
+                                            color: 'var(--text-secondary)',
+                                            whiteSpace: 'pre-wrap'
+                                        }}>
+                                            {statementParts.intro}
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <textarea
+                                                value={editText}
+                                                onChange={(e) => setEditText(e.target.value)}
+                                                style={{
+                                                    width: '100%',
+                                                    minHeight: '100px',
+                                                    padding: '0.75rem',
+                                                    fontSize: '0.95rem',
+                                                    lineHeight: '1.6',
+                                                    border: '2px solid var(--border-color)',
+                                                    borderRadius: '6px',
+                                                    fontFamily: 'inherit',
+                                                    marginBottom: '0.75rem',
+                                                    background: 'var(--bg-primary)',
+                                                    color: 'var(--text-primary)'
+                                                }}
+                                            />
+                                            <div style={{display: 'flex', gap: '0.75rem'}}>
+                                                <button
+                                                    onClick={() => {
+                                                        setStatementParts(prev => ({
+                                                            ...prev,
+                                                            intro: editText
+                                                        }));
+                                                        setIsEditing(false);
+                                                    }}
+                                                    style={{
+                                                        padding: '0.5rem 1rem',
+                                                        background: 'var(--primary)',
+                                                        color: 'white',
+                                                        border: 'none',
+                                                        borderRadius: '6px',
+                                                        cursor: 'pointer',
+                                                        fontWeight: 600,
+                                                        fontSize: '0.85rem'
+                                                    }}
+                                                >
+                                                    Save
+                                                </button>
+                                                <button
+                                                    onClick={() => setIsEditing(false)}
+                                                    style={{
+                                                        padding: '0.5rem 1rem',
+                                                        background: 'transparent',
+                                                        color: 'var(--text-secondary)',
+                                                        border: '2px solid var(--border-color)',
+                                                        borderRadius: '6px',
+                                                        cursor: 'pointer',
+                                                        fontWeight: 600,
+                                                        fontSize: '0.85rem'
+                                                    }}
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+
                                 <div className="policy-choices">
                                     <div className="policy-card" onClick={() => handlePolicyLevelSelect('no-ai')}>
                                         <h3>🚫 No AI</h3>
