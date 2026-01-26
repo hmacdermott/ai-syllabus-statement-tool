@@ -614,6 +614,38 @@
                         why: "Tracing how code executes line-by-line builds mental models of program behavior. This skill is essential for debugging and optimization. AI can explain execution, but reading an explanation doesn't build the same mental model as tracing it yourself."
                     }
                 ],
+                dimensionalTasks: [
+                    {
+                        taskName: "Writing initial code solutions",
+                        guidance: "core-skill",
+                        reasoning: "Problem decomposition and algorithmic thinking develop through the struggle of translating ideas to code. AI-generated solutions bypass this cognitive work."
+                    },
+                    {
+                        taskName: "Debugging logic errors",
+                        guidance: "core-skill",
+                        reasoning: "Debugging builds systematic reasoning about program behavior. Tracing execution, forming hypotheses, and testing fixes are core CS skills."
+                    },
+                    {
+                        taskName: "Writing test cases",
+                        guidance: "core-skill",
+                        reasoning: "Identifying edge cases and designing tests requires understanding the problem space. This thinking shouldn't be outsourced to AI."
+                    },
+                    {
+                        taskName: "Understanding error messages",
+                        guidance: "context-dependent",
+                        reasoning: "Students should learn to read error messages, but AI explanations can scaffold understanding when encountering genuinely cryptic compiler errors."
+                    },
+                    {
+                        taskName: "Syntax error checking",
+                        guidance: "support-task",
+                        reasoning: "Syntax is low-level and can distract from learning higher-order concepts. AI can help students focus on logic and design rather than semicolons."
+                    },
+                    {
+                        taskName: "Code documentation",
+                        guidance: "support-task",
+                        reasoning: "AI can draft comments/docstrings, but students should review for accuracy. Learning to document is valuable, but AI can speed this without bypassing core learning."
+                    }
+                ],
                 intro: "AI coding assistants like GitHub Copilot and ChatGPT can generate code, debug programs, and explain algorithms. These tools are becoming standard in professional software development practice. This policy clarifies how these tools relate to your learning goals in this course.",
                 context: "In computer science, the ability to think algorithmically, design systems, and debug independently are foundational skills that require sustained practice and struggle.",
                 noAI: "AI cannot develop your ability to break problems into logical steps, design algorithms from first principles, or debug code by tracing execution. These cognitive skills emerge through practice, failure, and revision—experiences AI tools would bypass.",
