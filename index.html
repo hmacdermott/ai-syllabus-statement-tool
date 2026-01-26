@@ -4095,20 +4095,6 @@
                         </div>
                     )}
 
-                    {coreSkillTasks.length > 0 && (
-                        <div className="statement-section core-activities">
-                            <div className="section-label">Core Activities in This Course</div>
-                            <div className="section-text">
-                                The following activities are central to your learning goals in this course. To develop essential skills, these should be completed without AI assistance:
-                                <ul style={{marginTop: '0.5rem', marginBottom: '0', paddingLeft: '1.5rem'}}>
-                                    {coreSkillTasks.map((task, idx) => (
-                                        <li key={idx} style={{marginBottom: '0.25rem'}}>{task.taskName}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    )}
-
                     {statementParts.rationale && (
                         <div className="statement-section rationale">
                             <div className="section-label">Rationale</div>
@@ -4197,6 +4183,20 @@
                                     </div>
                                 </>
                             )}
+                        </div>
+                    )}
+
+                    {coreSkillTasks.length > 0 && (
+                        <div className="statement-section core-activities">
+                            <div className="section-label">Core Activities in This Course</div>
+                            <div className="section-text">
+                                The following activities are central to your learning goals in this course. To develop essential skills, these should be completed without AI assistance:
+                                <ul style={{marginTop: '0.5rem', marginBottom: '0', paddingLeft: '1.5rem'}}>
+                                    {coreSkillTasks.map((task, idx) => (
+                                        <li key={idx} style={{marginBottom: '0.25rem'}}>{task.taskName}</li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     )}
 
