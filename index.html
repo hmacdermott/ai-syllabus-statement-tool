@@ -4116,7 +4116,7 @@
                     try {
                         const parsed = JSON.parse(saved);
                         if (parsed.version === 'progressive') {
-                            const shouldLoad = window.confirm('Load your saved draft?\n\n(Click OK to resume, or Cancel to start fresh)');
+                            const shouldLoad = window.confirm('Load your saved draft?\n\n(OK = Resume your draft, Cancel = Start new)');
                             if (shouldLoad) {
                                 setStatementParts(parsed.statementParts);
                                 setPhase(parsed.phase);
@@ -4160,7 +4160,7 @@
             const toggleFont = () => setFontStyle(fontStyle === 'serif' ? 'sans-serif' : 'serif');
 
             const clearDraft = () => {
-                if (window.confirm('Start over? This will delete your saved progress.\n\n(Click OK to start fresh, or Cancel to keep working)')) {
+                if (window.confirm('Start over? This will delete your saved progress.\n\n(OK = Delete and restart, Cancel = Keep working)')) {
                     localStorage.removeItem('syllabusStatementDraft');
                     window.location.reload();
                 }
