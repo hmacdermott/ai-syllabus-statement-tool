@@ -4042,13 +4042,6 @@
             const [selectedTasks, setSelectedTasks] = useState([]);
             const [deptSearch, setDeptSearch] = useState('');
             const [deptViewMode, setDeptViewMode] = useState('by-school'); // 'by-school' or 'alphabetical'
-            const [showDecisionTree, setShowDecisionTree] = useState(true);
-            const [decisionTreeAnswers, setDecisionTreeAnswers] = useState({
-                handsPractice: false,
-                concernBypass: false,
-                professionalTool: false
-            });
-
             // Ref for scrolling to top
             const pageTopRef = useRef(null);
 
@@ -4275,33 +4268,6 @@
                 }));
                 setIsEditing(false);
                 setShowPolicyChoices(true);
-            };
-
-            const getRecommendation = () => {
-                const { handsPractice, concernBypass, professionalTool } = decisionTreeAnswers;
-
-                // All three checked or first two strongly checked
-                if (handsPractice && concernBypass && professionalTool) {
-                    return 'limited';
-                }
-                // Strong concern about bypassing + practice focus, no professional need
-                if (handsPractice && concernBypass && !professionalTool) {
-                    return 'no-ai';
-                }
-                // Professional tool emphasis without major concerns
-                if (professionalTool && !concernBypass) {
-                    return 'ok';
-                }
-                // Only professional tool checked
-                if (professionalTool && !handsPractice && !concernBypass) {
-                    return 'required';
-                }
-                // Default to limited if only some checked
-                if (handsPractice || concernBypass) {
-                    return 'limited';
-                }
-                // Nothing checked
-                return 'ok';
             };
 
             const copyTransparencyStatement = () => {
@@ -5199,95 +5165,6 @@
                                         <p className="phase-description">
                                             Choose the statement that best aligns with your preference for AI use in your course.
                                         </p>
-
-                                        {showDecisionTree && (
-                                            <div style={{
-                                                background: 'var(--bg-secondary)',
-                                                padding: '1.5rem',
-                                                borderRadius: '12px',
-                                                marginBottom: '2rem',
-                                                border: '2px solid var(--border)'
-                                            }}>
-                                                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem'}}>
-                                                    <h3 style={{fontSize: '1.1rem', margin: 0, color: 'var(--text-primary)'}}>
-                                                        Quick assessment (30 seconds)
-                                                    </h3>
-                                                    <button
-                                                        onClick={() => setShowDecisionTree(false)}
-                                                        style={{
-                                                            background: 'none',
-                                                            border: 'none',
-                                                            color: 'var(--text-secondary)',
-                                                            cursor: 'pointer',
-                                                            fontSize: '0.85rem',
-                                                            textDecoration: 'underline'
-                                                        }}
-                                                    >
-                                                        Skip - I'll choose myself
-                                                    </button>
-                                                </div>
-
-                                                <div style={{marginBottom: '1rem'}}>
-                                                    <label style={{display: 'flex', alignItems: 'start', gap: '0.75rem', marginBottom: '0.75rem', cursor: 'pointer'}}>
-                                                        <input
-                                                            type="checkbox"
-                                                            id="dt-hands-practice"
-                                                            name="dt-hands-practice"
-                                                            checked={decisionTreeAnswers.handsPractice}
-                                                            onChange={(e) => setDecisionTreeAnswers(prev => ({...prev, handsPractice: e.target.checked}))}
-                                                            style={{marginTop: '0.25rem', cursor: 'pointer'}}
-                                                        />
-                                                        <span style={{lineHeight: '1.5', color: 'var(--text-primary)'}}>
-                                                            Students need extensive hands-on practice with core skills
-                                                        </span>
-                                                    </label>
-
-                                                    <label style={{display: 'flex', alignItems: 'start', gap: '0.75rem', marginBottom: '0.75rem', cursor: 'pointer'}}>
-                                                        <input
-                                                            type="checkbox"
-                                                            id="dt-concern-bypass"
-                                                            name="dt-concern-bypass"
-                                                            checked={decisionTreeAnswers.concernBypass}
-                                                            onChange={(e) => setDecisionTreeAnswers(prev => ({...prev, concernBypass: e.target.checked}))}
-                                                            style={{marginTop: '0.25rem', cursor: 'pointer'}}
-                                                        />
-                                                        <span style={{lineHeight: '1.5', color: 'var(--text-primary)'}}>
-                                                            I'm concerned AI might bypass essential learning
-                                                        </span>
-                                                    </label>
-
-                                                    <label style={{display: 'flex', alignItems: 'start', gap: '0.75rem', marginBottom: '0.75rem', cursor: 'pointer'}}>
-                                                        <input
-                                                            type="checkbox"
-                                                            id="dt-professional-tool"
-                                                            name="dt-professional-tool"
-                                                            checked={decisionTreeAnswers.professionalTool}
-                                                            onChange={(e) => setDecisionTreeAnswers(prev => ({...prev, professionalTool: e.target.checked}))}
-                                                            style={{marginTop: '0.25rem', cursor: 'pointer'}}
-                                                        />
-                                                        <span style={{lineHeight: '1.5', color: 'var(--text-primary)'}}>
-                                                            Students should learn to use AI as a professional tool
-                                                        </span>
-                                                    </label>
-                                                </div>
-
-                                                {(decisionTreeAnswers.handsPractice || decisionTreeAnswers.concernBypass || decisionTreeAnswers.professionalTool) && (
-                                                    <div style={{
-                                                        background: 'rgba(59, 130, 246, 0.1)',
-                                                        padding: '1rem',
-                                                        borderLeft: '3px solid var(--primary)'
-                                                    }}>
-                                                        <strong style={{color: 'var(--primary)'}}>Based on your responses:</strong>{' '}
-                                                        <span style={{color: 'var(--text-primary)'}}>
-                                                            {getRecommendation() === 'no-ai' && '🚫 No AI might fit your course'}
-                                                            {getRecommendation() === 'limited' && '⚠️ Limited AI might fit your course'}
-                                                            {getRecommendation() === 'ok' && '✅ AI OK might fit your course'}
-                                                            {getRecommendation() === 'required' && '⭐ AI Required might fit your course'}
-                                                        </span>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )}
 
                                         <div className="policy-choices">
                                             <div className="policy-card" onClick={() => handlePolicyLevelSelect('no-ai')}>
