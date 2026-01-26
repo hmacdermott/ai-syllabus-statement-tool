@@ -3299,6 +3299,11 @@
                 const considerations = deptLang?.considerations || null;
                 const dimensionalTasks = deptLang?.dimensionalTasks || [];
 
+                console.log('🔍 DEBUG - selectedDept:', selectedDept);
+                console.log('🔍 DEBUG - deptLang exists:', !!deptLang);
+                console.log('🔍 DEBUG - dimensionalTasks:', dimensionalTasks);
+                console.log('🔍 DEBUG - dimensionalTasks.length:', dimensionalTasks.length);
+
                 return (
                     <div>
                         <div ref={pageTopRef} style={{position: 'absolute', top: 0}} />
