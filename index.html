@@ -5482,7 +5482,9 @@
                                                         e.currentTarget.style.transform = 'translateY(0)';
                                                         e.currentTarget.style.boxShadow = 'none';
                                                     }}
-                                                    onClick={() => handleAcceptRationale(alt)}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                    }}
                                                 >
                                                     <div style={{
                                                         fontSize: '0.95rem',
@@ -5494,14 +5496,47 @@
                                                     </div>
                                                     <div style={{
                                                         fontSize: '0.85rem',
-                                                        color: 'var(--primary)',
-                                                        fontWeight: '600',
                                                         display: 'flex',
                                                         alignItems: 'center',
-                                                        gap: '0.5rem'
+                                                        gap: '1rem'
                                                     }}>
-                                                        <span>Click to use this text</span>
-                                                        <span>→</span>
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                handleAcceptRationale(alt);
+                                                            }}
+                                                            style={{
+                                                                padding: '0.5rem 1rem',
+                                                                background: 'var(--primary)',
+                                                                color: 'white',
+                                                                border: 'none',
+                                                                borderRadius: '6px',
+                                                                cursor: 'pointer',
+                                                                fontWeight: 600,
+                                                                fontSize: '0.85rem'
+                                                            }}
+                                                        >
+                                                            Use this text
+                                                        </button>
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setIsEditing(true);
+                                                                setEditText(alt);
+                                                            }}
+                                                            style={{
+                                                                padding: '0.5rem 1rem',
+                                                                background: 'transparent',
+                                                                color: 'var(--primary)',
+                                                                border: '2px solid var(--primary)',
+                                                                borderRadius: '6px',
+                                                                cursor: 'pointer',
+                                                                fontWeight: 600,
+                                                                fontSize: '0.85rem'
+                                                            }}
+                                                        >
+                                                            Edit first
+                                                        </button>
                                                     </div>
                                                 </div>
                                             ))}
