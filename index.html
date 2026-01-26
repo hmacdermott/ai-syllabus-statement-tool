@@ -4574,7 +4574,7 @@
             // References component - displays research citations
             const References = () => {
                 return (
-                    <div className="container" style={{padding: '2rem 1rem'}}>
+                    <div id="references" className="container" style={{padding: '2rem 1rem'}}>
                         <div style={{
                             padding: '1.5rem',
                             background: 'var(--bg-secondary)',
@@ -4585,20 +4585,20 @@
                             textAlign: 'left'
                         }}>
                             <h3 style={{
-                                fontSize: '1rem',
+                                fontSize: '1.1rem',
                                 fontWeight: 600,
                                 marginBottom: '1rem',
                                 color: 'var(--text-primary)',
                                 textAlign: 'center'
-                            }}>Research Supporting This Tool's Guidance</h3>
+                            }}>References</h3>
 
                             <div style={{
                                 fontSize: '0.85rem',
                                 lineHeight: '1.6',
                                 color: 'var(--text-secondary)'
                             }}>
-                                <p style={{marginBottom: '0.75rem', fontStyle: 'italic'}}>
-                                    Some guidance in this tool is informed by educational research on student motivation and academic integrity:
+                                <p style={{marginBottom: '1rem', color: 'var(--text-primary)'}}>
+                                    Guidance about <strong>explaining policy rationale to students</strong> draws on educational research in <em>student motivation</em> and <em>academic integrity</em>:
                                 </p>
 
                                 <ul style={{
@@ -4606,37 +4606,37 @@
                                     padding: 0,
                                     margin: 0
                                 }}>
-                                    <li style={{marginBottom: '0.75rem'}}>
-                                        <strong style={{color: 'var(--text-primary)'}}>Wang, L., Liu, Q., Du, X., & Liu, J. (2024).</strong> Pathways to student motivation: A meta-analysis of antecedents of autonomous and controlled motivations. <em>Learning and Motivation, 87</em>, 102015.
-                                        <a href="https://selfdeterminationtheory.org/wp-content/uploads/2024/06/2024_WangWangEtAl_MetaEdu.pdf" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem'}}>
+                                    <li style={{marginBottom: '0.75rem', lineHeight: '1.7'}}>
+                                        <strong style={{color: 'var(--text-primary)'}}>Wang, L., Liu, Q., Du, X., & Liu, J. (2024).</strong> Pathways to student motivation: A meta-analysis of antecedents of autonomous and controlled motivations. <em>Learning and Motivation</em>, <em>87</em>, 102015.
+                                        <a href="https://selfdeterminationtheory.org/wp-content/uploads/2024/06/2024_WangWangEtAl_MetaEdu.pdf" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem', fontWeight: 600}}>
                                             [PDF]
                                         </a>
                                     </li>
 
-                                    <li style={{marginBottom: '0.75rem'}}>
-                                        <strong style={{color: 'var(--text-primary)'}}>Niemiec, C. P., & Ryan, R. M. (2009).</strong> Autonomy, competence, and relatedness in the classroom: Applying self-determination theory to educational practice. <em>Theory and Research in Education, 7</em>(2), 133-144.
-                                        <a href="https://journals.sagepub.com/doi/10.1177/1477878509104318" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem'}}>
+                                    <li style={{marginBottom: '0.75rem', lineHeight: '1.7'}}>
+                                        <strong style={{color: 'var(--text-primary)'}}>Niemiec, C. P., & Ryan, R. M. (2009).</strong> Autonomy, competence, and relatedness in the classroom: Applying self-determination theory to educational practice. <em>Theory and Research in Education</em>, <em>7</em>(2), 133-144.
+                                        <a href="https://journals.sagepub.com/doi/10.1177/1477878509104318" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem', fontWeight: 600}}>
                                             [Link]
                                         </a>
                                     </li>
 
-                                    <li style={{marginBottom: '0.75rem'}}>
-                                        <strong style={{color: 'var(--text-primary)'}}>Miller, A. D., Griffiths, Z., Lockyer, L., & Mah, D. K. (2023).</strong> Why students cheat and how understanding this can help reduce the frequency of academic misconduct in higher education: A literature review. <em>Journal of University Teaching & Learning Practice, 20</em>(6).
-                                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10653228/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem'}}>
+                                    <li style={{marginBottom: '0.75rem', lineHeight: '1.7'}}>
+                                        <strong style={{color: 'var(--text-primary)'}}>Miller, A. D., Griffiths, Z., Lockyer, L., & Mah, D. K. (2023).</strong> Why students cheat and how understanding this can help reduce the frequency of academic misconduct in higher education: A literature review. <em>Journal of University Teaching & Learning Practice</em>, <em>20</em>(6).
+                                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10653228/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem', fontWeight: 600}}>
                                             [Link]
                                         </a>
                                     </li>
 
-                                    <li style={{marginBottom: '0'}}>
+                                    <li style={{marginBottom: '0', lineHeight: '1.7'}}>
                                         <strong style={{color: 'var(--text-primary)'}}>Ohio State University Center for Teaching and Learning.</strong> A positive approach to academic integrity.
-                                        <a href="https://teaching.resources.osu.edu/teaching-topics/positive-approach-academic" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem'}}>
+                                        <a href="https://teaching.resources.osu.edu/teaching-topics/positive-approach-academic" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem', fontWeight: 600}}>
                                             [Link]
                                         </a>
                                     </li>
                                 </ul>
 
-                                <p style={{marginTop: '1rem', fontSize: '0.8rem', fontStyle: 'italic'}}>
-                                    Note: This research informs guidance about <strong>explaining policy rationale</strong>. The discipline-specific content (considerations, task analysis, policy templates) was generated through AI synthesis of disciplinary discourse patterns, not empirical research. See METHODOLOGY.md for full transparency about content generation.
+                                <p style={{marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px solid var(--border-color)', fontSize: '0.8rem', fontStyle: 'italic', color: 'var(--text-secondary)'}}>
+                                    <strong>Note:</strong> The <em>discipline-specific content</em> (considerations, activity analysis, policy templates) was generated through AI synthesis of disciplinary discourse patterns, not empirical research. See <strong>METHODOLOGY.md</strong> for full transparency.
                                 </p>
                             </div>
                         </div>
@@ -5423,10 +5423,7 @@
 
                                 <h2 className="phase-question">Write Your Rationale</h2>
                                 <p className="phase-description">
-                                    Explain to students why this policy matters for their learning. Research shows that students are more motivated and engaged when they understand the rationale behind course policies (Wang et al., 2024). Explaining how your AI policy protects their learning increases student buy-in and reduces academic misconduct. Start by identifying the key tasks in your course.
-                                </p>
-                                <p className="phase-description" style={{fontSize: '0.85rem', fontStyle: 'italic', color: 'var(--text-secondary)', marginTop: '0.5rem'}}>
-                                    See references in the footer for research supporting this guidance.
+                                    Explain to students why this policy matters for their learning. Research shows that students are more motivated and engaged when they understand the rationale behind course policies (<a href="#references" style={{color: 'var(--primary)', textDecoration: 'underline'}}>Wang et al., 2024</a>). Explaining how your AI policy protects their learning increases student buy-in and reduces academic misconduct. Start by identifying the key tasks in your course.
                                 </p>
 
                                 {(() => {
