@@ -4160,7 +4160,7 @@
             const toggleFont = () => setFontStyle(fontStyle === 'serif' ? 'sans-serif' : 'serif');
 
             const clearDraft = () => {
-                if (window.confirm('Are you sure you want to start over?\n\nThis will delete your saved progress. Click OK to start fresh, or Cancel to keep working on your current statement.')) {
+                if (window.confirm('Are you sure you want to start over? This will delete your saved progress.\n\nClick OK to start fresh, or Cancel to keep working on your current statement.')) {
                     localStorage.removeItem('syllabusStatementDraft');
                     window.location.reload();
                 }
