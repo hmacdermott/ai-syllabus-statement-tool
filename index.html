@@ -5446,7 +5446,7 @@
                                                     fontSize: '0.9rem',
                                                     color: 'var(--text-secondary)'
                                                 }}>
-                                                    You marked {checkedTasks.length} {checkedTasks.length === 1 ? 'task' : 'tasks'} as central to your course. Consider explaining in your rationale why {coreSkillTasks.length > 0 ? 'these skills require direct practice' : 'you chose this approach'}.
+                                                    You marked {checkedTasks.length} {checkedTasks.length === 1 ? 'task' : 'tasks'} as central to your course. {coreSkillTasks.length > 0 ? `Consider explaining in your rationale why the ${coreSkillTasks.length === 1 ? 'core skill requires' : 'core skills require'} direct practice.` : 'Consider explaining your approach in the rationale.'}
                                                 </p>
                                                 {coreSkillTasks.length > 0 && (
                                                     <div style={{marginBottom: '0.5rem'}}>
