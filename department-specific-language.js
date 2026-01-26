@@ -64,6 +64,38 @@ const departmentSpecificLanguage = {
             "Are students building pattern recognition through struggle?",
             "Can they solve problems without procedural shortcuts?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Constructing proofs",
+                guidance: "core-skill",
+                reasoning: "Developing logical arguments, choosing proof strategies, and writing clear mathematical reasoning requires practice that AI would bypass."
+            },
+            {
+                taskName: "Solving problems by hand",
+                guidance: "core-skill",
+                reasoning: "Working through calculations builds number sense, algebraic intuition, and pattern recognition. AI solutions bypass this developmental process."
+            },
+            {
+                taskName: "Recognizing problem types",
+                guidance: "core-skill",
+                reasoning: "Learning to identify what method or theorem applies requires mathematical thinking that develops through solving varied problems."
+            },
+            {
+                taskName: "Checking computational work",
+                guidance: "context-dependent",
+                reasoning: "Students should check their own work to build error-detection skills, but AI verification can be appropriate for complex computations after attempting solutions."
+            },
+            {
+                taskName: "Using computational tools (Mathematica, etc.)",
+                guidance: "support-task",
+                reasoning: "After learning concepts by hand, computational tools for complex calculations and visualizations are appropriate and professionally relevant."
+            },
+            {
+                taskName: "LaTeX formatting",
+                guidance: "support-task",
+                reasoning: "Mathematical typesetting is technical. AI can help with LaTeX syntax while students focus on mathematical content."
+            }
+        ],
         intro: "AI tools can solve equations, generate proofs, and explain mathematical concepts—but mathematics learning isn't about getting correct answers. It's about developing the reasoning patterns and proof techniques that allow you to solve novel problems. This policy protects the struggle that builds mathematical thinking while acknowledging AI's growing role in computational mathematics.",
         context: "In mathematics, proof construction, logical reasoning, and problem-solving intuition develop through working problems by hand and wrestling with abstract concepts.",
         noAI: "AI cannot develop your ability to construct mathematical proofs, recognize when theorems apply, or build the pattern recognition that lets you approach unfamiliar problems. These capacities emerge from sustained engagement with mathematical reasoning.",
@@ -80,6 +112,38 @@ const departmentSpecificLanguage = {
             "Are students checking dimensional analysis independently?",
             "Can they estimate whether solutions make physical sense?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Solving physics problems",
+                guidance: "core-skill",
+                reasoning: "Setting up problems, choosing appropriate equations, and reasoning through solutions builds physical intuition that AI solutions would bypass."
+            },
+            {
+                taskName: "Laboratory measurement and technique",
+                guidance: "core-skill",
+                reasoning: "Learning to use equipment, take measurements, and understand experimental uncertainty requires hands-on practice that AI can't provide."
+            },
+            {
+                taskName: "Developing physical intuition",
+                guidance: "core-skill",
+                reasoning: "Understanding why systems behave as they do—estimating orders of magnitude, recognizing limiting cases—requires practice reasoning about physical systems."
+            },
+            {
+                taskName: "Computational modeling",
+                guidance: "context-dependent",
+                reasoning: "Students should understand the physics being modeled, but AI assistance with coding simulations can be appropriate once they understand the concepts."
+            },
+            {
+                taskName: "Data analysis and graphing",
+                guidance: "support-task",
+                reasoning: "After students understand how to analyze data, AI tools can help with visualization and fitting, allowing them to focus on physical interpretation."
+            },
+            {
+                taskName: "Looking up physical constants",
+                guidance: "support-task",
+                reasoning: "Finding reference data is mechanical. AI can quickly provide constants and formulas while students focus on solving problems."
+            }
+        ],
         intro: "AI tools can solve physics problems, perform engineering calculations, and generate design solutions. In engineering practice, computational tools are essential—but the judgment about which principles apply, whether results make physical sense, and how to troubleshoot unexpected outcomes requires deep conceptual understanding that AI cannot replace.",
         context: "In physics and engineering, developing physical intuition, experimental design skills, and the ability to validate results through estimation and reasoning are irreplaceable professional competencies.",
         noAI: "AI cannot develop your physical intuition about whether results make sense, your ability to set up free-body diagrams or circuit analyses from first principles, or your capacity to troubleshoot when calculations don't match observations. These skills require repeated practice with foundational problems.",
@@ -95,6 +159,38 @@ const departmentSpecificLanguage = {
             "Does AI hide biases in data or models?",
             "Are students implementing algorithms from scratch first?",
             "Can they interpret results with appropriate uncertainty?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Implementing algorithms from scratch",
+                guidance: "core-skill",
+                reasoning: "You don't understand gradient descent or k-means until you've coded it yourself. Libraries abstract away the learning."
+            },
+            {
+                taskName: "Selecting appropriate methods",
+                guidance: "core-skill",
+                reasoning: "Choosing regression vs. classification, or which algorithm fits the problem, requires statistical reasoning. AI suggestions don't build this judgment."
+            },
+            {
+                taskName: "Interpreting model outputs",
+                guidance: "core-skill",
+                reasoning: "Understanding what results mean, their uncertainty, and limitations requires statistical thinking. AI can describe outputs but not teach interpretation."
+            },
+            {
+                taskName: "Identifying biases in data",
+                guidance: "core-skill",
+                reasoning: "Recognizing sampling bias, confounding, and fairness issues requires critical thinking about how data was collected and what it represents."
+            },
+            {
+                taskName: "Data cleaning and preprocessing",
+                guidance: "context-dependent",
+                reasoning: "After understanding data types and missing value strategies, AI can help with tedious cleaning code. But students should understand what's happening."
+            },
+            {
+                taskName: "Using established libraries",
+                guidance: "support-task",
+                reasoning: "After implementing core methods by hand, AI can help with library syntax (sklearn, pandas). This focuses learning on concepts rather than API details."
+            }
         ],
         intro: "AI tools can clean data, build models, and generate analyses—often using the same machine learning techniques you're learning to implement. In data science, understanding what's happening inside these tools, not just using them, distinguishes practitioners who can innovate from those who can only apply existing solutions. This policy helps you build foundational understanding before leveraging AI's power.",
         context: "In data science, the ability to select appropriate methods, interpret results correctly, and recognize when models fail requires deep understanding of statistical principles and algorithmic behavior.",
@@ -116,6 +212,38 @@ const departmentSpecificLanguage = {
             "Are students developing anatomical recognition skills?",
             "Can they interpret data using physiological principles?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Microscope observation and identification",
+                guidance: "core-skill",
+                reasoning: "Learning to observe cellular structures, tissues, and organisms develops visual pattern recognition essential to biology. This skill requires hands-on practice."
+            },
+            {
+                taskName: "Designing experiments",
+                guidance: "core-skill",
+                reasoning: "Formulating hypotheses, identifying variables, and planning controls requires scientific reasoning that students must develop through practice."
+            },
+            {
+                taskName: "Reasoning about biological mechanisms",
+                guidance: "core-skill",
+                reasoning: "Understanding how systems work (metabolism, genetics, ecology) requires causal reasoning that develops through problem-solving, not AI explanations."
+            },
+            {
+                taskName: "Statistical analysis of data",
+                guidance: "context-dependent",
+                reasoning: "Students should understand statistical tests conceptually and run analyses themselves initially. Later, AI assistance with complex analyses can be appropriate."
+            },
+            {
+                taskName: "Literature searches",
+                guidance: "support-task",
+                reasoning: "AI can help find relevant research papers, allowing students to focus on reading and understanding biology rather than database navigation."
+            },
+            {
+                taskName: "Creating figures and graphs",
+                guidance: "support-task",
+                reasoning: "After students understand how to represent data, AI tools can help with visualization, freeing time for interpretation and analysis."
+            }
+        ],
         intro: "AI tools can identify species from images, analyze genetic sequences, and generate hypotheses about biological mechanisms. While AI is revolutionizing biological research—from protein folding prediction to ecological monitoring—the ability to observe organisms carefully, design experiments, and reason from first principles about biological systems remains irreplaceable in biological practice.",
         context: "In biology, developing observational skills, understanding evolutionary and mechanistic reasoning, and learning to design controlled experiments are fundamental to thinking like a biologist.",
         noAI: "AI cannot develop your ability to observe organisms in detail, recognize anatomical patterns, design experiments that control for confounding variables, or reason about biological mechanisms using evolutionary and physiological principles. These skills require direct engagement with living systems.",
@@ -131,6 +259,38 @@ const departmentSpecificLanguage = {
             "Does your course require predicting reactivity from structure?",
             "Are students proposing mechanisms, not just accepting?",
             "Can they interpret spectroscopic data independently?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Laboratory technique",
+                guidance: "core-skill",
+                reasoning: "Physical skills (pipetting, titration, equipment setup) require hands-on practice. AI instructions can't develop manual dexterity and lab intuition."
+            },
+            {
+                taskName: "Proposing reaction mechanisms",
+                guidance: "core-skill",
+                reasoning: "Predicting how molecules react requires chemical intuition about electron flow and reactivity. This reasoning must be developed, not outsourced."
+            },
+            {
+                taskName: "Troubleshooting failed experiments",
+                guidance: "core-skill",
+                reasoning: "Diagnosing why reactions didn't work (impure reagents? wrong temperature?) builds chemical reasoning. Students need practice reasoning backward from results."
+            },
+            {
+                taskName: "Spectroscopy interpretation",
+                guidance: "context-dependent",
+                reasoning: "Students should learn to read NMR, IR, and mass spectra to build pattern recognition. Later, AI assistance with complex spectra might be appropriate if fundamentals are solid."
+            },
+            {
+                taskName: "Molecular structure prediction",
+                guidance: "support-task",
+                reasoning: "Computational chemistry tools are standard in research. After learning principles by hand, students can use software for complex modeling."
+            },
+            {
+                taskName: "Literature searches",
+                guidance: "support-task",
+                reasoning: "AI can help find relevant papers and extract key findings, allowing students to focus on understanding chemistry rather than database navigation."
+            }
         ],
         intro: "AI can predict molecular properties, suggest reaction mechanisms, and analyze spectroscopic data—capabilities increasingly important in chemical research. However, laboratory technique, chemical intuition about reactivity, and the ability to troubleshoot unexpected results require hands-on experience that AI cannot provide. This policy protects essential bench skills while preparing you for computational chemistry's role in modern practice.",
         context: "In chemistry, laboratory technique, understanding reaction mechanisms, and developing intuition about molecular behavior require direct experimental work and problem-solving with chemical principles.",
@@ -148,6 +308,38 @@ const departmentSpecificLanguage = {
             "Are students interpreting satellite imagery with geological context?",
             "Can they distinguish field evidence from assumptions?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Field observation and description",
+                guidance: "core-skill",
+                reasoning: "Learning to read landscapes, identify rock types, and observe geological processes requires being present in the field. This embodied skill can't be done by AI."
+            },
+            {
+                taskName: "Interpreting geological history",
+                guidance: "core-skill",
+                reasoning: "Reasoning about past environments, processes, and sequences from evidence requires geological thinking that develops through practice."
+            },
+            {
+                taskName: "Analyzing climate data",
+                guidance: "core-skill",
+                reasoning: "Understanding patterns in climate systems, identifying trends, and reasoning about causes requires scientific thinking students must develop."
+            },
+            {
+                taskName: "Using GIS software",
+                guidance: "context-dependent",
+                reasoning: "Students should learn GIS fundamentals, but AI assistance with complex spatial analyses can be appropriate once they understand the concepts."
+            },
+            {
+                taskName: "Processing satellite imagery",
+                guidance: "support-task",
+                reasoning: "After learning principles, AI tools for image processing allow students to focus on interpretation rather than technical image manipulation."
+            },
+            {
+                taskName: "Finding climate datasets",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant climate, geological, and environmental data sources, freeing time for analysis."
+            }
+        ],
         intro: "AI tools can analyze satellite imagery, model climate systems, and predict geological hazards—capabilities transforming earth science research. However, field observation skills, understanding of earth processes, and the ability to read landscapes and rock formations require direct experience with natural systems that AI cannot replace.",
         context: "In geoscience, field observation, understanding earth processes across scales, and interpreting geological and environmental evidence require direct engagement with natural systems.",
         noAI: "AI cannot develop your ability to read stratigraphic sequences, interpret satellite imagery in geological context, or observe environmental processes in the field. These skills require learning to see what's actually present in rocks, landscapes, and environmental data—not what AI suggests should be there.",
@@ -163,6 +355,38 @@ const departmentSpecificLanguage = {
             "Does AI mask complexity of brain function?",
             "Are students integrating anatomy, physiology, and behavior?",
             "Can they interpret neural data with mechanistic understanding?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing neural circuits",
+                guidance: "core-skill",
+                reasoning: "Understanding how neurons communicate and circuits function requires reasoning across levels from molecules to behavior. This integrative thinking must be developed."
+            },
+            {
+                taskName: "Interpreting brain imaging data",
+                guidance: "core-skill",
+                reasoning: "Reading fMRI, EEG, or other brain data requires understanding what signals mean for neural function. This pattern recognition develops through practice."
+            },
+            {
+                taskName: "Designing behavioral experiments",
+                guidance: "core-skill",
+                reasoning: "Creating tasks that test specific cognitive or neural functions requires scientific reasoning about brain-behavior relationships."
+            },
+            {
+                taskName: "Statistical analysis of neural data",
+                guidance: "context-dependent",
+                reasoning: "Students should understand statistical approaches to neural data, but AI assistance with complex analyses can be appropriate once concepts are solid."
+            },
+            {
+                taskName: "Literature searches",
+                guidance: "support-task",
+                reasoning: "AI can help find relevant neuroscience research, allowing students to focus on understanding mechanisms and theories."
+            },
+            {
+                taskName: "Creating brain diagrams",
+                guidance: "support-task",
+                reasoning: "After understanding anatomy, AI tools can help create publication-quality figures while students focus on neural principles."
+            }
         ],
         intro: "AI can analyze brain imaging data, model neural networks, and identify patterns in behavioral data—techniques central to modern neuroscience research. However, understanding brain function requires integrating knowledge across levels from molecules to behavior, designing experiments that test specific hypotheses, and interpreting results in light of neural mechanisms.",
         context: "In neuroscience, thinking across levels of analysis, designing experiments that isolate neural mechanisms, and interpreting complex data in light of brain function require deep integrative understanding.",
@@ -184,6 +408,43 @@ const departmentSpecificLanguage = {
             "Are students noticing language at sentence level?",
             "Can they construct original arguments from evidence?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Close reading of texts",
+                guidance: "core-skill",
+                reasoning: "Noticing diction, syntax, imagery, and form requires sustained attention to language. AI summaries bypass the cognitive work of reading closely."
+            },
+            {
+                taskName: "Developing original arguments",
+                guidance: "core-skill",
+                reasoning: "Constructing interpretations grounded in textual evidence is core to literary thinking. AI-generated thesis statements don't develop this skill."
+            },
+            {
+                taskName: "Drafting analytical essays",
+                guidance: "core-skill",
+                reasoning: "Writing is thinking. The struggle to articulate ideas develops analytical voice. AI drafts prevent this developmental process."
+            },
+            {
+                taskName: "Finding textual evidence",
+                guidance: "core-skill",
+                reasoning: "Selecting which passages support claims requires judgment about textual meaning. This interpretive work is core to literary analysis."
+            },
+            {
+                taskName: "Brainstorming essay topics",
+                guidance: "context-dependent",
+                reasoning: "AI can help students get unstuck when beginning an essay, but students should evaluate which ideas are worth pursuing based on their reading."
+            },
+            {
+                taskName: "Grammar and style editing",
+                guidance: "support-task",
+                reasoning: "After drafting their own work, students can use AI for proofreading. This helps them focus revision efforts on argument and analysis."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics (MLA/Chicago format) are technical. AI can handle formatting while students focus on analysis and argumentation."
+            }
+        ],
         intro: "AI can generate literary analysis, suggest interpretations, and produce polished prose about texts you've read. However, the capacity for close reading—noticing diction, syntax, imagery, and form—and developing your analytical voice through writing requires sustained practice that AI would bypass. This policy protects the reading and writing practice that develops literary thinking.",
         context: "In English, close reading skill, analytical voice, and the ability to construct nuanced arguments about texts develop through repeated practice with reading and writing.",
         noAI: "AI cannot develop your ability to notice how language works at the sentence level, construct original arguments grounded in textual evidence, or articulate ideas in your authentic voice. These capacities emerge from sustained reading and writing practice.",
@@ -199,6 +460,43 @@ const departmentSpecificLanguage = {
             "Does AI simplify historical complexity and ambiguity?",
             "Are students working with primary sources directly?",
             "Can they construct nuanced arguments from evidence?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Evaluating primary sources",
+                guidance: "core-skill",
+                reasoning: "Learning to assess credibility, bias, and perspective requires direct engagement with documents. AI summaries remove the interpretive work."
+            },
+            {
+                taskName: "Understanding historical context",
+                guidance: "core-skill",
+                reasoning: "Grasping social, political, and cultural conditions requires reading widely and making connections. This contextual thinking can't be shortcut."
+            },
+            {
+                taskName: "Constructing historical arguments",
+                guidance: "core-skill",
+                reasoning: "Building interpretations that acknowledge complexity and alternative views is core historical practice. AI-generated arguments lack this nuance."
+            },
+            {
+                taskName: "Identifying historiographical debates",
+                guidance: "core-skill",
+                reasoning: "Understanding how historians interpret events differently requires reading competing arguments. This comparative analysis must be done by students."
+            },
+            {
+                taskName: "Chronology and factual background",
+                guidance: "context-dependent",
+                reasoning: "Basic timeline and contextual facts can come from AI, but students should verify and engage with how these facts are interpreted by historians."
+            },
+            {
+                taskName: "Finding secondary sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant scholarship, allowing students to spend time reading and evaluating sources rather than searching databases."
+            },
+            {
+                taskName: "Citation checking",
+                guidance: "support-task",
+                reasoning: "Verifying citation format and completeness is mechanical work. AI assistance allows students to focus on historical reasoning."
+            }
         ],
         intro: "AI can summarize historical events, suggest causes, and generate historical narratives—but historical thinking requires evaluating sources, understanding context, and constructing arguments that acknowledge complexity and ambiguity. This policy helps you develop the historian's craft of working with evidence while acknowledging AI's growing presence in historical research.",
         context: "In history, source analysis, contextual understanding, and the ability to construct evidence-based arguments that acknowledge historical complexity are fundamental to historical practice.",
@@ -216,6 +514,38 @@ const departmentSpecificLanguage = {
             "Are students engaging with counterarguments themselves?",
             "Can they test reasoning against objections?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Constructing philosophical arguments",
+                guidance: "core-skill",
+                reasoning: "Developing clear premises, logical connections, and anticipating objections requires philosophical reasoning that students must develop through practice."
+            },
+            {
+                taskName: "Identifying logical fallacies",
+                guidance: "core-skill",
+                reasoning: "Recognizing flawed reasoning and understanding why arguments fail requires practice that builds critical thinking skills."
+            },
+            {
+                taskName: "Engaging with philosophical texts",
+                guidance: "core-skill",
+                reasoning: "Reading difficult philosophical texts carefully, identifying main arguments, and understanding objections requires close reading that AI summaries bypass."
+            },
+            {
+                taskName: "Understanding philosophical terminology",
+                guidance: "context-dependent",
+                reasoning: "Students should learn terminology through reading texts in context, but AI definitions can help when encountering new technical terms."
+            },
+            {
+                taskName: "Finding relevant philosophical sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant philosophical literature, allowing students to focus on reading and engaging with arguments."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop philosophical reasoning. AI can handle formatting while students focus on arguments."
+            }
+        ],
         intro: "AI can summarize philosophical arguments, explain theories, and generate philosophical prose—but philosophical thinking requires grappling with conceptual problems, constructing careful arguments, and developing your own reasoned positions through dialectical engagement with ideas. This policy protects the struggle that builds philosophical reasoning.",
         context: "In philosophy, the ability to analyze arguments, identify assumptions, construct valid reasoning, and engage with conceptual problems requires sustained practice with philosophical methods.",
         noAI: "AI cannot develop your ability to identify logical fallacies, construct valid arguments, or reason through conceptual problems systematically. Philosophical thinking emerges from wrestling with difficult questions and testing your reasoning against counterarguments.",
@@ -231,6 +561,38 @@ const departmentSpecificLanguage = {
             "Does AI miss symbolic and sacred language?",
             "Are students understanding religious practices, not descriptions?",
             "Can they recognize cultural frameworks in traditions?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Interpreting religious texts",
+                guidance: "core-skill",
+                reasoning: "Understanding how texts function within religious traditions requires careful reading sensitive to context, theology, and practice. AI summaries miss this nuance."
+            },
+            {
+                taskName: "Analyzing religious practices",
+                guidance: "core-skill",
+                reasoning: "Understanding rituals, practices, and lived religion requires interpretive work that respects how adherents understand their own traditions."
+            },
+            {
+                taskName: "Comparing religious traditions",
+                guidance: "core-skill",
+                reasoning: "Making respectful comparisons that avoid reductionism requires understanding each tradition on its own terms—thinking that develops through study."
+            },
+            {
+                taskName: "Understanding theological concepts",
+                guidance: "context-dependent",
+                reasoning: "Students should read primary texts, but AI can provide background on complex theological terminology—if students then engage with how concepts function in texts."
+            },
+            {
+                taskName: "Finding scholarly sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant religious studies scholarship, allowing students to focus on reading and interpretation."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop understanding of religious texts and traditions. AI can handle formatting."
+            }
         ],
         intro: "AI can summarize religious texts, explain theological concepts, and describe religious traditions—but religious studies requires careful interpretive work with texts, understanding historical and cultural context, and engaging respectfully with beliefs and practices. This policy helps you develop interpretive skills while acknowledging AI's limitations in handling religious complexity.",
         context: "In religious studies, interpretive skill with sacred texts, understanding of religious traditions in context, and respectful engagement with beliefs require careful study and cultural sensitivity.",
@@ -248,6 +610,38 @@ const departmentSpecificLanguage = {
             "Are students engaging with texts in original?",
             "Can they interpret within ancient cultural contexts?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Translating Greek or Latin texts",
+                guidance: "core-skill",
+                reasoning: "Language learning requires wrestling with grammar, syntax, and vocabulary. AI translation bypasses the cognitive work that builds linguistic competence."
+            },
+            {
+                taskName: "Analyzing ancient texts in context",
+                guidance: "core-skill",
+                reasoning: "Understanding how texts functioned in ancient culture, their rhetorical strategies, and social meanings requires interpretive work that students must develop."
+            },
+            {
+                taskName: "Comparing textual variants",
+                guidance: "core-skill",
+                reasoning: "Textual criticism requires judgment about which manuscript readings make sense. This scholarly skill develops through practice with texts."
+            },
+            {
+                taskName: "Understanding mythology references",
+                guidance: "context-dependent",
+                reasoning: "Students should build knowledge of myths, but AI can provide quick reference for unfamiliar allusions—if students then engage with the cultural context."
+            },
+            {
+                taskName: "Finding secondary scholarship",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant classical scholarship, allowing students to focus on reading and engaging with interpretations."
+            },
+            {
+                taskName: "Greek/Latin grammar reference",
+                guidance: "support-task",
+                reasoning: "Looking up paradigms and grammatical rules is mechanical. AI can provide quick reference while students focus on translating and interpreting."
+            }
+        ],
         intro: "AI translation tools and text databases can assist with ancient languages and accessing classical texts—but reading Greek and Latin, understanding ancient contexts, and interpreting classical literature require linguistic skill and cultural knowledge that develop through sustained study. This policy protects language learning while acknowledging technology's role in classical scholarship.",
         context: "In Classics, language acquisition, close reading of ancient texts in original languages, and understanding of ancient Mediterranean contexts are foundational to engaging with classical civilization.",
         noAI: "AI cannot develop your ability to read ancient languages, understand how Latin or Greek syntax shapes meaning, or interpret classical texts within their cultural and historical contexts. These skills require sustained language practice and engagement with ancient sources.",
@@ -263,6 +657,38 @@ const departmentSpecificLanguage = {
             "Does AI impose modern frameworks anachronistically?",
             "Are students working with primary sources directly?",
             "Can they interpret without projecting contemporary values?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Reading texts in original languages",
+                guidance: "core-skill",
+                reasoning: "Working with Latin, Old/Middle English, or other medieval languages requires linguistic skill. AI translation bypasses this competence."
+            },
+            {
+                taskName: "Interpreting medieval/early modern texts",
+                guidance: "core-skill",
+                reasoning: "Understanding texts in their cultural, religious, and political contexts requires interpretive work that students must develop."
+            },
+            {
+                taskName: "Analyzing material culture",
+                guidance: "core-skill",
+                reasoning: "Learning to read manuscripts, artifacts, and images requires visual skills and historical knowledge that develop through practice."
+            },
+            {
+                taskName: "Understanding historical context",
+                guidance: "context-dependent",
+                reasoning: "AI can provide background information, but students should read primary and secondary sources to develop nuanced understanding of medieval/early modern worlds."
+            },
+            {
+                taskName: "Finding scholarly sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant scholarship on medieval/Renaissance topics, allowing students to focus on reading and interpretation."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop historical or literary thinking. AI can handle formatting while students focus on analysis."
+            }
         ],
         intro: "AI can summarize medieval and Renaissance texts, explain historical contexts, and generate analyses—but understanding these periods requires careful work with primary sources, attention to cultural differences, and interpretive skill with texts in historical context. This policy protects the close reading and historical analysis essential to studying premodern periods.",
         context: "In Medieval and Renaissance Studies, understanding historical alterity, working with primary sources, and interpreting texts within premodern cultural frameworks require careful historical and literary analysis.",
@@ -280,6 +706,38 @@ const departmentSpecificLanguage = {
             "Are students learning to recognize when arguments need support?",
             "Can they make decisions about structure and organization?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Developing arguments and claims",
+                guidance: "core-skill",
+                reasoning: "Learning to construct original arguments grounded in evidence requires thinking that develops through writing. AI-generated claims bypass this intellectual work."
+            },
+            {
+                taskName: "Drafting and revising",
+                guidance: "core-skill",
+                reasoning: "Writing is thinking. The process of drafting, getting stuck, and revising develops both writing skill and critical thinking. AI drafts prevent this growth."
+            },
+            {
+                taskName: "Finding and evaluating sources",
+                guidance: "core-skill",
+                reasoning: "Learning to assess source credibility and relevance requires judgment about evidence and authority. This critical literacy shouldn't be outsourced."
+            },
+            {
+                taskName: "Organizing and outlining",
+                guidance: "context-dependent",
+                reasoning: "Students should develop organizational strategies, but AI might help generate outline options—if students evaluate which structure best serves their argument."
+            },
+            {
+                taskName: "Grammar and mechanics editing",
+                guidance: "support-task",
+                reasoning: "After drafting their own work, students can use AI for proofreading. This helps them focus revision efforts on ideas and organization."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics are technical. AI can handle formatting while students focus on argumentation and evidence use."
+            }
+        ],
         intro: "AI can generate drafts, suggest improvements, and polish prose—but writing is thinking made visible. Learning to write requires developing your own voice, wrestling with how to structure arguments, and revising through multiple drafts. This policy protects the cognitive work of writing while acknowledging AI's growing presence in composition.",
         context: "In writing, developing voice, learning to revise substantively, and making rhetorical decisions about audience and purpose require practice with the messy process of drafting, revising, and refining your thinking.",
         noAI: "AI cannot develop your ability to discover ideas through writing, make rhetorical choices about audience and purpose, or revise your thinking as you draft. These skills emerge through the struggle of putting ideas into words and learning what you think by writing.",
@@ -295,6 +753,38 @@ const departmentSpecificLanguage = {
             "Does AI use prevent building conversational fluency?",
             "Are students producing language, not just translating?",
             "Can they grasp grammar patterns through practice?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Language translation exercises",
+                guidance: "core-skill",
+                reasoning: "Language learning requires wrestling with grammar, vocabulary, and syntax. AI translation bypasses the cognitive work that builds linguistic competence."
+            },
+            {
+                taskName: "Writing compositions in target language",
+                guidance: "core-skill",
+                reasoning: "Producing original text requires activating vocabulary and grammar in context. AI-generated writing bypasses the production practice needed for fluency."
+            },
+            {
+                taskName: "Speaking and pronunciation practice",
+                guidance: "core-skill",
+                reasoning: "Developing spoken fluency requires physical practice with sounds and conversational patterns. This embodied skill can't be done by AI."
+            },
+            {
+                taskName: "Grammar checking after drafting",
+                guidance: "context-dependent",
+                reasoning: "Students should produce text independently, but AI grammar checking after drafting can help them notice patterns—if they correct errors themselves."
+            },
+            {
+                taskName: "Looking up vocabulary",
+                guidance: "support-task",
+                reasoning: "Dictionary work is mechanical. AI can provide definitions and examples, helping students focus on comprehension and production."
+            },
+            {
+                taskName: "Verb conjugation reference",
+                guidance: "support-task",
+                reasoning: "Looking up conjugations is reference work. AI can provide quick tables while students focus on using verbs in context."
+            }
         ],
         intro: "AI translation tools can instantly translate between French, Spanish, Italian, and other Romance languages—but language learning requires building vocabulary, understanding grammar, and developing the ability to think in another language. This policy protects language acquisition while acknowledging technology's role in language practice.",
         context: "In language learning, vocabulary acquisition, grammatical understanding, and developing the ability to produce and comprehend target language require extensive practice that builds proficiency incrementally.",
@@ -312,6 +802,38 @@ const departmentSpecificLanguage = {
             "Are students reading texts with cultural nuance?",
             "Can they produce language using appropriate registers?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Language translation exercises",
+                guidance: "core-skill",
+                reasoning: "Language learning requires wrestling with grammar, characters, and syntax. AI translation bypasses the cognitive work that builds linguistic competence."
+            },
+            {
+                taskName: "Speaking and pronunciation practice",
+                guidance: "core-skill",
+                reasoning: "Developing spoken fluency requires physical practice with tones, sounds, and conversational patterns. This embodied skill can't be done by AI."
+            },
+            {
+                taskName: "Analyzing literary texts",
+                guidance: "core-skill",
+                reasoning: "Understanding how texts function in East Asian literary traditions requires interpretive work grounded in cultural knowledge that students must develop."
+            },
+            {
+                taskName: "Character writing practice",
+                guidance: "context-dependent",
+                reasoning: "Students should practice writing by hand to develop character recognition, but digital tools might be appropriate for composition once fundamentals are solid."
+            },
+            {
+                taskName: "Looking up vocabulary",
+                guidance: "support-task",
+                reasoning: "Dictionary lookup is mechanical. AI can provide definitions and example sentences, helping students focus on comprehension and production."
+            },
+            {
+                taskName: "Grammar pattern reference",
+                guidance: "support-task",
+                reasoning: "Looking up grammatical patterns is reference work. AI can provide explanations while students focus on using structures in context."
+            }
+        ],
         intro: "AI can translate between English and Chinese, Japanese, or Korean and analyze East Asian literature—but learning these languages requires mastering character systems, understanding grammatical structures fundamentally different from English, and engaging with texts in cultural context. This policy protects language learning while acknowledging technology's growing role in East Asian studies.",
         context: "In East Asian language study, character recognition, understanding syntax patterns, and developing reading fluency require sustained practice with language systems fundamentally different from English.",
         noAI: "AI cannot develop your character recognition, understanding of grammar patterns, or ability to read literary Chinese, Japanese, or Korean texts with cultural and linguistic nuance. These skills require extensive practice with writing systems and grammatical structures.",
@@ -327,6 +849,38 @@ const departmentSpecificLanguage = {
             "Does AI prevent understanding word order flexibility?",
             "Are students building vocabulary actively, not passively?",
             "Can they produce idiomatic German without translating?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Language translation exercises",
+                guidance: "core-skill",
+                reasoning: "Language learning requires wrestling with cases, gender, and syntax. AI translation bypasses the cognitive work that builds German competence."
+            },
+            {
+                taskName: "Writing compositions in German",
+                guidance: "core-skill",
+                reasoning: "Producing original German text requires activating vocabulary, grammar, and cultural knowledge. AI-generated writing bypasses this production practice."
+            },
+            {
+                taskName: "Analyzing German cultural texts",
+                guidance: "core-skill",
+                reasoning: "Understanding how texts function in German culture requires interpretive work grounded in cultural knowledge that students must develop."
+            },
+            {
+                taskName: "Grammar checking after drafting",
+                guidance: "context-dependent",
+                reasoning: "Students should produce text independently, but AI grammar checking after drafting can help them notice patterns—if they correct their own errors."
+            },
+            {
+                taskName: "Looking up vocabulary",
+                guidance: "support-task",
+                reasoning: "Dictionary work is mechanical. AI can provide definitions and examples, helping students focus on comprehension and composition."
+            },
+            {
+                taskName: "Grammar pattern reference",
+                guidance: "support-task",
+                reasoning: "Looking up case endings or conjugations is reference work. AI can provide explanations while students focus on using structures."
+            }
         ],
         intro: "AI translation tools can instantly translate German to English and vice versa—but learning German requires understanding case systems, word order patterns, and developing the ability to read and speak without mental translation. This policy protects language acquisition while acknowledging technology's role in language study.",
         context: "In German language learning, mastering case grammar, understanding compound word formation, and developing reading fluency with complex sentence structures require sustained practice.",
@@ -344,6 +898,38 @@ const departmentSpecificLanguage = {
             "Are students practicing grammar, not bypassing it?",
             "Can they read authentic texts without translation?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Language translation exercises",
+                guidance: "core-skill",
+                reasoning: "Learning Russian requires wrestling with cases, aspects, and Cyrillic script. AI translation bypasses the cognitive work that builds linguistic competence."
+            },
+            {
+                taskName: "Writing compositions in Russian",
+                guidance: "core-skill",
+                reasoning: "Producing original Russian text requires activating vocabulary, grammar, and cultural knowledge. AI-generated writing bypasses this production practice."
+            },
+            {
+                taskName: "Analyzing Russian cultural texts",
+                guidance: "core-skill",
+                reasoning: "Understanding how texts function in Russian culture requires interpretive work grounded in cultural knowledge that students must develop."
+            },
+            {
+                taskName: "Grammar checking after drafting",
+                guidance: "context-dependent",
+                reasoning: "Students should produce text independently, but AI grammar checking after drafting can help them notice patterns—if they correct their own errors."
+            },
+            {
+                taskName: "Looking up vocabulary",
+                guidance: "support-task",
+                reasoning: "Dictionary work is mechanical. AI can provide definitions and examples, helping students focus on Russian comprehension and production."
+            },
+            {
+                taskName: "Grammar pattern reference",
+                guidance: "support-task",
+                reasoning: "Looking up case endings or aspect pairs is reference work. AI can provide explanations while students focus on using structures."
+            }
+        ],
         intro: "AI can translate Russian texts and explain grammatical concepts—but learning Russian requires mastering the Cyrillic alphabet, understanding aspect and case systems, and developing reading fluency in a language with different grammatical logic from English. This policy protects the language practice essential to proficiency.",
         context: "In Russian language learning, understanding aspectual verb pairs, mastering case systems, and reading Cyrillic fluently require sustained practice with grammatical patterns and writing systems.",
         noAI: "AI cannot develop your Cyrillic reading fluency, your understanding of verbal aspect, or your ability to use case endings correctly in context. These skills require extensive grammar practice and engagement with Russian texts.",
@@ -359,6 +945,38 @@ const departmentSpecificLanguage = {
             "Does AI bypass understanding morphological word formation?",
             "Are students reading unvocalized texts with comprehension?",
             "Can they produce appropriate grammatical forms?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Language translation exercises",
+                guidance: "core-skill",
+                reasoning: "Learning Arabic script, grammar, and syntax requires cognitive work with morphology and root patterns. AI translation bypasses the linguistic competence students need to build."
+            },
+            {
+                taskName: "Writing compositions in Arabic",
+                guidance: "core-skill",
+                reasoning: "Producing original Arabic text requires activating vocabulary and grammatical structures. AI-generated writing bypasses production practice needed for fluency."
+            },
+            {
+                taskName: "Speaking and pronunciation practice",
+                guidance: "core-skill",
+                reasoning: "Developing spoken Arabic requires physical practice with sounds unfamiliar to English speakers. This embodied skill can't be done by AI."
+            },
+            {
+                taskName: "Grammar checking after drafting",
+                guidance: "context-dependent",
+                reasoning: "Students should produce Arabic text independently, but AI grammar feedback after drafting can help them notice patterns—if they correct their own errors."
+            },
+            {
+                taskName: "Looking up vocabulary",
+                guidance: "support-task",
+                reasoning: "Dictionary work is mechanical. AI can provide definitions, roots, and examples, helping students focus on comprehension and production."
+            },
+            {
+                taskName: "Verb conjugation reference",
+                guidance: "support-task",
+                reasoning: "Looking up verb forms and paradigms is reference work. AI can provide tables while students focus on using verbs in context."
+            }
         ],
         intro: "AI translation tools can work with Arabic text—but learning Arabic requires mastering the Arabic script, understanding root-pattern morphology, and developing reading fluency in a language with grammatical and writing systems fundamentally different from English. This policy protects language acquisition essential to Arabic proficiency.",
         context: "In Arabic language learning, mastering the Arabic alphabet and script, understanding trilateral root systems, and reading without vowel markings require sustained practice with fundamentally different linguistic structures.",
@@ -380,6 +998,38 @@ const departmentSpecificLanguage = {
             "Are students understanding principles, not just calculations?",
             "Can they evaluate whether financial statements mislead?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing financial statements",
+                guidance: "core-skill",
+                reasoning: "Reading balance sheets, income statements, and cash flow statements to identify trends and problems requires developing financial intuition. AI would bypass the pattern recognition that accountants need."
+            },
+            {
+                taskName: "Setting up journal entries",
+                guidance: "core-skill",
+                reasoning: "Understanding debits, credits, and how transactions flow through accounts is foundational. Students need to internalize the logic of double-entry bookkeeping."
+            },
+            {
+                taskName: "Identifying internal control weaknesses",
+                guidance: "core-skill",
+                reasoning: "Recognizing where fraud or errors could occur requires thinking systematically about business processes. This judgment develops through practice."
+            },
+            {
+                taskName: "Using Excel for calculations",
+                guidance: "context-dependent",
+                reasoning: "Early on, students should build formulas themselves to understand the math. Later, AI assistance with complex financial models can be appropriate if students understand the underlying logic."
+            },
+            {
+                taskName: "Finding relevant accounting standards",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant GAAP/IFRS guidance, allowing students to focus on applying standards rather than searching codification."
+            },
+            {
+                taskName: "Formatting financial reports",
+                guidance: "support-task",
+                reasoning: "Report formatting and presentation polish are mechanical. AI can help with layout while students focus on analytical content."
+            }
+        ],
         intro: "AI tools can analyze financial statements, perform calculations, and generate financial reports—but professional accounting and finance require understanding underlying principles, exercising professional judgment, and maintaining ethical responsibility for financial decisions. This policy helps you develop the judgment and technical skills essential to financial professions.",
         context: "In accounting and finance, understanding accounting principles, financial analysis techniques, and ethical responsibilities for financial decisions require practice with real cases and professional scenarios.",
         noAI: "AI cannot develop your ability to identify appropriate accounting treatments, exercise professional judgment about financial reporting, or understand the ethical implications of financial decisions. These capacities require working through cases and understanding principles deeply.",
@@ -395,6 +1045,38 @@ const departmentSpecificLanguage = {
             "Does AI oversimplify human dimensions of problems?",
             "Are students developing strategic judgment, not formulas?",
             "Can they assess implementation challenges realistically?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Case analysis and recommendations",
+                guidance: "core-skill",
+                reasoning: "Analyzing business problems, weighing alternatives, and making strategic recommendations requires business judgment that develops through wrestling with cases."
+            },
+            {
+                taskName: "Evaluating business strategies",
+                guidance: "core-skill",
+                reasoning: "Understanding competitive dynamics, market positioning, and strategic trade-offs requires thinking that AI would bypass."
+            },
+            {
+                taskName: "Building financial models",
+                guidance: "context-dependent",
+                reasoning: "Students should build models from scratch to understand assumptions and logic. Later, AI assistance with complex models can be appropriate if students understand the structure."
+            },
+            {
+                taskName: "Creating presentations",
+                guidance: "context-dependent",
+                reasoning: "Students should develop their own arguments and key points. AI can help with slide design and formatting, but not strategic content."
+            },
+            {
+                taskName: "Market research and data gathering",
+                guidance: "support-task",
+                reasoning: "AI can help find industry data, market reports, and competitor information, allowing students to focus on analysis rather than data collection."
+            },
+            {
+                taskName: "Formatting business documents",
+                guidance: "support-task",
+                reasoning: "Professional formatting and document polish are mechanical. AI can help while students focus on business reasoning."
+            }
         ],
         intro: "AI can analyze business cases, generate strategic recommendations, and create business plans—but business judgment requires understanding organizational dynamics, evaluating information critically, and making decisions with incomplete information. This policy helps you develop the analytical and leadership skills that distinguish effective managers.",
         context: "In business, strategic thinking, organizational analysis, and leadership judgment develop through analyzing real cases, evaluating alternatives, and learning to make decisions under uncertainty.",
@@ -412,6 +1094,38 @@ const departmentSpecificLanguage = {
             "Are students distinguishing between competing theories?",
             "Can they recognize methodological limitations independently?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Designing behavioral experiments",
+                guidance: "core-skill",
+                reasoning: "Creating studies that test hypotheses about cognition and behavior requires understanding psychological constructs, confounds, and methodology."
+            },
+            {
+                taskName: "Interpreting experimental results",
+                guidance: "core-skill",
+                reasoning: "Understanding what findings mean, their limitations, and alternative explanations requires critical thinking about behavior that students must develop."
+            },
+            {
+                taskName: "Applying cognitive theories",
+                guidance: "core-skill",
+                reasoning: "Using theories to explain behavior requires understanding mechanisms and boundaries of cognitive concepts—practice that builds scientific reasoning."
+            },
+            {
+                taskName: "Statistical analysis",
+                guidance: "context-dependent",
+                reasoning: "Students should understand statistical tests conceptually and run basic analyses themselves. AI help with complex analyses can be appropriate later."
+            },
+            {
+                taskName: "Literature searches",
+                guidance: "support-task",
+                reasoning: "AI can help find relevant cognitive science research, allowing students to focus on reading and critically evaluating studies."
+            },
+            {
+                taskName: "APA formatting",
+                guidance: "support-task",
+                reasoning: "Citation and formatting mechanics are technical. AI can handle APA style while students focus on scientific content."
+            }
+        ],
         intro: "AI can analyze behavioral data, suggest explanations for cognitive phenomena, and generate experimental designs—but understanding mind and behavior requires integrating knowledge across psychology, neuroscience, and philosophy while designing rigorous studies. This policy helps you develop the integrative thinking and research skills essential to cognitive science.",
         context: "In cognitive and behavioral science, designing experiments that test cognitive theories, interpreting behavioral and neural data, and integrating across levels of explanation require deep understanding of mind and behavior.",
         noAI: "AI cannot develop your ability to design experiments that distinguish between cognitive theories, interpret behavioral data in light of cognitive mechanisms, or integrate across psychological and neural levels of explanation. These skills require working through research problems systematically.",
@@ -427,6 +1141,38 @@ const departmentSpecificLanguage = {
             "Does AI mask trade-offs in policy analysis?",
             "Are students understanding theory, not just techniques?",
             "Can they identify when models misrepresent reality?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Building economic models",
+                guidance: "core-skill",
+                reasoning: "Understanding how to model behavior, markets, and policy requires thinking about assumptions and mechanisms. This modeling logic must be developed."
+            },
+            {
+                taskName: "Interpreting economic data",
+                guidance: "core-skill",
+                reasoning: "Analyzing trends, identifying relationships, and reasoning about causation requires economic thinking that develops through working with data."
+            },
+            {
+                taskName: "Evaluating policy arguments",
+                guidance: "core-skill",
+                reasoning: "Understanding trade-offs, unintended consequences, and distributional effects requires economic reasoning that shouldn't be outsourced."
+            },
+            {
+                taskName: "Running regressions",
+                guidance: "context-dependent",
+                reasoning: "Students should understand regression conceptually and run analyses initially. Later, AI help with complex econometric models can be appropriate."
+            },
+            {
+                taskName: "Finding economic data",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant datasets (FRED, BLS, World Bank), allowing students to focus on analysis rather than data hunting."
+            },
+            {
+                taskName: "Creating graphs and tables",
+                guidance: "support-task",
+                reasoning: "After understanding how to visualize economic relationships, AI tools can help with formatting, freeing time for interpretation."
+            }
         ],
         intro: "AI can analyze economic data, run econometric models, and generate economic analysis—but economic thinking requires understanding theoretical frameworks, evaluating assumptions, and reasoning about policy implications. This policy helps you develop the analytical skills and theoretical understanding essential to economics.",
         context: "In economics, understanding economic models, reasoning about assumptions and mechanisms, and evaluating empirical evidence require practice with both theoretical and applied analysis.",
@@ -444,6 +1190,38 @@ const departmentSpecificLanguage = {
             "Are students engaging with political theory directly?",
             "Can they evaluate evidence about political behavior?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing political arguments",
+                guidance: "core-skill",
+                reasoning: "Understanding political claims, identifying assumptions, and evaluating evidence requires critical thinking that students must develop."
+            },
+            {
+                taskName: "Comparing political systems",
+                guidance: "core-skill",
+                reasoning: "Analyzing how institutions function differently across contexts requires comparative reasoning that develops through study of multiple cases."
+            },
+            {
+                taskName: "Evaluating political theories",
+                guidance: "core-skill",
+                reasoning: "Engaging with normative and empirical political theory requires sustained thinking about power, justice, and governance that can't be outsourced."
+            },
+            {
+                taskName: "Interpreting political data",
+                guidance: "context-dependent",
+                reasoning: "Students should learn to work with election results, polls, and other political data, though AI can assist with technical analysis if students understand methods."
+            },
+            {
+                taskName: "Finding political data sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant datasets, reports, and scholarship, allowing students to focus on analysis rather than data hunting."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop political analysis skills. AI can handle formatting while students focus on argumentation."
+            }
+        ],
         intro: "AI can summarize political events, analyze polling data, and generate policy analysis—but political science requires understanding institutions, evaluating arguments about power and governance, and analyzing political phenomena with theoretical frameworks. This policy helps you develop the analytical skills essential to studying politics.",
         context: "In political science, analyzing institutions, understanding political behavior, and evaluating normative arguments about governance require engagement with political theory and empirical evidence.",
         noAI: "AI cannot develop your ability to analyze power relations, understand how institutions shape political outcomes, or evaluate normative arguments about justice and governance. These capacities require sustained engagement with political theory and empirical research.",
@@ -459,6 +1237,38 @@ const departmentSpecificLanguage = {
             "Does AI miss meaning and context in social life?",
             "Are students understanding power, not just patterns?",
             "Can they maintain research ethics with human subjects?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Conducting ethnographic observations",
+                guidance: "core-skill",
+                reasoning: "Learning to notice social patterns, cultural practices, and power dynamics requires being present and attentive. This embodied practice can't be done by AI."
+            },
+            {
+                taskName: "Analyzing social inequality",
+                guidance: "core-skill",
+                reasoning: "Understanding how race, class, gender, and other inequalities structure society requires sociological thinking about power and systems that students must develop."
+            },
+            {
+                taskName: "Applying sociological theories",
+                guidance: "core-skill",
+                reasoning: "Using theories to explain social phenomena requires understanding how sociologists think about structure, agency, and social processes."
+            },
+            {
+                taskName: "Analyzing qualitative data",
+                guidance: "context-dependent",
+                reasoning: "Students should code and analyze interviews/observations themselves, but AI might assist with organization if students do the interpretive work."
+            },
+            {
+                taskName: "Finding sociological research",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant sociology and anthropology research, allowing students to focus on reading and engaging with theories."
+            },
+            {
+                taskName: "Citation formatting (ASA/APA)",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop sociological analysis. AI can handle formatting while students focus on argumentation."
+            }
         ],
         intro: "AI can analyze demographic data, suggest social patterns, and generate sociological analysis—but understanding social life requires fieldwork, interpretive skill with qualitative data, and theoretical frameworks for analyzing power, culture, and social structures. This policy protects the research skills essential to social science.",
         context: "In sociology and anthropology, conducting fieldwork, analyzing qualitative data, and understanding social phenomena through theoretical lenses require direct engagement with social worlds and research methods.",
@@ -480,6 +1290,38 @@ const departmentSpecificLanguage = {
             "Are students doing close looking, not description?",
             "Can they make compositional and color judgments?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Visual analysis (formal analysis)",
+                guidance: "core-skill",
+                reasoning: "Learning to describe line, color, composition, and spatial relationships requires sustained looking. AI descriptions bypass the visual attention that develops aesthetic perception."
+            },
+            {
+                taskName: "Interpreting artworks in context",
+                guidance: "core-skill",
+                reasoning: "Connecting formal qualities to historical, cultural, and social contexts requires synthetic thinking. This interpretive work is central to art history."
+            },
+            {
+                taskName: "Creating original artwork (studio)",
+                guidance: "core-skill",
+                reasoning: "Developing technical skills, aesthetic judgment, and creative vision requires hands-on making. AI-generated images bypass the learning that comes through practice."
+            },
+            {
+                taskName: "Researching artistic movements",
+                guidance: "context-dependent",
+                reasoning: "AI can provide overview information, but students should read primary sources and scholarship to develop their own interpretations of movements."
+            },
+            {
+                taskName: "Finding scholarly sources on artists",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant art historical scholarship, exhibition catalogs, and criticism, allowing students to focus on reading and analysis."
+            },
+            {
+                taskName: "Citation formatting (Chicago style)",
+                guidance: "support-task",
+                reasoning: "Citation mechanics are technical. AI can handle formatting while students focus on visual and historical analysis."
+            }
+        ],
         intro: "AI can generate images, analyze artworks, and describe art historical contexts—but developing artistic vision, technical skill, and understanding of how art creates meaning require sustained studio practice and close looking at art. This policy protects the making and interpretive skills essential to art practice and scholarship.",
         context: "In art, creative vision, technical mastery, and the ability to analyze how visual form creates meaning develop through making art and sustained engagement with visual culture.",
         noAI: "AI cannot develop your drawing skills, color sense, compositional judgment, or ability to analyze how artworks function visually. In studio work, AI would bypass the technical skills and creative problem-solving built through practice. In art history, AI cannot replace close looking and interpretive skill.",
@@ -495,6 +1337,38 @@ const departmentSpecificLanguage = {
             "Does AI bypass understanding harmonic progressions?",
             "Are students composing, not just generating music?",
             "Can they analyze how music creates meaning?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Performing music",
+                guidance: "core-skill",
+                reasoning: "Developing technique, musicality, and interpretive decisions requires physical practice with an instrument or voice. This embodied skill can't be done by AI."
+            },
+            {
+                taskName: "Analyzing musical structure",
+                guidance: "core-skill",
+                reasoning: "Identifying harmonic progressions, formal structures, and compositional techniques requires listening skills and theoretical knowledge that students must develop."
+            },
+            {
+                taskName: "Composing original music",
+                guidance: "core-skill",
+                reasoning: "Making melodic, harmonic, and rhythmic choices requires creative judgment and technical skill. AI-generated music bypasses this developmental work."
+            },
+            {
+                taskName: "Transcribing music by ear",
+                guidance: "context-dependent",
+                reasoning: "Students should develop ear training skills, but AI assistance might be appropriate for complex transcriptions after demonstrating basic competence."
+            },
+            {
+                taskName: "Music notation software",
+                guidance: "support-task",
+                reasoning: "After composing music, notation software with AI features can help with engraving and formatting while students focus on musical content."
+            },
+            {
+                taskName: "Finding recordings and scores",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant recordings, scores, and scholarship, allowing students to focus on listening and analysis."
+            }
         ],
         intro: "AI can compose music, generate arrangements, and analyze musical structures—but musical understanding requires developing aural skills, instrumental or vocal technique, and the ability to make expressive musical decisions. This policy protects the practice and deep listening essential to musicianship.",
         context: "In music, ear training, performance technique, and understanding of musical structure through listening and analysis require sustained practice with sound and repeated performance experience.",
@@ -512,6 +1386,38 @@ const departmentSpecificLanguage = {
             "Are students interpreting texts through performance?",
             "Can they make staging and movement choices?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Performing (acting, dancing)",
+                guidance: "core-skill",
+                reasoning: "Developing embodied skills—movement, voice, gesture, expression—requires physical practice. This performing work can't be done by AI."
+            },
+            {
+                taskName: "Analyzing performances/films",
+                guidance: "core-skill",
+                reasoning: "Understanding how mise-en-scène, editing, choreography, or blocking creates meaning requires close attention to performance that develops through watching critically."
+            },
+            {
+                taskName: "Directing/choreographing",
+                guidance: "core-skill",
+                reasoning: "Making creative choices about staging, movement, or cinematic language requires artistic judgment that develops through practice."
+            },
+            {
+                taskName: "Scriptwriting or devising",
+                guidance: "context-dependent",
+                reasoning: "Students should develop dramatic writing skills, though AI might help with brainstorming—if students make creative and structural choices themselves."
+            },
+            {
+                taskName: "Finding scholarly sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate theater, dance, or film scholarship, allowing students to focus on analysis and interpretation."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop performance analysis skills. AI can handle formatting while students focus on critical writing."
+            }
+        ],
         intro: "AI can generate scripts, analyze performances, and create digital effects—but understanding performance requires embodied practice, interpretive work with texts and bodies, and developing the collaborative skills essential to theater, dance, and film. This policy protects the embodied and collaborative learning central to performance study.",
         context: "In theater, dance, and film, embodied performance skills, interpretive work with texts and movement, and collaborative creation require practice that is fundamentally social and physical.",
         noAI: "AI cannot develop your performance technique, ability to analyze how bodies and staging create meaning, or capacity to collaborate creatively with others. These skills require embodied practice, careful observation of performance, and sustained collaborative work.",
@@ -527,6 +1433,38 @@ const departmentSpecificLanguage = {
             "Does AI mask ethical communication responsibilities?",
             "Are students understanding audiences, not demographics?",
             "Can they distinguish reporting from public relations?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Interviewing sources",
+                guidance: "core-skill",
+                reasoning: "Learning to ask follow-up questions, build rapport, and notice what's being said (and not said) requires practice that AI can't provide."
+            },
+            {
+                taskName: "Verifying facts and sources",
+                guidance: "core-skill",
+                reasoning: "Fact-checking requires skepticism, cross-referencing, and judgment about credibility—fundamental journalism skills that students must develop."
+            },
+            {
+                taskName: "Writing news stories",
+                guidance: "core-skill",
+                reasoning: "Deciding what's newsworthy, structuring stories, and writing clear prose requires journalistic judgment that develops through practice."
+            },
+            {
+                taskName: "Identifying story angles",
+                guidance: "context-dependent",
+                reasoning: "Students should develop news judgment independently, but AI might help generate alternative angles to consider—if students evaluate which serve the public interest."
+            },
+            {
+                taskName: "Finding background information",
+                guidance: "support-task",
+                reasoning: "AI can help gather contextual information quickly, but students must verify accuracy and attribute sources properly."
+            },
+            {
+                taskName: "Copy editing and proofreading",
+                guidance: "support-task",
+                reasoning: "After students write their own stories, AI can help catch errors, allowing them to focus on reporting and writing."
+            }
         ],
         intro: "AI can draft news articles, analyze media content, and generate communications materials—but journalism and strategic communication require news judgment, ethical decision-making, and understanding audiences and publics. This policy helps you develop the judgment and ethical reasoning essential to communication professions.",
         context: "In journalism and communications, developing news judgment, understanding audience analysis, and maintaining ethical standards in information dissemination require practice with real communication scenarios.",
@@ -548,6 +1486,38 @@ const departmentSpecificLanguage = {
             "Are students engaging with primary sources directly?",
             "Can they critique representations with historical context?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing primary sources from African diaspora",
+                guidance: "core-skill",
+                reasoning: "Understanding historical voices, perspectives, and contexts from within Black communities requires direct engagement. AI summaries can erase nuance and cultural specificity."
+            },
+            {
+                taskName: "Developing intersectional analysis",
+                guidance: "core-skill",
+                reasoning: "Thinking through how race, class, gender, and other identities intersect requires careful reasoning that students must develop. AI often flattens this complexity."
+            },
+            {
+                taskName: "Engaging with anti-racist frameworks",
+                guidance: "core-skill",
+                reasoning: "Understanding structural racism and developing anti-racist analysis requires sustained thinking that can't be outsourced. This is core intellectual work."
+            },
+            {
+                taskName: "Critiquing scholarly arguments",
+                guidance: "context-dependent",
+                reasoning: "Students should develop critical reading skills independently, but AI might help identify key claims to analyze—if students then do their own evaluation."
+            },
+            {
+                taskName: "Finding scholarly sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant scholarship, freeing students to focus on reading and analysis rather than database navigation."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop critical thinking about African diaspora history and culture. AI can handle formatting."
+            }
+        ],
         intro: "AI can summarize information about African and African diaspora histories and cultures—but Africana Studies requires critical engagement with power, race, and representation, along with interpretive skills for understanding diverse cultural productions and social movements. This policy helps you develop the critical thinking essential to Africana Studies.",
         context: "In Africana Studies, analyzing power relations, understanding cultural production in context, and engaging critically with representations of African and African diaspora peoples require sustained engagement with histories, texts, and cultural forms.",
         noAI: "AI cannot develop your ability to analyze how race and power shape knowledge production, interpret cultural works within historical contexts of resistance and creativity, or engage critically with representations that have often distorted African peoples' experiences.",
@@ -563,6 +1533,38 @@ const departmentSpecificLanguage = {
             "Does AI impose Western frameworks on Asia?",
             "Are students understanding cultures within their frameworks?",
             "Can they work with texts in original languages?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing primary sources from East Asia",
+                guidance: "core-skill",
+                reasoning: "Understanding historical documents, cultural texts, and perspectives from within East Asian contexts requires direct engagement. AI summaries can erase cultural specificity."
+            },
+            {
+                taskName: "Understanding cultural and historical contexts",
+                guidance: "core-skill",
+                reasoning: "Grasping how social, political, and cultural factors shape East Asian societies requires sustained reading and synthesis that can't be shortcut."
+            },
+            {
+                taskName: "Comparing across East Asian regions",
+                guidance: "core-skill",
+                reasoning: "Making nuanced comparisons that avoid oversimplification requires deep knowledge of multiple contexts—thinking students must develop through study."
+            },
+            {
+                taskName: "Researching contemporary issues",
+                guidance: "context-dependent",
+                reasoning: "AI can provide background on current events, but students should read diverse sources and develop their own analysis grounded in area studies knowledge."
+            },
+            {
+                taskName: "Finding scholarly sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant East Asian studies scholarship, allowing students to focus on reading and synthesizing diverse perspectives."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop area studies knowledge. AI can handle formatting while students focus on analysis."
+            }
         ],
         intro: "AI can translate East Asian texts and provide information about East Asian cultures—but East Asian Studies requires language skills, understanding of diverse cultural contexts, and critical engagement with how Asia is represented in Western discourse. This policy protects the language learning and cultural analysis essential to the field.",
         context: "In East Asian Studies, language proficiency, understanding of diverse cultural traditions, and critical awareness of Orientalism and Western representations of Asia are fundamental to engaged scholarship.",
@@ -580,6 +1582,38 @@ const departmentSpecificLanguage = {
             "Are students evaluating solutions for equity?",
             "Can they think ecologically and socially simultaneously?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Field observation and data collection",
+                guidance: "core-skill",
+                reasoning: "Learning to observe ecosystems, identify species, and collect environmental data requires being present in the field. This embodied practice can't be done by AI."
+            },
+            {
+                taskName: "Systems thinking about environmental issues",
+                guidance: "core-skill",
+                reasoning: "Understanding interconnections between social, ecological, and economic systems requires synthetic thinking that develops through practice."
+            },
+            {
+                taskName: "Evaluating policy solutions",
+                guidance: "core-skill",
+                reasoning: "Weighing trade-offs, considering stakeholders, and understanding unintended consequences requires reasoning that students must develop."
+            },
+            {
+                taskName: "Analyzing environmental data",
+                guidance: "context-dependent",
+                reasoning: "Students should learn to work with environmental data, but AI assistance with large datasets can be appropriate if they understand the analysis methods."
+            },
+            {
+                taskName: "Finding environmental reports and data",
+                guidance: "support-task",
+                reasoning: "AI can help locate EPA reports, climate data, and research studies, allowing students to focus on synthesis and analysis."
+            },
+            {
+                taskName: "Creating maps and visualizations",
+                guidance: "support-task",
+                reasoning: "After understanding principles, AI tools can help create environmental visualizations, freeing time for interpretation and communication."
+            }
+        ],
         intro: "AI can analyze environmental data, model climate scenarios, and suggest sustainability solutions—but environmental studies requires integrating natural science, social science, and humanities to understand complex environmental problems. This policy helps you develop the integrative thinking essential to environmental work.",
         context: "In environmental studies, thinking across disciplines, understanding both biophysical and social dimensions of environmental issues, and evaluating potential solutions require integrative analysis.",
         noAI: "AI cannot develop your ability to integrate across natural sciences, social sciences, and humanities in analyzing environmental problems, or to reason about environmental justice and sustainability with attention to both ecological and social considerations.",
@@ -595,6 +1629,38 @@ const departmentSpecificLanguage = {
             "Does AI center whose perspectives on region?",
             "Are students engaging with regional diversity?",
             "Can they critique power relations in representation?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing primary sources from Latin America/Caribbean",
+                guidance: "core-skill",
+                reasoning: "Understanding historical voices and perspectives from within Latin American and Caribbean contexts requires direct engagement. AI summaries can erase regional specificity."
+            },
+            {
+                taskName: "Understanding colonial legacies",
+                guidance: "core-skill",
+                reasoning: "Grasping how colonialism shapes contemporary societies requires sustained thinking about power, resistance, and social structures that can't be outsourced."
+            },
+            {
+                taskName: "Comparing across the region",
+                guidance: "core-skill",
+                reasoning: "Making nuanced comparisons that respect national and cultural differences requires deep knowledge—thinking students must develop through study."
+            },
+            {
+                taskName: "Researching contemporary issues",
+                guidance: "context-dependent",
+                reasoning: "AI can provide background on current events, but students should read diverse sources from the region and develop their own analysis."
+            },
+            {
+                taskName: "Finding scholarly sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant Latin American and Caribbean studies scholarship, allowing students to focus on reading and synthesis."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop area studies knowledge. AI can handle formatting while students focus on analysis."
+            }
         ],
         intro: "AI can provide information about Latin America and the Caribbean—but the field requires language skills, understanding of diverse cultural and political contexts, and critical engagement with histories of colonialism and representation. This policy protects the language learning and critical analysis essential to area studies.",
         context: "In Latin American and Caribbean Studies, language proficiency, understanding of colonial legacies and cultural diversity, and critical awareness of how the region has been represented in global discourse are foundational.",
@@ -612,6 +1678,38 @@ const departmentSpecificLanguage = {
             "Are students understanding religious and cultural diversity?",
             "Can they analyze power in Western representations?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing primary sources from the region",
+                guidance: "core-skill",
+                reasoning: "Understanding perspectives from within Middle Eastern and South Asian contexts requires direct engagement with texts. AI summaries can erase cultural nuance."
+            },
+            {
+                taskName: "Understanding colonial and postcolonial dynamics",
+                guidance: "core-skill",
+                reasoning: "Grasping how imperialism, nationalism, and globalization shape the region requires sustained analysis that can't be shortcut."
+            },
+            {
+                taskName: "Comparing across the region",
+                guidance: "core-skill",
+                reasoning: "Making nuanced comparisons that respect diversity within these regions requires deep knowledge—thinking students must develop through study."
+            },
+            {
+                taskName: "Researching contemporary issues",
+                guidance: "context-dependent",
+                reasoning: "AI can provide background on current events, but students should read diverse sources and develop their own analysis grounded in area studies knowledge."
+            },
+            {
+                taskName: "Finding scholarly sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant Middle East and South Asia studies scholarship, allowing students to focus on reading and synthesis."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop area studies knowledge. AI can handle formatting while students focus on regional analysis."
+            }
+        ],
         intro: "AI can provide information about the Middle East and South Asia—but area studies requires language skills, deep understanding of diverse cultures and religions, and critical engagement with Orientalism and Western representations of the region. This policy protects the language learning and critical frameworks essential to the field.",
         context: "In Middle East and South Asia Studies, language proficiency, understanding of religious and cultural diversity, and critical awareness of Orientalism and power relations are fundamental to responsible scholarship.",
         noAI: "AI cannot develop your language skills, your ability to understand Middle Eastern and South Asian cultures within their own frameworks, or your capacity to recognize and critique Orientalist representations and power dynamics.",
@@ -627,6 +1725,38 @@ const departmentSpecificLanguage = {
             "Does AI encode gender and sexuality biases?",
             "Are students engaging with feminist and queer theory?",
             "Can they critique how knowledge production gendered?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Developing intersectional analysis",
+                guidance: "core-skill",
+                reasoning: "Thinking through how gender, race, class, sexuality, and other identities intersect requires careful reasoning that students must develop. AI often flattens this complexity."
+            },
+            {
+                taskName: "Engaging with feminist/queer theory",
+                guidance: "core-skill",
+                reasoning: "Understanding theoretical frameworks requires close reading of challenging texts and grappling with how they illuminate gender and sexuality. AI summaries bypass this work."
+            },
+            {
+                taskName: "Analyzing power structures",
+                guidance: "core-skill",
+                reasoning: "Understanding how gender and sexuality operate through institutions, representation, and everyday life requires critical frameworks that students must develop."
+            },
+            {
+                taskName: "Critiquing dominant narratives",
+                guidance: "core-skill",
+                reasoning: "Questioning whose knowledge counts and what gets erased requires critical thinking about power that is central to WGSS—thinking AI often reproduces rather than critiques."
+            },
+            {
+                taskName: "Finding scholarly sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate feminist and queer scholarship, but students should evaluate which sources center marginalized voices and challenge power."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop critical gender/sexuality analysis. AI can handle formatting while students focus on intersectional thinking."
+            }
         ],
         intro: "AI tools can summarize gender theory and describe identity categories—but they often reflect the biases of their training data, centering dominant narratives while marginalizing queer and trans voices. WGSS requires intersectional analysis that questions whose knowledge counts, how power operates through representation, and what gets erased. This policy protects the critical feminist and queer frameworks essential to studying gender and sexuality.",
         context: "In WGSS, analyzing power relations, understanding intersectionality, and engaging critically with how gender and sexuality shape and are shaped by knowledge production require sustained engagement with feminist and queer theory.",
@@ -644,6 +1774,38 @@ const departmentSpecificLanguage = {
             "Are students understanding institutional legitimacy questions?",
             "Can they evaluate rights claims with theory?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing legal arguments",
+                guidance: "core-skill",
+                reasoning: "Understanding how legal reasoning works, identifying precedents, and evaluating arguments requires legal thinking that students must develop."
+            },
+            {
+                taskName: "Reading case law",
+                guidance: "core-skill",
+                reasoning: "Learning to extract holdings, understand reasoning, and identify how cases fit together requires close reading that AI summaries would bypass."
+            },
+            {
+                taskName: "Evaluating justice and fairness",
+                guidance: "core-skill",
+                reasoning: "Thinking critically about legal systems, inequality, and social justice requires normative reasoning that shouldn't be outsourced to AI."
+            },
+            {
+                taskName: "Researching statutes and regulations",
+                guidance: "context-dependent",
+                reasoning: "AI can help locate relevant laws, but students should read them carefully and understand how they've been interpreted and applied."
+            },
+            {
+                taskName: "Finding cases on legal topics",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant case law and scholarship, allowing students to focus on reading and legal analysis."
+            },
+            {
+                taskName: "Citation formatting (Bluebook)",
+                guidance: "support-task",
+                reasoning: "Legal citation mechanics are technical. AI can handle Bluebook formatting while students focus on legal reasoning."
+            }
+        ],
         intro: "AI can summarize legal cases, analyze policy arguments, and generate legal reasoning—but understanding law and justice requires critical analysis of legal institutions, reasoning about justice and rights, and understanding how law shapes and is shaped by social power. This policy helps you develop the critical thinking essential to legal and justice studies.",
         context: "In Law, Justice & Society, analyzing legal reasoning, understanding institutional power, and engaging with normative questions about justice require critical engagement with law as both text and social practice.",
         noAI: "AI cannot develop your ability to analyze legal arguments, reason about justice and rights, or understand how legal institutions reflect and perpetuate social power. These capacities require sustained engagement with legal texts, theory, and institutional analysis.",
@@ -659,6 +1821,38 @@ const departmentSpecificLanguage = {
             "Does AI offer technical fixes ignoring politics?",
             "Are students critiquing systems that produce poverty?",
             "Can they evaluate policies for justice implications?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing poverty and inequality",
+                guidance: "core-skill",
+                reasoning: "Understanding structural causes of poverty, capability deprivation, and systemic inequality requires critical thinking that students must develop."
+            },
+            {
+                taskName: "Engaging with capability framework",
+                guidance: "core-skill",
+                reasoning: "Applying Sen's capabilities approach to real-world cases requires reasoning about what people can be and do—thinking that develops through practice."
+            },
+            {
+                taskName: "Evaluating development interventions",
+                guidance: "core-skill",
+                reasoning: "Assessing whether programs expand capabilities or perpetuate dependency requires critical analysis that shouldn't be outsourced to AI."
+            },
+            {
+                taskName: "Analyzing poverty data",
+                guidance: "context-dependent",
+                reasoning: "Students should learn to interpret poverty statistics critically, though AI can assist with technical analysis if students understand limitations."
+            },
+            {
+                taskName: "Finding development research",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant research on poverty and development, allowing students to focus on critical engagement with literature."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop critical thinking about poverty and capability. AI can handle formatting."
+            }
         ],
         intro: "AI can analyze poverty data and suggest policy solutions—but poverty studies requires understanding structural causes of inequality, engaging with lived experiences, and critical analysis of economic and political systems. This policy helps you develop the critical frameworks and analytical skills essential to studying poverty and inequality.",
         context: "In Poverty Studies, understanding structural causes of poverty, engaging with qualitative and quantitative evidence, and analyzing policy proposals require integrative thinking across economics, sociology, and political economy.",
@@ -676,6 +1870,38 @@ const departmentSpecificLanguage = {
             "Are students engaging with digital studies theory?",
             "Can they experiment with AI as object?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing digital platforms critically",
+                guidance: "core-skill",
+                reasoning: "Understanding how platforms shape behavior, amplify content, and encode values requires critical analysis that students must develop. AI descriptions may reproduce platform logics uncritically."
+            },
+            {
+                taskName: "Evaluating information credibility",
+                guidance: "core-skill",
+                reasoning: "Assessing sources, identifying misinformation, and understanding how information spreads requires digital literacy skills that AI would bypass."
+            },
+            {
+                taskName: "Understanding algorithms and their effects",
+                guidance: "core-skill",
+                reasoning: "Analyzing how recommendation algorithms, search rankings, and content moderation work requires critical thinking about power and technology."
+            },
+            {
+                taskName: "Researching digital trends",
+                guidance: "context-dependent",
+                reasoning: "AI can help gather information about platforms and trends, but students should evaluate claims critically and understand cultural contexts."
+            },
+            {
+                taskName: "Finding scholarly sources",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant digital culture research, allowing students to focus on critical analysis of technology and culture."
+            },
+            {
+                taskName: "Citation formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics don't develop critical thinking about digital culture. AI can handle formatting."
+            }
+        ],
         intro: "AI is itself a subject of study in digital culture—both as technology and as cultural phenomenon. This field requires critical analysis of how digital technologies shape knowledge, culture, and social relations. This policy helps you develop the critical frameworks for analyzing digital culture while potentially using AI as object of study.",
         context: "In Digital Culture & Information, analyzing how technologies shape knowledge production, understanding algorithmic culture, and engaging critically with digital power relations require theoretical frameworks and analytical skills.",
         noAI: "AI cannot develop your ability to analyze digital culture critically, understand how algorithms shape social life, or engage with theoretical frameworks for studying technology and culture. These capacities require sustained engagement with digital studies scholarship and critical analysis.",
@@ -691,6 +1917,38 @@ const departmentSpecificLanguage = {
             "Does AI obscure educational equity questions?",
             "Are students engaging with learning theory?",
             "Can they evaluate AI's pedagogical assumptions?"
+        ],
+        dimensionalTasks: [
+            {
+                taskName: "Analyzing educational theories",
+                guidance: "core-skill",
+                reasoning: "Understanding how learning happens, how schools function, and what constitutes effective teaching requires engaging deeply with educational theory that AI summaries would flatten."
+            },
+            {
+                taskName: "Designing lesson plans",
+                guidance: "core-skill",
+                reasoning: "Creating instruction requires pedagogical judgment about learners, content, and context. This professional skill develops through practice, not AI generation."
+            },
+            {
+                taskName: "Observing and reflecting on teaching",
+                guidance: "core-skill",
+                reasoning: "Developing reflective practice—noticing what works, analyzing why, and revising approaches—is central to becoming an educator. This can't be outsourced."
+            },
+            {
+                taskName: "Analyzing educational data",
+                guidance: "context-dependent",
+                reasoning: "Students should understand assessment data and what it reveals about learning, though AI can assist with analysis if students interpret implications for teaching."
+            },
+            {
+                taskName: "Finding education research",
+                guidance: "support-task",
+                reasoning: "AI can help locate relevant education research and policy documents, allowing students to focus on critical engagement with educational ideas."
+            },
+            {
+                taskName: "APA formatting",
+                guidance: "support-task",
+                reasoning: "Citation mechanics are technical. AI can handle APA style while students focus on educational analysis."
+            }
         ],
         intro: "AI is rapidly entering educational contexts, from automated grading to adaptive learning systems. Education studies requires critical analysis of pedagogy, learning theories, and educational justice. This policy helps you develop the critical frameworks essential to thinking about education while considering AI's growing presence in learning environments.",
         context: "In Education Studies, understanding learning theory, analyzing pedagogical approaches, and engaging with questions of educational equity and justice require frameworks for thinking critically about teaching and learning.",
