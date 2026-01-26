@@ -4104,6 +4104,18 @@
                 window.scrollTo(0, 0);
             }, [phase]);
 
+            // Auto-set intro text when entering intro-policy phase
+            useEffect(() => {
+                if (phase === 'intro-policy' && !statementParts.intro) {
+                    const defaultIntro = 'Generative AI tools are now widely available.\n\nThis policy clarifies how these tools relate to your learning goals in this course.';
+                    setStatementParts(prev => ({
+                        ...prev,
+                        intro: defaultIntro
+                    }));
+                    setShowPolicyChoices(true);
+                }
+            }, [phase, statementParts.intro]);
+
             // Load saved draft
             useEffect(() => {
                 // Disable browser scroll restoration
@@ -4960,25 +4972,6 @@
             }
 
             if (phase === 'intro-policy') {
-                // Universal intro options
-                const universalIntroOptions = [
-                    {
-                        id: 'minimal',
-                        label: 'Minimal',
-                        text: 'This policy clarifies how AI tools relate to your learning goals in this course.'
-                    },
-                    {
-                        id: 'context',
-                        label: 'With Context',
-                        text: 'Generative AI tools are now widely available.\n\nThis policy clarifies how these tools relate to your learning goals in this course.'
-                    },
-                    {
-                        id: 'balanced',
-                        label: 'Balanced Framing',
-                        text: 'AI tools offer new capabilities while raising questions about learning and skill development.\n\nThis policy clarifies how these tools relate to your learning goals in this course.'
-                    }
-                ];
-
                 return (
                     <div key="intro-policy-phase">
                         <div ref={pageTopRef} style={{position: 'absolute', top: 0}} />
@@ -4997,138 +4990,55 @@
                             <div className="phase-container">
                                 <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} />
 
-                                {!showPolicyChoices ? (
-                                    <>
-                                        <div style={{marginBottom: '1.5rem'}}>
-                                            <button
-                                                onClick={() => {
-                                                    setPhase('department');
-                                                    setShowPolicyChoices(false);
-                                                }}
-                                                style={{
-                                                    background: 'none',
-                                                    border: 'none',
-                                                    color: 'var(--primary)',
-                                                    cursor: 'pointer',
-                                                    fontSize: '0.9rem',
-                                                    padding: '0',
-                                                    textDecoration: 'underline',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: '0.25rem'
-                                                }}
-                                            >
-                                                ← Back to department selection
-                                            </button>
-                                        </div>
-                                        <h2 className="phase-question">Choose Your Introduction</h2>
-                                        <p className="phase-description">
-                                            Select the framing that best fits your course philosophy.
-                                        </p>
+                                <div style={{marginBottom: '1.5rem'}}>
+                                    <button
+                                        onClick={() => {
+                                            setPhase('department');
+                                            setShowPolicyChoices(false);
+                                            setStatementParts(prev => ({
+                                                ...prev,
+                                                intro: ''
+                                            }));
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.9rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '0.25rem'
+                                        }}
+                                    >
+                                        ← Back to department selection
+                                    </button>
+                                </div>
+                                <h2 className="phase-question">What's Your Overall Approach?</h2>
+                                <p className="phase-description">
+                                    Choose the statement that best aligns with your preference for AI use in your course.
+                                </p>
 
-                                        <div style={{display: 'flex', flexDirection: 'row', gap: '1rem', marginTop: '1.5rem', flexWrap: 'wrap'}}>
-                                            {universalIntroOptions.map(option => (
-                                                <div
-                                                    key={option.id}
-                                                    onClick={() => handleAcceptIntro(option.text)}
-                                                    style={{
-                                                        flex: '1 1 300px',
-                                                        padding: '1.5rem',
-                                                        border: '2px solid var(--border-color)',
-                                                        borderRadius: '8px',
-                                                        cursor: 'pointer',
-                                                        transition: 'all 0.2s ease',
-                                                        background: 'var(--card-bg)',
-                                                        minHeight: '180px',
-                                                        display: 'flex',
-                                                        flexDirection: 'column'
-                                                    }}
-                                                    onMouseOver={(e) => {
-                                                        e.currentTarget.style.borderColor = 'var(--primary)';
-                                                        e.currentTarget.style.transform = 'translateY(-2px)';
-                                                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-                                                    }}
-                                                    onMouseOut={(e) => {
-                                                        e.currentTarget.style.borderColor = 'var(--border-color)';
-                                                        e.currentTarget.style.transform = 'translateY(0)';
-                                                        e.currentTarget.style.boxShadow = 'none';
-                                                    }}
-                                                >
-                                                    <div style={{
-                                                        fontSize: '0.85rem',
-                                                        fontWeight: 600,
-                                                        color: 'var(--primary)',
-                                                        marginBottom: '0.75rem',
-                                                        textTransform: 'uppercase',
-                                                        letterSpacing: '0.5px',
-                                                        textAlign: 'center'
-                                                    }}>
-                                                        {option.label}
-                                                    </div>
-                                                    <div style={{
-                                                        fontSize: '0.9rem',
-                                                        lineHeight: '1.5',
-                                                        color: 'var(--text-primary)',
-                                                        flex: 1
-                                                    }}>
-                                                        "{option.text}"
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </>
-                                ) : (
-                                    <>
-                                        <div style={{marginBottom: '1.5rem'}}>
-                                            <button
-                                                onClick={() => {
-                                                    setShowPolicyChoices(false);
-                                                    setStatementParts(prev => ({
-                                                        ...prev,
-                                                        intro: ''
-                                                    }));
-                                                }}
-                                                style={{
-                                                    background: 'none',
-                                                    border: 'none',
-                                                    color: 'var(--primary)',
-                                                    cursor: 'pointer',
-                                                    fontSize: '0.9rem',
-                                                    padding: '0',
-                                                    textDecoration: 'underline',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: '0.25rem'
-                                                }}
-                                            >
-                                                ← Change introduction
-                                            </button>
-                                        </div>
-                                        <h2 className="phase-question">What's Your Overall Approach?</h2>
-                                        <p className="phase-description">
-                                            Choose the statement that best aligns with your preference for AI use in your course.
-                                        </p>
-
-                                        <div className="policy-choices">
-                                            <div className="policy-card" onClick={() => handlePolicyLevelSelect('no-ai')}>
-                                                <h3>🚫 No AI</h3>
-                                                <p>Students may not use generative AI tools for any work</p>
-                                            </div>
-                                            <div className="policy-card" onClick={() => handlePolicyLevelSelect('limited')}>
-                                                <h3>⚠️ Limited AI</h3>
-                                                <p>Students may use AI tools with specific restrictions</p>
-                                            </div>
-                                            <div className="policy-card" onClick={() => handlePolicyLevelSelect('ok')}>
-                                                <h3>✅ AI OK</h3>
-                                                <p>Students may use AI tools as they see fit</p>
-                                            </div>
-                                            <div className="policy-card" onClick={() => handlePolicyLevelSelect('required')}>
-                                                <h3>⭐ AI Required</h3>
-                                                <p>AI use is required for certain assignments</p>
-                                            </div>
-                                        </div>
-                                    </>
-                                )}
+                                <div className="policy-choices">
+                                    <div className="policy-card" onClick={() => handlePolicyLevelSelect('no-ai')}>
+                                        <h3>🚫 No AI</h3>
+                                        <p>Students may not use generative AI tools for any work</p>
+                                    </div>
+                                    <div className="policy-card" onClick={() => handlePolicyLevelSelect('limited')}>
+                                        <h3>⚠️ Limited AI</h3>
+                                        <p>Students may use AI tools with specific restrictions</p>
+                                    </div>
+                                    <div className="policy-card" onClick={() => handlePolicyLevelSelect('ok')}>
+                                        <h3>✅ AI OK</h3>
+                                        <p>Students may use AI tools as they see fit</p>
+                                    </div>
+                                    <div className="policy-card" onClick={() => handlePolicyLevelSelect('required')}>
+                                        <h3>⭐ AI Required</h3>
+                                        <p>AI use is required for certain assignments</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <Footer />
@@ -5395,52 +5305,30 @@
                                     return null;
                                 })()}
 
-                                <div style={{display: 'flex', gap: '1.5rem', marginBottom: '1rem', flexWrap: 'wrap'}}>
-                                    <button
-                                        onClick={() => {
-                                            setPhase('intro-policy');
-                                            setShowPolicyChoices(true);
-                                            setStatementParts(prev => ({
-                                                ...prev,
-                                                policyLevel: '',
-                                                policyLevelKey: '',
-                                                rationale: ''
-                                            }));
-                                        }}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: 'var(--primary)',
-                                            cursor: 'pointer',
-                                            fontSize: '0.9rem',
-                                            padding: '0.5rem 0',
-                                            textDecoration: 'underline'
-                                        }}
-                                    >
-                                        ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            setPhase('intro-policy');
-                                            setShowPolicyChoices(false);
-                                            setStatementParts(prev => ({
-                                                ...prev,
-                                                intro: ''
-                                            }));
-                                        }}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: 'var(--primary)',
-                                            cursor: 'pointer',
-                                            fontSize: '0.9rem',
-                                            padding: '0.5rem 0',
-                                            textDecoration: 'underline'
-                                        }}
-                                    >
-                                        ← Change introduction
-                                    </button>
-                                </div>
+                                <button
+                                    onClick={() => {
+                                        setPhase('intro-policy');
+                                        setShowPolicyChoices(true);
+                                        setStatementParts(prev => ({
+                                            ...prev,
+                                            policyLevel: '',
+                                            policyLevelKey: '',
+                                            rationale: ''
+                                        }));
+                                    }}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--primary)',
+                                        cursor: 'pointer',
+                                        fontSize: '0.9rem',
+                                        padding: '0.5rem 0',
+                                        marginBottom: '1rem',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
+                                </button>
 
                                 <SuggestionBox
                                     label="Sample Rationale Language"
