@@ -97,6 +97,16 @@
             color: #64748b;
             font-size: 0.95rem;
         }
+        .consideration-why {
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-left: 3px solid #cbd5e1;
+        }
+        .consideration-why strong {
+            color: #475569;
+        }
         .nav {
             position: sticky;
             top: 0;
@@ -197,9 +207,17 @@
                     <div class="section">
                         <div class="section-title">Questions to Guide Your Policy Decision</div>
                         <div class="considerations">
-                            ${dept.considerations.map(q => `
-                                <div class="consideration-item">${q}</div>
-                            `).join('')}
+                            ${dept.considerations.map(item => {
+                                const question = typeof item === 'string' ? item : item.question;
+                                const why = typeof item === 'object' ? item.why : null;
+
+                                return `
+                                    <div class="consideration-item">
+                                        <div>${question}</div>
+                                        ${why ? `<div class="consideration-why"><strong>Why this matters:</strong> ${why}</div>` : ''}
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
                     </div>
                 `;
