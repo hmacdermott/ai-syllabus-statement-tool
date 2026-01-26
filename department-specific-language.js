@@ -10,11 +10,26 @@ const departmentSpecificLanguage = {
 
     'Computer Science': {
         considerations: [
-            "Are students learning to debug, or just generate?",
-            "Can students verify AI solutions and explain why?",
-            "Does your course build algorithmic thinking AI bypasses?",
-            "Are students developing problem decomposition skills independently?",
-            "Can they trace code execution without AI assistance?"
+            {
+                question: 'Are students learning to debug, or just generate?',
+                why: 'Debugging teaches problem-solving patterns and algorithmic thinking. AI can generate working code, but that doesn\'t build the diagnostic skills needed to troubleshoot when code fails. The skill comes from wrestling with errors yourself.'
+            },
+            {
+                question: 'Can students verify AI solutions and explain why?',
+                why: 'Understanding why code works is more important than having code that works. If students can\'t explain the logic, they haven\'t learned computer science—they\'ve just successfully prompted an AI. Verification requires deep comprehension.'
+            },
+            {
+                question: 'Does your course build algorithmic thinking AI bypasses?',
+                why: 'Algorithmic thinking—breaking problems into logical steps—is the core transferable skill in CS. AI can execute algorithms, but using AI-generated solutions doesn\'t develop your capacity to design algorithms from first principles.'
+            },
+            {
+                question: 'Are students developing problem decomposition skills independently?',
+                why: 'Breaking complex problems into manageable subproblems is essential for programming. AI can decompose problems for you, but that cognitive work is where learning happens. Without practice decomposing problems, students can\'t tackle novel challenges.'
+            },
+            {
+                question: 'Can they trace code execution without AI assistance?',
+                why: 'Tracing how code executes line-by-line builds mental models of program behavior. This skill is essential for debugging and optimization. AI can explain execution, but reading an explanation doesn\'t build the same mental model as tracing it yourself.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -58,11 +73,26 @@ const departmentSpecificLanguage = {
 
     'Mathematics': {
         considerations: [
-            "Are students constructing proofs or consuming solutions?",
-            "Can they recognize when theorems apply?",
-            "Does AI mask gaps in mathematical reasoning?",
-            "Are students building pattern recognition through struggle?",
-            "Can they solve problems without procedural shortcuts?"
+            {
+                question: 'Are students constructing proofs or consuming solutions?',
+                why: 'Proof construction is the heart of mathematical thinking—it\'s where you learn logical reasoning and mathematical argumentation. AI can generate proofs, but reading them doesn\'t teach you how to construct your own. The learning happens in the struggle to build valid arguments.'
+            },
+            {
+                question: 'Can they recognize when theorems apply?',
+                why: 'Knowing which theorem solves which problem requires pattern recognition built through practice. AI can tell you which theorem to use, but that doesn\'t develop your mathematical intuition about when and how different tools apply to novel problems.'
+            },
+            {
+                question: 'Does AI mask gaps in mathematical reasoning?',
+                why: 'Mathematics builds cumulatively—gaps in understanding compound over time. If AI fills gaps for students (providing missing steps, explaining connections), those gaps remain hidden until students face problems AI can\'t solve. The gaps must be addressed, not papered over.'
+            },
+            {
+                question: 'Are students building pattern recognition through struggle?',
+                why: 'Mathematical patterns (when to integrate by parts, how to set up induction) emerge from working many problems. The struggle reveals patterns. AI can point out patterns, but that\'s fundamentally different from discovering them through your own problem-solving work.'
+            },
+            {
+                question: 'Can they solve problems without procedural shortcuts?',
+                why: 'Mathematics isn\'t just procedures—it\'s understanding why procedures work. AI provides procedural shortcuts (just do these steps), which can prevent students from understanding the mathematical principles underlying the procedures. Understanding \'why\' requires working through problems conceptually.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -106,11 +136,26 @@ const departmentSpecificLanguage = {
 
     'Physics & Engineering': {
         considerations: [
-            "Are students developing physical intuition about results?",
-            "Can they set up problems from first principles?",
-            "Does your course require troubleshooting unexpected outcomes?",
-            "Are students checking dimensional analysis independently?",
-            "Can they estimate whether solutions make physical sense?"
+            {
+                question: 'Are students developing physical intuition about results?',
+                why: 'Physical intuition is the engineering \'gut feel\' that tells you if an answer is reasonable before you check calculations. It develops from solving many problems and comparing predictions to reality. AI can give answers, but only experience builds the intuition that catches errors.'
+            },
+            {
+                question: 'Can they set up problems from first principles?',
+                why: 'Setting up problems from fundamentals—identifying relevant forces, writing conservation equations, drawing free-body diagrams—is where physics and engineering thinking happens. AI can solve equations you give it, but it can\'t teach you how to translate a physical situation into mathematics.'
+            },
+            {
+                question: 'Does your course require troubleshooting unexpected outcomes?',
+                why: 'Real engineering is messy. When calculations don\'t match experiments, or designs don\'t work as predicted, troubleshooting teaches systematic diagnostic thinking. This skill—identifying where your model breaks down—only develops through struggle with actual problems.'
+            },
+            {
+                question: 'Are students checking dimensional analysis independently?',
+                why: 'Dimensional analysis is a fundamental sanity check. If units don\'t work out, your equation is wrong. This simple verification requires understanding what each term represents physically. If you need AI to check units, you haven\'t understood the physics.'
+            },
+            {
+                question: 'Can they estimate whether solutions make physical sense?',
+                why: 'Back-of-envelope estimation is a core engineering skill. Does this bridge deflect 1mm or 1m? Does this circuit draw 10mA or 10A? You can\'t rely on computational tools if you can\'t judge whether answers are in the right ballpark. Estimation builds practical judgment.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -154,11 +199,26 @@ const departmentSpecificLanguage = {
 
     'Data Science': {
         considerations: [
-            "Are students selecting methods or accepting suggestions?",
-            "Can they diagnose when algorithms fail?",
-            "Does AI hide biases in data or models?",
-            "Are students implementing algorithms from scratch first?",
-            "Can they interpret results with appropriate uncertainty?"
+            {
+                question: 'Are students selecting methods or accepting suggestions?',
+                why: 'Method selection is the core intellectual work in data science. Knowing when to use regression vs classification, parametric vs non-parametric approaches, or which algorithm fits your data structure demonstrates understanding. AI can suggest tools, but you need to know why one method is appropriate and another isn\'t.'
+            },
+            {
+                question: 'Can they diagnose when algorithms fail?',
+                why: 'Algorithms fail in systematic ways—overfitting, underfitting, convergence failures, sensitivity to outliers. Recognizing these failure patterns requires understanding what\'s happening inside the algorithm. If you can\'t diagnose why a model performs poorly, you can\'t be a responsible data scientist.'
+            },
+            {
+                question: 'Does AI hide biases in data or models?',
+                why: 'Data science has ethical responsibilities. AI tools can perpetuate historical biases, exclude marginalized groups, or make unfair predictions. Critical examination of data sources, sampling methods, and model assumptions requires you to interrogate rather than trust automated analyses.'
+            },
+            {
+                question: 'Are students implementing algorithms from scratch first?',
+                why: 'You don\'t truly understand an algorithm until you\'ve coded it yourself. Libraries abstract away the learning—you need to implement gradient descent, decision trees, or clustering by hand to grasp what these methods actually do. Only then can you use libraries intelligently.'
+            },
+            {
+                question: 'Can they interpret results with appropriate uncertainty?',
+                why: 'Communicating uncertainty is essential to responsible data science. Every model has confidence intervals, assumptions, and limitations. AI can generate impressive-looking results with hidden uncertainty. If you can\'t articulate what your analysis does and doesn\'t show, you\'re doing advocacy, not science.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -206,11 +266,26 @@ const departmentSpecificLanguage = {
 
     'Biology': {
         considerations: [
-            "Are students observing organisms or accepting identifications?",
-            "Can they design experiments controlling confounding variables?",
-            "Does AI replace reasoning about evolutionary mechanisms?",
-            "Are students developing anatomical recognition skills?",
-            "Can they interpret data using physiological principles?"
+            {
+                question: 'Are students observing organisms or accepting identifications?',
+                why: 'Learning to observe organisms carefully—noticing anatomical details, behavioral patterns, morphological features—trains the eye and mind to see what\'s actually there. AI can identify species from photos, but that bypasses the observational skills that make you a biologist. Recognition comes from looking closely, repeatedly.'
+            },
+            {
+                question: 'Can they design experiments controlling confounding variables?',
+                why: 'Experimental design is where you learn to think scientifically. Identifying confounding variables, designing proper controls, and understanding what your experiment actually tests are core research skills. AI can\'t teach you how to isolate causal relationships—that requires wrestling with what might go wrong in your design.'
+            },
+            {
+                question: 'Does AI replace reasoning about evolutionary mechanisms?',
+                why: 'Evolutionary thinking—reasoning about natural selection, adaptation, phylogeny, and how traits arise and spread—is fundamental to biology. AI can describe evolutionary patterns, but understanding mechanisms requires thinking through selective pressures, trade-offs, and constraints. This is learned by working through problems, not reading AI summaries.'
+            },
+            {
+                question: 'Are students developing anatomical recognition skills?',
+                why: 'Anatomical recognition—identifying structures in dissection, microscopy, or imaging—requires building mental models of how bodies are organized. This spatial understanding develops through direct observation and practice. AI can label structures, but you need to learn what to look for and how systems connect.'
+            },
+            {
+                question: 'Can they interpret data using physiological principles?',
+                why: 'Physiological interpretation requires understanding how living systems work mechanistically—why heart rate changes, how neurons fire, what happens when conditions shift. AI can analyze data patterns, but explaining why those patterns occur requires reasoning from physiological principles you\'ve internalized through study and practice.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -254,11 +329,26 @@ const departmentSpecificLanguage = {
 
     'Chemistry & Biochemistry': {
         considerations: [
-            "Are students developing laboratory technique and safety?",
-            "Can they troubleshoot reactions that don't work?",
-            "Does your course require predicting reactivity from structure?",
-            "Are students proposing mechanisms, not just accepting?",
-            "Can they interpret spectroscopic data independently?"
+            {
+                question: 'Are students developing laboratory technique and safety?',
+                why: 'Laboratory technique—pipetting accurately, handling reagents safely, setting up glassware correctly—is learned through practice and attention to detail. These physical skills can\'t be acquired from AI instructions. Safety judgment comes from understanding chemical hazards and developing habits that prevent accidents.'
+            },
+            {
+                question: 'Can they troubleshoot reactions that don\'t work?',
+                why: 'Troubleshooting failed experiments teaches chemical reasoning. Was the reagent impure? Wrong temperature? Moisture got in? This diagnostic thinking—working backward from unexpected results to identify problems—is how you learn chemistry deeply. AI can suggest causes, but you need to develop the chemical intuition to know what\'s likely.'
+            },
+            {
+                question: 'Does your course require predicting reactivity from structure?',
+                why: 'Predicting how molecules will react based on structure—identifying electrophilic sites, predicting stability, anticipating side products—is core chemical thinking. This skill develops from understanding electron distribution, sterics, and energetics. AI can give answers, but you need to build the mental models that let you reason about reactivity yourself.'
+            },
+            {
+                question: 'Are students proposing mechanisms, not just accepting?',
+                why: 'Proposing reaction mechanisms requires understanding how electrons flow, what intermediates are reasonable, and how structure affects reactivity. This creative problem-solving—imagining the molecular steps—is what makes you a chemist. AI can show standard mechanisms, but you need to learn how to generate and evaluate mechanistic proposals.'
+            },
+            {
+                question: 'Can they interpret spectroscopic data independently?',
+                why: 'Interpreting NMR, IR, or mass spectra requires pattern recognition and chemical reasoning. You learn to connect peaks to molecular features, integrate multiple data sources, and propose structures. AI can assign spectra, but understanding what you\'re seeing and why—that requires working through many examples yourself.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -302,11 +392,26 @@ const departmentSpecificLanguage = {
 
     'Earth & Environmental Geoscience': {
         considerations: [
-            "Are students learning to read stratigraphic sequences?",
-            "Can they identify rocks and minerals in field?",
-            "Does AI replace observing earth processes directly?",
-            "Are students interpreting satellite imagery with geological context?",
-            "Can they distinguish field evidence from assumptions?"
+            {
+                question: 'Are students learning to read stratigraphic sequences?',
+                why: 'Reading stratigraphy—understanding the story rocks tell about Earth\'s past through layering, cross-cutting relationships, and unconformities—requires training your eye to see temporal relationships in spatial patterns. This fundamental geologic skill develops through field observation, not from AI descriptions of sequences.'
+            },
+            {
+                question: 'Can they identify rocks and minerals in field?',
+                why: 'Identifying rocks and minerals in the field requires integrating texture, composition, color, hardness, and context. This hands-on skill—using a hand lens, testing with acid, noting field relationships—can\'t be learned from photos or AI. You develop the tactile and visual recognition through repeated practice with actual specimens.'
+            },
+            {
+                question: 'Does AI replace observing earth processes directly?',
+                why: 'Observing earth processes—weathering, erosion, stream dynamics, glacial movement—teaches you to see how landscapes form and change. This observational skill, connecting process to landform, comes from fieldwork. AI can describe processes, but understanding requires watching, measuring, and reasoning from what you observe in nature.'
+            },
+            {
+                question: 'Are students interpreting satellite imagery with geological context?',
+                why: 'Interpreting satellite and remote sensing data requires geological reasoning—recognizing what rock types, structures, and processes create observed patterns. AI can classify images, but you need field experience and geological knowledge to understand what you\'re seeing and what might be misinterpreted.'
+            },
+            {
+                question: 'Can they distinguish field evidence from assumptions?',
+                why: 'Critical field observation means distinguishing what you actually observe from what you infer or assume. This intellectual discipline—separating direct evidence from interpretation—is fundamental to geoscience. It\'s learned by having colleagues challenge your field notes and by confronting ambiguous outcrops where assumptions become clear.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -350,11 +455,26 @@ const departmentSpecificLanguage = {
 
     'Neuroscience': {
         considerations: [
-            "Are students reasoning across biological levels?",
-            "Can they design experiments distinguishing competing hypotheses?",
-            "Does AI mask complexity of brain function?",
-            "Are students integrating anatomy, physiology, and behavior?",
-            "Can they interpret neural data with mechanistic understanding?"
+            {
+                question: 'Are students reasoning across biological levels?',
+                why: 'Neuroscience requires thinking across scales—from molecules to synapses to circuits to behavior. Understanding how processes at one level influence others is what distinguishes neuroscientific thinking. AI can describe each level, but integrating across them requires building mental models that connect molecular mechanisms to behavioral outcomes through practice.'
+            },
+            {
+                question: 'Can they design experiments distinguishing competing hypotheses?',
+                why: 'Experimental design that discriminates between alternative explanations for brain function is core neuroscience reasoning. You must think through what results would support one hypothesis over another. This skill—designing decisive experiments—develops from wrestling with ambiguous data and learning what manipulations reveal mechanisms.'
+            },
+            {
+                question: 'Does AI mask complexity of brain function?',
+                why: 'The brain is extraordinarily complex, with redundancy, compensation, and emergent properties. AI-generated explanations can oversimplify this complexity, making neural mechanisms seem more straightforward than they are. Learning to appreciate and grapple with this complexity—not reduce it—is essential to thinking neuroscientifically.'
+            },
+            {
+                question: 'Are students integrating anatomy, physiology, and behavior?',
+                why: 'Neuroscience understanding requires integrating structural knowledge (anatomy), functional principles (physiology), and outcomes (behavior). Connecting what the brain looks like to how it works to what organisms do is learned by repeatedly making these connections across many systems and problems—not from reading AI summaries.'
+            },
+            {
+                question: 'Can they interpret neural data with mechanistic understanding?',
+                why: 'Interpreting neural recordings, imaging, or behavioral data requires understanding what physiological processes generate observed signals. You need mechanistic knowledge to judge whether interpretations make biological sense. AI can identify patterns, but understanding what patterns mean requires reasoning from neuroscience principles you\'ve internalized.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -402,11 +522,26 @@ const departmentSpecificLanguage = {
 
     'English': {
         considerations: [
-            "Are students developing their own analytical voice?",
-            "Can students do close reading, not just summary?",
-            "Does AI mask actual comprehension of complex texts?",
-            "Are students noticing language at sentence level?",
-            "Can they construct original arguments from evidence?"
+            {
+                question: 'Are students developing their own analytical voice?',
+                why: 'Analytical voice—your distinctive way of making arguments about literature—develops through writing repeatedly, receiving feedback, and revising. AI can generate polished prose, but it can\'t develop your voice. That comes from struggling to articulate ideas, finding your rhythm, and learning to sound like yourself on the page.'
+            },
+            {
+                question: 'Can students do close reading, not just summary?',
+                why: 'Close reading—noticing diction, syntax, imagery, form, and how language creates meaning—is the fundamental skill of literary study. It\'s learned by reading slowly, asking questions, and training attention to textual details. AI can summarize plots, but close reading requires the patient observation you develop through practice.'
+            },
+            {
+                question: 'Does AI mask actual comprehension of complex texts?',
+                why: 'Reading difficult literature requires wrestling with ambiguity, following complex syntax, and building interpretations gradually. AI can provide summaries that seem like understanding, but actual comprehension comes from the cognitive work of parsing sentences and constructing meaning yourself. There\'s no shortcut to this mental activity.'
+            },
+            {
+                question: 'Are students noticing language at sentence level?',
+                why: 'Literary analysis requires attention to how individual sentences work—word choice, rhythm, sound patterns, sentence structure. This micro-level attention is where interpretation begins. AI can identify literary devices, but learning to notice them yourself, to feel how language works, requires reading closely and repeatedly.'
+            },
+            {
+                question: 'Can they construct original arguments from evidence?',
+                why: 'Building an original argument about literature means making a claim no one has made quite that way before, then supporting it with textual evidence. This intellectual creativity—seeing something new in a text and convincing others—is learned through practice. AI produces conventional interpretations; originality comes from your unique reading experience.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -455,11 +590,26 @@ const departmentSpecificLanguage = {
 
     'History': {
         considerations: [
-            "Are students evaluating sources or accepting summaries?",
-            "Can they understand historical context beyond facts?",
-            "Does AI simplify historical complexity and ambiguity?",
-            "Are students working with primary sources directly?",
-            "Can they construct nuanced arguments from evidence?"
+            {
+                question: 'Are students evaluating sources or accepting summaries?',
+                why: 'Source evaluation—assessing credibility, recognizing bias, understanding authorial perspective and audience—is foundational to historical thinking. AI can summarize sources, but learning to read critically, asking who created this source and why, requires practice with actual documents. Historians are made through repeated source interrogation.'
+            },
+            {
+                question: 'Can they understand historical context beyond facts?',
+                why: 'Historical context means understanding the social, political, economic, and cultural conditions that shaped events—not just when something happened, but why it mattered then. This contextual thinking develops from reading widely and connecting across sources. AI provides facts; you learn to build the rich context that makes history meaningful.'
+            },
+            {
+                question: 'Does AI simplify historical complexity and ambiguity?',
+                why: 'History is messy, with competing interpretations, incomplete evidence, and multiple valid perspectives. Learning to work with this ambiguity—acknowledging what we don\'t know and why historians disagree—is essential. AI tends toward neat narratives that obscure historical complexity. Wrestling with messy sources teaches you to handle ambiguity.'
+            },
+            {
+                question: 'Are students working with primary sources directly?',
+                why: 'Primary sources are where history happens. Reading letters, documents, artifacts, and testimonies directly—struggling with archaic language, fragmentary evidence, and alien perspectives—teaches you how history is constructed. AI-mediated access to sources removes the interpretive work that develops historical judgment.'
+            },
+            {
+                question: 'Can they construct nuanced arguments from evidence?',
+                why: 'Historical argumentation requires making claims while acknowledging counterevidence, limitations, and alternative interpretations. This nuanced reasoning—building a case while showing intellectual humility—is learned by constructing arguments and defending them. AI generates arguments, but nuance comes from thinking through complications yourself.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -508,11 +658,26 @@ const departmentSpecificLanguage = {
 
     'Philosophy': {
         considerations: [
-            "Are students identifying logical fallacies independently?",
-            "Can they construct valid arguments from scratch?",
-            "Does AI bypass wrestling with conceptual problems?",
-            "Are students engaging with counterarguments themselves?",
-            "Can they test reasoning against objections?"
+            {
+                question: 'Are students identifying logical fallacies independently?',
+                why: 'Recognizing flawed reasoning—ad hominem attacks, false dichotomies, circular arguments—requires training in logical analysis. This skill develops through practice evaluating arguments and learning to spot patterns of invalid reasoning. AI can label fallacies, but you need to learn to identify them yourself to think philosophically.'
+            },
+            {
+                question: 'Can they construct valid arguments from scratch?',
+                why: 'Constructing valid arguments—premises that logically support conclusions—is core philosophical work. You learn this by building arguments, testing whether they hold together, and revising when they don\'t. AI can generate arguments, but understanding validity requires constructing and evaluating arguments yourself repeatedly.'
+            },
+            {
+                question: 'Does AI bypass wrestling with conceptual problems?',
+                why: 'Philosophy is about grappling with hard conceptual problems—free will, knowledge, justice, meaning. The learning happens in the struggle to think through these problems systematically. AI can provide answers, but philosophical thinking develops only when you wrestle with questions yourself, get stuck, and work through difficulties.'
+            },
+            {
+                question: 'Are students engaging with counterarguments themselves?',
+                why: 'Philosophical thinking requires anticipating objections and engaging with opposing views. You learn to consider counterarguments by forcing yourself to see weaknesses in your own position and take opposing perspectives seriously. AI can list objections, but the dialectical thinking comes from genuinely engaging with them yourself.'
+            },
+            {
+                question: 'Can they test reasoning against objections?',
+                why: 'Testing whether your arguments survive objections requires thinking through whether they hold up under criticism. This is where philosophical reasoning gets refined—you modify, defend, or abandon positions based on challenges. AI can generate responses, but learning to defend and revise your thinking requires doing it yourself.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -556,11 +721,26 @@ const departmentSpecificLanguage = {
 
     'Religion': {
         considerations: [
-            "Are students interpreting sacred texts with context?",
-            "Can they engage respectfully with different beliefs?",
-            "Does AI miss symbolic and sacred language?",
-            "Are students understanding religious practices, not descriptions?",
-            "Can they recognize cultural frameworks in traditions?"
+            {
+                question: 'Are students interpreting sacred texts with context?',
+                why: 'Sacred texts require interpretation with attention to literary genre, historical context, translation issues, and religious community readings. This interpretive skill develops through careful reading and learning hermeneutical methods. AI can summarize texts, but contextual interpretation requires knowledge and sensitivity you build through study.'
+            },
+            {
+                question: 'Can they engage respectfully with different beliefs?',
+                why: 'Religious studies requires engaging with beliefs and practices different from your own with respect and intellectual curiosity. This disposition—taking unfamiliar traditions seriously without either dismissing or romanticizing them—is cultivated through practice. AI can describe traditions, but respectful engagement requires personal intellectual and emotional work.'
+            },
+            {
+                question: 'Does AI miss symbolic and sacred language?',
+                why: 'Religious language is often symbolic, metaphorical, and carries sacred significance for communities. Understanding this requires sensitivity to how language functions in religious contexts—not just literal meaning. AI tends toward literal interpretation; learning to read religious symbolism requires immersion in religious texts and traditions.'
+            },
+            {
+                question: 'Are students understanding religious practices, not descriptions?',
+                why: 'Religious studies distinguishes between knowing about a practice and understanding its meaning within a tradition. This deeper understanding requires learning how practices fit within belief systems and communities. AI can describe what people do; understanding why practices matter requires engagement with religious worldviews and lived experience.'
+            },
+            {
+                question: 'Can they recognize cultural frameworks in traditions?',
+                why: 'Religious traditions emerge from and shape cultural contexts. Understanding how culture and religion interact—how beliefs and practices reflect particular historical and social contexts—requires careful study. AI can list facts, but recognizing cultural frameworks requires building interpretive skills through repeated engagement with traditions.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -604,11 +784,26 @@ const departmentSpecificLanguage = {
 
     'Classics': {
         considerations: [
-            "Are students learning to read ancient languages?",
-            "Can they understand how syntax shapes meaning?",
-            "Does AI bypass grammatical and linguistic analysis?",
-            "Are students engaging with texts in original?",
-            "Can they interpret within ancient cultural contexts?"
+            {
+                question: 'Are students learning to read ancient languages?',
+                why: 'Learning Latin or Greek requires thousands of hours of practice—memorizing vocabulary, parsing grammar, building reading fluency. This language acquisition cannot be shortcut. AI translation bypasses the cognitive work that builds language competency. You learn ancient languages by reading, translating, and gradually internalizing grammatical patterns.'
+            },
+            {
+                question: 'Can they understand how syntax shapes meaning?',
+                why: 'Ancient languages use syntax—word order, case endings, verbal moods—to convey meaning in ways English doesn\'t. Understanding how syntax creates emphasis, subordination, and nuance requires analyzing grammar yourself. AI provides translations, but grasping how Latin or Greek syntax works requires parsing sentences repeatedly.'
+            },
+            {
+                question: 'Does AI bypass grammatical and linguistic analysis?',
+                why: 'Grammatical analysis—identifying parts of speech, recognizing constructions, understanding morphology—is how you learn ancient languages deeply. This analytical skill develops through practice. AI translation removes this analytical work, preventing you from developing the linguistic knowledge that lets you read independently.'
+            },
+            {
+                question: 'Are students engaging with texts in original?',
+                why: 'Reading texts in original languages gives access to wordplay, ambiguity, style, and nuance that translations smooth over. This direct engagement with ancient authors requires language competency. AI-mediated access removes you from the text; classical studies means learning to read Homer, Cicero, or Sappho in their own words.'
+            },
+            {
+                question: 'Can they interpret within ancient cultural contexts?',
+                why: 'Understanding classical texts requires knowledge of ancient Mediterranean contexts—social structures, political systems, religious practices, values. This cultural competency develops through studying history, mythology, and material culture alongside language. AI can provide facts, but interpretive skill requires immersion in ancient worlds.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -652,11 +847,26 @@ const departmentSpecificLanguage = {
 
     'Medieval & Renaissance Studies': {
         considerations: [
-            "Are students reading premodern texts with attention?",
-            "Can they understand historical alterity, not analogies?",
-            "Does AI impose modern frameworks anachronistically?",
-            "Are students working with primary sources directly?",
-            "Can they interpret without projecting contemporary values?"
+            {
+                question: 'Are students reading premodern texts with attention?',
+                why: 'Premodern texts require careful reading—they use unfamiliar conventions, vocabularies, and genres. Learning to read medieval and Renaissance texts slowly, with attention to historical language and literary forms, develops through practice. AI summaries bypass this careful reading that teaches you to engage with historical texts.'
+            },
+            {
+                question: 'Can they understand historical alterity, not analogies?',
+                why: 'Medieval and Renaissance cultures were fundamentally different from ours—different social structures, beliefs, values, ways of thinking. Understanding this alterity means resisting the temptation to see the past as just like the present. AI tends toward modern analogies; learning to grasp difference requires studying premodern worlds on their own terms.'
+            },
+            {
+                question: 'Does AI impose modern frameworks anachronistically?',
+                why: 'Anachronism—imposing modern concepts on the past—is a constant danger in premodern studies. Learning to interpret texts within period frameworks requires historical knowledge and careful reading. AI frequently applies modern categories to premodern texts; you learn to avoid anachronism through sustained historical study.'
+            },
+            {
+                question: 'Are students working with primary sources directly?',
+                why: 'Medieval and Renaissance primary sources—manuscripts, early printed books, documents, artifacts—require direct engagement. Learning to work with these sources, understanding their material forms and historical contexts, is fundamental. AI-mediated access removes you from the primary evidence that makes premodern studies concrete.'
+            },
+            {
+                question: 'Can they interpret without projecting contemporary values?',
+                why: 'Interpreting premodern cultures requires recognizing your own contemporary perspective while trying to understand past values, beliefs, and practices without judgment. This intellectual discipline—historical empathy without presentism—is learned through repeatedly engaging with unfamiliar worldviews and checking your assumptions.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -700,11 +910,26 @@ const departmentSpecificLanguage = {
 
     'Writing Program': {
         considerations: [
-            "Are students developing their own voice and style?",
-            "Can they revise substantively, not just edit for correctness?",
-            "Does AI prevent the struggle that develops writing skill?",
-            "Are students learning to recognize when arguments need support?",
-            "Can they make decisions about structure and organization?"
+            {
+                question: 'Are students developing their own voice and style?',
+                why: 'Writing voice emerges through making choices about diction, syntax, tone, and rhythm. This develops through drafting, revising, and experimenting with language. AI-generated text has a generic voice; developing your own requires extensive practice making stylistic decisions.'
+            },
+            {
+                question: 'Can they revise substantively, not just edit for correctness?',
+                why: 'Revision means rethinking your ideas, not just fixing grammar. Learning to see structural problems, recognize where arguments need development, and reorganize for clarity requires stepping back from your draft. AI tools focus on surface-level corrections; substantive revision requires seeing your work critically.'
+            },
+            {
+                question: 'Does AI prevent the struggle that develops writing skill?',
+                why: 'Writing is thinking. The difficulty of finding the right words, organizing ideas, and working through drafts builds cognitive skills. When AI generates text, you bypass the mental work that develops writing ability. The struggle is the learning.'
+            },
+            {
+                question: 'Are students learning to recognize when arguments need support?',
+                why: 'Skilled writers sense when claims need evidence, examples, or explanation. This judgment—knowing when you\'ve convinced your reader and when you haven\'t—develops through feedback and revision. AI may flag weak arguments, but learning to feel when your writing needs more support requires practice and reader awareness.'
+            },
+            {
+                question: 'Can they make decisions about structure and organization?',
+                why: 'Deciding how to order ideas, when to introduce concepts, and how to guide readers through your argument requires rhetorical judgment. These structural decisions depend on purpose and audience. AI can suggest organization, but learning what structures work for different situations requires trying, failing, and revising.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -748,11 +973,26 @@ const departmentSpecificLanguage = {
 
     'Romance Languages': {
         considerations: [
-            "Are students thinking in the target language?",
-            "Can they understand speech without translation tools?",
-            "Does AI use prevent building conversational fluency?",
-            "Are students producing language, not just translating?",
-            "Can they grasp grammar patterns through practice?"
+            {
+                question: 'Are students thinking in the target language?',
+                why: 'True fluency means thinking in your target language, not translating from English. This cognitive shift happens gradually through immersion and practice. AI translation keeps you in English; language learning requires training your brain to operate in French, Spanish, or Italian directly.'
+            },
+            {
+                question: 'Can they understand speech without translation tools?',
+                why: 'Understanding spoken language in real time—following conversations, comprehending media, responding naturally—requires developing listening skills through extensive practice. AI can translate recordings, but real communication happens too quickly for translation. You build listening proficiency through repeated exposure, not tools.'
+            },
+            {
+                question: 'Does AI use prevent building conversational fluency?',
+                why: 'Conversational fluency—producing grammatically correct, contextually appropriate language in real time—develops through practice speaking. AI can translate what you want to say, but fluency comes from retrieving words, constructing sentences, and self-correcting automatically. This automaticity requires repetition without translation crutches.'
+            },
+            {
+                question: 'Are students producing language, not just translating?',
+                why: 'Language production means generating sentences using internalized grammar patterns and vocabulary, not word-for-word translation. This productive skill develops through writing and speaking practice. AI can translate for you, but you learn to produce language by doing it yourself repeatedly until patterns become automatic.'
+            },
+            {
+                question: 'Can they grasp grammar patterns through practice?',
+                why: 'Grammar acquisition happens through encountering patterns repeatedly until you internalize rules and can apply them unconsciously. This implicit learning requires extensive reading, listening, and using language. AI can explain grammar, but you acquire it through practice that builds intuition about what sounds right.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -796,11 +1036,26 @@ const departmentSpecificLanguage = {
 
     'East Asian Languages & Literatures': {
         considerations: [
-            "Are students mastering character recognition and writing?",
-            "Can they understand grammar patterns without translation?",
-            "Does AI bypass learning fundamentally different structures?",
-            "Are students reading texts with cultural nuance?",
-            "Can they produce language using appropriate registers?"
+            {
+                question: 'Are students mastering character recognition and writing?',
+                why: 'Learning to read and write Chinese characters, Japanese kanji and kana, or Korean hangul requires sustained visual and motor practice. Character recognition and writing are foundational skills for East Asian literacy. AI can translate text, but you need to develop character recognition through repeated handwriting and reading practice.'
+            },
+            {
+                question: 'Can they understand grammar patterns without translation?',
+                why: 'East Asian languages use grammatical structures fundamentally different from English—topic-comment structure, particles, classifiers, honorifics. Understanding these patterns requires thinking in the target language, not translating. AI keeps you in English; proficiency requires internalizing different grammatical logic.'
+            },
+            {
+                question: 'Does AI bypass learning fundamentally different structures?',
+                why: 'East Asian languages organize information differently—subject-object-verb order, contextual reference, grammatical particles instead of inflection. Learning to think in these structures is transformative. AI translation maps back to English structures; language learning means rewiring how you conceptualize grammar.'
+            },
+            {
+                question: 'Are students reading texts with cultural nuance?',
+                why: 'East Asian texts carry cultural references, social hierarchies expressed through language, and literary traditions that require cultural knowledge to understand. Reading with cultural nuance requires studying language alongside culture. AI provides literal translation; you learn to read culturally through immersion and study.'
+            },
+            {
+                question: 'Can they produce language using appropriate registers?',
+                why: 'East Asian languages have complex politeness and register systems—honorifics, formal/informal forms, contextual appropriateness. Using registers correctly requires understanding social relationships and contexts. AI can translate, but you learn appropriate register through practice in social contexts, not through tools.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -844,11 +1099,26 @@ const departmentSpecificLanguage = {
 
     'German': {
         considerations: [
-            "Are students mastering case system through practice?",
-            "Can they parse complex German sentence structures?",
-            "Does AI prevent understanding word order flexibility?",
-            "Are students building vocabulary actively, not passively?",
-            "Can they produce idiomatic German without translating?"
+            {
+                question: 'Are students mastering case system through practice?',
+                why: 'German\'s four-case system (nominative, accusative, dative, genitive) with gender and number variations requires extensive practice to internalize. Learning when to use which case and remembering articles becomes automatic only through repeated use. AI translation handles cases for you, but you need to learn the system through practice to achieve fluency.'
+            },
+            {
+                question: 'Can they parse complex German sentence structures?',
+                why: 'German uses complex syntax—subordinate clauses with verb-final position, separable prefix verbs, nested clauses. Learning to parse these structures requires practice reading and analyzing sentence construction. AI provides finished translations; you learn to understand German sentence structure by working through it yourself.'
+            },
+            {
+                question: 'Does AI prevent understanding word order flexibility?',
+                why: 'German word order is flexible but meaningful—shifting elements changes emphasis and meaning. Understanding how topic-comment structure and word order create meaning requires analysis and practice. AI translation obscures these nuances; you learn German word order logic by producing and analyzing sentences.'
+            },
+            {
+                question: 'Are students building vocabulary actively, not passively?',
+                why: 'Active vocabulary—words you can produce and use correctly—requires deliberate practice and repetition. Passive recognition from AI translation doesn\'t build productive vocabulary. Language learning requires memorization, use in context, and repeated retrieval to move words into active vocabulary.'
+            },
+            {
+                question: 'Can they produce idiomatic German without translating?',
+                why: 'Idiomatic German doesn\'t translate word-for-word from English—expressions, preposition use, and phrasing follow different patterns. Learning to produce natural German requires exposure to authentic language and practice constructing sentences that sound German, not translated. This comes from immersion and practice, not translation tools.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -892,11 +1162,26 @@ const departmentSpecificLanguage = {
 
     'Russian': {
         considerations: [
-            "Are students developing Cyrillic reading fluency?",
-            "Can they understand aspectual verb distinctions?",
-            "Does AI mask the logic of cases?",
-            "Are students practicing grammar, not bypassing it?",
-            "Can they read authentic texts without translation?"
+            {
+                question: 'Are students developing Cyrillic reading fluency?',
+                why: 'Reading Cyrillic fluently—recognizing letters automatically, reading at normal speed without transliterating—requires extensive practice. This visual and cognitive fluency develops through repeated reading. AI can transliterate or translate, but you need to build Cyrillic reading fluency through sustained engagement with Russian texts.'
+            },
+            {
+                question: 'Can they understand aspectual verb distinctions?',
+                why: 'Russian verbal aspect—perfective vs imperfective verbs expressing completed vs ongoing action—is fundamental but has no English equivalent. Understanding aspect requires learning to think about action differently. AI translates aspect, but you learn to use it correctly through practice until aspectual thinking becomes intuitive.'
+            },
+            {
+                question: 'Does AI mask the logic of cases?',
+                why: 'Russian\'s six-case system expresses grammatical relationships that English handles with word order and prepositions. Understanding case logic requires learning to think about grammatical relationships differently. AI handles cases for you; you need to learn the system\'s logic through repeated grammatical practice.'
+            },
+            {
+                question: 'Are students practicing grammar, not bypassing it?',
+                why: 'Russian grammar—case endings, verb conjugations, aspectual pairs, motion verbs—is complex and requires extensive practice to internalize. Grammar acquisition happens through repeated use and pattern recognition. AI lets you bypass grammar practice; language learning requires engaging with grammatical complexity yourself.'
+            },
+            {
+                question: 'Can they read authentic texts without translation?',
+                why: 'Reading authentic Russian texts—literature, news, social media—without translation requires vocabulary, grammar knowledge, and cultural competency. This reading proficiency develops gradually through extensive reading practice. AI-mediated reading prevents you from building the proficiency needed for independent Russian reading.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -940,11 +1225,26 @@ const departmentSpecificLanguage = {
 
     'Arabic': {
         considerations: [
-            "Are students mastering Arabic script and handwriting?",
-            "Can they recognize trilateral root patterns?",
-            "Does AI bypass understanding morphological word formation?",
-            "Are students reading unvocalized texts with comprehension?",
-            "Can they produce appropriate grammatical forms?"
+            {
+                question: 'Are students mastering Arabic script and handwriting?',
+                why: 'Arabic script—reading right to left, recognizing letter forms that change with position, connecting letters fluidly—requires visual and motor practice. Learning to write Arabic by hand reinforces character recognition and builds fluency. AI can type Arabic, but you develop script competency through handwriting practice.'
+            },
+            {
+                question: 'Can they recognize trilateral root patterns?',
+                why: 'Arabic morphology is built on trilateral roots—three consonants that carry core meaning, with patterns adding grammatical and semantic nuance. Recognizing roots and patterns is key to vocabulary acquisition and understanding word relationships. AI provides translations, but you learn Arabic word formation by identifying roots and patterns yourself.'
+            },
+            {
+                question: 'Does AI bypass understanding morphological word formation?',
+                why: 'Arabic word formation—inserting vowels and affixes into root patterns to create related words—is systematic but foreign to English speakers. Understanding this morphology unlocks vocabulary expansion. AI handles word formation automatically; language learning requires understanding how Arabic builds words from roots.'
+            },
+            {
+                question: 'Are students reading unvocalized texts with comprehension?',
+                why: 'Most Arabic is written without short vowel markings, requiring readers to supply vowels based on context and grammar knowledge. This skill—reading unvocalized text accurately—develops through practice and grammatical understanding. AI can vocalize text, but you need to learn to read without vowel marks for Arabic proficiency.'
+            },
+            {
+                question: 'Can they produce appropriate grammatical forms?',
+                why: 'Arabic grammar—case endings, gender agreement, dual forms, verb patterns, construct states—requires practice to use correctly. Production accuracy develops through repeated practice and feedback. AI can generate correct forms, but you learn Arabic grammar by producing sentences yourself, making mistakes, and correcting them.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -992,11 +1292,26 @@ const departmentSpecificLanguage = {
 
     'Accounting & Finance': {
         considerations: [
-            "Are students identifying appropriate accounting treatments?",
-            "Can they exercise professional judgment on reporting?",
-            "Does AI mask ethical implications of choices?",
-            "Are students understanding principles, not just calculations?",
-            "Can they evaluate whether financial statements mislead?"
+            {
+                question: 'Are students identifying appropriate accounting treatments?',
+                why: 'Accounting requires professional judgment about how to classify and report financial transactions. Different treatments are acceptable in different situations, and choosing appropriately requires understanding accounting principles and business context. AI can apply rules, but you learn professional judgment by reasoning through ambiguous cases yourself.'
+            },
+            {
+                question: 'Can they exercise professional judgment on reporting?',
+                why: 'Financial reporting involves decisions about disclosure, presentation, and emphasis that require professional judgment. These decisions have real consequences for stakeholders. Accounting professionals must develop the judgment to balance competing interests and requirements—a skill learned through case analysis and ethical reasoning, not AI.'
+            },
+            {
+                question: 'Does AI mask ethical implications of choices?',
+                why: 'Accounting decisions have ethical dimensions—choices about revenue recognition, expense timing, or disclosure can mislead stakeholders or serve particular interests. Understanding these ethical implications requires thinking through consequences and professional responsibilities. AI presents options; you need to develop the ethical reasoning to evaluate them.'
+            },
+            {
+                question: 'Are students understanding principles, not just calculations?',
+                why: 'Accounting principles—matching, conservatism, materiality, substance over form—guide professional judgment. Understanding why these principles exist and how to apply them requires more than calculation. AI can compute, but you need to learn the conceptual framework that makes accounting more than arithmetic.'
+            },
+            {
+                question: 'Can they evaluate whether financial statements mislead?',
+                why: 'Reading financial statements critically—recognizing when technically correct reporting nonetheless misleads, or when aggressive accounting obscures risks—requires experience and professional skepticism. This analytical skill develops through examining real financial statements and learning what questions to ask. AI can analyze data; you develop the judgment to question it.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1040,11 +1355,26 @@ const departmentSpecificLanguage = {
 
     'Business Administration': {
         considerations: [
-            "Are students reading organizational situations, not data?",
-            "Can they make decisions with incomplete information?",
-            "Does AI oversimplify human dimensions of problems?",
-            "Are students developing strategic judgment, not formulas?",
-            "Can they assess implementation challenges realistically?"
+            {
+                question: 'Are students reading organizational situations, not data?',
+                why: 'Business situations involve organizational culture, power dynamics, stakeholder interests, and human factors that aren\'t captured in data. Reading situations—understanding what\'s really going on beyond the numbers—requires experience and attention to human elements. AI analyzes data; business judgment requires reading between the lines.'
+            },
+            {
+                question: 'Can they make decisions with incomplete information?',
+                why: 'Business decisions rarely have perfect information—you must act despite uncertainty, ambiguity, and missing data. Learning to make reasoned decisions under uncertainty requires practice weighing evidence, considering risks, and committing to action. AI can process what you know; business judgment means deciding despite what you don\'t know.'
+            },
+            {
+                question: 'Does AI oversimplify human dimensions of problems?',
+                why: 'Business problems involve people—motivation, resistance to change, communication, trust, leadership. These human dimensions are complex and contextual. AI tends toward rational optimization; business success requires understanding psychology, politics, and interpersonal dynamics that AI models oversimplify.'
+            },
+            {
+                question: 'Are students developing strategic judgment, not formulas?',
+                why: 'Strategic thinking requires seeing patterns, anticipating competitor responses, identifying opportunities, and making choices that position organizations for advantage. This judgment isn\'t formulaic—it develops through analyzing cases and learning to think several moves ahead. AI applies frameworks; strategy requires creative judgment.'
+            },
+            {
+                question: 'Can they assess implementation challenges realistically?',
+                why: 'Strategies fail more often in implementation than conception. Assessing whether ideas are actually implementable—considering organizational capacity, resistance, resources, timing—requires realism and organizational understanding. AI generates ideas; business acumen means recognizing what can actually be executed.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1088,11 +1418,26 @@ const departmentSpecificLanguage = {
 
     'Cognitive & Behavioral Science': {
         considerations: [
-            "Are students designing experiments testing cognitive theories?",
-            "Can they integrate across psychological and neural levels?",
-            "Does AI simplify behavioral data interpretation?",
-            "Are students distinguishing between competing theories?",
-            "Can they recognize methodological limitations independently?"
+            {
+                question: 'Are students designing experiments testing cognitive theories?',
+                why: 'Experimental design in cognitive science requires thinking through how to test theories about mental processes and behavior. Designing studies that isolate cognitive mechanisms and rule out alternative explanations is intellectually demanding work. AI can suggest studies, but you learn scientific reasoning by designing experiments yourself.'
+            },
+            {
+                question: 'Can they integrate across psychological and neural levels?',
+                why: 'Cognitive science requires thinking across levels—connecting neural mechanisms to cognitive processes to behavior. Understanding how brain activity produces thought and action requires integrative reasoning. AI can describe each level, but you develop the integrative thinking that makes cognitive science explanatory through practice.'
+            },
+            {
+                question: 'Does AI simplify behavioral data interpretation?',
+                why: 'Behavioral data is complex—patterns can have multiple explanations, confounds are common, and results often ambiguous. Learning to interpret data carefully, considering alternative explanations and methodological issues, requires experience with actual studies. AI provides interpretations; you learn to evaluate them critically through research practice.'
+            },
+            {
+                question: 'Are students distinguishing between competing theories?',
+                why: 'Cognitive science has competing theories about memory, attention, decision-making, and other processes. Learning to distinguish what predictions different theories make and what evidence supports each requires deep understanding. AI can summarize theories; you learn to adjudicate between them by working through evidence systematically.'
+            },
+            {
+                question: 'Can they recognize methodological limitations independently?',
+                why: 'Every study has limitations—sampling issues, measurement problems, confounds, generalizability constraints. Recognizing these limitations and their implications requires methodological sophistication. AI describes methods; you develop the critical eye to spot weaknesses through evaluating many studies and conducting research yourself.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1136,11 +1481,26 @@ const departmentSpecificLanguage = {
 
     'Economics': {
         considerations: [
-            "Are students reasoning through economic mechanisms?",
-            "Can they evaluate whether model assumptions fit?",
-            "Does AI mask trade-offs in policy analysis?",
-            "Are students understanding theory, not just techniques?",
-            "Can they identify when models misrepresent reality?"
+            {
+                question: 'Are students reasoning through economic mechanisms?',
+                why: 'Economic reasoning means thinking through mechanisms—how incentives affect behavior, how markets adjust, how policies create ripple effects. This causal thinking about economic processes is learned by working through problems systematically. AI can state results, but economic understanding comes from reasoning through how economic forces operate.'
+            },
+            {
+                question: 'Can they evaluate whether model assumptions fit?',
+                why: 'Economic models make assumptions—rational actors, perfect information, competitive markets. Knowing when these assumptions fit reality and when they don\'t requires judgment. Models are tools, not truth; you learn to use them appropriately by thinking critically about their assumptions and applicability.'
+            },
+            {
+                question: 'Does AI mask trade-offs in policy analysis?',
+                why: 'Economic policy involves trade-offs—efficiency vs equity, growth vs stability, short-term vs long-term effects. Understanding these trade-offs requires thinking through who wins and loses from different policies. AI can optimize for single goals; economic reasoning means grappling with competing values and consequences.'
+            },
+            {
+                question: 'Are students understanding theory, not just techniques?',
+                why: 'Economic theory provides frameworks for understanding behavior, markets, and policy—why systems work as they do, not just how to calculate equilibrium. This conceptual understanding is what lets you apply economics to new situations. AI can apply techniques; you need to understand the theory that makes economics powerful.'
+            },
+            {
+                question: 'Can they identify when models misrepresent reality?',
+                why: 'Economic models are simplifications that sometimes mislead—missing important factors, assuming away crucial details, or applying to situations where assumptions fail. Knowing when models break down requires both theoretical understanding and empirical judgment. You learn this through examining where economic predictions fail and why.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1184,11 +1544,26 @@ const departmentSpecificLanguage = {
 
     'Politics': {
         considerations: [
-            "Are students analyzing power relations, not events?",
-            "Can they understand how institutions shape outcomes?",
-            "Does AI flatten normative arguments about governance?",
-            "Are students engaging with political theory directly?",
-            "Can they evaluate evidence about political behavior?"
+            {
+                question: 'Are students analyzing power relations, not events?',
+                why: 'Political science is about power—who has it, how it\'s exercised, how institutions distribute it, how groups contest it. Understanding power relations beneath political events requires analytical thinking. AI can describe events; political analysis means understanding the power dynamics that produce them.'
+            },
+            {
+                question: 'Can they understand how institutions shape outcomes?',
+                why: 'Political institutions—constitutions, electoral systems, bureaucracies—structure political possibilities and shape outcomes. Understanding how institutions work and why they matter requires thinking through how rules affect behavior and power distribution. This institutional analysis is learned through studying comparative politics systematically.'
+            },
+            {
+                question: 'Does AI flatten normative arguments about governance?',
+                why: 'Political questions involve normative judgments—about justice, rights, democracy, legitimate authority. These are philosophical arguments, not empirical facts. AI tends to present political positions as equivalent options; political theory requires engaging with normative reasoning about how we should organize collective life.'
+            },
+            {
+                question: 'Are students engaging with political theory directly?',
+                why: 'Political theory—Plato, Hobbes, Marx, Rawls, feminist and postcolonial theory—provides frameworks for thinking about power, justice, and governance. These texts are difficult and require careful reading. AI can summarize, but political thinking develops through struggling with theoretical arguments directly.'
+            },
+            {
+                question: 'Can they evaluate evidence about political behavior?',
+                why: 'Claims about political behavior—why people vote, how parties mobilize, what policies work—require evidence. Evaluating this evidence means thinking about research design, measurement, causation, and generalizability. AI can cite studies; you develop the methodological sophistication to assess political science research critically.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1232,11 +1607,26 @@ const departmentSpecificLanguage = {
 
     'Sociology & Anthropology': {
         considerations: [
-            "Are students conducting fieldwork and participant observation?",
-            "Can they interpret qualitative data with theory?",
-            "Does AI miss meaning and context in social life?",
-            "Are students understanding power, not just patterns?",
-            "Can they maintain research ethics with human subjects?"
+            {
+                question: 'Are students conducting fieldwork and participant observation?',
+                why: 'Fieldwork—spending time with communities, observing social life, conducting interviews, participating in activities—is how anthropologists and sociologists learn about social worlds. This ethnographic method builds understanding through direct experience. AI can describe social phenomena, but fieldwork skills come only from doing research in actual social settings.'
+            },
+            {
+                question: 'Can they interpret qualitative data with theory?',
+                why: 'Qualitative interpretation requires connecting observations to theoretical concepts—seeing how field notes or interviews illustrate social theory about power, identity, culture, or structure. This theoretically informed analysis is learned through practice. AI can code data, but interpretive sophistication requires understanding social theory deeply.'
+            },
+            {
+                question: 'Does AI miss meaning and context in social life?',
+                why: 'Social life is meaningful—actions have cultural significance, interactions carry symbolic meaning, practices embody values. Understanding meaning requires cultural immersion and interpretive skill. AI identifies patterns in behavior, but sociology and anthropology require understanding what social actions mean to participants.'
+            },
+            {
+                question: 'Are students understanding power, not just patterns?',
+                why: 'Social patterns reflect power relations—who has resources, whose voices count, how inequality is reproduced. Critical social analysis means understanding power beneath observable patterns. AI can describe distributions and correlations, but you learn to analyze power structures through engaging with critical social theory.'
+            },
+            {
+                question: 'Can they maintain research ethics with human subjects?',
+                why: 'Research with humans requires ethical responsibility—informed consent, protecting privacy, avoiding harm, representing communities fairly. These ethical judgments involve balancing competing considerations in specific contexts. AI can state principles, but you develop ethical research practice through grappling with real dilemmas in fieldwork.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1284,11 +1674,26 @@ const departmentSpecificLanguage = {
 
     'Art & Art History': {
         considerations: [
-            "Are students developing drawing and technical skills?",
-            "Can they analyze how visual form creates meaning?",
-            "Does AI bypass creative problem-solving in studio?",
-            "Are students doing close looking, not description?",
-            "Can they make compositional and color judgments?"
+            {
+                question: 'Are students developing drawing and technical skills?',
+                why: 'Drawing and technical skills—controlling mark-making, understanding proportion, manipulating materials—develop through physical practice. Your hand and eye learn coordination through repetition. AI can generate images, but it can\'t build the embodied skills that let you execute your artistic vision. Technical mastery requires doing the work yourself.'
+            },
+            {
+                question: 'Can they analyze how visual form creates meaning?',
+                why: 'Visual analysis means understanding how composition, color, line, space, and form create meaning and effect. This skill develops through looking carefully at many artworks and learning to articulate how they work visually. AI can describe what\'s depicted; you learn to analyze how visual elements function.'
+            },
+            {
+                question: 'Does AI bypass creative problem-solving in studio?',
+                why: 'Studio work is problem-solving—how to express an idea visually, how to make materials do what you want, how to revise when something isn\'t working. This creative problem-solving is where artistic thinking develops. AI image generation bypasses this struggle, preventing you from building problem-solving skills essential to artistic practice.'
+            },
+            {
+                question: 'Are students doing close looking, not description?',
+                why: 'Close looking in art history means sustained visual attention—noticing brushwork, spatial relationships, how gaze is directed, what\'s in shadow. This trained observation is different from verbal description. AI describes content; art historians learn to see formal qualities that create artistic meaning through practice with actual artworks.'
+            },
+            {
+                question: 'Can they make compositional and color judgments?',
+                why: 'Artistic judgment—knowing when composition is balanced, colors work together, image is resolved—develops through making art and getting feedback. This aesthetic judgment comes from internalizing principles through practice. AI can apply rules, but you develop artistic eye through repeatedly making visual decisions.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1332,11 +1737,26 @@ const departmentSpecificLanguage = {
 
     'Music': {
         considerations: [
-            "Are students developing ear training and aural skills?",
-            "Can they perform with technical control and expression?",
-            "Does AI bypass understanding harmonic progressions?",
-            "Are students composing, not just generating music?",
-            "Can they analyze how music creates meaning?"
+            {
+                question: 'Are students developing ear training and aural skills?',
+                why: 'Ear training—hearing intervals, recognizing chords, identifying rhythms, transcribing melodies—develops through repeated listening practice. Your ear learns to parse musical sound into structures. AI can analyze audio, but you need to develop aural skills that let you hear and understand music internally without tools.'
+            },
+            {
+                question: 'Can they perform with technical control and expression?',
+                why: 'Musical performance requires both technical control—fingers doing what you want, breath control, intonation—and expressive interpretation. These skills develop through thousands of hours of practice. AI can playback music, but it can\'t build the embodied technique and interpretive sensitivity that make you a musician.'
+            },
+            {
+                question: 'Does AI bypass understanding harmonic progressions?',
+                why: 'Understanding harmony—why chord progressions work, how keys relate, what makes voice leading smooth—requires analytical listening and theoretical knowledge. This understanding lets you hear music structurally and make informed compositional choices. AI generates harmonies; you need to understand why they sound right.'
+            },
+            {
+                question: 'Are students composing, not just generating music?',
+                why: 'Composition is creative decision-making about musical materials—choosing melodies, harmonies, rhythms, textures that express ideas. This creative thinking develops through making musical choices, hearing results, and revising. AI generation bypasses the compositional thinking that makes you a musician.'
+            },
+            {
+                question: 'Can they analyze how music creates meaning?',
+                why: 'Musical analysis means understanding how music works—how form creates expectation, how harmony conveys emotion, how rhythm drives energy. This analytical skill requires listening with theoretical knowledge and interpretive sensitivity. AI can describe structures; you learn to understand how musical elements create expressive meaning.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1380,11 +1800,26 @@ const departmentSpecificLanguage = {
 
     'Theater, Dance & Film Studies': {
         considerations: [
-            "Are students developing embodied performance technique?",
-            "Can they analyze how bodies create meaning?",
-            "Does AI replace collaborative creative work?",
-            "Are students interpreting texts through performance?",
-            "Can they make staging and movement choices?"
+            {
+                question: 'Are students developing embodied performance technique?',
+                why: 'Performance technique—voice control, movement quality, physical presence, timing—develops through embodied practice. Your body learns through repetition and kinesthetic awareness. AI can generate scripts or analyze video, but it cannot build the physical skills and presence that make you a performer. Embodied learning requires doing.'
+            },
+            {
+                question: 'Can they analyze how bodies create meaning?',
+                why: 'Performance analysis requires understanding how bodies, movement, gesture, spatial relationships, and staging create meaning. This analytical skill develops through watching performances carefully and learning to read bodily expression. AI can describe actions; you learn to interpret how physical performance generates theatrical, choreographic, or cinematic meaning.'
+            },
+            {
+                question: 'Does AI replace collaborative creative work?',
+                why: 'Theater, dance, and film are fundamentally collaborative—creating work requires negotiating ideas, responding to others, building ensemble. These collaborative skills develop through working with people. AI can generate content, but it cannot teach you the interpersonal and creative skills that make collaborative performance possible.'
+            },
+            {
+                question: 'Are students interpreting texts through performance?',
+                why: 'Performance is interpretation—how you speak a line, move through space, or frame a shot embodies meaning. This interpretive work requires analyzing texts and making creative choices that realize them physically. AI can suggest interpretations, but you learn performance interpretation by making choices with your body, voice, and staging.'
+            },
+            {
+                question: 'Can they make staging and movement choices?',
+                why: 'Directing and choreography require making choices about space, movement, blocking, composition, rhythm. These aesthetic decisions shape meaning and effect. This creative judgment develops through making choices, seeing results, and refining. AI can generate options, but artistic judgment comes from repeatedly making and evaluating performance choices.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1428,11 +1863,26 @@ const departmentSpecificLanguage = {
 
     'Journalism & Mass Communications': {
         considerations: [
-            "Are students developing news judgment about newsworthiness?",
-            "Can they verify sources and facts independently?",
-            "Does AI mask ethical communication responsibilities?",
-            "Are students understanding audiences, not demographics?",
-            "Can they distinguish reporting from public relations?"
+            {
+                question: 'Are students developing news judgment about newsworthiness?',
+                why: 'News judgment—recognizing what\'s important, understanding what audiences need to know, identifying stories worth telling—is learned through practice and mentorship. This professional judgment about significance and public interest can\'t be automated. AI can summarize events; journalists develop the judgment to know what matters.'
+            },
+            {
+                question: 'Can they verify sources and facts independently?',
+                why: 'Source verification is fundamental to journalism—checking facts, assessing credibility, corroborating information, recognizing misinformation. These research and verification skills require practice and skepticism. AI can retrieve information but can\'t assess reliability. Journalists must develop the skills to verify information independently.'
+            },
+            {
+                question: 'Does AI mask ethical communication responsibilities?',
+                why: 'Journalism involves ethical choices—about privacy, harm, fairness, accuracy, public interest. Understanding these ethical responsibilities and reasoning through dilemmas requires practice with real cases. AI generates content without ethical consideration; journalists must develop the ethical reasoning that guides responsible communication.'
+            },
+            {
+                question: 'Are students understanding audiences, not demographics?',
+                why: 'Audience understanding means knowing what people need to know, how to communicate clearly, what contexts matter—not just demographic data. This sense of audience develops through writing for real readers and getting feedback. AI analyzes demographics; communicators develop feel for audiences through practice.'
+            },
+            {
+                question: 'Can they distinguish reporting from public relations?',
+                why: 'Journalism serves the public interest through independent reporting; public relations serves clients. Understanding this distinction and maintaining journalistic independence requires professional judgment about roles and responsibilities. AI-generated content blurs these lines; journalists must understand and maintain the distinction through ethical practice.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1480,11 +1930,26 @@ const departmentSpecificLanguage = {
 
     'Africana Studies': {
         considerations: [
-            "Are students analyzing how race shapes knowledge?",
-            "Can they interpret cultural works within resistance?",
-            "Does AI reproduce stereotypes or distortions?",
-            "Are students engaging with primary sources directly?",
-            "Can they critique representations with historical context?"
+            {
+                question: 'Are students analyzing how race shapes knowledge?',
+                why: 'Africana Studies requires understanding how race and racism have shaped what counts as knowledge, whose perspectives are centered, and how African peoples have been represented. This critical analysis of knowledge production is learned through engaging with Black intellectual traditions and critical race theory—not from AI summaries that may reproduce dominant perspectives.'
+            },
+            {
+                question: 'Can they interpret cultural works within resistance?',
+                why: 'African and diaspora cultural production often emerges from resistance to oppression—music, literature, art created under and against slavery, colonialism, segregation, apartheid. Understanding these works requires knowing their contexts of creation and resistance. AI describes content; you learn to interpret cultural works as responses to power.'
+            },
+            {
+                question: 'Does AI reproduce stereotypes or distortions?',
+                why: 'AI systems trained primarily on Western sources can perpetuate stereotypes and historical distortions about African peoples and cultures. Recognizing these biases requires knowledge of how Africa and its diaspora have been misrepresented. Critical media literacy in Africana Studies means questioning AI outputs for stereotyping and historical inaccuracy.'
+            },
+            {
+                question: 'Are students engaging with primary sources directly?',
+                why: 'Primary sources—slave narratives, decolonial manifestos, Black feminist texts, oral histories—allow African and diaspora voices to speak directly. These texts challenge dominant narratives and center Black perspectives. AI-mediated access removes you from direct engagement with the voices and ideas that constitute Africana intellectual traditions.'
+            },
+            {
+                question: 'Can they critique representations with historical context?',
+                why: 'Critiquing how African peoples have been represented requires historical knowledge of stereotyping, othering, and resistance. This critical skill—recognizing problematic representations and understanding their historical roots—develops through studying histories of representation alongside African-centered perspectives. AI analysis may lack this critical framework.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1528,11 +1993,26 @@ const departmentSpecificLanguage = {
 
     'East Asian Studies': {
         considerations: [
-            "Are students developing language skills, not relying?",
-            "Can they recognize and critique Orientalist representations?",
-            "Does AI impose Western frameworks on Asia?",
-            "Are students understanding cultures within their frameworks?",
-            "Can they work with texts in original languages?"
+            {
+                question: 'Are students developing language skills, not relying?',
+                why: 'East Asian Studies requires language proficiency—reading Chinese, Japanese, or Korean texts directly gives access to cultural production and perspectives unavailable in translation. AI translation prevents you from developing this language competency essential to serious area studies work. Language learning cannot be bypassed if you want deep cultural understanding.'
+            },
+            {
+                question: 'Can they recognize and critique Orientalist representations?',
+                why: 'Orientalism—Western stereotyping and exoticization of Asian cultures—has shaped how East Asia is represented and understood. Recognizing Orientalist tropes requires studying this history of representation critically. AI trained on Western sources may reproduce Orientalist assumptions; you learn to critique them through postcolonial theory and East Asian perspectives.'
+            },
+            {
+                question: 'Does AI impose Western frameworks on Asia?',
+                why: 'Understanding East Asian cultures requires learning their own conceptual frameworks—philosophical traditions, social structures, aesthetic principles—not imposing Western categories. AI systems trained primarily on Western texts tend to interpret Asia through Western frameworks. Area studies means learning to understand cultures on their own terms.'
+            },
+            {
+                question: 'Are students understanding cultures within their frameworks?',
+                why: 'Cultural understanding means grasping how people within a culture make sense of their world—values, social norms, historical references, aesthetic sensibilities. This insider understanding develops through language study, cultural immersion, and sustained engagement with primary sources. AI provides external descriptions; you learn internal perspectives.'
+            },
+            {
+                question: 'Can they work with texts in original languages?',
+                why: 'Primary texts in original languages reveal nuances, wordplay, cultural references, and meanings that translation loses. Working with original texts requires both language skills and cultural knowledge. AI translation removes you from this direct textual engagement essential to East Asian Studies scholarship and cultural competency.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1576,11 +2056,26 @@ const departmentSpecificLanguage = {
 
     'Environmental Studies': {
         considerations: [
-            "Are students integrating across scientific and social?",
-            "Can they reason about environmental justice?",
-            "Does AI offer technical fixes ignoring politics?",
-            "Are students evaluating solutions for equity?",
-            "Can they think ecologically and socially simultaneously?"
+            {
+                question: 'Are students integrating across scientific and social?',
+                why: 'Environmental problems require understanding both biophysical systems and social dimensions—ecology and politics, science and justice, technical solutions and cultural change. This integrative thinking across disciplines is what distinguishes environmental studies. AI tends to separate technical from social; you learn to think across this divide through practice.'
+            },
+            {
+                question: 'Can they reason about environmental justice?',
+                why: 'Environmental justice means understanding how environmental harms and benefits are distributed unequally by race, class, and power. This requires both empirical analysis and ethical reasoning about equity. AI can show distributions, but you develop the critical analysis that connects environmental problems to social justice through studying cases and theory.'
+            },
+            {
+                question: 'Does AI offer technical fixes ignoring politics?',
+                why: 'Environmental problems have technical dimensions, but solutions require political will, behavior change, and confronting power. AI often suggests technical fixes without addressing political obstacles. Environmental studies teaches that sustainability requires both technical innovation and social transformation—you can\'t engineer your way out of political problems.'
+            },
+            {
+                question: 'Are students evaluating solutions for equity?',
+                why: 'Environmental solutions must be evaluated not just for effectiveness but for equity—who benefits, who bears costs, whose voices are heard. This evaluative framework requires both scientific understanding and justice commitments. AI optimizes for efficiency; environmental studies requires evaluating solutions through multiple lenses including social equity.'
+            },
+            {
+                question: 'Can they think ecologically and socially simultaneously?',
+                why: 'Environmental thinking means holding ecosystem dynamics and human social systems in mind simultaneously—understanding how they interact and co-produce environmental problems and solutions. This simultaneous attention to natural and social is cognitively demanding and learned through practice. It\'s what makes environmental studies genuinely interdisciplinary.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1624,11 +2119,26 @@ const departmentSpecificLanguage = {
 
     'Latin American & Caribbean Studies': {
         considerations: [
-            "Are students developing Spanish or Portuguese skills?",
-            "Can they understand colonial legacies in context?",
-            "Does AI center whose perspectives on region?",
-            "Are students engaging with regional diversity?",
-            "Can they critique power relations in representation?"
+            {
+                question: 'Are students developing Spanish or Portuguese skills?',
+                why: 'Latin American and Caribbean Studies requires language proficiency to engage with the region\'s cultural production, historical documents, and contemporary discourse. AI translation prevents language acquisition essential for area studies expertise. Understanding the region means learning to work with Spanish, Portuguese, and sometimes indigenous languages directly.'
+            },
+            {
+                question: 'Can they understand colonial legacies in context?',
+                why: 'The region\'s histories—conquest, slavery, independence, neocolonialism—shape contemporary politics and culture. Understanding these colonial legacies requires historical knowledge and critical analysis of ongoing power relations. AI can summarize events, but you learn to analyze how colonial histories shape present realities through sustained study.'
+            },
+            {
+                question: 'Does AI center whose perspectives on region?',
+                why: 'Representations of Latin America and the Caribbean often reflect North American and European perspectives rather than regional voices. Critical area studies means asking whose viewpoint is centered. AI trained on predominantly English sources may reproduce external perspectives; you learn to center Latin American and Caribbean voices and frameworks.'
+            },
+            {
+                question: 'Are students engaging with regional diversity?',
+                why: 'Latin America and the Caribbean encompass enormous diversity—indigenous cultures, Afro-descendant communities, European influences, distinct national histories. Understanding this diversity requires learning about specific places and populations. AI generalizations can flatten diversity; area studies means engaging with regional complexity and specificity.'
+            },
+            {
+                question: 'Can they critique power relations in representation?',
+                why: 'The region has been represented through frameworks that reflect geopolitical power—tropicalism, exoticism, developmentalism, the "Global South." Critiquing these representations requires understanding how power shapes knowledge production. You develop this critical skill through postcolonial theory and engagement with regional scholarship.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1672,11 +2182,26 @@ const departmentSpecificLanguage = {
 
     'Middle East & South Asia Studies': {
         considerations: [
-            "Are students learning languages of the region?",
-            "Can they recognize and critique Orientalism?",
-            "Does AI perpetuate stereotypes about region?",
-            "Are students understanding religious and cultural diversity?",
-            "Can they analyze power in Western representations?"
+            {
+                question: 'Are students learning languages of the region?',
+                why: 'Serious study of the Middle East and South Asia requires language proficiency—Arabic, Persian, Urdu, Hindi, Turkish, or other regional languages. AI translation cannot replace the linguistic competency essential for understanding cultural production, reading primary sources, and conducting research. Language learning is non-negotiable for area studies expertise.'
+            },
+            {
+                question: 'Can they recognize and critique Orientalism?',
+                why: 'Edward Said\'s Orientalism shows how Western representations have distorted and exoticized the Middle East and South Asia. Recognizing Orientalist tropes—stereotyping, othering, assumptions of backwardness—requires studying this history of representation. AI may reproduce Orientalist assumptions; you learn to critique them through critical theory and regional perspectives.'
+            },
+            {
+                question: 'Does AI perpetuate stereotypes about region?',
+                why: 'AI systems trained on Western media often perpetuate stereotypes about Islam, terrorism, gender relations, and political systems in these regions. Critical media literacy means recognizing when AI outputs reproduce stereotypes. This skill requires knowledge of how the Middle East and South Asia have been misrepresented historically.'
+            },
+            {
+                question: 'Are students understanding religious and cultural diversity?',
+                why: 'These regions encompass enormous religious and cultural diversity—Islam\'s many traditions, Hindu, Sikh, Christian, and other communities, ethnic and linguistic plurality. Understanding this diversity requires specific knowledge beyond generalizations. AI summaries can homogenize; area studies means engaging with regional complexity and internal differences.'
+            },
+            {
+                question: 'Can they analyze power in Western representations?',
+                why: 'How the West represents the Middle East and South Asia reflects geopolitical power relations. Analyzing these representations critically requires understanding both regional histories and global power dynamics. You develop this analytical skill through postcolonial theory, studying colonial histories, and centering regional voices against dominant Western narratives.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1720,11 +2245,26 @@ const departmentSpecificLanguage = {
 
     "Women's, Gender & Sexuality Studies": {
         considerations: [
-            "Are students analyzing intersecting systems of power?",
-            "Can they understand lived experiences in context?",
-            "Does AI encode gender and sexuality biases?",
-            "Are students engaging with feminist and queer theory?",
-            "Can they critique how knowledge production gendered?"
+            {
+                question: 'Are students analyzing intersecting systems of power?',
+                why: 'Intersectionality—understanding how gender, race, class, sexuality, disability, and other systems of power interact—is fundamental to WGSS. This analytical framework requires thinking about multiple axes of identity and oppression simultaneously. AI can list categories, but you learn intersectional analysis through applying it to cases and lived experiences.'
+            },
+            {
+                question: 'Can they understand lived experiences in context?',
+                why: 'WGSS centers lived experiences of gender and sexuality—understanding how people navigate, resist, and experience gendered and sexual norms and violence. This requires both empathy and contextual analysis. AI describes experiences externally; you learn to understand experiences within the social, cultural, and historical contexts that shape them.'
+            },
+            {
+                question: 'Does AI encode gender and sexuality biases?',
+                why: 'AI systems reflect and reproduce gender and sexuality biases from training data—gender stereotypes, heteronormativity, cisnormativity, binary thinking. Recognizing these biases requires feminist and queer critique of technology. WGSS means learning to identify how technologies encode and perpetuate gendered and sexual norms and hierarchies.'
+            },
+            {
+                question: 'Are students engaging with feminist and queer theory?',
+                why: 'Feminist theory—liberal, radical, Black, transnational feminism—and queer theory provide frameworks for analyzing gender and sexuality as systems of power. These theoretical traditions are intellectually demanding and require careful reading. AI summaries can\'t replace wrestling with Butler, Crenshaw, hooks, or other theorists\' arguments directly.'
+            },
+            {
+                question: 'Can they critique how knowledge production gendered?',
+                why: 'WGSS analyzes how knowledge production itself is gendered—whose questions get asked, whose experiences count, what methods are valued, who is considered an expert. This meta-critical analysis of knowledge systems is learned through feminist epistemology and science studies. Understanding how gender shapes what counts as knowledge requires sustained theoretical engagement.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1768,11 +2308,26 @@ const departmentSpecificLanguage = {
 
     'Law, Justice & Society': {
         considerations: [
-            "Are students analyzing legal arguments critically?",
-            "Can they reason about justice beyond rules?",
-            "Does AI hide how law perpetuates power?",
-            "Are students understanding institutional legitimacy questions?",
-            "Can they evaluate rights claims with theory?"
+            {
+                question: 'Are students analyzing legal arguments critically?',
+                why: 'Legal reasoning has structure—precedent, statutory interpretation, constitutional argument. Understanding how legal arguments work and evaluating them critically requires practice reading cases and analyzing judicial reasoning. AI can summarize holdings, but you learn to analyze legal argumentation by working through how courts reason and where reasoning may be flawed.'
+            },
+            {
+                question: 'Can they reason about justice beyond rules?',
+                why: 'Law is not equivalent to justice—laws can be unjust, legal systems can perpetuate inequality, formal rights don\'t guarantee substantive justice. Normative reasoning about justice requires philosophical frameworks beyond legal doctrine. You learn to distinguish law from justice and evaluate legal systems ethically through political theory and critical legal studies.'
+            },
+            {
+                question: 'Does AI hide how law perpetuates power?',
+                why: 'Critical legal analysis examines how law reflects and reproduces social power—through differential enforcement, formal equality masking substantive inequality, and whose interests legal institutions serve. This structural analysis is learned through critical theory. AI describes law neutrally; you learn to analyze law as a site of power and contestation.'
+            },
+            {
+                question: 'Are students understanding institutional legitimacy questions?',
+                why: 'Legal institutions claim authority—judicial review, police power, administrative agencies. Understanding debates about institutional legitimacy requires political theory about authority, democracy, and rights. These questions—what makes law binding, when is state power legitimate—are philosophical and require engagement with political thought.'
+            },
+            {
+                question: 'Can they evaluate rights claims with theory?',
+                why: 'Rights claims—to privacy, free speech, equality, due process—involve theoretical questions about what rights are, where they come from, and how to balance competing rights. Evaluating rights claims requires normative reasoning grounded in political philosophy. AI describes rights formally; you learn to reason about rights theoretically.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1816,11 +2371,26 @@ const departmentSpecificLanguage = {
 
     'Poverty Studies': {
         considerations: [
-            "Are students analyzing structural causes of inequality?",
-            "Can they integrate statistics and lived experiences?",
-            "Does AI offer technical fixes ignoring politics?",
-            "Are students critiquing systems that produce poverty?",
-            "Can they evaluate policies for justice implications?"
+            {
+                question: 'Are students analyzing structural causes of inequality?',
+                why: 'Poverty is not individual failure but produced by economic systems, political institutions, and social structures. Understanding structural causes—labor markets, housing policy, education funding, racism—requires moving from individual to systemic analysis. AI focuses on individual-level data; you learn structural analysis through political economy and sociology.'
+            },
+            {
+                question: 'Can they integrate statistics and lived experiences?',
+                why: 'Understanding poverty requires both quantitative data and qualitative understanding of how people experience economic insecurity. Integrating these requires holding numbers and narratives together. AI handles data well but misses experiential meaning; poverty studies teaches you to connect statistics to lived realities and power relations.'
+            },
+            {
+                question: 'Does AI offer technical fixes ignoring politics?',
+                why: 'Poverty has technical dimensions but persists due to political choices and power. AI often suggests technical solutions—better targeting, efficiency improvements—without addressing political obstacles to redistribution. Poverty studies teaches that reducing poverty requires political will and challenging power, not just technical optimization.'
+            },
+            {
+                question: 'Are students critiquing systems that produce poverty?',
+                why: 'Addressing poverty means critiquing capitalism, racism, patriarchy, and other systems that generate and sustain inequality. This critical analysis draws on radical political economy and critical theory. AI presents poverty as a problem to manage; you learn to analyze it as produced by systems that could be transformed.'
+            },
+            {
+                question: 'Can they evaluate policies for justice implications?',
+                why: 'Anti-poverty policies must be evaluated not just for effectiveness but for justice—do they respect dignity, empower or paternalize, address root causes or manage symptoms. This evaluative framework requires both empirical analysis and normative reasoning. You develop multi-dimensional policy evaluation through interdisciplinary poverty studies.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1864,11 +2434,26 @@ const departmentSpecificLanguage = {
 
     'Digital Culture & Information': {
         considerations: [
-            "Are students analyzing how algorithms shape culture?",
-            "Can they understand digital power relations?",
-            "Does using AI prevent studying it critically?",
-            "Are students engaging with digital studies theory?",
-            "Can they experiment with AI as object?"
+            {
+                question: 'Are students analyzing how algorithms shape culture?',
+                why: 'Algorithms shape what we see, read, and know—recommendation systems, search rankings, content moderation, feed curation. Understanding this algorithmic mediation of culture requires both technical understanding and cultural analysis. You learn to analyze algorithmic power through digital culture theory, not by passively consuming algorithmic outputs.'
+            },
+            {
+                question: 'Can they understand digital power relations?',
+                why: 'Digital technologies concentrate power—platform monopolies, data extraction, surveillance, algorithmic governance. Understanding these power relations requires political economy of technology. AI can describe platforms, but analyzing digital capitalism and techno-politics requires critical frameworks you learn through digital studies scholarship.'
+            },
+            {
+                question: 'Does using AI prevent studying it critically?',
+                why: 'You can\'t analyze AI critically while uncritically depending on it—using AI for writing prevents you from studying how AI generates text, what it obscures, and what ideologies it encodes. Digital culture studies means studying AI as an object of analysis, which requires maintaining critical distance, not just being a user.'
+            },
+            {
+                question: 'Are students engaging with digital studies theory?',
+                why: 'Digital culture theory—platform studies, critical code studies, algorithmic culture, data studies—provides frameworks for analyzing technology critically. These theoretical traditions require reading difficult texts. AI can summarize theory, but theoretical thinking develops through wrestling with arguments from scholars like Noble, Eubanks, O\'Neil, and Benjamin.'
+            },
+            {
+                question: 'Can they experiment with AI as object?',
+                why: 'Studying AI means experimenting with systems to understand how they work—probing for biases, examining outputs, reverse-engineering behaviors. This experimental approach treats AI as an object of study, not a writing tool. You learn about AI by analyzing it, not by having it do your work.'
+            }
         ],
         dimensionalTasks: [
             {
@@ -1912,11 +2497,26 @@ const departmentSpecificLanguage = {
 
     'Education Studies': {
         considerations: [
-            "Are students understanding how people actually learn?",
-            "Can they analyze pedagogical approaches critically?",
-            "Does AI obscure educational equity questions?",
-            "Are students engaging with learning theory?",
-            "Can they evaluate AI's pedagogical assumptions?"
+            {
+                question: 'Are students understanding how people actually learn?',
+                why: 'Learning theory—from Piaget and Vygotsky to contemporary cognitive science—explains how people acquire knowledge and skills. Understanding learning mechanisms requires studying theory and observing learners. AI can describe learning, but understanding how people actually learn requires engaging with research, theory, and educational practice.'
+            },
+            {
+                question: 'Can they analyze pedagogical approaches critically?',
+                why: 'Pedagogical approaches embody assumptions about learning, knowledge, and students. Analyzing teaching critically requires theoretical frameworks to evaluate what methods accomplish and whose interests they serve. AI describes methods; education studies means critically examining pedagogical choices through learning theory and attention to equity.'
+            },
+            {
+                question: 'Does AI obscure educational equity questions?',
+                why: 'Educational technology often promises efficiency while obscuring questions about access, whose knowledge is valued, and how innovations affect different students. Critical education studies means asking who benefits from educational AI and whose learning may be harmed. These equity questions require frameworks AI analysis typically omits.'
+            },
+            {
+                question: 'Are students engaging with learning theory?',
+                why: 'Learning theory—behaviorism, constructivism, sociocultural theory, cognitivism—provides frameworks for understanding education. These theories are intellectually demanding and require sustained study. AI can summarize theories, but educational thinking develops through engaging with theoretical debates about how learning works and what education should accomplish.'
+            },
+            {
+                question: 'Can they evaluate AI\'s pedagogical assumptions?',
+                why: 'Educational AI embeds assumptions about learning, assessment, and knowledge—often behaviorist, reductionist, or focused on measurable outcomes. Evaluating these assumptions requires understanding learning theory well enough to recognize what AI gets wrong. You develop this critical capacity through education studies, not through using AI uncritically.'
+            }
         ],
         dimensionalTasks: [
             {

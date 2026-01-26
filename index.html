@@ -3885,7 +3885,10 @@
         // COMPONENTS
         // ============================================================================
 
-        function AccumulatedStatement({ statementParts, selectedTasks }) {
+        function AccumulatedStatement({ statementParts, selectedTasks, setStatementParts }) {
+            const [isEditingIntro, setIsEditingIntro] = useState(false);
+            const [editIntroText, setEditIntroText] = useState('');
+
             if (!statementParts.intro && !statementParts.policyLevel) {
                 return null;
             }
@@ -3908,8 +3911,91 @@
 
                     {statementParts.intro && (
                         <div className="statement-section intro">
-                            <div className="section-label">Introduction</div>
-                            <div className="section-text">{statementParts.intro}</div>
+                            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                                <div className="section-label">Introduction</div>
+                                {!isEditingIntro && setStatementParts && (
+                                    <button
+                                        onClick={() => {
+                                            setIsEditingIntro(true);
+                                            setEditIntroText(statementParts.intro);
+                                        }}
+                                        style={{
+                                            padding: '0.4rem 0.8rem',
+                                            background: 'transparent',
+                                            color: 'var(--primary)',
+                                            border: '2px solid var(--primary)',
+                                            borderRadius: '6px',
+                                            cursor: 'pointer',
+                                            fontWeight: 600,
+                                            fontSize: '0.8rem'
+                                        }}
+                                    >
+                                        ✎ Edit
+                                    </button>
+                                )}
+                            </div>
+                            {!isEditingIntro ? (
+                                <div className="section-text">{statementParts.intro}</div>
+                            ) : (
+                                <>
+                                    <textarea
+                                        value={editIntroText}
+                                        onChange={(e) => setEditIntroText(e.target.value)}
+                                        style={{
+                                            width: '100%',
+                                            minHeight: '100px',
+                                            padding: '0.75rem',
+                                            fontSize: '0.95rem',
+                                            lineHeight: '1.6',
+                                            border: '2px solid var(--border-color)',
+                                            borderRadius: '6px',
+                                            fontFamily: 'inherit',
+                                            marginTop: '0.75rem',
+                                            marginBottom: '0.75rem',
+                                            background: 'var(--bg-primary)',
+                                            color: 'var(--text-primary)'
+                                        }}
+                                    />
+                                    <div style={{display: 'flex', gap: '0.75rem', marginTop: '0.75rem'}}>
+                                        <button
+                                            onClick={() => {
+                                                setStatementParts(prev => ({
+                                                    ...prev,
+                                                    intro: editIntroText
+                                                }));
+                                                setIsEditingIntro(false);
+                                            }}
+                                            style={{
+                                                padding: '0.5rem 1rem',
+                                                background: 'var(--primary)',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '6px',
+                                                cursor: 'pointer',
+                                                fontWeight: 600,
+                                                fontSize: '0.85rem'
+                                            }}
+                                        >
+                                            Save
+                                        </button>
+                                        <button
+                                            onClick={() => setIsEditingIntro(false)}
+                                            style={{
+                                                padding: '0.5rem 1rem',
+                                                background: 'transparent',
+                                                color: 'var(--text-secondary)',
+                                                border: '2px solid var(--border-color)',
+                                                borderRadius: '6px',
+                                                cursor: 'pointer',
+                                                fontWeight: 600,
+                                                fontSize: '0.85rem'
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     )}
 
@@ -4988,7 +5074,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} />
+                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} setStatementParts={setStatementParts} />
 
                                 <div style={{marginBottom: '1.5rem'}}>
                                     <button
@@ -5020,106 +5106,6 @@
                                 <p className="phase-description">
                                     Choose the statement that best aligns with your preference for AI use in your course.
                                 </p>
-
-                                <div style={{
-                                    background: 'var(--bg-secondary)',
-                                    border: '2px solid var(--border-color)',
-                                    borderRadius: '8px',
-                                    padding: '1.5rem',
-                                    marginBottom: '2rem'
-                                }}>
-                                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem'}}>
-                                        <strong style={{color: 'var(--text-primary)'}}>Introduction Text</strong>
-                                        {!isEditing && (
-                                            <button
-                                                onClick={() => {
-                                                    setIsEditing(true);
-                                                    setEditText(statementParts.intro);
-                                                }}
-                                                style={{
-                                                    padding: '0.5rem 1rem',
-                                                    background: 'transparent',
-                                                    color: 'var(--primary)',
-                                                    border: '2px solid var(--primary)',
-                                                    borderRadius: '6px',
-                                                    cursor: 'pointer',
-                                                    fontWeight: 600,
-                                                    fontSize: '0.85rem'
-                                                }}
-                                            >
-                                                Edit
-                                            </button>
-                                        )}
-                                    </div>
-                                    {!isEditing ? (
-                                        <div style={{
-                                            fontSize: '0.95rem',
-                                            lineHeight: '1.6',
-                                            color: 'var(--text-secondary)',
-                                            whiteSpace: 'pre-wrap'
-                                        }}>
-                                            {statementParts.intro}
-                                        </div>
-                                    ) : (
-                                        <>
-                                            <textarea
-                                                value={editText}
-                                                onChange={(e) => setEditText(e.target.value)}
-                                                style={{
-                                                    width: '100%',
-                                                    minHeight: '100px',
-                                                    padding: '0.75rem',
-                                                    fontSize: '0.95rem',
-                                                    lineHeight: '1.6',
-                                                    border: '2px solid var(--border-color)',
-                                                    borderRadius: '6px',
-                                                    fontFamily: 'inherit',
-                                                    marginBottom: '0.75rem',
-                                                    background: 'var(--bg-primary)',
-                                                    color: 'var(--text-primary)'
-                                                }}
-                                            />
-                                            <div style={{display: 'flex', gap: '0.75rem'}}>
-                                                <button
-                                                    onClick={() => {
-                                                        setStatementParts(prev => ({
-                                                            ...prev,
-                                                            intro: editText
-                                                        }));
-                                                        setIsEditing(false);
-                                                    }}
-                                                    style={{
-                                                        padding: '0.5rem 1rem',
-                                                        background: 'var(--primary)',
-                                                        color: 'white',
-                                                        border: 'none',
-                                                        borderRadius: '6px',
-                                                        cursor: 'pointer',
-                                                        fontWeight: 600,
-                                                        fontSize: '0.85rem'
-                                                    }}
-                                                >
-                                                    Save
-                                                </button>
-                                                <button
-                                                    onClick={() => setIsEditing(false)}
-                                                    style={{
-                                                        padding: '0.5rem 1rem',
-                                                        background: 'transparent',
-                                                        color: 'var(--text-secondary)',
-                                                        border: '2px solid var(--border-color)',
-                                                        borderRadius: '6px',
-                                                        cursor: 'pointer',
-                                                        fontWeight: 600,
-                                                        fontSize: '0.85rem'
-                                                    }}
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </>
-                                    )}
-                                </div>
 
                                 <div className="policy-choices">
                                     <div className="policy-card" onClick={() => handlePolicyLevelSelect('no-ai')}>
@@ -5171,7 +5157,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} />
+                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} setStatementParts={setStatementParts} />
 
                                 <h2 className="phase-question">Write Your Rationale</h2>
                                 <p className="phase-description">
@@ -5566,7 +5552,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={{...statementParts, assignmentPolicies: policies}} selectedTasks={selectedTasks} />
+                                <AccumulatedStatement statementParts={{...statementParts, assignmentPolicies: policies}} selectedTasks={selectedTasks} setStatementParts={setStatementParts} />
 
                                 <h2 className="phase-question">Assignment-Specific Guidelines? (Optional)</h2>
                                 <p className="phase-description">
@@ -5669,7 +5655,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={{...statementParts, documentation: docTexts[docOption] || statementParts.documentation}} selectedTasks={selectedTasks} />
+                                <AccumulatedStatement statementParts={{...statementParts, documentation: docTexts[docOption] || statementParts.documentation}} selectedTasks={selectedTasks} setStatementParts={setStatementParts} />
 
                                 <h2 className="phase-question">Documentation Requirements (Optional)</h2>
                                 <p className="phase-description">
@@ -5744,7 +5730,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} />
+                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} setStatementParts={setStatementParts} />
 
                                 <h2 className="phase-question">Invite Questions? (Optional)</h2>
                                 <p className="phase-description">
@@ -5816,7 +5802,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={{...statementParts, customText}} selectedTasks={selectedTasks} />
+                                <AccumulatedStatement statementParts={{...statementParts, customText}} selectedTasks={selectedTasks} setStatementParts={setStatementParts} />
 
                                 <h2 className="phase-question">Add Course-Specific Notes? (Optional)</h2>
                                 <p className="phase-description">
@@ -5917,7 +5903,7 @@
                                     ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
                                 </button>
 
-                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} />
+                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} setStatementParts={setStatementParts} />
 
                                 <div className="export-actions">
                                     <button className="export-btn" onClick={copyToClipboard}>
