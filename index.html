@@ -3882,10 +3882,16 @@
         // COMPONENTS
         // ============================================================================
 
-        function AccumulatedStatement({ statementParts }) {
+        function AccumulatedStatement({ statementParts, selectedTasks }) {
             if (!statementParts.intro && !statementParts.policyLevel) {
                 return null;
             }
+
+            // Get checked tasks to display in final statement
+            const deptLang = departmentSpecificLanguage[statementParts.department];
+            const dimensionalTasks = deptLang?.dimensionalTasks || [];
+            const checkedTasks = selectedTasks ? selectedTasks.map(idx => dimensionalTasks[idx]).filter(Boolean) : [];
+            const coreSkillTasks = checkedTasks.filter(t => t.guidance === 'core-skill');
 
             return (
                 <div className="accumulated-statement">
@@ -3909,6 +3915,20 @@
                         <div className="statement-section rationale">
                             <div className="section-label">Rationale</div>
                             <div className="section-text">{statementParts.rationale}</div>
+                        </div>
+                    )}
+
+                    {coreSkillTasks.length > 0 && (
+                        <div className="statement-section core-activities">
+                            <div className="section-label">Core Activities in This Course</div>
+                            <div className="section-text">
+                                The following activities are central to your learning goals in this course. To develop essential skills, these should be completed without AI assistance:
+                                <ul style={{marginTop: '0.5rem', marginBottom: '0', paddingLeft: '1.5rem'}}>
+                                    {coreSkillTasks.map((task, idx) => (
+                                        <li key={idx} style={{marginBottom: '0.25rem'}}>{task.taskName}</li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     )}
 
@@ -5130,7 +5150,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={statementParts} />
+                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} />
 
                                 {!showPolicyChoices ? (
                                     <>
@@ -5321,12 +5341,90 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={statementParts} />
+                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} />
 
                                 <h2 className="phase-question">Add Your Rationale</h2>
                                 <p className="phase-description">
                                     This explains to students why this policy matters for their learning in {statementParts.department}.
                                 </p>
+
+                                {selectedTasks.length > 0 && (() => {
+                                    const deptLang = departmentSpecificLanguage[statementParts.department];
+                                    const dimensionalTasks = deptLang?.dimensionalTasks || [];
+                                    const checkedTasks = selectedTasks.map(idx => dimensionalTasks[idx]).filter(Boolean);
+
+                                    if (checkedTasks.length > 0) {
+                                        const coreSkillTasks = checkedTasks.filter(t => t.guidance === 'core-skill');
+                                        const contextTasks = checkedTasks.filter(t => t.guidance === 'context-dependent');
+                                        const supportTasks = checkedTasks.filter(t => t.guidance === 'support-task');
+
+                                        return (
+                                            <div style={{
+                                                background: '#f0f9ff',
+                                                border: '2px solid #3b82f6',
+                                                borderRadius: '8px',
+                                                padding: '1.25rem',
+                                                marginBottom: '1.5rem'
+                                            }}>
+                                                <div style={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '0.5rem',
+                                                    marginBottom: '0.75rem'
+                                                }}>
+                                                    <span style={{fontSize: '1.25rem'}}>💡</span>
+                                                    <strong style={{color: '#1e40af', fontSize: '1rem'}}>
+                                                        Tasks You Marked as Important
+                                                    </strong>
+                                                </div>
+                                                <p style={{
+                                                    margin: '0 0 0.75rem 0',
+                                                    fontSize: '0.9rem',
+                                                    color: '#475569'
+                                                }}>
+                                                    You marked {checkedTasks.length} {checkedTasks.length === 1 ? 'task' : 'tasks'} as central to your course. Consider explaining in your rationale why {coreSkillTasks.length > 0 ? 'these skills require direct practice' : 'you chose this approach'}.
+                                                </p>
+                                                {coreSkillTasks.length > 0 && (
+                                                    <div style={{marginBottom: '0.5rem'}}>
+                                                        <div style={{fontSize: '0.85rem', fontWeight: 600, color: '#dc2626', marginBottom: '0.25rem'}}>
+                                                            Core skills you emphasized:
+                                                        </div>
+                                                        <ul style={{margin: '0', paddingLeft: '1.5rem', fontSize: '0.9rem'}}>
+                                                            {coreSkillTasks.map((task, idx) => (
+                                                                <li key={idx} style={{marginBottom: '0.25rem'}}>{task.taskName}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                )}
+                                                {contextTasks.length > 0 && (
+                                                    <div style={{marginBottom: '0.5rem'}}>
+                                                        <div style={{fontSize: '0.85rem', fontWeight: 600, color: '#f59e0b', marginBottom: '0.25rem'}}>
+                                                            Context-dependent tasks:
+                                                        </div>
+                                                        <ul style={{margin: '0', paddingLeft: '1.5rem', fontSize: '0.9rem'}}>
+                                                            {contextTasks.map((task, idx) => (
+                                                                <li key={idx} style={{marginBottom: '0.25rem'}}>{task.taskName}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                )}
+                                                {supportTasks.length > 0 && (
+                                                    <div>
+                                                        <div style={{fontSize: '0.85rem', fontWeight: 600, color: '#059669', marginBottom: '0.25rem'}}>
+                                                            Support tasks where AI can help:
+                                                        </div>
+                                                        <ul style={{margin: '0', paddingLeft: '1.5rem', fontSize: '0.9rem'}}>
+                                                            {supportTasks.map((task, idx) => (
+                                                                <li key={idx} style={{marginBottom: '0.25rem'}}>{task.taskName}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    }
+                                    return null;
+                                })()}
 
                                 <button
                                     onClick={() => {
@@ -5454,7 +5552,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={{...statementParts, assignmentPolicies: policies}} />
+                                <AccumulatedStatement statementParts={{...statementParts, assignmentPolicies: policies}} selectedTasks={selectedTasks} />
 
                                 <h2 className="phase-question">Assignment-Specific Guidelines? (Optional)</h2>
                                 <p className="phase-description">
@@ -5557,7 +5655,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={{...statementParts, documentation: docTexts[docOption] || statementParts.documentation}} />
+                                <AccumulatedStatement statementParts={{...statementParts, documentation: docTexts[docOption] || statementParts.documentation}} selectedTasks={selectedTasks} />
 
                                 <h2 className="phase-question">Documentation Requirements? (Optional)</h2>
                                 <p className="phase-description">
@@ -5645,7 +5743,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={statementParts} />
+                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} />
 
                                 <h2 className="phase-question">Invite Questions? (Optional)</h2>
                                 <p className="phase-description">
@@ -5717,7 +5815,7 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <AccumulatedStatement statementParts={{...statementParts, customText}} />
+                                <AccumulatedStatement statementParts={{...statementParts, customText}} selectedTasks={selectedTasks} />
 
                                 <h2 className="phase-question">Add Course-Specific Notes? (Optional)</h2>
                                 <p className="phase-description">
@@ -5818,7 +5916,7 @@
                                     ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
                                 </button>
 
-                                <AccumulatedStatement statementParts={statementParts} />
+                                <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} />
 
                                 <div className="export-actions">
                                     <button className="export-btn" onClick={copyToClipboard}>
