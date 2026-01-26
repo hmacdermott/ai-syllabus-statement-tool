@@ -5441,114 +5441,75 @@
                                             }}>
                                                 <div style={{
                                                     fontWeight: 600,
-                                                    marginBottom: '1.25rem',
+                                                    marginBottom: '0.75rem',
                                                     color: 'var(--text-primary)',
-                                                    fontSize: '1rem',
-                                                    textAlign: 'center'
+                                                    fontSize: '0.95rem'
                                                 }}>
                                                     Activity Categories
                                                 </div>
-                                                <div style={{
-                                                    display: 'grid',
-                                                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                                                    gap: '1rem'
+                                                <table style={{
+                                                    width: '100%',
+                                                    borderCollapse: 'collapse',
+                                                    fontSize: '0.9rem'
                                                 }}>
-                                                    {/* Core Skill Category */}
-                                                    <div style={{
-                                                        background: theme === 'dark' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(220, 38, 38, 0.05)',
-                                                        border: `2px solid ${theme === 'dark' ? 'rgba(239, 68, 68, 0.3)' : 'rgba(220, 38, 38, 0.2)'}`,
-                                                        borderRadius: '12px',
-                                                        padding: '1.25rem',
-                                                        transition: 'all 0.2s',
-                                                        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-                                                    }}>
-                                                        <div style={{
-                                                            display: 'inline-block',
-                                                            background: theme === 'dark' ? '#ef4444' : '#dc2626',
-                                                            color: 'white',
-                                                            padding: '0.5rem 1rem',
-                                                            borderRadius: '20px',
-                                                            fontSize: '0.85rem',
-                                                            fontWeight: 700,
-                                                            marginBottom: '0.75rem',
-                                                            boxShadow: '0 2px 8px rgba(220, 38, 38, 0.3)'
+                                                    <tbody>
+                                                        <tr style={{
+                                                            background: theme === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)'
                                                         }}>
-                                                            ⚠️ Core skill - probably shouldn't
-                                                        </div>
-                                                        <p style={{
-                                                            margin: 0,
-                                                            color: 'var(--text-secondary)',
-                                                            fontSize: '0.9rem',
-                                                            lineHeight: '1.5'
+                                                            <td style={{
+                                                                padding: '0.75rem 1rem',
+                                                                fontWeight: 600,
+                                                                color: 'var(--text-primary)',
+                                                                width: '35%'
+                                                            }}>
+                                                                Core skill - probably shouldn't
+                                                            </td>
+                                                            <td style={{
+                                                                padding: '0.75rem 1rem',
+                                                                color: 'var(--text-secondary)',
+                                                                lineHeight: '1.5'
+                                                            }}>
+                                                                These activities bypass essential learning and should typically be completed without AI assistance.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style={{
+                                                                padding: '0.75rem 1rem',
+                                                                fontWeight: 600,
+                                                                color: 'var(--text-primary)',
+                                                                width: '35%'
+                                                            }}>
+                                                                Context-dependent
+                                                            </td>
+                                                            <td style={{
+                                                                padding: '0.75rem 1rem',
+                                                                color: 'var(--text-secondary)',
+                                                                lineHeight: '1.5'
+                                                            }}>
+                                                                AI appropriateness depends on your course level, learning objectives, and context.
+                                                            </td>
+                                                        </tr>
+                                                        <tr style={{
+                                                            background: theme === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)'
                                                         }}>
-                                                            These activities bypass essential learning and should typically be completed without AI assistance.
-                                                        </p>
-                                                    </div>
-
-                                                    {/* Context-Dependent Category */}
-                                                    <div style={{
-                                                        background: theme === 'dark' ? 'rgba(96, 165, 250, 0.1)' : 'rgba(59, 130, 246, 0.05)',
-                                                        border: `2px solid ${theme === 'dark' ? 'rgba(96, 165, 250, 0.3)' : 'rgba(59, 130, 246, 0.2)'}`,
-                                                        borderRadius: '12px',
-                                                        padding: '1.25rem',
-                                                        transition: 'all 0.2s',
-                                                        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-                                                    }}>
-                                                        <div style={{
-                                                            display: 'inline-block',
-                                                            background: theme === 'dark' ? '#60a5fa' : '#3b82f6',
-                                                            color: 'white',
-                                                            padding: '0.5rem 1rem',
-                                                            borderRadius: '20px',
-                                                            fontSize: '0.85rem',
-                                                            fontWeight: 700,
-                                                            marginBottom: '0.75rem',
-                                                            boxShadow: '0 2px 8px rgba(59, 130, 246, 0.3)'
-                                                        }}>
-                                                            🤔 Context-dependent
-                                                        </div>
-                                                        <p style={{
-                                                            margin: 0,
-                                                            color: 'var(--text-secondary)',
-                                                            fontSize: '0.9rem',
-                                                            lineHeight: '1.5'
-                                                        }}>
-                                                            AI appropriateness depends on your course level, learning objectives, and context.
-                                                        </p>
-                                                    </div>
-
-                                                    {/* Support Task Category */}
-                                                    <div style={{
-                                                        background: theme === 'dark' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(5, 150, 105, 0.05)',
-                                                        border: `2px solid ${theme === 'dark' ? 'rgba(16, 185, 129, 0.3)' : 'rgba(5, 150, 105, 0.2)'}`,
-                                                        borderRadius: '12px',
-                                                        padding: '1.25rem',
-                                                        transition: 'all 0.2s',
-                                                        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-                                                    }}>
-                                                        <div style={{
-                                                            display: 'inline-block',
-                                                            background: theme === 'dark' ? '#10b981' : '#059669',
-                                                            color: 'white',
-                                                            padding: '0.5rem 1rem',
-                                                            borderRadius: '20px',
-                                                            fontSize: '0.85rem',
-                                                            fontWeight: 700,
-                                                            marginBottom: '0.75rem',
-                                                            boxShadow: '0 2px 8px rgba(5, 150, 105, 0.3)'
-                                                        }}>
-                                                            ✓ Support activity - could use
-                                                        </div>
-                                                        <p style={{
-                                                            margin: 0,
-                                                            color: 'var(--text-secondary)',
-                                                            fontSize: '0.9rem',
-                                                            lineHeight: '1.5'
-                                                        }}>
-                                                            These activities don't bypass core learning and AI can assist students effectively.
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                                            <td style={{
+                                                                padding: '0.75rem 1rem',
+                                                                fontWeight: 600,
+                                                                color: 'var(--text-primary)',
+                                                                width: '35%'
+                                                            }}>
+                                                                Support activity - could use
+                                                            </td>
+                                                            <td style={{
+                                                                padding: '0.75rem 1rem',
+                                                                color: 'var(--text-secondary)',
+                                                                lineHeight: '1.5'
+                                                            }}>
+                                                                These activities don't bypass core learning and AI can assist students effectively.
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                             <div style={{
                                                 overflowX: 'auto',
@@ -5606,7 +5567,9 @@
                                                             return (
                                                                 <tr key={idx} style={{
                                                                     borderBottom: '1px solid var(--border-color)',
-                                                                    background: isChecked ? 'var(--bg-secondary)' : 'transparent',
+                                                                    background: idx % 2 === 0
+                                                                        ? (theme === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)')
+                                                                        : 'transparent',
                                                                     borderLeft: isChecked ? '4px solid var(--primary)' : '4px solid transparent',
                                                                     transition: 'all 0.2s ease'
                                                                 }}>
