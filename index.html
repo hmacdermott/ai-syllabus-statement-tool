@@ -3890,6 +3890,8 @@
             const [editIntroText, setEditIntroText] = useState('');
             const [isEditingPolicy, setIsEditingPolicy] = useState(false);
             const [editPolicyText, setEditPolicyText] = useState('');
+            const [isEditingRationale, setIsEditingRationale] = useState(false);
+            const [editRationaleText, setEditRationaleText] = useState('');
 
             if (!statementParts.intro && !statementParts.policyLevel) {
                 return null;
@@ -4110,7 +4112,91 @@
                     {statementParts.rationale && (
                         <div className="statement-section rationale">
                             <div className="section-label">Rationale</div>
-                            <div className="section-text">{statementParts.rationale}</div>
+                            {!isEditingRationale ? (
+                                <>
+                                    <div className="section-text">{statementParts.rationale}</div>
+                                    {setStatementParts && (
+                                        <button
+                                            onClick={() => {
+                                                setIsEditingRationale(true);
+                                                setEditRationaleText(statementParts.rationale);
+                                            }}
+                                            style={{
+                                                padding: '0.4rem 0.8rem',
+                                                background: 'transparent',
+                                                color: 'var(--primary)',
+                                                border: '2px solid var(--primary)',
+                                                borderRadius: '6px',
+                                                cursor: 'pointer',
+                                                fontWeight: 600,
+                                                fontSize: '0.8rem',
+                                                marginTop: '0.75rem'
+                                            }}
+                                        >
+                                            ✎ Edit
+                                        </button>
+                                    )}
+                                </>
+                            ) : (
+                                <>
+                                    <textarea
+                                        value={editRationaleText}
+                                        onChange={(e) => setEditRationaleText(e.target.value)}
+                                        style={{
+                                            width: '100%',
+                                            minHeight: '150px',
+                                            padding: '0.75rem',
+                                            fontSize: '0.95rem',
+                                            lineHeight: '1.6',
+                                            border: '2px solid var(--border-color)',
+                                            borderRadius: '6px',
+                                            fontFamily: 'inherit',
+                                            marginTop: '0.75rem',
+                                            marginBottom: '0.75rem',
+                                            background: 'var(--bg-primary)',
+                                            color: 'var(--text-primary)'
+                                        }}
+                                    />
+                                    <div style={{display: 'flex', gap: '0.75rem', marginTop: '0.75rem'}}>
+                                        <button
+                                            onClick={() => {
+                                                setStatementParts(prev => ({
+                                                    ...prev,
+                                                    rationale: editRationaleText
+                                                }));
+                                                setIsEditingRationale(false);
+                                            }}
+                                            style={{
+                                                padding: '0.5rem 1rem',
+                                                background: 'var(--primary)',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '6px',
+                                                cursor: 'pointer',
+                                                fontWeight: 600,
+                                                fontSize: '0.85rem'
+                                            }}
+                                        >
+                                            Save
+                                        </button>
+                                        <button
+                                            onClick={() => setIsEditingRationale(false)}
+                                            style={{
+                                                padding: '0.5rem 1rem',
+                                                background: 'transparent',
+                                                color: 'var(--text-secondary)',
+                                                border: '2px solid var(--border-color)',
+                                                borderRadius: '6px',
+                                                cursor: 'pointer',
+                                                fontWeight: 600,
+                                                fontSize: '0.85rem'
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     )}
 
