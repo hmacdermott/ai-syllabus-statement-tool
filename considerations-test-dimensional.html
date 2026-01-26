@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Considerations Test - Dimensional Task Analysis</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            background: #f8fafc;
+        }
+        h1 {
+            color: #1e293b;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 1rem;
+        }
+        .department {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .department h2 {
+            color: #3b82f6;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        .note {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        .note strong {
+            color: #92400e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th {
+            background: #f1f5f9;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .task-name {
+            font-weight: 500;
+            color: #1e293b;
+        }
+        .should-not {
+            color: #dc2626;
+            font-weight: 600;
+        }
+        .could-use {
+            color: #059669;
+            font-weight: 600;
+        }
+        .context {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Considerations Test - Dimensional Task Analysis</h1>
+
+    <div class="note">
+        <strong>New Approach:</strong> Break down the discipline into specific tasks/skills. For each, indicate whether AI should/shouldn't be used and why. Faculty can then decide where to draw boundaries in their specific course.
+    </div>
+
+    <div class="department">
+        <h2>Computer Science 💻</h2>
+        <p><strong>Core Question:</strong> Which programming activities should students do without AI assistance to develop essential skills?</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%">Task/Activity</th>
+                    <th style="width: 15%">AI Use?</th>
+                    <th style="width: 55%">Pedagogical Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="task-name">Writing initial code solutions</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Problem decomposition and algorithmic thinking develop through the struggle of translating ideas to code. AI-generated solutions bypass this cognitive work.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Debugging logic errors</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Debugging builds systematic reasoning about program behavior. Tracing execution, forming hypotheses, and testing fixes are core CS skills.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Syntax error checking</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>Syntax is low-level and can distract from learning higher-order concepts. AI can help students focus on logic and design rather than semicolons.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Understanding error messages</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>Cryptic compiler errors can block learning. AI explanations can scaffold understanding, especially for beginners encountering new error types.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Code documentation</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>AI can draft comments/docstrings, but students should review for accuracy. Learning to document is valuable, but AI can speed this without bypassing core learning.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Exploring alternative approaches</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>After solving a problem, seeing alternative implementations can deepen understanding. AI can expose students to different patterns and techniques.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Writing test cases</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Identifying edge cases and designing tests requires understanding the problem space. This thinking shouldn't be outsourced to AI.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="department">
+        <h2>English 📚</h2>
+        <p><strong>Core Question:</strong> Which reading and writing activities should students do without AI to develop literary analysis and voice?</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%">Task/Activity</th>
+                    <th style="width: 15%">AI Use?</th>
+                    <th style="width: 55%">Pedagogical Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="task-name">Close reading of texts</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Noticing diction, syntax, imagery, and form requires sustained attention to language. AI summaries bypass the cognitive work of reading closely.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Developing original arguments</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Constructing interpretations grounded in textual evidence is core to literary thinking. AI-generated thesis statements don't develop this skill.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Drafting analytical essays</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Writing is thinking. The struggle to articulate ideas develops analytical voice. AI drafts prevent this developmental process.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Brainstorming essay topics</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>AI can help students unstuck when beginning an essay, but students should evaluate which ideas are worth pursuing based on their reading.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Grammar and style editing</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>After drafting their own work, students can use AI for proofreading. This helps them focus revision efforts on argument and analysis.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Finding textual evidence</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Selecting which passages support claims requires judgment about textual meaning. This interpretive work is core to literary analysis.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Citation formatting</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>Citation mechanics (MLA/Chicago format) are technical. AI can handle formatting while students focus on analysis and argumentation.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="department">
+        <h2>Chemistry & Biochemistry 🧪</h2>
+        <p><strong>Core Question:</strong> Which lab and problem-solving activities require hands-on practice vs. computational assistance?</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%">Task/Activity</th>
+                    <th style="width: 15%">AI Use?</th>
+                    <th style="width: 55%">Pedagogical Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="task-name">Laboratory technique</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Physical skills (pipetting, titration, equipment setup) require hands-on practice. AI instructions can't develop manual dexterity and lab intuition.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Proposing reaction mechanisms</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Predicting how molecules react requires chemical intuition about electron flow and reactivity. This reasoning must be developed, not outsourced.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Troubleshooting failed experiments</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Diagnosing why reactions didn't work (impure reagents? wrong temperature?) builds chemical reasoning. Students need practice reasoning backward from results.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Molecular structure prediction</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>Computational chemistry tools are standard in research. After learning principles by hand, students can use software for complex modeling.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Spectroscopy interpretation</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Learning to read NMR, IR, and mass spectra builds pattern recognition. Students need practice connecting peaks to molecular features.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Literature searches</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>AI can help find relevant papers and extract key findings, allowing students to focus on understanding chemistry rather than database navigation.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Data visualization</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>After collecting and analyzing data, AI tools can help create publication-quality figures. This doesn't bypass core chemical reasoning.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="department">
+        <h2>History 📜</h2>
+        <p><strong>Core Question:</strong> Which historical research and writing activities develop critical thinking that AI would bypass?</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%">Task/Activity</th>
+                    <th style="width: 15%">AI Use?</th>
+                    <th style="width: 55%">Pedagogical Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="task-name">Evaluating primary sources</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Learning to assess credibility, bias, and perspective requires direct engagement with documents. AI summaries remove the interpretive work.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Understanding historical context</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Grasping social, political, and cultural conditions requires reading widely and making connections. This contextual thinking can't be shortcut.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Constructing historical arguments</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Building interpretations that acknowledge complexity and alternative views is core historical practice. AI-generated arguments lack this nuance.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Finding secondary sources</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>AI can help locate relevant scholarship, allowing students to spend time reading and evaluating sources rather than searching databases.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Chronology and factual background</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>Basic timeline and contextual facts can come from AI, freeing students to focus on interpretation and argument rather than fact-gathering.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Citation checking</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>Verifying citation format and completeness is mechanical work. AI assistance allows students to focus on historical reasoning.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Identifying historiographical debates</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Understanding how historians interpret events differently requires reading competing arguments. This comparative analysis must be done by students.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="department">
+        <h2>Data Science 📊</h2>
+        <p><strong>Core Question:</strong> Which analytical activities build statistical reasoning vs. computational efficiency?</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%">Task/Activity</th>
+                    <th style="width: 15%">AI Use?</th>
+                    <th style="width: 55%">Pedagogical Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="task-name">Implementing algorithms from scratch</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>You don't understand gradient descent or k-means until you've coded it yourself. Libraries abstract away the learning.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Selecting appropriate methods</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Choosing regression vs. classification, or which algorithm fits the problem, requires statistical reasoning. AI suggestions don't build this judgment.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Interpreting model outputs</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Understanding what results mean, their uncertainty, and limitations requires statistical thinking. AI can describe outputs but not teach interpretation.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Data cleaning and preprocessing</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>After understanding data types and missing value strategies, AI can help with tedious cleaning code. But students should understand what's happening.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Visualization creation</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>AI can generate plotting code efficiently. Students should focus on choosing appropriate visualizations and interpreting what they reveal.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Identifying biases in data</div></td>
+                    <td><span class="should-not">AI shouldn't</span></td>
+                    <td>Recognizing sampling bias, confounding, and fairness issues requires critical thinking about how data was collected and what it represents.</td>
+                </tr>
+                <tr>
+                    <td><div class="task-name">Using established libraries</div></td>
+                    <td><span class="could-use">AI could</span></td>
+                    <td>After implementing core methods by hand, AI can help with library syntax (sklearn, pandas). This focuses learning on concepts rather than API details.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

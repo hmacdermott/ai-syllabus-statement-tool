@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Considerations Test - Option A (Policy-Connected)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            background: #f8fafc;
+        }
+        h1 {
+            color: #1e293b;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 1rem;
+        }
+        .department {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .department h2 {
+            color: #3b82f6;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        .consideration {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-left: 4px solid;
+            background: #f8fafc;
+        }
+        .no-ai {
+            border-left-color: #ef4444;
+        }
+        .limited {
+            border-left-color: #f59e0b;
+        }
+        .ok {
+            border-left-color: #10b981;
+        }
+        .required {
+            border-left-color: #8b5cf6;
+        }
+        .label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        .no-ai .label { color: #ef4444; }
+        .limited .label { color: #f59e0b; }
+        .ok .label { color: #10b981; }
+        .required .label { color: #8b5cf6; }
+        .statement {
+            font-size: 1.05rem;
+            color: #1e293b;
+        }
+        .note {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        .note strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Considerations Test - Option A: Policy-Connected Statements</h1>
+
+    <div class="note">
+        <strong>New Approach:</strong> Each department gets 4 statements (not questions), with each statement mapping clearly to one policy level. Faculty identify which statement best describes their course goals.
+    </div>
+
+    <div class="department">
+        <h2>Computer Science 💻</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must write all code from scratch to develop problem-solving, debugging, and algorithmic thinking skills.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use AI for syntax help or exploring approaches, but must design algorithms and solve core problems independently.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI tools but remain responsible for understanding, testing, and explaining all code they submit.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Learning to work with AI coding tools, evaluate their output critically, and integrate AI into development workflows is essential.</div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h2>English 📚</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must do all reading and writing themselves to develop close reading skills and their own analytical voice.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use AI for brainstorming or editing after drafting, but close reading and original arguments must be their own work.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI tools but remain responsible for textual evidence, original interpretation, and authentic analytical voice.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Understanding how AI generates literary analysis helps students think critically about language, interpretation, and textual meaning.</div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h2>Chemistry & Biochemistry 🧪</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must practice lab techniques, propose mechanisms by hand, and troubleshoot experiments to develop chemical intuition.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use computational tools after hands-on work, but lab technique, mechanism prediction, and experimental reasoning must be theirs.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI for data analysis but remain responsible for lab safety, proper technique, and chemical reasoning.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Understanding computational chemistry, molecular modeling, and AI-driven structure prediction is essential for modern chemical research.</div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h2>History 📜</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must work directly with primary sources and construct historical arguments to develop critical thinking about evidence and context.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use AI for background research after engaging with sources, but source analysis and argumentation must reflect their reasoning.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI tools but remain responsible for evaluating sources, understanding context, and constructing nuanced arguments.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Understanding how AI processes historical information and its limitations with complexity prepares students for AI's role in historical research.</div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h2>Biology 🔬</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must observe organisms, design experiments, and reason about biological mechanisms to develop scientific thinking.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use AI for data analysis after making observations and designing studies, but biological reasoning must be their own.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI tools but remain responsible for experimental design, observation accuracy, and biological interpretation.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Understanding bioinformatics tools, sequence analysis software, and AI-driven biological research methods is essential for modern biology.</div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h2>Women's, Gender & Sexuality Studies 👭</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must engage directly with feminist and queer theory to develop intersectional analysis and critical frameworks about power.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use AI for background research, but intersectional analysis, engagement with theory, and critique of power must be theirs.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI but remain responsible for intersectional analysis, respectful representation, and critical engagement with power structures.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Understanding how AI encodes gender and sexuality biases, marginalizes voices, and shapes knowledge is essential for feminist critique of technology.</div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h2>Philosophy 🤔</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must construct arguments, identify fallacies, and wrestle with conceptual problems to develop philosophical reasoning.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use AI for understanding vocabulary after reading texts, but argument construction and philosophical reasoning must be theirs.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI tools but remain responsible for logical validity, engagement with counterarguments, and clarity of reasoning.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Understanding how AI reasons and its limitations in genuine conceptual understanding raises philosophical questions central to contemporary philosophy.</div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h2>Mathematics 📐</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must construct proofs, recognize patterns, and work through problems to develop mathematical reasoning and intuition.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use computational tools after solving problems by hand, but proof construction and mathematical reasoning must be theirs.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI tools but remain responsible for understanding why procedures work and recognizing when solutions are incorrect.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Understanding computational mathematics, symbolic computation systems, and AI's role in mathematical research is essential for applied mathematics.</div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h2>Data Science 📊</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must implement algorithms from scratch and understand statistical principles to develop data science reasoning.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use AI after implementing core methods themselves, but model selection and interpretation must demonstrate statistical reasoning.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI tools but remain responsible for validating assumptions, recognizing biases, and communicating uncertainty appropriately.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Understanding AI as both tool and subject of study is fundamental—students must work with AI systems while maintaining critical perspective.</div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h2>Economics ⚖️</h2>
+
+        <div class="consideration no-ai">
+            <div class="label">→ No AI</div>
+            <div class="statement">Students must build economic models, analyze data, and reason about markets to develop economic thinking and quantitative skills.</div>
+        </div>
+
+        <div class="consideration limited">
+            <div class="label">→ Limited AI</div>
+            <div class="statement">Students can use AI for data visualization after conducting analysis, but economic reasoning and model building must be theirs.</div>
+        </div>
+
+        <div class="consideration ok">
+            <div class="label">→ AI OK</div>
+            <div class="statement">Students can use AI tools but remain responsible for economic logic, understanding assumptions, and interpreting results in context.</div>
+        </div>
+
+        <div class="consideration required">
+            <div class="label">→ AI Required</div>
+            <div class="statement">Understanding econometric software, forecasting models, and AI's role in economic analysis prepares students for modern economic research.</div>
+        </div>
+    </div>
+
+</body>
+</html>

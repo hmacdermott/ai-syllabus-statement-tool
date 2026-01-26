@@ -2739,6 +2739,7 @@
             const [docOption, setDocOption] = useState('none');
             const [customText, setCustomText] = useState('');
             const [expandedConsiderations, setExpandedConsiderations] = useState([]);
+            const [selectedTasks, setSelectedTasks] = useState([]);
             const [deptSearch, setDeptSearch] = useState('');
             const [deptViewMode, setDeptViewMode] = useState('by-school'); // 'by-school' or 'alphabetical'
             const [showDecisionTree, setShowDecisionTree] = useState(true);
@@ -3296,6 +3297,7 @@
                     console.error(`⚠️ Missing language data for department: "${selectedDept}"`);
                 }
                 const considerations = deptLang?.considerations || null;
+                const dimensionalTasks = deptLang?.dimensionalTasks || [];
 
                 return (
                     <div>
@@ -3658,6 +3660,148 @@
                                                     </div>
                                                 );
                                             })}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {dimensionalTasks && dimensionalTasks.length > 0 && (
+                                    <div className="dimensional-tasks-box" style={{marginTop: '2rem'}}>
+                                        <p className="considerations-title">Dimensional Task Analysis</p>
+                                        <p className="considerations-description" style={{marginBottom: '1rem'}}>
+                                            Review these specific tasks in your discipline. Check the ones most central to your course goals—this will help you clarify where AI fits.
+                                        </p>
+                                        <div className="guidance-legend" style={{
+                                            display: 'flex',
+                                            gap: '1.5rem',
+                                            marginBottom: '1rem',
+                                            padding: '0.75rem',
+                                            background: 'var(--bg-secondary)',
+                                            borderRadius: '6px',
+                                            fontSize: '0.85rem',
+                                            flexWrap: 'wrap'
+                                        }}>
+                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                                                <span style={{color: '#dc2626', fontWeight: 600}}>Core skill - probably shouldn't</span>
+                                                <span style={{color: '#64748b'}}>= bypasses essential learning</span>
+                                            </div>
+                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                                                <span style={{color: '#f59e0b', fontWeight: 600}}>Context-dependent</span>
+                                                <span style={{color: '#64748b'}}>= depends on course level/goals</span>
+                                            </div>
+                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                                                <span style={{color: '#059669', fontWeight: 600}}>Support task - could use</span>
+                                                <span style={{color: '#64748b'}}>= doesn't bypass core learning</span>
+                                            </div>
+                                        </div>
+                                        <div style={{
+                                            overflowX: 'auto',
+                                            border: '1px solid var(--border-color)',
+                                            borderRadius: '8px'
+                                        }}>
+                                            <table style={{
+                                                width: '100%',
+                                                borderCollapse: 'collapse'
+                                            }}>
+                                                <thead>
+                                                    <tr style={{
+                                                        background: 'var(--bg-secondary)',
+                                                        borderBottom: '2px solid var(--border-color)'
+                                                    }}>
+                                                        <th style={{
+                                                            padding: '0.75rem',
+                                                            textAlign: 'left',
+                                                            fontWeight: 600,
+                                                            width: '50px'
+                                                        }}>Select</th>
+                                                        <th style={{
+                                                            padding: '0.75rem',
+                                                            textAlign: 'left',
+                                                            fontWeight: 600,
+                                                            width: '30%'
+                                                        }}>Task/Activity</th>
+                                                        <th style={{
+                                                            padding: '0.75rem',
+                                                            textAlign: 'left',
+                                                            fontWeight: 600,
+                                                            width: '20%'
+                                                        }}>AI Guidance</th>
+                                                        <th style={{
+                                                            padding: '0.75rem',
+                                                            textAlign: 'left',
+                                                            fontWeight: 600
+                                                        }}>Pedagogical Reasoning</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {dimensionalTasks.map((task, idx) => {
+                                                        const isChecked = selectedTasks.includes(idx);
+                                                        const guidanceColors = {
+                                                            'core-skill': '#dc2626',
+                                                            'context-dependent': '#f59e0b',
+                                                            'support-task': '#059669'
+                                                        };
+                                                        const guidanceLabels = {
+                                                            'core-skill': 'Core skill - probably shouldn\'t',
+                                                            'context-dependent': 'Context-dependent',
+                                                            'support-task': 'Support task - could use'
+                                                        };
+
+                                                        return (
+                                                            <tr key={idx} style={{
+                                                                borderBottom: '1px solid var(--border-color)',
+                                                                background: isChecked ? 'var(--bg-secondary)' : 'transparent'
+                                                            }}>
+                                                                <td style={{
+                                                                    padding: '0.75rem',
+                                                                    verticalAlign: 'top',
+                                                                    textAlign: 'center'
+                                                                }}>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        checked={isChecked}
+                                                                        onChange={() => {
+                                                                            setSelectedTasks(prev =>
+                                                                                prev.includes(idx)
+                                                                                    ? prev.filter(i => i !== idx)
+                                                                                    : [...prev, idx]
+                                                                            );
+                                                                        }}
+                                                                        style={{
+                                                                            width: '18px',
+                                                                            height: '18px',
+                                                                            cursor: 'pointer'
+                                                                        }}
+                                                                    />
+                                                                </td>
+                                                                <td style={{
+                                                                    padding: '0.75rem',
+                                                                    verticalAlign: 'top',
+                                                                    fontWeight: 500
+                                                                }}>
+                                                                    {task.taskName}
+                                                                </td>
+                                                                <td style={{
+                                                                    padding: '0.75rem',
+                                                                    verticalAlign: 'top',
+                                                                    color: guidanceColors[task.guidance],
+                                                                    fontWeight: 600,
+                                                                    fontSize: '0.9rem'
+                                                                }}>
+                                                                    {guidanceLabels[task.guidance]}
+                                                                </td>
+                                                                <td style={{
+                                                                    padding: '0.75rem',
+                                                                    verticalAlign: 'top',
+                                                                    color: 'var(--text-secondary)',
+                                                                    fontSize: '0.95rem'
+                                                                }}>
+                                                                    {task.reasoning}
+                                                                </td>
+                                                            </tr>
+                                                        );
+                                                    })}
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 )}

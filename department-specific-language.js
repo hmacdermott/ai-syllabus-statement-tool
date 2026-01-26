@@ -16,6 +16,38 @@ const departmentSpecificLanguage = {
             "Are students developing problem decomposition skills independently?",
             "Can they trace code execution without AI assistance?"
         ],
+        dimensionalTasks: [
+            {
+                taskName: "Writing initial code solutions",
+                guidance: "core-skill",
+                reasoning: "Problem decomposition and algorithmic thinking develop through the struggle of translating ideas to code. AI-generated solutions bypass this cognitive work."
+            },
+            {
+                taskName: "Debugging logic errors",
+                guidance: "core-skill",
+                reasoning: "Debugging builds systematic reasoning about program behavior. Tracing execution, forming hypotheses, and testing fixes are core CS skills."
+            },
+            {
+                taskName: "Writing test cases",
+                guidance: "core-skill",
+                reasoning: "Identifying edge cases and designing tests requires understanding the problem space. This thinking shouldn't be outsourced to AI."
+            },
+            {
+                taskName: "Understanding error messages",
+                guidance: "context-dependent",
+                reasoning: "Students should learn to read error messages, but AI explanations can scaffold understanding when encountering genuinely cryptic compiler errors."
+            },
+            {
+                taskName: "Syntax error checking",
+                guidance: "support-task",
+                reasoning: "Syntax is low-level and can distract from learning higher-order concepts. AI can help students focus on logic and design rather than semicolons."
+            },
+            {
+                taskName: "Code documentation",
+                guidance: "support-task",
+                reasoning: "AI can draft comments/docstrings, but students should review for accuracy. Learning to document is valuable, but AI can speed this without bypassing core learning."
+            }
+        ],
         intro: "AI coding assistants like GitHub Copilot and ChatGPT can generate code, debug programs, and explain algorithms. In computer science, these tools are becoming standard in professional practice, but they can also prevent you from developing the problem-solving skills and debugging instincts that define computational thinking. This policy helps you learn when AI enhances your work versus when it short-circuits essential learning.",
         context: "In computer science, the ability to think algorithmically, design systems, and debug independently are foundational skills that require sustained practice and struggle.",
         noAI: "AI cannot develop your ability to break problems into logical steps, design algorithms from first principles, or debug code by tracing execution. These cognitive skills emerge through practice, failure, and revision—experiences AI tools would bypass.",
