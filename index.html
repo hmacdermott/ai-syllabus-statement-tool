@@ -3786,7 +3786,9 @@
                                                         return (
                                                             <tr key={idx} style={{
                                                                 borderBottom: '1px solid var(--border-color)',
-                                                                background: isChecked ? 'var(--bg-secondary)' : 'transparent'
+                                                                background: isChecked ? 'var(--bg-secondary)' : 'transparent',
+                                                                borderLeft: isChecked ? '4px solid var(--primary)' : '4px solid transparent',
+                                                                transition: 'all 0.2s ease'
                                                             }}>
                                                                 <td style={{
                                                                     padding: '0.75rem',
@@ -3884,6 +3886,28 @@
 
                                 {!showPolicyChoices ? (
                                     <>
+                                        <div style={{marginBottom: '1.5rem'}}>
+                                            <button
+                                                onClick={() => {
+                                                    setPhase('department');
+                                                    setShowPolicyChoices(false);
+                                                }}
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    color: 'var(--primary)',
+                                                    cursor: 'pointer',
+                                                    fontSize: '0.9rem',
+                                                    padding: '0',
+                                                    textDecoration: 'underline',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '0.25rem'
+                                                }}
+                                            >
+                                                ← Back to department selection
+                                            </button>
+                                        </div>
                                         <h2 className="phase-question">Let's Start with an Introduction</h2>
                                         <p className="phase-description">
                                             Below is a suggested introduction that defines the types of AI tools this policy covers, tailored for {statementParts.department}.
