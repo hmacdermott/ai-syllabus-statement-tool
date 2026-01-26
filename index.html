@@ -4199,8 +4199,14 @@
                         'Generative AI tools like ChatGPT, Claude, Gemini, etc. have become ubiquitous, requiring clear guidance about their role in your learning.',
                         'Generative AI tools like ChatGPT, Claude, Gemini, etc. are now widely accessible, requiring clear guidance about their appropriate use.'
                     ];
+                    const secondSentences = [
+                        'This policy explains when you may and may not use AI tools in this course.',
+                        'This policy defines appropriate and inappropriate uses of AI tools in this course.',
+                        'This policy specifies when AI tools are permitted and when they are prohibited.'
+                    ];
                     const randomOpening = openingSentences[Math.floor(Math.random() * openingSentences.length)];
-                    const defaultIntro = `${randomOpening}\n\nThis policy clarifies how these tools relate to your learning goals in this course.`;
+                    const randomSecond = secondSentences[Math.floor(Math.random() * secondSentences.length)];
+                    const defaultIntro = `${randomOpening}\n\n${randomSecond}`;
                     setStatementParts(prev => ({
                         ...prev,
                         intro: defaultIntro
