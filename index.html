@@ -225,21 +225,22 @@
         .considerations-title {
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: #92400e;
+            color: #1e293b;
+            font-size: 1.1rem;
         }
 
         [data-theme="dark"] .considerations-title {
-            color: #fbbf24;
+            color: #e2e8f0;
         }
 
         .considerations-description {
             font-size: 0.9rem;
             margin-bottom: 1rem;
-            color: #78350f;
+            color: #64748b;
         }
 
         [data-theme="dark"] .considerations-description {
-            color: #fcd34d;
+            color: #94a3b8;
         }
 
         .considerations-list {
@@ -5374,7 +5375,7 @@
                                                     <span style={{color: 'var(--text-secondary)'}}>= bypasses essential learning</span>
                                                 </div>
                                                 <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                                                    <span style={{color: theme === 'dark' ? '#f59e0b' : '#f59e0b', fontWeight: 600}}>Context-dependent</span>
+                                                    <span style={{color: theme === 'dark' ? '#60a5fa' : '#3b82f6', fontWeight: 600}}>Context-dependent</span>
                                                     <span style={{color: 'var(--text-secondary)'}}>= depends on course level/goals</span>
                                                 </div>
                                                 <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
@@ -5426,7 +5427,7 @@
                                                             const isChecked = selectedTasks.includes(idx);
                                                             const guidanceColors = {
                                                                 'core-skill': theme === 'dark' ? '#ef4444' : '#dc2626',
-                                                                'context-dependent': '#f59e0b',
+                                                                'context-dependent': theme === 'dark' ? '#60a5fa' : '#3b82f6',
                                                                 'support-task': theme === 'dark' ? '#10b981' : '#059669'
                                                             };
                                                             const guidanceLabels = {
@@ -5548,7 +5549,7 @@
                                                 )}
                                                 {contextTasks.length > 0 && (
                                                     <div style={{marginBottom: '0.5rem'}}>
-                                                        <div style={{fontSize: '0.85rem', fontWeight: 600, color: '#f59e0b', marginBottom: '0.25rem'}}>
+                                                        <div style={{fontSize: '0.85rem', fontWeight: 600, color: theme === 'dark' ? '#60a5fa' : '#3b82f6', marginBottom: '0.25rem'}}>
                                                             Context-dependent tasks:
                                                         </div>
                                                         <ul style={{margin: '0', paddingLeft: '1.5rem', fontSize: '0.9rem'}}>
