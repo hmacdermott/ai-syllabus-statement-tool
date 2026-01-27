@@ -4762,7 +4762,7 @@
                     policyLevelKey: level
                 }));
                 setShowPolicyChoices(false);
-                setPhase('rationale');
+                // Don't automatically advance - let user click Continue button
             };
 
             const handleAcceptRationale = (text) => {
@@ -5276,21 +5276,53 @@
                                 </p>
 
                                 <div className="policy-choices">
-                                    <div className="policy-card" onClick={() => handlePolicyLevelSelect('no-ai')}>
+                                    <div
+                                        className="policy-card"
+                                        onClick={() => handlePolicyLevelSelect('no-ai')}
+                                        style={{
+                                            border: statementParts.policyLevelKey === 'no-ai' ? '3px solid var(--primary)' : undefined,
+                                            background: statementParts.policyLevelKey === 'no-ai' ? 'var(--bg-accent)' : undefined
+                                        }}
+                                    >
                                         <h3>🚫 No AI</h3>
                                         <p>Students may not use generative AI tools for any work</p>
+                                        {statementParts.policyLevelKey === 'no-ai' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
                                     </div>
-                                    <div className="policy-card" onClick={() => handlePolicyLevelSelect('limited')}>
+                                    <div
+                                        className="policy-card"
+                                        onClick={() => handlePolicyLevelSelect('limited')}
+                                        style={{
+                                            border: statementParts.policyLevelKey === 'limited' ? '3px solid var(--primary)' : undefined,
+                                            background: statementParts.policyLevelKey === 'limited' ? 'var(--bg-accent)' : undefined
+                                        }}
+                                    >
                                         <h3>⚠️ Limited AI</h3>
                                         <p>Students may use AI tools with specific restrictions</p>
+                                        {statementParts.policyLevelKey === 'limited' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
                                     </div>
-                                    <div className="policy-card" onClick={() => handlePolicyLevelSelect('ok')}>
+                                    <div
+                                        className="policy-card"
+                                        onClick={() => handlePolicyLevelSelect('ok')}
+                                        style={{
+                                            border: statementParts.policyLevelKey === 'ok' ? '3px solid var(--primary)' : undefined,
+                                            background: statementParts.policyLevelKey === 'ok' ? 'var(--bg-accent)' : undefined
+                                        }}
+                                    >
                                         <h3>✅ AI OK</h3>
                                         <p>Students may use AI tools as they see fit</p>
+                                        {statementParts.policyLevelKey === 'ok' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
                                     </div>
-                                    <div className="policy-card" onClick={() => handlePolicyLevelSelect('required')}>
+                                    <div
+                                        className="policy-card"
+                                        onClick={() => handlePolicyLevelSelect('required')}
+                                        style={{
+                                            border: statementParts.policyLevelKey === 'required' ? '3px solid var(--primary)' : undefined,
+                                            background: statementParts.policyLevelKey === 'required' ? 'var(--bg-accent)' : undefined
+                                        }}
+                                    >
                                         <h3>⭐ AI Required</h3>
                                         <p>AI use is required for certain assignments</p>
+                                        {statementParts.policyLevelKey === 'required' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
                                     </div>
                                 </div>
 
