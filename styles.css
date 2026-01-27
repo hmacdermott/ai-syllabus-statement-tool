@@ -74,6 +74,10 @@ header {
     color: var(--text-primary);
 }
 
+.logo-mobile {
+    display: none;
+}
+
 .header-actions {
     display: flex;
     gap: 0.5rem;
@@ -1203,8 +1207,12 @@ footer {
         padding: 0 1rem;
     }
 
-    .logo {
-        font-size: 0.95rem;
+    .logo-full {
+        display: none;
+    }
+
+    .logo-mobile {
+        display: inline;
     }
 
     .wizard-content {
