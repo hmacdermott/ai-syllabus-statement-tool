@@ -5326,8 +5326,8 @@
                                     </div>
                                 </div>
 
-                                {statementParts.policyLevelKey && (
-                                    <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '2rem'}}>
+                                <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '2rem', minHeight: '3rem'}}>
+                                    {statementParts.policyLevelKey && (
                                         <button
                                             className="primary"
                                             onClick={() => setPhase('rationale')}
@@ -5338,8 +5338,8 @@
                                         >
                                             Continue →
                                         </button>
-                                    </div>
-                                )}
+                                    )}
+                                </div>
                             </div>
                         </div>
                         <Footer />
