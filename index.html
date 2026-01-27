@@ -5293,6 +5293,21 @@
                                         <p>AI use is required for certain assignments</p>
                                     </div>
                                 </div>
+
+                                {statementParts.policyLevelKey && (
+                                    <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '2rem'}}>
+                                        <button
+                                            className="primary"
+                                            onClick={() => setPhase('rationale')}
+                                            style={{
+                                                padding: '0.75rem 1.5rem',
+                                                fontSize: '1rem'
+                                            }}
+                                        >
+                                            Continue →
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <Footer />
