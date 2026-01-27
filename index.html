@@ -4004,7 +4004,35 @@
 
                     {statementParts.policyLevel && (
                         <div className="statement-section policy">
-                            <div className="section-label">AI Use Policy</div>
+                            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem'}}>
+                                <div className="section-label" style={{marginBottom: 0}}>AI Use Policy</div>
+                                {setPhase && getPolicyLevelShortName && (
+                                    <button
+                                        onClick={() => {
+                                            setPhase('intro-policy');
+                                            setShowPolicyChoices(true);
+                                            setStatementParts(prev => ({
+                                                ...prev,
+                                                policyLevel: '',
+                                                policyLevelKey: '',
+                                                rationale: ''
+                                            }));
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.85rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            whiteSpace: 'nowrap'
+                                        }}
+                                    >
+                                        ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
+                                    </button>
+                                )}
+                            </div>
                             {!isEditingPolicy ? (
                                 <>
                                     <div className="section-text">{statementParts.policyLevel}</div>
@@ -4091,33 +4119,6 @@
                                 </>
                             )}
                         </div>
-                    )}
-
-                    {statementParts.policyLevel && setPhase && getPolicyLevelShortName && (
-                        <button
-                            onClick={() => {
-                                setPhase('intro-policy');
-                                setShowPolicyChoices(true);
-                                setStatementParts(prev => ({
-                                    ...prev,
-                                    policyLevel: '',
-                                    policyLevelKey: '',
-                                    rationale: ''
-                                }));
-                            }}
-                            style={{
-                                background: 'none',
-                                border: 'none',
-                                color: 'var(--primary)',
-                                cursor: 'pointer',
-                                fontSize: '0.9rem',
-                                padding: '0.5rem 0',
-                                marginTop: '1rem',
-                                textDecoration: 'underline'
-                            }}
-                        >
-                            ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
-                        </button>
                     )}
 
                     {statementParts.rationale && (
