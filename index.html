@@ -234,7 +234,6 @@
         }
 
         .considerations-description {
-            font-size: 0.9rem;
             margin-bottom: 1rem;
             color: #64748b;
         }
@@ -4571,103 +4570,6 @@
                 });
             };
 
-            // References component - collapsible research citations
-            const References = () => {
-                const [isExpanded, setIsExpanded] = React.useState(false);
-
-                return (
-                    <div id="references" className="container" style={{padding: '2rem 1rem'}}>
-                        <div style={{
-                            maxWidth: '900px',
-                            margin: '0 auto'
-                        }}>
-                            <button
-                                onClick={() => setIsExpanded(!isExpanded)}
-                                style={{
-                                    width: '100%',
-                                    padding: '1rem 1.5rem',
-                                    background: 'var(--bg-secondary)',
-                                    border: '1px solid var(--border-color)',
-                                    borderRadius: '8px',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    fontSize: '1rem',
-                                    fontWeight: 600,
-                                    color: 'var(--text-primary)',
-                                    transition: 'all 0.2s'
-                                }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.04)';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = 'var(--bg-secondary)';
-                                }}
-                            >
-                                <span>References</span>
-                                <span style={{fontSize: '1.25rem', transition: 'transform 0.2s', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'}}>▼</span>
-                            </button>
-
-                            {isExpanded && (
-                                <div style={{
-                                    marginTop: '0.5rem',
-                                    padding: '1.5rem',
-                                    background: 'var(--bg-secondary)',
-                                    borderRadius: '8px',
-                                    border: '1px solid var(--border-color)',
-                                    textAlign: 'left'
-                                }}>
-                                    <div style={{
-                                        fontSize: '0.85rem',
-                                        lineHeight: '1.6',
-                                        color: 'var(--text-secondary)'
-                                    }}>
-                                        <ul style={{
-                                            listStyle: 'none',
-                                            padding: 0,
-                                            margin: 0
-                                        }}>
-                                            <li style={{marginBottom: '0.75rem', lineHeight: '1.7'}}>
-                                                <strong style={{color: 'var(--text-primary)'}}>Wang, L., Liu, Q., Du, X., & Liu, J. (2024).</strong> Pathways to student motivation: A meta-analysis of antecedents of autonomous and controlled motivations. <em>Learning and Motivation</em>, <em>87</em>, 102015.
-                                                <a href="https://selfdeterminationtheory.org/wp-content/uploads/2024/06/2024_WangWangEtAl_MetaEdu.pdf" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem', fontWeight: 600}}>
-                                                    [PDF]
-                                                </a>
-                                            </li>
-
-                                            <li style={{marginBottom: '0.75rem', lineHeight: '1.7'}}>
-                                                <strong style={{color: 'var(--text-primary)'}}>Niemiec, C. P., & Ryan, R. M. (2009).</strong> Autonomy, competence, and relatedness in the classroom: Applying self-determination theory to educational practice. <em>Theory and Research in Education</em>, <em>7</em>(2), 133-144.
-                                                <a href="https://journals.sagepub.com/doi/10.1177/1477878509104318" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem', fontWeight: 600}}>
-                                                    [Link]
-                                                </a>
-                                            </li>
-
-                                            <li style={{marginBottom: '0.75rem', lineHeight: '1.7'}}>
-                                                <strong style={{color: 'var(--text-primary)'}}>Miller, A. D., Griffiths, Z., Lockyer, L., & Mah, D. K. (2023).</strong> Why students cheat and how understanding this can help reduce the frequency of academic misconduct in higher education: A literature review. <em>Journal of University Teaching & Learning Practice</em>, <em>20</em>(6).
-                                                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10653228/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem', fontWeight: 600}}>
-                                                    [Link]
-                                                </a>
-                                            </li>
-
-                                            <li style={{marginBottom: '0', lineHeight: '1.7'}}>
-                                                <strong style={{color: 'var(--text-primary)'}}>Ohio State University Center for Teaching and Learning.</strong> A positive approach to academic integrity.
-                                                <a href="https://teaching.resources.osu.edu/teaching-topics/positive-approach-academic" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)', marginLeft: '0.25rem', fontWeight: 600}}>
-                                                    [Link]
-                                                </a>
-                                            </li>
-                                        </ul>
-
-                                        <p style={{marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px solid var(--border-color)', fontSize: '0.8rem', fontStyle: 'italic', color: 'var(--text-secondary)'}}>
-                                            <strong>Note:</strong> The <em>discipline-specific content</em> (considerations, activity analysis, policy templates) was generated through AI synthesis of disciplinary discourse patterns, not empirical research. See <strong>METHODOLOGY.md</strong> for full transparency.
-                                        </p>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                );
-            };
-
             // Footer component - used across all pages
             const Footer = () => {
                 const lastModified = new Date(document.lastModified).toLocaleDateString('en-US', {
@@ -4942,7 +4844,6 @@
                                 </div>
                             </div>
                         </div>
-                        <References />
                         <Footer />
                     </div>
                 );
@@ -4980,7 +4881,7 @@
                             <div className="phase-container">
                                 <h2 className="phase-question">Choose Your Department</h2>
                                 <p className="phase-description">
-                                    You'll review discipline-specific guidance on AI use—including questions and a task analysis—then build your policy step by step.
+                                    You'll review discipline-specific guidance on AI use—including questions and a task analysis—then build your policy.
                                 </p>
 
                                 {!selectedDept ? (
@@ -5336,7 +5237,6 @@
                                 )}
                             </div>
                         </div>
-                        <References />
                         <Footer />
                     </div>
                 );
@@ -5361,32 +5261,6 @@
                             <div className="phase-container">
                                 <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} setStatementParts={setStatementParts} />
 
-                                <div style={{marginBottom: '1.5rem'}}>
-                                    <button
-                                        onClick={() => {
-                                            setPhase('department');
-                                            setShowPolicyChoices(false);
-                                            setStatementParts(prev => ({
-                                                ...prev,
-                                                intro: ''
-                                            }));
-                                        }}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: 'var(--primary)',
-                                            cursor: 'pointer',
-                                            fontSize: '0.9rem',
-                                            padding: '0',
-                                            textDecoration: 'underline',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '0.25rem'
-                                        }}
-                                    >
-                                        ← Back to department selection
-                                    </button>
-                                </div>
                                 <h2 className="phase-question">What's Your Overall Approach?</h2>
                                 <p className="phase-description">
                                     Choose the statement that best aligns with your preference for AI use in your course.
@@ -5412,7 +5286,6 @@
                                 </div>
                             </div>
                         </div>
-                        <References />
                         <Footer />
                     </div>
                 );
@@ -5444,6 +5317,31 @@
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
                                 <AccumulatedStatement statementParts={statementParts} selectedTasks={selectedTasks} setStatementParts={setStatementParts} />
+
+                                <button
+                                    onClick={() => {
+                                        setPhase('intro-policy');
+                                        setShowPolicyChoices(true);
+                                        setStatementParts(prev => ({
+                                            ...prev,
+                                            policyLevel: '',
+                                            policyLevelKey: '',
+                                            rationale: ''
+                                        }));
+                                    }}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: 'var(--primary)',
+                                        cursor: 'pointer',
+                                        fontSize: '0.9rem',
+                                        padding: '0.5rem 0',
+                                        marginBottom: '1rem',
+                                        textDecoration: 'underline'
+                                    }}
+                                >
+                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
+                                </button>
 
                                 <h2 className="phase-question">Write Your Rationale</h2>
                                 <p className="phase-description">
@@ -5737,31 +5635,6 @@
                                     return null;
                                 })()}
 
-                                <button
-                                    onClick={() => {
-                                        setPhase('intro-policy');
-                                        setShowPolicyChoices(true);
-                                        setStatementParts(prev => ({
-                                            ...prev,
-                                            policyLevel: '',
-                                            policyLevelKey: '',
-                                            rationale: ''
-                                        }));
-                                    }}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        color: 'var(--primary)',
-                                        cursor: 'pointer',
-                                        fontSize: '0.9rem',
-                                        padding: '0.5rem 0',
-                                        marginBottom: '1rem',
-                                        textDecoration: 'underline'
-                                    }}
-                                >
-                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
-                                </button>
-
                                 <SuggestionBox
                                     label="Sample Rationale Language"
                                     suggestedText={suggestedRationale}
@@ -5865,7 +5738,6 @@
                                 )}
                             </div>
                         </div>
-                        <References />
                         <Footer />
                     </div>
                 );
@@ -5989,7 +5861,6 @@
                                 </div>
                             </div>
                         </div>
-                        <References />
                         <Footer />
                     </div>
                 );
@@ -6069,7 +5940,6 @@
                                 </div>
                             </div>
                         </div>
-                        <References />
                         <Footer />
                     </div>
                 );
@@ -6144,7 +6014,6 @@
                                 </div>
                             </div>
                         </div>
-                        <References />
                         <Footer />
                     </div>
                 );
@@ -6216,7 +6085,6 @@
                                 </div>
                             </div>
                         </div>
-                        <References />
                         <Footer />
                     </div>
                 );
@@ -6292,7 +6160,6 @@
                                 </div>
                             </div>
                         </div>
-                        <References />
                         <Footer />
                     </div>
                 );
