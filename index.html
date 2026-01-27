@@ -4323,6 +4323,7 @@
             const [isEditing, setIsEditing] = useState(false);
             const [editText, setEditText] = useState('');
             const [showPolicyChoices, setShowPolicyChoices] = useState(false);
+            const [tempPolicySelection, setTempPolicySelection] = useState(null); // Temporary policy selection before Continue
 
             // Phase-specific states (must be at top level per React Rules of Hooks)
             const [policies, setPolicies] = useState([]);
@@ -4778,11 +4779,11 @@
                 }
                 const policyText = getPolicyLevelText(level);
 
-                setStatementParts(prev => ({
-                    ...prev,
+                // Store temporarily - don't update statement until Continue is clicked
+                setTempPolicySelection({
                     policyLevel: policyText,
                     policyLevelKey: level
-                }));
+                });
                 setShowPolicyChoices(false);
                 // Don't automatically advance - let user click Continue button
             };
@@ -5315,57 +5316,66 @@
                                         className="policy-card"
                                         onClick={() => handlePolicyLevelSelect('no-ai')}
                                         style={{
-                                            border: statementParts.policyLevelKey === 'no-ai' ? '3px solid var(--primary)' : undefined,
-                                            background: statementParts.policyLevelKey === 'no-ai' ? 'var(--bg-accent)' : undefined
+                                            border: tempPolicySelection?.policyLevelKey === 'no-ai' ? '3px solid var(--primary)' : undefined,
+                                            background: tempPolicySelection?.policyLevelKey === 'no-ai' ? 'var(--bg-accent)' : undefined
                                         }}
                                     >
                                         <h3>🚫 No AI</h3>
                                         <p>Students may not use generative AI tools for any work</p>
-                                        {statementParts.policyLevelKey === 'no-ai' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
+                                        {tempPolicySelection?.policyLevelKey === 'no-ai' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
                                     </div>
                                     <div
                                         className="policy-card"
                                         onClick={() => handlePolicyLevelSelect('limited')}
                                         style={{
-                                            border: statementParts.policyLevelKey === 'limited' ? '3px solid var(--primary)' : undefined,
-                                            background: statementParts.policyLevelKey === 'limited' ? 'var(--bg-accent)' : undefined
+                                            border: tempPolicySelection?.policyLevelKey === 'limited' ? '3px solid var(--primary)' : undefined,
+                                            background: tempPolicySelection?.policyLevelKey === 'limited' ? 'var(--bg-accent)' : undefined
                                         }}
                                     >
                                         <h3>⚠️ Limited AI</h3>
                                         <p>Students may use AI tools with specific restrictions</p>
-                                        {statementParts.policyLevelKey === 'limited' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
+                                        {tempPolicySelection?.policyLevelKey === 'limited' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
                                     </div>
                                     <div
                                         className="policy-card"
                                         onClick={() => handlePolicyLevelSelect('ok')}
                                         style={{
-                                            border: statementParts.policyLevelKey === 'ok' ? '3px solid var(--primary)' : undefined,
-                                            background: statementParts.policyLevelKey === 'ok' ? 'var(--bg-accent)' : undefined
+                                            border: tempPolicySelection?.policyLevelKey === 'ok' ? '3px solid var(--primary)' : undefined,
+                                            background: tempPolicySelection?.policyLevelKey === 'ok' ? 'var(--bg-accent)' : undefined
                                         }}
                                     >
                                         <h3>✅ AI OK</h3>
                                         <p>Students may use AI tools as they see fit</p>
-                                        {statementParts.policyLevelKey === 'ok' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
+                                        {tempPolicySelection?.policyLevelKey === 'ok' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
                                     </div>
                                     <div
                                         className="policy-card"
                                         onClick={() => handlePolicyLevelSelect('required')}
                                         style={{
-                                            border: statementParts.policyLevelKey === 'required' ? '3px solid var(--primary)' : undefined,
-                                            background: statementParts.policyLevelKey === 'required' ? 'var(--bg-accent)' : undefined
+                                            border: tempPolicySelection?.policyLevelKey === 'required' ? '3px solid var(--primary)' : undefined,
+                                            background: tempPolicySelection?.policyLevelKey === 'required' ? 'var(--bg-accent)' : undefined
                                         }}
                                     >
                                         <h3>⭐ AI Required</h3>
                                         <p>AI use is required for certain assignments</p>
-                                        {statementParts.policyLevelKey === 'required' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
+                                        {tempPolicySelection?.policyLevelKey === 'required' && <div style={{marginTop: '0.5rem', color: 'var(--primary)', fontWeight: 600}}>✓ Selected</div>}
                                     </div>
                                 </div>
 
                                 <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '2rem', minHeight: '3rem'}}>
-                                    {statementParts.policyLevelKey && (
+                                    {tempPolicySelection && (
                                         <button
                                             className="primary"
-                                            onClick={() => setPhase('rationale')}
+                                            onClick={() => {
+                                                // Apply the temporary selection to statementParts
+                                                setStatementParts(prev => ({
+                                                    ...prev,
+                                                    policyLevel: tempPolicySelection.policyLevel,
+                                                    policyLevelKey: tempPolicySelection.policyLevelKey
+                                                }));
+                                                setTempPolicySelection(null); // Clear temp selection
+                                                setPhase('rationale');
+                                            }}
                                             style={{
                                                 padding: '0.75rem 1.5rem',
                                                 fontSize: '1rem'
