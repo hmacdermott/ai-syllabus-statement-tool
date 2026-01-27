@@ -5956,7 +5956,34 @@
                                     getPolicyLevelShortName={getPolicyLevelShortName}
                                 />
 
-                                <h2 className="phase-question">Assignment-Specific Guidelines? (Optional)</h2>
+                                <h2 className="phase-question">
+                                    Assignment-Specific Guidelines? (Optional){' '}
+                                    <button
+                                        onClick={() => {
+                                            setPhase('intro-policy');
+                                            setShowPolicyChoices(false);
+                                            setStatementParts(prev => ({
+                                                ...prev,
+                                                policyLevel: '',
+                                                policyLevelKey: '',
+                                                rationale: ''
+                                            }));
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.75rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            fontWeight: 'normal',
+                                            fontFamily: 'inherit'
+                                        }}
+                                    >
+                                        (← Change Policy Level)
+                                    </button>
+                                </h2>
                                 <p className="phase-description">
                                     <strong>Why add assignment-specific guidelines?</strong> Different assignments serve different learning goals and may require different levels of AI support. For example, you might allow AI for brainstorming essays but not for drafting, or permit AI for syntax help in coding but not for algorithm design.
                                 </p>
@@ -5974,31 +6001,6 @@
                                 <p className="phase-description">
                                     <strong>When to skip:</strong> If your general policy already covers all assignment types adequately, you can skip this section.
                                 </p>
-
-                                <button
-                                    onClick={() => {
-                                        setPhase('intro-policy');
-                                        setShowPolicyChoices(false);
-                                        setStatementParts(prev => ({
-                                            ...prev,
-                                            policyLevel: '',
-                                            policyLevelKey: '',
-                                            rationale: ''
-                                        }));
-                                    }}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        color: 'var(--primary)',
-                                        cursor: 'pointer',
-                                        fontSize: '0.9rem',
-                                        padding: '0.5rem 0',
-                                        marginBottom: '1rem',
-                                        textDecoration: 'underline'
-                                    }}
-                                >
-                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
-                                </button>
 
                                 {policies.map((policy, idx) => (
                                     <div key={idx} className="assignment-policy-item">
@@ -6082,28 +6084,30 @@
                                     getPolicyLevelShortName={getPolicyLevelShortName}
                                 />
 
-                                <h2 className="phase-question">Documentation Requirements (Optional)</h2>
+                                <h2 className="phase-question">
+                                    Documentation Requirements (Optional){' '}
+                                    <button
+                                        onClick={() => {
+                                            setPhase('rationale');
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.75rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            fontWeight: 'normal',
+                                            fontFamily: 'inherit'
+                                        }}
+                                    >
+                                        (← Back to Rationale)
+                                    </button>
+                                </h2>
                                 <p className="phase-description">
                                     Should students document when and how they use AI tools?
                                 </p>
-
-                                <button
-                                    onClick={() => {
-                                        setPhase('rationale');
-                                    }}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        color: 'var(--primary)',
-                                        cursor: 'pointer',
-                                        fontSize: '0.9rem',
-                                        padding: '0.5rem 0',
-                                        marginBottom: '1.5rem',
-                                        textDecoration: 'underline'
-                                    }}
-                                >
-                                    ← Back to rationale
-                                </button>
 
                                 <div className="policy-choices">
                                     <div className="policy-card" onClick={() => {
@@ -6166,35 +6170,37 @@
                                     getPolicyLevelShortName={getPolicyLevelShortName}
                                 />
 
-                                <h2 className="phase-question">Invite Questions? (Optional)</h2>
+                                <h2 className="phase-question">
+                                    Invite Questions? (Optional){' '}
+                                    <button
+                                        onClick={() => {
+                                            setPhase('intro-policy');
+                                            setShowPolicyChoices(false);
+                                            setStatementParts(prev => ({
+                                                ...prev,
+                                                policyLevel: '',
+                                                policyLevelKey: '',
+                                                rationale: ''
+                                            }));
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.75rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            fontWeight: 'normal',
+                                            fontFamily: 'inherit'
+                                        }}
+                                    >
+                                        (← Change Policy Level)
+                                    </button>
+                                </h2>
                                 <p className="phase-description">
                                     You can add a friendly note inviting students to ask questions when they're unsure about the policy.
                                 </p>
-
-                                <button
-                                    onClick={() => {
-                                        setPhase('intro-policy');
-                                        setShowPolicyChoices(false);
-                                        setStatementParts(prev => ({
-                                            ...prev,
-                                            policyLevel: '',
-                                            policyLevelKey: '',
-                                            rationale: ''
-                                        }));
-                                    }}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        color: 'var(--primary)',
-                                        cursor: 'pointer',
-                                        fontSize: '0.9rem',
-                                        padding: '0.5rem 0',
-                                        marginBottom: '1rem',
-                                        textDecoration: 'underline'
-                                    }}
-                                >
-                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
-                                </button>
 
                                 <SuggestionBox
                                     label="Suggested Text"
@@ -6247,35 +6253,37 @@
                                     getPolicyLevelShortName={getPolicyLevelShortName}
                                 />
 
-                                <h2 className="phase-question">Add Course-Specific Notes? (Optional)</h2>
+                                <h2 className="phase-question">
+                                    Add Course-Specific Notes? (Optional){' '}
+                                    <button
+                                        onClick={() => {
+                                            setPhase('intro-policy');
+                                            setShowPolicyChoices(false);
+                                            setStatementParts(prev => ({
+                                                ...prev,
+                                                policyLevel: '',
+                                                policyLevelKey: '',
+                                                rationale: ''
+                                            }));
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.75rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            fontWeight: 'normal',
+                                            fontFamily: 'inherit'
+                                        }}
+                                    >
+                                        (← Change Policy Level)
+                                    </button>
+                                </h2>
                                 <p className="phase-description">
                                     You can add any additional guidelines or notes specific to your course.
                                 </p>
-
-                                <button
-                                    onClick={() => {
-                                        setPhase('intro-policy');
-                                        setShowPolicyChoices(false);
-                                        setStatementParts(prev => ({
-                                            ...prev,
-                                            policyLevel: '',
-                                            policyLevelKey: '',
-                                            rationale: ''
-                                        }));
-                                    }}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        color: 'var(--primary)',
-                                        cursor: 'pointer',
-                                        fontSize: '0.9rem',
-                                        padding: '0.5rem 0',
-                                        marginBottom: '1rem',
-                                        textDecoration: 'underline'
-                                    }}
-                                >
-                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
-                                </button>
 
                                 <textarea
                                     className="edit-textarea"
@@ -6317,35 +6325,37 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <h2 className="phase-question">Your Complete Statement</h2>
+                                <h2 className="phase-question">
+                                    Your Complete Statement{' '}
+                                    <button
+                                        onClick={() => {
+                                            setPhase('intro-policy');
+                                            setShowPolicyChoices(false);
+                                            setStatementParts(prev => ({
+                                                ...prev,
+                                                policyLevel: '',
+                                                policyLevelKey: '',
+                                                rationale: ''
+                                            }));
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.75rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            fontWeight: 'normal',
+                                            fontFamily: 'inherit'
+                                        }}
+                                    >
+                                        (← Change Policy Level)
+                                    </button>
+                                </h2>
                                 <p className="phase-description">
                                     Review your final statement and export it to your syllabus.
                                 </p>
-
-                                <button
-                                    onClick={() => {
-                                        setPhase('intro-policy');
-                                        setShowPolicyChoices(false);
-                                        setStatementParts(prev => ({
-                                            ...prev,
-                                            policyLevel: '',
-                                            policyLevelKey: '',
-                                            rationale: ''
-                                        }));
-                                    }}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        color: 'var(--primary)',
-                                        cursor: 'pointer',
-                                        fontSize: '0.9rem',
-                                        padding: '0.5rem 0',
-                                        marginBottom: '1rem',
-                                        textDecoration: 'underline'
-                                    }}
-                                >
-                                    ← Change policy level ({getPolicyLevelShortName(statementParts.policyLevelKey)})
-                                </button>
 
                                 <AccumulatedStatement
                                     statementParts={statementParts}
@@ -6399,23 +6409,25 @@
 
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
-                                <button
-                                    onClick={() => setPhase(previousPhase || 'welcome')}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        color: 'var(--primary)',
-                                        cursor: 'pointer',
-                                        fontSize: '0.9rem',
-                                        padding: '0.5rem 0',
-                                        marginBottom: '1.5rem',
-                                        textDecoration: 'underline'
-                                    }}
-                                >
-                                    ← Back to Tool
-                                </button>
-
-                                <h1 style={{fontSize: '2rem', marginBottom: '1rem'}}>About This Tool</h1>
+                                <h1 style={{fontSize: '2rem', marginBottom: '1rem'}}>
+                                    About This Tool{' '}
+                                    <button
+                                        onClick={() => setPhase(previousPhase || 'welcome')}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.75rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            fontWeight: 'normal',
+                                            fontFamily: 'inherit'
+                                        }}
+                                    >
+                                        (← Back to Tool)
+                                    </button>
+                                </h1>
 
                                 <div>
                                     <h2 style={{fontSize: '1.5rem', marginTop: '2rem', marginBottom: '1rem'}}>How the Tool Works</h2>
@@ -6564,24 +6576,6 @@
                                                 </a>
                                             </div>
                                     </div>
-
-                                    <button
-                                        onClick={() => setPhase(previousPhase || 'welcome')}
-                                        style={{
-                                            marginTop: '3rem',
-                                            padding: '0.75rem 1.5rem',
-                                            background: 'var(--primary)',
-                                            color: 'white',
-                                            border: 'none',
-                                            cursor: 'pointer',
-                                            fontWeight: 600,
-                                            fontSize: '1rem',
-                                            display: 'block',
-                                            margin: '3rem auto 0'
-                                        }}
-                                    >
-                                        ← Back to Tool
-                                    </button>
                                 </div>
                             </div>
                         </div>
