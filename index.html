@@ -5428,8 +5428,11 @@
                 const dimensionalTasks = lang?.dimensionalTasks || [];
                 const checkedTasks = selectedTasks.map(idx => dimensionalTasks[idx]).filter(Boolean);
                 const coreSkillTasks = checkedTasks.filter(t => t.guidance === 'core-skill');
+                const contextDependentTasks = checkedTasks.filter(t => t.guidance === 'context-dependent');
+                const supportTasks = checkedTasks.filter(t => t.guidance === 'support-task');
 
                 let suggestedRationale = baseRationale;
+                let addedParagraphs = [];
 
                 // If user selected core skill tasks, add a paragraph about them
                 if (coreSkillTasks.length > 0) {
@@ -5438,7 +5441,32 @@
                         ? `activity like ${taskList}`
                         : `activities like ${taskList}`;
 
-                    suggestedRationale = `${baseRationale}\n\nIn this course, ${taskExample} ${coreSkillTasks.length === 1 ? 'is' : 'are'} central to your learning. ${coreSkillTasks.length === 1 ? 'This activity requires' : 'These activities require'} direct practice to build the skills and understanding you need. Using AI for ${coreSkillTasks.length === 1 ? 'this work' : 'these tasks'} would bypass essential learning.`;
+                    addedParagraphs.push(`In this course, ${taskExample} ${coreSkillTasks.length === 1 ? 'is' : 'are'} central to your learning. ${coreSkillTasks.length === 1 ? 'This activity requires' : 'These activities require'} direct practice to build the skills and understanding you need. Using AI for ${coreSkillTasks.length === 1 ? 'this work' : 'these tasks'} would bypass essential learning.`);
+                }
+
+                // If user selected context-dependent tasks
+                if (contextDependentTasks.length > 0) {
+                    const taskList = contextDependentTasks.map(t => t.taskName.toLowerCase()).join(', ');
+                    const taskExample = contextDependentTasks.length === 1
+                        ? `activity like ${taskList}`
+                        : `activities like ${taskList}`;
+
+                    addedParagraphs.push(`For ${taskExample}, the appropriateness of AI use depends on the specific learning goals and context. I'll provide clear guidance for each assignment about when and how AI tools may be used.`);
+                }
+
+                // If user selected support tasks
+                if (supportTasks.length > 0) {
+                    const taskList = supportTasks.map(t => t.taskName.toLowerCase()).join(', ');
+                    const taskExample = supportTasks.length === 1
+                        ? `activity like ${taskList}`
+                        : `activities like ${taskList}`;
+
+                    addedParagraphs.push(`For ${taskExample}, AI tools can be helpful ${supportTasks.length === 1 ? 'since this activity supports' : 'since these activities support'} rather than ${supportTasks.length === 1 ? 'replaces' : 'replace'} core learning.`);
+                }
+
+                // Combine base rationale with added paragraphs
+                if (addedParagraphs.length > 0) {
+                    suggestedRationale = `${baseRationale}\n\n${addedParagraphs.join('\n\n')}`;
                 }
 
                 // Get alternative rationales for this department and policy level
@@ -5852,14 +5880,35 @@
                                         <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
                                             {alternatives.map((alt, idx) => {
                                                 // Build alternative with task context
-                                                let altWithTasks = alt;
+                                                let altAddedParagraphs = [];
+
                                                 if (coreSkillTasks.length > 0) {
                                                     const taskList = coreSkillTasks.map(t => t.taskName.toLowerCase()).join(', ');
                                                     const taskExample = coreSkillTasks.length === 1
                                                         ? `activity like ${taskList}`
                                                         : `activities like ${taskList}`;
-                                                    altWithTasks = `${alt}\n\nIn this course, ${taskExample} ${coreSkillTasks.length === 1 ? 'is' : 'are'} central to your learning. ${coreSkillTasks.length === 1 ? 'This activity requires' : 'These activities require'} direct practice to build the skills and understanding you need. Using AI for ${coreSkillTasks.length === 1 ? 'this work' : 'these tasks'} would bypass essential learning.`;
+                                                    altAddedParagraphs.push(`In this course, ${taskExample} ${coreSkillTasks.length === 1 ? 'is' : 'are'} central to your learning. ${coreSkillTasks.length === 1 ? 'This activity requires' : 'These activities require'} direct practice to build the skills and understanding you need. Using AI for ${coreSkillTasks.length === 1 ? 'this work' : 'these tasks'} would bypass essential learning.`);
                                                 }
+
+                                                if (contextDependentTasks.length > 0) {
+                                                    const taskList = contextDependentTasks.map(t => t.taskName.toLowerCase()).join(', ');
+                                                    const taskExample = contextDependentTasks.length === 1
+                                                        ? `activity like ${taskList}`
+                                                        : `activities like ${taskList}`;
+                                                    altAddedParagraphs.push(`For ${taskExample}, the appropriateness of AI use depends on the specific learning goals and context. I'll provide clear guidance for each assignment about when and how AI tools may be used.`);
+                                                }
+
+                                                if (supportTasks.length > 0) {
+                                                    const taskList = supportTasks.map(t => t.taskName.toLowerCase()).join(', ');
+                                                    const taskExample = supportTasks.length === 1
+                                                        ? `activity like ${taskList}`
+                                                        : `activities like ${taskList}`;
+                                                    altAddedParagraphs.push(`For ${taskExample}, AI tools can be helpful ${supportTasks.length === 1 ? 'since this activity supports' : 'since these activities support'} rather than ${supportTasks.length === 1 ? 'replaces' : 'replace'} core learning.`);
+                                                }
+
+                                                const altWithTasks = altAddedParagraphs.length > 0
+                                                    ? `${alt}\n\n${altAddedParagraphs.join('\n\n')}`
+                                                    : alt;
                                                 return (
                                                 <div
                                                     key={idx}
