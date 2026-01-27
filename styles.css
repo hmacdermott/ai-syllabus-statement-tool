@@ -1203,6 +1203,10 @@ footer {
         padding: 0 1rem;
     }
 
+    .logo {
+        font-size: 0.95rem;
+    }
+
     .wizard-content {
         padding: 2rem 1.5rem;
     }
