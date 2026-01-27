@@ -5863,19 +5863,21 @@
                                     return null;
                                 })()}
 
-                                <SuggestionBox
-                                    label="Sample Rationale Language"
-                                    suggestedText={suggestedRationale}
-                                    onUse={() => handleAcceptRationale(isEditing ? editText : suggestedRationale)}
-                                    onEdit={() => { setIsEditing(true); setEditText(suggestedRationale); }}
-                                    isEditing={isEditing}
-                                    editText={editText}
-                                    setEditText={setEditText}
-                                    onSave={() => handleAcceptRationale(editText)}
-                                    onCancel={() => setIsEditing(false)}
-                                />
+                                {checkedTasks.length > 0 && (
+                                    <SuggestionBox
+                                        label="Sample Rationale Language"
+                                        suggestedText={suggestedRationale}
+                                        onUse={() => handleAcceptRationale(isEditing ? editText : suggestedRationale)}
+                                        onEdit={() => { setIsEditing(true); setEditText(suggestedRationale); }}
+                                        isEditing={isEditing}
+                                        editText={editText}
+                                        setEditText={setEditText}
+                                        onSave={() => handleAcceptRationale(editText)}
+                                        onCancel={() => setIsEditing(false)}
+                                    />
+                                )}
 
-                                {alternatives.length > 0 && (
+                                {false && alternatives.length > 0 && (
                                     <div style={{marginTop: '2rem'}}>
                                         <h3 style={{fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--text-secondary)'}}>
                                             Or choose an alternative:
