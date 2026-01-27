@@ -5191,6 +5191,14 @@
                                                 <span className="dept-icon" style={{marginBottom: 0}}>{departments.find(d => d.id === selectedDept)?.icon}</span>
                                                 <div className="dept-name">{selectedDept}</div>
                                             </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {considerations && (
+                                    <>
+                                        <h2 className="phase-question">
+                                            Questions to Guide Your Policy Decisions{' '}
                                             <button
                                                 onClick={() => setStatementParts(prev => ({...prev, department: ''}))}
                                                 style={{
@@ -5198,20 +5206,16 @@
                                                     border: 'none',
                                                     color: 'var(--primary)',
                                                     cursor: 'pointer',
-                                                    fontSize: '0.85rem',
+                                                    fontSize: '0.75rem',
                                                     padding: '0',
-                                                    textDecoration: 'underline'
+                                                    textDecoration: 'underline',
+                                                    fontWeight: 'normal',
+                                                    fontFamily: 'inherit'
                                                 }}
                                             >
-                                                ← Change department
+                                                (← Change Department)
                                             </button>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {considerations && (
-                                    <>
-                                        <h2 className="phase-question">Questions to Guide Your Policy Decisions</h2>
+                                        </h2>
                                         <p className="considerations-description">
                                             Consider which skills require direct student practice versus where AI might support learning.
                                         </p>
