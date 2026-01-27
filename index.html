@@ -5385,7 +5385,24 @@
                 if (!lang) {
                     console.error(`⚠️ Missing language data for department: "${statementParts.department}"`);
                 }
-                const suggestedRationale = lang?.[statementParts.policyLevelKey] || '';
+                const baseRationale = lang?.[statementParts.policyLevelKey] || '';
+
+                // Build rationale that incorporates selected tasks
+                const dimensionalTasks = lang?.dimensionalTasks || [];
+                const checkedTasks = selectedTasks.map(idx => dimensionalTasks[idx]).filter(Boolean);
+                const coreSkillTasks = checkedTasks.filter(t => t.guidance === 'core-skill');
+
+                let suggestedRationale = baseRationale;
+
+                // If user selected core skill tasks, add a paragraph about them
+                if (coreSkillTasks.length > 0) {
+                    const taskList = coreSkillTasks.map(t => t.taskName.toLowerCase()).join(', ');
+                    const taskExample = coreSkillTasks.length === 1
+                        ? `activity like ${taskList}`
+                        : `activities like ${taskList}`;
+
+                    suggestedRationale = `${baseRationale}\n\nIn this course, ${taskExample} ${coreSkillTasks.length === 1 ? 'is' : 'are'} central to your learning. ${coreSkillTasks.length === 1 ? 'This activity requires' : 'These activities require'} direct practice to build the skills and understanding you need. Using AI for ${coreSkillTasks.length === 1 ? 'this work' : 'these tasks'} would bypass essential learning.`;
+                }
 
                 // Get alternative rationales for this department and policy level
                 const alternatives = alternativeRationales[statementParts.department]?.[statementParts.policyLevelKey] || [];
@@ -5435,7 +5452,7 @@
                                         <div className="dimensional-tasks-box" style={{marginTop: '2rem', marginBottom: '2rem'}}>
                                             <p className="considerations-title">What are Core Activities in Your Course?</p>
                                             <p className="phase-description" style={{marginBottom: '1.5rem'}}>
-                                                Select the activities most central to your learning goals. These will be included in your final statement as examples of coursework that requires independent student work.
+                                                Select the activities most central to your learning goals. Your selections will be incorporated into the rationale below, helping you explain why certain coursework requires independent student work.
                                             </p>
                                             <div style={{
                                                 marginBottom: '2rem'
@@ -5726,7 +5743,17 @@
                                             Or choose an alternative:
                                         </h3>
                                         <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-                                            {alternatives.map((alt, idx) => (
+                                            {alternatives.map((alt, idx) => {
+                                                // Build alternative with task context
+                                                let altWithTasks = alt;
+                                                if (coreSkillTasks.length > 0) {
+                                                    const taskList = coreSkillTasks.map(t => t.taskName.toLowerCase()).join(', ');
+                                                    const taskExample = coreSkillTasks.length === 1
+                                                        ? `activity like ${taskList}`
+                                                        : `activities like ${taskList}`;
+                                                    altWithTasks = `${alt}\n\nIn this course, ${taskExample} ${coreSkillTasks.length === 1 ? 'is' : 'are'} central to your learning. ${coreSkillTasks.length === 1 ? 'This activity requires' : 'These activities require'} direct practice to build the skills and understanding you need. Using AI for ${coreSkillTasks.length === 1 ? 'this work' : 'these tasks'} would bypass essential learning.`;
+                                                }
+                                                return (
                                                 <div
                                                     key={idx}
                                                     style={{
@@ -5756,9 +5783,10 @@
                                                         fontSize: '0.95rem',
                                                         lineHeight: '1.6',
                                                         color: 'var(--text-primary)',
-                                                        marginBottom: '0.75rem'
+                                                        marginBottom: '0.75rem',
+                                                        whiteSpace: 'pre-wrap'
                                                     }}>
-                                                        "{alt}"
+                                                        "{altWithTasks}"
                                                     </div>
                                                     <div style={{
                                                         fontSize: '0.85rem',
@@ -5769,7 +5797,7 @@
                                                         <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
-                                                                handleAcceptRationale(alt);
+                                                                handleAcceptRationale(altWithTasks);
                                                             }}
                                                             style={{
                                                                 padding: '0.5rem 1rem',
@@ -5788,7 +5816,7 @@
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setIsEditing(true);
-                                                                setEditText(alt);
+                                                                setEditText(altWithTasks);
                                                             }}
                                                             style={{
                                                                 padding: '0.5rem 1rem',
@@ -5805,7 +5833,8 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                            ))}
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                 )}
