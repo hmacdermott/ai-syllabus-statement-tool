@@ -1213,6 +1213,18 @@ footer {
 
     .logo-mobile {
         display: inline;
+        font-size: 0.85rem;
+    }
+
+    .theme-toggle,
+    .clear-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .header-actions {
+        gap: 0.35rem;
     }
 
     .wizard-content {
