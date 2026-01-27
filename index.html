@@ -5470,17 +5470,54 @@
                                                     borderCollapse: 'collapse',
                                                     fontSize: '0.9rem'
                                                 }}>
+                                                    <thead>
+                                                        <tr style={{
+                                                            borderBottom: '2px solid var(--border-color)'
+                                                        }}>
+                                                            <th style={{
+                                                                padding: '0.75rem 1rem',
+                                                                textAlign: 'left',
+                                                                fontWeight: 600,
+                                                                color: 'var(--text-primary)',
+                                                                width: '25%'
+                                                            }}>
+                                                                Activity Type
+                                                            </th>
+                                                            <th style={{
+                                                                padding: '0.75rem 1rem',
+                                                                textAlign: 'left',
+                                                                fontWeight: 600,
+                                                                color: 'var(--text-primary)',
+                                                                width: '20%'
+                                                            }}>
+                                                                AI Guidance
+                                                            </th>
+                                                            <th style={{
+                                                                padding: '0.75rem 1rem',
+                                                                textAlign: 'left',
+                                                                fontWeight: 600,
+                                                                color: 'var(--text-primary)'
+                                                            }}>
+                                                                Description
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
                                                     <tbody>
                                                         <tr style={{
                                                             background: theme === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)'
                                                         }}>
                                                             <td style={{
                                                                 padding: '0.75rem 1rem',
-                                                                fontWeight: 600,
-                                                                color: theme === 'dark' ? '#ef4444' : '#dc2626',
-                                                                width: '35%'
+                                                                fontWeight: 500
                                                             }}>
-                                                                🛑 Core skill - probably shouldn't
+                                                                🛑 Core skill
+                                                            </td>
+                                                            <td style={{
+                                                                padding: '0.75rem 1rem',
+                                                                fontWeight: 600,
+                                                                color: theme === 'dark' ? '#ef4444' : '#dc2626'
+                                                            }}>
+                                                                Probably shouldn't
                                                             </td>
                                                             <td style={{
                                                                 padding: '0.75rem 1rem',
@@ -5493,11 +5530,16 @@
                                                         <tr>
                                                             <td style={{
                                                                 padding: '0.75rem 1rem',
-                                                                fontWeight: 600,
-                                                                color: theme === 'dark' ? '#60a5fa' : '#3b82f6',
-                                                                width: '35%'
+                                                                fontWeight: 500
                                                             }}>
                                                                 ⚠️ Context-dependent
+                                                            </td>
+                                                            <td style={{
+                                                                padding: '0.75rem 1rem',
+                                                                fontWeight: 600,
+                                                                color: theme === 'dark' ? '#60a5fa' : '#3b82f6'
+                                                            }}>
+                                                                It depends
                                                             </td>
                                                             <td style={{
                                                                 padding: '0.75rem 1rem',
@@ -5512,11 +5554,16 @@
                                                         }}>
                                                             <td style={{
                                                                 padding: '0.75rem 1rem',
-                                                                fontWeight: 600,
-                                                                color: theme === 'dark' ? '#10b981' : '#059669',
-                                                                width: '35%'
+                                                                fontWeight: 500
                                                             }}>
-                                                                🟢 Support activity - could use
+                                                                🟢 Support activity
+                                                            </td>
+                                                            <td style={{
+                                                                padding: '0.75rem 1rem',
+                                                                fontWeight: 600,
+                                                                color: theme === 'dark' ? '#10b981' : '#059669'
+                                                            }}>
+                                                                Could use
                                                             </td>
                                                             <td style={{
                                                                 padding: '0.75rem 1rem',
@@ -5553,13 +5600,19 @@
                                                                 padding: '0.75rem',
                                                                 textAlign: 'left',
                                                                 fontWeight: 600,
-                                                                width: '30%'
+                                                                width: '25%'
                                                             }}>Activity</th>
                                                             <th style={{
                                                                 padding: '0.75rem',
                                                                 textAlign: 'left',
                                                                 fontWeight: 600,
-                                                                width: '20%'
+                                                                width: '18%'
+                                                            }}>Activity Type</th>
+                                                            <th style={{
+                                                                padding: '0.75rem',
+                                                                textAlign: 'left',
+                                                                fontWeight: 600,
+                                                                width: '15%'
                                                             }}>AI Guidance</th>
                                                             <th style={{
                                                                 padding: '0.75rem',
@@ -5575,6 +5628,16 @@
                                                                 'core-skill': theme === 'dark' ? '#ef4444' : '#dc2626',
                                                                 'context-dependent': theme === 'dark' ? '#60a5fa' : '#3b82f6',
                                                                 'support-task': theme === 'dark' ? '#10b981' : '#059669'
+                                                            };
+                                                            const activityTypes = {
+                                                                'core-skill': "🛑 Core skill",
+                                                                'context-dependent': "⚠️ Context-dependent",
+                                                                'support-task': "🟢 Support activity"
+                                                            };
+                                                            const aiGuidance = {
+                                                                'core-skill': "Probably shouldn't",
+                                                                'context-dependent': "It depends",
+                                                                'support-task': "Could use"
                                                             };
                                                             const guidanceLabels = {
                                                                 'core-skill': 'Core skill - probably shouldn\'t',
@@ -5623,11 +5686,18 @@
                                                                     <td style={{
                                                                         padding: '0.75rem',
                                                                         verticalAlign: 'top',
+                                                                        fontWeight: 500
+                                                                    }}>
+                                                                        {activityTypes[task.guidance]}
+                                                                    </td>
+                                                                    <td style={{
+                                                                        padding: '0.75rem',
+                                                                        verticalAlign: 'top',
                                                                         color: guidanceColors[task.guidance],
                                                                         fontWeight: 600,
                                                                         fontSize: '0.9rem'
                                                                     }}>
-                                                                        {guidanceLabels[task.guidance]}
+                                                                        {aiGuidance[task.guidance]}
                                                                     </td>
                                                                     <td style={{
                                                                         padding: '0.75rem',
