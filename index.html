@@ -5800,29 +5800,22 @@
 
                                         return (
                                             <div style={{
-                                                background: theme === 'dark' ? 'rgba(59, 130, 246, 0.1)' : '#f0f9ff',
-                                                border: '2px solid var(--primary)',
-                                                borderRadius: '8px',
-                                                padding: '1.25rem',
                                                 marginBottom: '1.5rem'
                                             }}>
-                                                <div style={{
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: '0.5rem',
-                                                    marginBottom: '0.75rem'
+                                                <h3 style={{
+                                                    fontSize: '1.1rem',
+                                                    marginBottom: '0.75rem',
+                                                    color: 'var(--text-primary)',
+                                                    fontWeight: 600
                                                 }}>
-                                                    <span style={{fontSize: '1.25rem'}}>💡</span>
-                                                    <strong style={{color: 'var(--primary)', fontSize: '1rem'}}>
-                                                        Tasks You Marked as Important
-                                                    </strong>
-                                                </div>
+                                                    Tasks You Marked as Important
+                                                </h3>
                                                 <p style={{
                                                     margin: '0 0 0.75rem 0',
                                                     fontSize: '0.9rem',
                                                     color: 'var(--text-secondary)'
                                                 }}>
-                                                    You marked {checkedTasks.length} {checkedTasks.length === 1 ? 'activity' : 'activities'} as central to your course. {coreSkillTasks.length > 0 ? `Consider explaining in your rationale why the ${coreSkillTasks.length === 1 ? 'core skill requires' : 'core skills require'} direct practice.` : 'Consider explaining your approach in the rationale.'}
+                                                    You marked <strong>{checkedTasks.length} {checkedTasks.length === 1 ? 'activity' : 'activities'}</strong> as central to your course. {coreSkillTasks.length > 0 ? `Consider explaining in your rationale why the ${coreSkillTasks.length === 1 ? 'core skill requires' : 'core skills require'} direct practice.` : 'Consider explaining your approach in the rationale.'}
                                                 </p>
                                                 {coreSkillTasks.length > 0 && (
                                                     <div style={{marginBottom: '0.5rem'}}>
