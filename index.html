@@ -3912,7 +3912,18 @@
                         cursor: 'pointer'
                     }} onClick={() => setIsCollapsed(!isCollapsed)}>
                         <span>Your Statement So Far</span>
-                        <span style={{fontSize: '1.2rem', userSelect: 'none'}}>{isCollapsed ? '▼' : '▲'}</span>
+                        <span style={{
+                            fontSize: '0.9rem',
+                            fontWeight: 'normal',
+                            color: 'var(--text-secondary)',
+                            userSelect: 'none',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem'
+                        }}>
+                            <span>{isCollapsed ? 'Show' : 'Hide'}</span>
+                            <span style={{fontSize: '1.2rem'}}>{isCollapsed ? '▼' : '▲'}</span>
+                        </span>
                     </h2>
                     {!isCollapsed && (
                     <div className="accumulated-statement">
