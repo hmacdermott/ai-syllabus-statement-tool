@@ -5189,8 +5189,8 @@
                                     <div style={{marginBottom: '1rem'}}>
                                         <div className="selected-department-display">
                                             <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem'}}>
-                                                <span style={{fontSize: '2rem'}}>{departments.find(d => d.id === selectedDept)?.icon}</span>
-                                                <h3 style={{fontSize: '1.25rem', margin: 0, color: 'var(--text-primary)'}}>{selectedDept}</h3>
+                                                <span className="dept-icon" style={{marginBottom: 0}}>{departments.find(d => d.id === selectedDept)?.icon}</span>
+                                                <div className="dept-name">{selectedDept}</div>
                                             </div>
                                             <button
                                                 onClick={() => setStatementParts(prev => ({...prev, department: ''}))}
@@ -5212,7 +5212,7 @@
 
                                 {considerations && (
                                     <>
-                                        <h2 className="phase-question">Questions to guide your policy decision:</h2>
+                                        <h2 className="phase-question">Questions to Guide Your Policy Decisions</h2>
                                         <p className="considerations-description">
                                             Consider which skills require direct student practice versus where AI might support learning.
                                         </p>
