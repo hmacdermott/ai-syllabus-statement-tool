@@ -4142,8 +4142,8 @@
 
                     {statementParts.rationale && (
                         <div className="statement-section rationale">
-                            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem'}}>
-                                <div className="section-label" style={{marginBottom: 0}}>Rationale</div>
+                            <div className="section-label">
+                                Rationale{' '}
                                 {setPhase && (
                                     <button
                                         onClick={() => {
@@ -4254,7 +4254,7 @@
                         </div>
                     )}
 
-                    {coreSkillTasks.length > 0 && (
+                    {false && coreSkillTasks.length > 0 && (
                         <div className="statement-section core-activities">
                             <div className="section-label">Core Activities in This Course</div>
                             <div className="section-text">
@@ -4470,8 +4470,8 @@
                     try {
                         const parsed = JSON.parse(saved);
                         if (parsed.version === 'progressive') {
-                            const shouldLoad = window.confirm('We found a draft you were working on.\n\nClick OK to continue where you left off, or Cancel to start a new statement.');
-                            if (shouldLoad) {
+                            const shouldStartOver = window.confirm('We found a draft you were working on.\n\nClick OK to start over, or Cancel to continue where you left off.');
+                            if (!shouldStartOver) {
                                 setStatementParts(parsed.statementParts);
                                 setPhase(parsed.phase);
                             }
@@ -4911,7 +4911,7 @@
                                     <p>
                                         <strong>How it works:</strong> You'll work with AI-generated and human-reviewed suggestions to build your policy.
                                         At each step, <strong>review the suggested text</strong> and adapt it to fit your course goals and teaching philosophy.
-                                        <em>Use what works, edit what doesn't, skip what you don't need.</em>
+                                        {' '}<em>Use what works, edit what doesn't, skip what you don't need.</em>
                                     </p>
                                 </div>
                                 <div style={{textAlign: 'center'}}>
@@ -5453,7 +5453,7 @@
                 const contextDependentTasks = checkedTasks.filter(t => t.guidance === 'context-dependent');
                 const supportTasks = checkedTasks.filter(t => t.guidance === 'support-task');
 
-                let suggestedRationale = baseRationale;
+                let suggestedRationale = baseRationale.trim();
                 let addedParagraphs = [];
 
                 // If user selected core skill tasks, add a paragraph about them
@@ -5488,7 +5488,7 @@
 
                 // Combine base rationale with added paragraphs
                 if (addedParagraphs.length > 0) {
-                    suggestedRationale = `${baseRationale}\n\n${addedParagraphs.join('\n\n')}`;
+                    suggestedRationale = `${baseRationale.trim()}\n\n${addedParagraphs.join('\n\n')}`;
                 }
 
                 // Get alternative rationales for this department and policy level
@@ -5548,10 +5548,11 @@
                                                 marginBottom: '1.5rem'
                                             }}>
                                                 <div style={{
-                                                    padding: '1.25rem',
+                                                    padding: '1.5rem',
                                                     background: 'var(--bg-secondary)',
-                                                    border: '1px solid var(--border-color)',
-                                                    borderRadius: '8px'
+                                                    border: '1px solid var(--border)',
+                                                    borderRadius: '8px',
+                                                    textAlign: 'center'
                                                 }}>
                                                     <div style={{
                                                         fontSize: '1.5rem',
@@ -5580,10 +5581,11 @@
                                                 </div>
 
                                                 <div style={{
-                                                    padding: '1.25rem',
+                                                    padding: '1.5rem',
                                                     background: 'var(--bg-secondary)',
-                                                    border: '1px solid var(--border-color)',
-                                                    borderRadius: '8px'
+                                                    border: '1px solid var(--border)',
+                                                    borderRadius: '8px',
+                                                    textAlign: 'center'
                                                 }}>
                                                     <div style={{
                                                         fontSize: '1.5rem',
@@ -5612,10 +5614,11 @@
                                                 </div>
 
                                                 <div style={{
-                                                    padding: '1.25rem',
+                                                    padding: '1.5rem',
                                                     background: 'var(--bg-secondary)',
-                                                    border: '1px solid var(--border-color)',
-                                                    borderRadius: '8px'
+                                                    border: '1px solid var(--border)',
+                                                    borderRadius: '8px',
+                                                    textAlign: 'center'
                                                 }}>
                                                     <div style={{
                                                         fontSize: '1.5rem',
@@ -6384,32 +6387,7 @@
                         <div className="container" style={{padding: '3rem 1rem'}}>
                             <div className="phase-container">
                                 <h2 className="phase-question">
-                                    Your Complete Statement{' '}
-                                    <button
-                                        onClick={() => {
-                                            setPhase('intro-policy');
-                                            setShowPolicyChoices(false);
-                                            setStatementParts(prev => ({
-                                                ...prev,
-                                                policyLevel: '',
-                                                policyLevelKey: '',
-                                                rationale: ''
-                                            }));
-                                        }}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: 'var(--primary)',
-                                            cursor: 'pointer',
-                                            fontSize: '0.75rem',
-                                            padding: '0',
-                                            textDecoration: 'underline',
-                                            fontWeight: 'normal',
-                                            fontFamily: 'inherit'
-                                        }}
-                                    >
-                                        (← Change Policy Level)
-                                    </button>
+                                    Your Complete Statement
                                 </h2>
                                 <p className="phase-description">
                                     <strong>Review your final statement</strong> and export it to your syllabus.
