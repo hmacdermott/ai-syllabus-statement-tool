@@ -16,9 +16,6 @@
     <style>
         /* Progressive building pattern styles */
         .accumulated-statement {
-            background: var(--bg-primary);
-            border: 2px solid var(--border-color);
-            padding: 2rem;
             margin-bottom: 2rem;
         }
 
@@ -4045,7 +4042,8 @@
                                             textDecoration: 'underline',
                                             fontWeight: 'normal',
                                             fontFamily: 'inherit',
-                                            whiteSpace: 'nowrap'
+                                            whiteSpace: 'nowrap',
+                                            fontStyle: 'italic'
                                         }}
                                     >
                                         (← Change Policy Level)
@@ -4159,7 +4157,8 @@
                                             textDecoration: 'underline',
                                             fontWeight: 'normal',
                                             fontFamily: 'inherit',
-                                            whiteSpace: 'nowrap'
+                                            whiteSpace: 'nowrap',
+                                            fontStyle: 'italic'
                                         }}
                                     >
                                         (← Back to Rationale)
@@ -5238,6 +5237,24 @@
                                             <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem'}}>
                                                 <span className="dept-icon" style={{marginBottom: 0}}>{departments.find(d => d.id === selectedDept)?.icon}</span>
                                                 <div className="dept-name">{selectedDept}</div>
+                                                <button
+                                                    onClick={() => setStatementParts(prev => ({...prev, department: ''}))}
+                                                    style={{
+                                                        background: 'none',
+                                                        border: 'none',
+                                                        color: 'var(--primary)',
+                                                        cursor: 'pointer',
+                                                        fontSize: '0.75rem',
+                                                        padding: '0',
+                                                        textDecoration: 'underline',
+                                                        fontWeight: 'normal',
+                                                        fontFamily: 'inherit',
+                                                        fontStyle: 'italic',
+                                                        whiteSpace: 'nowrap'
+                                                    }}
+                                                >
+                                                    (← Change Department)
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -5246,23 +5263,7 @@
                                 {considerations && (
                                     <>
                                         <h2 className="phase-question">
-                                            Questions to Guide Your Policy Decisions{' '}
-                                            <button
-                                                onClick={() => setStatementParts(prev => ({...prev, department: ''}))}
-                                                style={{
-                                                    background: 'none',
-                                                    border: 'none',
-                                                    color: 'var(--primary)',
-                                                    cursor: 'pointer',
-                                                    fontSize: '0.75rem',
-                                                    padding: '0',
-                                                    textDecoration: 'underline',
-                                                    fontWeight: 'normal',
-                                                    fontFamily: 'inherit'
-                                                }}
-                                            >
-                                                (← Change Department)
-                                            </button>
+                                            Questions to Guide Your Policy Decisions
                                         </h2>
                                         <p className="considerations-description">
                                             Consider which skills <strong>require direct student practice</strong> versus where AI might support learning.
@@ -6160,7 +6161,8 @@
                                             padding: '0',
                                             textDecoration: 'underline',
                                             fontWeight: 'normal',
-                                            fontFamily: 'inherit'
+                                            fontFamily: 'inherit',
+                                            fontStyle: 'italic'
                                         }}
                                     >
                                         (← Back to Rationale)
@@ -6253,7 +6255,8 @@
                                             padding: '0',
                                             textDecoration: 'underline',
                                             fontWeight: 'normal',
-                                            fontFamily: 'inherit'
+                                            fontFamily: 'inherit',
+                                            fontStyle: 'italic'
                                         }}
                                     >
                                         (← Change Policy Level)
@@ -6336,7 +6339,8 @@
                                             padding: '0',
                                             textDecoration: 'underline',
                                             fontWeight: 'normal',
-                                            fontFamily: 'inherit'
+                                            fontFamily: 'inherit',
+                                            fontStyle: 'italic'
                                         }}
                                     >
                                         (← Change Policy Level)
@@ -6469,7 +6473,7 @@
                                     <h2 style={{fontSize: '1.5rem', marginTop: '2rem', marginBottom: '1rem'}}>How the Tool Works</h2>
                                     <p style={{lineHeight: '1.7', marginBottom: '1.5rem'}}>
                                         This tool guides you through creating a customized AI use policy for your syllabus.
-                                        At each step, you'll review AI-generated and human-reviewed suggestions tailored to your discipline and teaching philosophy.
+                                        You'll review AI-generated and human-reviewed suggestions tailored to your discipline and teaching philosophy.
                                         You can use what works, edit what doesn't, and skip what you don't need.
                                     </p>
 
@@ -6514,18 +6518,42 @@
                                         <p style={{margin: '0 0 0.75rem 0', color: 'var(--text-secondary)'}}>
                                             Choose one of four approaches:
                                         </p>
-                                        <div style={{display: 'grid', gap: '0.75rem'}}>
-                                            <div style={{padding: '0.75rem', background: 'var(--bg-primary)'}}>
-                                                <strong>🚫 No AI</strong> - Students may not use generative AI tools for any work
+                                        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem'}}>
+                                            <div style={{
+                                                background: 'var(--bg-secondary)',
+                                                border: '2px solid var(--border)',
+                                                borderRadius: '12px',
+                                                padding: '1.5rem'
+                                            }}>
+                                                <div style={{fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 600}}>🚫 No AI</div>
+                                                <div style={{color: 'var(--text-secondary)', fontSize: '0.9rem'}}>Students may not use generative AI tools for any work</div>
                                             </div>
-                                            <div style={{padding: '0.75rem', background: 'var(--bg-primary)'}}>
-                                                <strong>⚠️ Limited AI</strong> - Students may use AI tools with specific restrictions
+                                            <div style={{
+                                                background: 'var(--bg-secondary)',
+                                                border: '2px solid var(--border)',
+                                                borderRadius: '12px',
+                                                padding: '1.5rem'
+                                            }}>
+                                                <div style={{fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 600}}>⚠️ Limited AI</div>
+                                                <div style={{color: 'var(--text-secondary)', fontSize: '0.9rem'}}>Students may use AI tools with specific restrictions</div>
                                             </div>
-                                            <div style={{padding: '0.75rem', background: 'var(--bg-primary)'}}>
-                                                <strong>✅ AI is OK</strong> - Students may use AI tools freely
+                                            <div style={{
+                                                background: 'var(--bg-secondary)',
+                                                border: '2px solid var(--border)',
+                                                borderRadius: '12px',
+                                                padding: '1.5rem'
+                                            }}>
+                                                <div style={{fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 600}}>✅ AI OK</div>
+                                                <div style={{color: 'var(--text-secondary)', fontSize: '0.9rem'}}>Students may use AI tools as they see fit</div>
                                             </div>
-                                            <div style={{padding: '0.75rem', background: 'var(--bg-primary)'}}>
-                                                <strong>⭐ AI Required</strong> - AI use is required for certain assignments
+                                            <div style={{
+                                                background: 'var(--bg-secondary)',
+                                                border: '2px solid var(--border)',
+                                                borderRadius: '12px',
+                                                padding: '1.5rem'
+                                            }}>
+                                                <div style={{fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 600}}>⭐ AI Required</div>
+                                                <div style={{color: 'var(--text-secondary)', fontSize: '0.9rem'}}>AI use is required for certain assignments</div>
                                             </div>
                                         </div>
                                     </div>
@@ -6538,7 +6566,7 @@
                                     }}>
                                         <h3 style={{fontSize: '1.1rem', marginBottom: '0.75rem', fontWeight: 600}}>4. Write Your Rationale</h3>
                                         <p style={{margin: 0, color: 'var(--text-secondary)'}}>
-                                            Explain to students why your AI policy matters for their learning. The tool generates suggestions based on your selected core activities and policy level.
+                                            Explain to students why your AI policy matters for their learning. The tool generates suggestions based on your department, policy level, and selected activities.
                                         </p>
                                     </div>
 
