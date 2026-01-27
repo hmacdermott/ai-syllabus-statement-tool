@@ -4121,7 +4121,30 @@
 
                     {statementParts.rationale && (
                         <div className="statement-section rationale">
-                            <div className="section-label">Rationale</div>
+                            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem'}}>
+                                <div className="section-label" style={{marginBottom: 0}}>Rationale</div>
+                                {setPhase && (
+                                    <button
+                                        onClick={() => {
+                                            setPhase('rationale');
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.75rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            fontWeight: 'normal',
+                                            fontFamily: 'inherit',
+                                            whiteSpace: 'nowrap'
+                                        }}
+                                    >
+                                        (← Back to Rationale)
+                                    </button>
+                                )}
+                            </div>
                             {!isEditingRationale ? (
                                 <>
                                     <div className="section-text">{statementParts.rationale}</div>
@@ -5968,34 +5991,7 @@
                                     getPolicyLevelShortName={getPolicyLevelShortName}
                                 />
 
-                                <h2 className="phase-question">
-                                    Assignment-Specific Guidelines? (Optional){' '}
-                                    <button
-                                        onClick={() => {
-                                            setPhase('intro-policy');
-                                            setShowPolicyChoices(false);
-                                            setStatementParts(prev => ({
-                                                ...prev,
-                                                policyLevel: '',
-                                                policyLevelKey: '',
-                                                rationale: ''
-                                            }));
-                                        }}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: 'var(--primary)',
-                                            cursor: 'pointer',
-                                            fontSize: '0.75rem',
-                                            padding: '0',
-                                            textDecoration: 'underline',
-                                            fontWeight: 'normal',
-                                            fontFamily: 'inherit'
-                                        }}
-                                    >
-                                        (← Change Policy Level)
-                                    </button>
-                                </h2>
+                                <h2 className="phase-question">Assignment-Specific Guidelines? (Optional)</h2>
                                 <p className="phase-description">
                                     <strong>Why add assignment-specific guidelines?</strong> Different assignments serve different learning goals and may require different levels of AI support. For example, you might allow AI for brainstorming essays but not for drafting, or permit AI for syntax help in coding but not for algorithm design.
                                 </p>
