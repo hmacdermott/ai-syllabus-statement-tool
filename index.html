@@ -5542,118 +5542,106 @@
                                                 Select the activities <strong>most central</strong> to your learning goals. Your selections will be incorporated into the rationale below, helping you explain <em>why certain coursework requires independent student work</em>.
                                             </p>
                                             <div style={{
-                                                marginBottom: '1rem'
+                                                display: 'grid',
+                                                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                                                gap: '1rem',
+                                                marginBottom: '1.5rem'
                                             }}>
-                                                <table style={{
-                                                    width: '100%',
-                                                    borderCollapse: 'collapse',
-                                                    fontSize: '0.9rem'
+                                                <div style={{
+                                                    padding: '1.25rem',
+                                                    background: 'var(--bg-secondary)',
+                                                    border: '1px solid var(--border-color)',
+                                                    borderRadius: '8px'
                                                 }}>
-                                                    <thead>
-                                                        <tr style={{
-                                                            borderBottom: '2px solid var(--border-color)'
-                                                        }}>
-                                                            <th style={{
-                                                                padding: '0.75rem 1rem',
-                                                                textAlign: 'left',
-                                                                fontWeight: 600,
-                                                                color: 'var(--text-primary)',
-                                                                width: '25%'
-                                                            }}>
-                                                                Activity Type
-                                                            </th>
-                                                            <th style={{
-                                                                padding: '0.75rem 1rem',
-                                                                textAlign: 'left',
-                                                                fontWeight: 600,
-                                                                color: 'var(--text-primary)',
-                                                                width: '20%'
-                                                            }}>
-                                                                AI Guidance
-                                                            </th>
-                                                            <th style={{
-                                                                padding: '0.75rem 1rem',
-                                                                textAlign: 'left',
-                                                                fontWeight: 600,
-                                                                color: 'var(--text-primary)'
-                                                            }}>
-                                                                Reasoning
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr style={{
-                                                            background: theme === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)'
-                                                        }}>
-                                                            <td style={{
-                                                                padding: '0.75rem 1rem',
-                                                                fontWeight: 500
-                                                            }}>
-                                                                🚫 Core skill
-                                                            </td>
-                                                            <td style={{
-                                                                padding: '0.75rem 1rem',
-                                                                fontWeight: 600,
-                                                                color: theme === 'dark' ? '#ef4444' : '#dc2626'
-                                                            }}>
-                                                                Probably shouldn't
-                                                            </td>
-                                                            <td style={{
-                                                                padding: '0.75rem 1rem',
-                                                                color: 'var(--text-secondary)',
-                                                                lineHeight: '1.5'
-                                                            }}>
-                                                                These activities bypass essential learning and should typically be completed without AI assistance.
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style={{
-                                                                padding: '0.75rem 1rem',
-                                                                fontWeight: 500
-                                                            }}>
-                                                                ⚠️ Context-dependent
-                                                            </td>
-                                                            <td style={{
-                                                                padding: '0.75rem 1rem',
-                                                                fontWeight: 600,
-                                                                color: theme === 'dark' ? '#60a5fa' : '#3b82f6'
-                                                            }}>
-                                                                It depends
-                                                            </td>
-                                                            <td style={{
-                                                                padding: '0.75rem 1rem',
-                                                                color: 'var(--text-secondary)',
-                                                                lineHeight: '1.5'
-                                                            }}>
-                                                                AI appropriateness depends on your course level, learning objectives, and context.
-                                                            </td>
-                                                        </tr>
-                                                        <tr style={{
-                                                            background: theme === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)'
-                                                        }}>
-                                                            <td style={{
-                                                                padding: '0.75rem 1rem',
-                                                                fontWeight: 500
-                                                            }}>
-                                                                ✅ Support activity
-                                                            </td>
-                                                            <td style={{
-                                                                padding: '0.75rem 1rem',
-                                                                fontWeight: 600,
-                                                                color: theme === 'dark' ? '#10b981' : '#059669'
-                                                            }}>
-                                                                Could use
-                                                            </td>
-                                                            <td style={{
-                                                                padding: '0.75rem 1rem',
-                                                                color: 'var(--text-secondary)',
-                                                                lineHeight: '1.5'
-                                                            }}>
-                                                                These activities don't bypass core learning and AI can assist students effectively.
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                    <div style={{
+                                                        fontSize: '1.5rem',
+                                                        marginBottom: '0.5rem'
+                                                    }}>🚫</div>
+                                                    <h3 style={{
+                                                        fontSize: '1rem',
+                                                        fontWeight: 600,
+                                                        marginBottom: '0.5rem',
+                                                        color: 'var(--text-primary)'
+                                                    }}>Core skill</h3>
+                                                    <div style={{
+                                                        fontSize: '0.9rem',
+                                                        fontWeight: 600,
+                                                        color: theme === 'dark' ? '#ef4444' : '#dc2626',
+                                                        marginBottom: '0.75rem'
+                                                    }}>Probably shouldn't</div>
+                                                    <p style={{
+                                                        fontSize: '0.9rem',
+                                                        color: 'var(--text-secondary)',
+                                                        lineHeight: '1.5',
+                                                        margin: 0
+                                                    }}>
+                                                        These activities bypass essential learning and should typically be completed without AI assistance.
+                                                    </p>
+                                                </div>
+
+                                                <div style={{
+                                                    padding: '1.25rem',
+                                                    background: 'var(--bg-secondary)',
+                                                    border: '1px solid var(--border-color)',
+                                                    borderRadius: '8px'
+                                                }}>
+                                                    <div style={{
+                                                        fontSize: '1.5rem',
+                                                        marginBottom: '0.5rem'
+                                                    }}>⚠️</div>
+                                                    <h3 style={{
+                                                        fontSize: '1rem',
+                                                        fontWeight: 600,
+                                                        marginBottom: '0.5rem',
+                                                        color: 'var(--text-primary)'
+                                                    }}>Context-dependent</h3>
+                                                    <div style={{
+                                                        fontSize: '0.9rem',
+                                                        fontWeight: 600,
+                                                        color: theme === 'dark' ? '#60a5fa' : '#3b82f6',
+                                                        marginBottom: '0.75rem'
+                                                    }}>It depends</div>
+                                                    <p style={{
+                                                        fontSize: '0.9rem',
+                                                        color: 'var(--text-secondary)',
+                                                        lineHeight: '1.5',
+                                                        margin: 0
+                                                    }}>
+                                                        AI appropriateness depends on your course level, learning objectives, and context.
+                                                    </p>
+                                                </div>
+
+                                                <div style={{
+                                                    padding: '1.25rem',
+                                                    background: 'var(--bg-secondary)',
+                                                    border: '1px solid var(--border-color)',
+                                                    borderRadius: '8px'
+                                                }}>
+                                                    <div style={{
+                                                        fontSize: '1.5rem',
+                                                        marginBottom: '0.5rem'
+                                                    }}>✅</div>
+                                                    <h3 style={{
+                                                        fontSize: '1rem',
+                                                        fontWeight: 600,
+                                                        marginBottom: '0.5rem',
+                                                        color: 'var(--text-primary)'
+                                                    }}>Support activity</h3>
+                                                    <div style={{
+                                                        fontSize: '0.9rem',
+                                                        fontWeight: 600,
+                                                        color: theme === 'dark' ? '#10b981' : '#059669',
+                                                        marginBottom: '0.75rem'
+                                                    }}>Could use</div>
+                                                    <p style={{
+                                                        fontSize: '0.9rem',
+                                                        color: 'var(--text-secondary)',
+                                                        lineHeight: '1.5',
+                                                        margin: 0
+                                                    }}>
+                                                        These activities don't bypass core learning and AI can assist students effectively.
+                                                    </p>
+                                                </div>
                                             </div>
                                             <div style={{
                                                 overflowX: 'auto',
