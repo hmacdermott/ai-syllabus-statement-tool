@@ -6396,33 +6396,7 @@
                                 />
 
                                 <h2 className="phase-question">
-                                    Invite Questions? (Optional){' '}
-                                    <button
-                                        onClick={() => {
-                                            setPhase('intro-policy');
-                                            setShowPolicyChoices(false);
-                                            setStatementParts(prev => ({
-                                                ...prev,
-                                                policyLevel: '',
-                                                policyLevelKey: '',
-                                                rationale: ''
-                                            }));
-                                        }}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: 'var(--primary)',
-                                            cursor: 'pointer',
-                                            fontSize: '0.75rem',
-                                            padding: '0',
-                                            textDecoration: 'underline',
-                                            fontWeight: 'normal',
-                                            fontFamily: 'inherit',
-                                            fontStyle: 'italic'
-                                        }}
-                                    >
-                                        (← Change Policy Level)
-                                    </button>
+                                    Invite Questions? (Optional)
                                 </h2>
                                 <p className="phase-description">
                                     You can add a <em>friendly note</em> inviting students to <strong>ask questions</strong> when they're unsure about the policy.
