@@ -4351,7 +4351,31 @@
 
                     {statementParts.documentation && (
                         <div className="statement-section documentation">
-                            <div className="section-label">Documentation</div>
+                            <div className="section-label">
+                                Documentation{' '}
+                                {setPhase && (
+                                    <button
+                                        onClick={() => {
+                                            setPhase('documentation');
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'var(--primary)',
+                                            cursor: 'pointer',
+                                            fontSize: '0.75rem',
+                                            padding: '0',
+                                            textDecoration: 'underline',
+                                            fontWeight: 'normal',
+                                            fontFamily: 'inherit',
+                                            whiteSpace: 'nowrap',
+                                            fontStyle: 'italic'
+                                        }}
+                                    >
+                                        (← Back to Documentation)
+                                    </button>
+                                )}
+                            </div>
                             <div className="section-text">{statementParts.documentation}</div>
                         </div>
                     )}
