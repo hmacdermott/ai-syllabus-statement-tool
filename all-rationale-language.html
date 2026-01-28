@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Rationale Language - Gen AI Syllabus Statement Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9fafb;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #1e40af;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f3f4f6;
+            border-radius: 8px;
+        }
+
+        .filter-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        .filter-section select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .department-section {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .department-section:last-child {
+            border-bottom: none;
+        }
+
+        .department-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-block {
+            margin-bottom: 2rem;
+        }
+
+        .policy-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .policy-label.no-ai {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .policy-label.limited {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .policy-label.ok {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .policy-label.required {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .policy-text {
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-left: 4px solid #d1d5db;
+            border-radius: 6px;
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        .section-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .intro-text, .context-text {
+            padding: 1rem;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            color: #78350f;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .filter-section, .back-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Tool</a>
+
+        <h1>All Rationale Language</h1>
+        <p class="subtitle">Complete reference of all department-specific AI policy rationale text</p>
+
+        <div class="filter-section">
+            <label for="departmentFilter">Filter by Department:</label>
+            <select id="departmentFilter">
+                <option value="all">All Departments</option>
+            </select>
+        </div>
+
+        <div id="content"></div>
+    </div>
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        // This will be populated from the main index.html - copy the departmentSpecificLanguage object here
+        // For now, we'll load it dynamically
+
+        fetch('index.html')
+            .then(response => response.text())
+            .then(html => {
+                // Extract the departmentSpecificLanguage object from index.html
+                const match = html.match(/const departmentSpecificLanguage = ({[\s\S]*?});[\s\S]*?const alternativeRationales/);
+                if (match) {
+                    const dataCode = `const departmentSpecificLanguage = ${match[1]};`;
+                    eval(dataCode);
+                    renderContent(departmentSpecificLanguage);
+                }
+            });
+
+        function renderContent(data) {
+            const departments = Object.keys(data).filter(dept =>
+                data[dept].intro && data[dept].noAI
+            );
+
+            const contentDiv = document.getElementById('content');
+            const filterSelect = document.getElementById('departmentFilter');
+
+            // Populate filter dropdown
+            departments.forEach(dept => {
+                const option = document.createElement('option');
+                option.value = dept;
+                option.textContent = dept;
+                filterSelect.appendChild(option);
+            });
+
+            // Render all departments
+            function render(filterDept = 'all') {
+                contentDiv.innerHTML = '';
+
+                departments.forEach(deptName => {
+                    if (filterDept !== 'all' && filterDept !== deptName) return;
+
+                    const dept = data[deptName];
+                    const section = document.createElement('div');
+                    section.className = 'department-section';
+
+                    let html = `
+                        <div class="department-name">${deptName}</div>
+
+                        <div class="section-group">
+                            <div class="section-header">Introduction</div>
+                            <div class="intro-text">${dept.intro || 'N/A'}</div>
+                        </div>
+
+                        <div class="section-group">
+                            <div class="section-header">Context</div>
+                            <div class="context-text">${dept.context || 'N/A'}</div>
+                        </div>
+
+                        <div class="section-group">
+                            <div class="section-header">Policy Rationales</div>
+
+                            <div class="policy-block">
+                                <div class="policy-label no-ai">🚫 No AI</div>
+                                <div class="policy-text">${dept.noAI || dept['no-ai'] || 'N/A'}</div>
+                            </div>
+
+                            <div class="policy-block">
+                                <div class="policy-label limited">⚠️ Limited AI</div>
+                                <div class="policy-text">${dept.limited || 'N/A'}</div>
+                            </div>
+
+                            <div class="policy-block">
+                                <div class="policy-label ok">✅ AI OK</div>
+                                <div class="policy-text">${dept.ok || 'N/A'}</div>
+                            </div>
+
+                            <div class="policy-block">
+                                <div class="policy-label required">⭐ AI Required</div>
+                                <div class="policy-text">${dept.required || 'N/A'}</div>
+                            </div>
+                        </div>
+                    `;
+
+                    section.innerHTML = html;
+                    contentDiv.appendChild(section);
+                });
+            }
+
+            // Initial render
+            render();
+
+            // Filter handler
+            filterSelect.addEventListener('change', (e) => {
+                render(e.target.value);
+            });
+        }
+    </script>
+</body>
+</html>
