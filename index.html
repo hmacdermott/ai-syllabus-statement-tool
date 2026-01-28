@@ -6247,8 +6247,8 @@
 
             if (phase === 'documentation') {
                 const docTexts = {
-                    none: '',
-                    encouraged: '### Documentation\n\nI encourage you to document your use of generative AI tools. Noting which tools you used, how you engaged with their output, and what you learned helps build metacognitive awareness and makes your learning process visible—to yourself and to me.',
+                    none: '### Documentation\n\nThough your use of AI does not need to be documented, I expect you to use these tools thoughtfully and in ways that genuinely support your learning.',
+                    encouraged: '### Documentation\n\nI strongly encourage you to document your use of generative AI tools. Noting which tools you used, how you engaged with their output, and what you learned helps build metacognitive awareness and makes your learning process visible—to yourself and to me.',
                     required: '### Documentation Requirements\n\nWhen you use generative AI tools for any assignment, submit documentation that includes:\n\n- **Which tool(s) you used** (e.g., ChatGPT, Claude, GitHub Copilot)\n- **What you asked the AI to do** (include key prompts or questions)\n- **How you used the AI\'s output** (e.g., as a starting point, to check your work, to debug code)\n- **How you verified or modified what the AI produced** (this is critical—AI tools make mistakes)\n- **What you learned** (about both the subject matter and the tool\'s limitations)\n\nThis documentation supports your learning and helps me understand your process.'
                 };
 
@@ -6320,7 +6320,7 @@
                                         setDocOption('encouraged');
                                         handleDocumentationNext(docTexts['encouraged']);
                                     }}>
-                                        <h3 style={{fontSize: '1.5rem', marginBottom: '0.75rem'}}>💭 Encouraged (Optional)</h3>
+                                        <h3 style={{fontSize: '1.5rem', marginBottom: '0.75rem'}}>💭 Strongly Encouraged</h3>
                                         <p>Students are encouraged but not required to document AI use</p>
                                     </div>
 
