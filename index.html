@@ -507,21 +507,6 @@
             font-weight: 600;
         }
 
-        .remove-btn {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-        }
-
-        .remove-btn:hover {
-            background: #dc2626;
-        }
-
         /* Skip button */
         .skip-btn {
             background: transparent;
@@ -6179,7 +6164,24 @@
                                     <div key={idx} className="assignment-policy-item">
                                         <div className="assignment-policy-header">
                                             <h4>{policy.assignmentType}</h4>
-                                            <button className="remove-btn" onClick={() => removePolicy(idx)}>Remove</button>
+                                            <button
+                                                onClick={() => removePolicy(idx)}
+                                                style={{
+                                                    background: '#ef4444',
+                                                    color: 'white',
+                                                    border: 'none',
+                                                    padding: '0.5rem 1rem',
+                                                    borderRadius: '6px',
+                                                    cursor: 'pointer',
+                                                    fontSize: '0.875rem',
+                                                    transition: 'all 0.2s',
+                                                    fontFamily: 'inherit'
+                                                }}
+                                                onMouseOver={(e) => e.target.style.background = '#dc2626'}
+                                                onMouseOut={(e) => e.target.style.background = '#ef4444'}
+                                            >
+                                                Remove
+                                            </button>
                                         </div>
                                         <p>{policy.policy}</p>
                                     </div>
