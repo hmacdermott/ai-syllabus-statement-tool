@@ -4459,6 +4459,7 @@
             const [policies, setPolicies] = useState([]);
             const [newAssignment, setNewAssignment] = useState('');
             const [newPolicy, setNewPolicy] = useState('');
+            const [assignmentPolicyError, setAssignmentPolicyError] = useState('');
             const [docOption, setDocOption] = useState('none');
             const [customText, setCustomText] = useState('');
             const [expandedConsiderations, setExpandedConsiderations] = useState([]);
@@ -5656,7 +5657,7 @@
                                                         marginBottom: '0.5rem'
                                                     }}>🚫</div>
                                                     <h3 style={{
-                                                        fontSize: '1rem',
+                                                        fontSize: '1.25rem',
                                                         fontWeight: 600,
                                                         marginBottom: '0.5rem',
                                                         color: 'var(--text-primary)'
@@ -5689,7 +5690,7 @@
                                                         marginBottom: '0.5rem'
                                                     }}>⚠️</div>
                                                     <h3 style={{
-                                                        fontSize: '1rem',
+                                                        fontSize: '1.25rem',
                                                         fontWeight: 600,
                                                         marginBottom: '0.5rem',
                                                         color: 'var(--text-primary)'
@@ -5722,7 +5723,7 @@
                                                         marginBottom: '0.5rem'
                                                     }}>✅</div>
                                                     <h3 style={{
-                                                        fontSize: '1rem',
+                                                        fontSize: '1.25rem',
                                                         fontWeight: 600,
                                                         marginBottom: '0.5rem',
                                                         color: 'var(--text-primary)'
@@ -6104,11 +6105,22 @@
 
             if (phase === 'assignments') {
                 const addPolicy = () => {
-                    if (newAssignment && newPolicy) {
-                        setPolicies([...policies, { assignmentType: newAssignment, policy: newPolicy }]);
-                        setNewAssignment('');
-                        setNewPolicy('');
+                    if (!newAssignment && !newPolicy) {
+                        setAssignmentPolicyError('Please fill in both the assignment type and policy before adding.');
+                        return;
                     }
+                    if (!newAssignment) {
+                        setAssignmentPolicyError('Please provide an assignment type (e.g., Essays, Problem Sets, Lab Reports).');
+                        return;
+                    }
+                    if (!newPolicy) {
+                        setAssignmentPolicyError('Please describe how AI can or cannot be used for this assignment type.');
+                        return;
+                    }
+                    setPolicies([...policies, { assignmentType: newAssignment, policy: newPolicy }]);
+                    setNewAssignment('');
+                    setNewPolicy('');
+                    setAssignmentPolicyError('');
                 };
 
                 const removePolicy = (idx) => {
@@ -6181,7 +6193,10 @@
                                             type="text"
                                             placeholder="e.g., Essays, Problem Sets, Lab Reports"
                                             value={newAssignment}
-                                            onChange={(e) => setNewAssignment(e.target.value)}
+                                            onChange={(e) => {
+                                                setNewAssignment(e.target.value);
+                                                setAssignmentPolicyError('');
+                                            }}
                                             style={{width: '100%', padding: '0.75rem', borderRadius: '6px', border: '2px solid var(--border-color)'}}
                                         />
                                     </div>
@@ -6190,14 +6205,30 @@
                                         <textarea
                                             placeholder="Describe how AI can or cannot be used for this assignment type"
                                             value={newPolicy}
-                                            onChange={(e) => setNewPolicy(e.target.value)}
+                                            onChange={(e) => {
+                                                setNewPolicy(e.target.value);
+                                                setAssignmentPolicyError('');
+                                            }}
                                             style={{width: '100%', minHeight: '100px', padding: '0.75rem', borderRadius: '6px', border: '2px solid var(--border-color)', resize: 'vertical'}}
                                         />
                                     </div>
+                                    {assignmentPolicyError && (
+                                        <div style={{
+                                            padding: '0.75rem',
+                                            marginBottom: '1rem',
+                                            background: 'rgba(239, 68, 68, 0.1)',
+                                            border: '1px solid rgba(239, 68, 68, 0.3)',
+                                            borderRadius: '6px',
+                                            color: theme === 'dark' ? '#fca5a5' : '#dc2626',
+                                            fontSize: '0.9rem'
+                                        }}>
+                                            {assignmentPolicyError}
+                                        </div>
+                                    )}
                                     <button className="secondary" onClick={addPolicy}>+ Add Policy</button>
                                 </div>
 
-                                <div style={{display: 'flex', gap: '1rem', marginTop: '2rem'}}>
+                                <div style={{display: 'flex', gap: '1rem', marginTop: '2rem', justifyContent: 'flex-end'}}>
                                     <button className="primary" onClick={() => handleAssignmentsNext(policies)}>
                                         Continue →
                                     </button>
